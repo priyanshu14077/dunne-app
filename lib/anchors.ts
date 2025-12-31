@@ -7,7 +7,6 @@ export interface AnchorPoint {
 }
 
 export interface ProductAnchorConfig {
-    find(arg0: (a: any) => boolean): unknown;
     standard: AnchorPoint[];
     spaced: AnchorPoint[];
 }
