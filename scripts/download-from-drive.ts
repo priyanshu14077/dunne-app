@@ -121,7 +121,7 @@ async function processLibrary(csvFile: string, subDir: string) {
 
   console.log(`\n📂 Processing ${csvFile} (${records.length} items)...`)
 
-  for (const record of records) {
+  for (const record of records as any[]) {
     const name = (record['Name'] || '').trim()
     const itemCode = (record['Item Code'] || '').trim().replace(/\s+/g, '_')
     if (!itemCode && !name) continue
