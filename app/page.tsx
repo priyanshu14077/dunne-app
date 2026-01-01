@@ -1,21 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TabNavigation from "@/components/TabNavigation";
 import SelectionDrawer from "@/components/SelectionDrawer";
 import JewelryCanvas from "@/components/JewelryCanvas";
-import SelectedCharmsSidebar from "@/components/SelectedCharmsSidebar";
+import SelectedCharmsModal from "@/components/SelectedCharmsModal";
+import SummaryOverlay from "@/components/SummaryOverlay";
 import { BASE_PRODUCTS, CHARMS, Product, Charm } from "@/lib/mock-data";
 import { PRODUCT_ANCHORS } from "@/lib/anchors";
-
-// Generic Whatsapp Icon
-const WhatsappIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" className="w-8 h-8">
-        <path d="M.057 24l1.687-6.163c-3.138-5.748-1.2-12.86 5.567-16.145 6.766-3.284 14.887-.417 18.172 6.35 3.285 6.766.417 14.887-6.35 18.17-2.73 1.326-5.842 1.55-8.736.63L0 24zm12.92-19.16C7.575 4.84.975 9.18 3.515 14.41c.642 1.32.95 2.76.89 4.217l-.364 1.33 5.488-1.44c1.395.42 2.87.502 4.303.242 5.342-1.956 8.08-7.864 6.124-13.205-1.956-5.34-7.863-8.08-13.204-6.123h-.002z"/>
-    </svg>
-);
 
 export default function Home() {
   const [currentStep, setCurrentStep] = useState<'charms' | 'base' | 'space'>('charms');
@@ -30,7 +24,24 @@ export default function Home() {
   const [activeCharmCategory, setActiveCharmCategory] = useState("Eternal Bloom");
   const [activeBaseCategory, setActiveBaseCategory] = useState("Bracelets");
   const [highlightedItem, setHighlightedItem] = useState<Product | Charm | null>(null);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
+  const [isModalOpen, setIsModalOpen] = useState(false); 
+
+  // Initial Logic: Random charm on land
+  useEffect(() => {
+    // Landing state: No base selected, only one random charm icon shown
+    if (placedCharms.length === 0) {
+      const randomCharm = CHARMS[Math.floor(Math.random() * CHARMS.length)];
+      
+      // Since no base is selected, we use a temporary anchor ID for the clustering logic
+      const targetAnchorId = `init-${Date.now()}`;
+      
+      setPlacedCharms([{ 
+        charm: randomCharm, 
+        anchorId: targetAnchorId, 
+        id: `init-${Date.now()}` 
+      }]);
+    }
+  }, []);
 
   // Price Calculation
   const basePrice = selectedBase?.price || 0;
@@ -59,13 +70,17 @@ export default function Home() {
     setPlacedCharms([...placedCharms, { charm, anchorId: targetAnchorId, id: `inst-${Date.now()}` }]);
   };
 
+  const handleRemoveCharm = (instanceId: string) => {
+      setPlacedCharms(prev => prev.filter(p => p.id !== instanceId));
+  };
+
+  const handleReset = () => {
+      setPlacedCharms([]);
+  };
+
   const handleRandomize = () => {
     // Pick 3 random charms
     const randomCharms = [...CHARMS].sort(() => 0.5 - Math.random()).slice(0, 3);
-    
-    // Clear and add them
-    // Assuming we want to REPLACE? Or ADD? "Shuffles" usually means rearrange or pick new set.
-    // Let's Add them to empty slots.
     
     const newPlaced = [...placedCharms];
     const anchors = selectedBase ? (PRODUCT_ANCHORS[selectedBase.id]?.[spacingMode] || []) : [];
@@ -117,8 +132,8 @@ export default function Home() {
 
   // WhatsApp Button Component
   const WhatsappFloating = () => (
-      <button className="fixed bottom-[96px] right-6 z-50 bg-[#25D366] text-white p-3 rounded-full shadow-xl hover:scale-110 transition-transform">
-          <WhatsappIcon />
+      <button className="fixed bottom-[110px] right-6 z-50 hover:scale-110 transition-transform active:scale-95">
+          <img src="/icons/web-icons-clean/whatsapp.png" alt="WhatsApp" className="w-12 h-12" />
       </button>
   );
 
@@ -126,16 +141,17 @@ export default function Home() {
     <div className="flex flex-col h-screen bg-white font-sans text-slate-900 overflow-hidden">
       <Header />
 
-      <main className="flex-1 flex flex-col relative bg-[#F9F9F9] h-full overflow-hidden"> 
+      <main className="flex-1 flex flex-col relative bg-white h-full overflow-hidden"> 
         
         {/* Tab Nav - Fixed Top of Main */}
-        <div className="flex-shrink-0 relative z-20 bg-[#F9F9F9]">
+        <div className="flex-shrink-0 relative z-20 bg-white">
             <TabNavigation 
                 currentStep={currentStep} 
                 onStepChange={setCurrentStep}
                 onInfoClick={() => {
-                    if (highlightedItem) {
-                        alert(`Metadata:\nName: ${highlightedItem.name}\nPrice: ₹${highlightedItem.price}\nID: ${highlightedItem.id}`);
+                    const activeItem = highlightedItem || (placedCharms.length > 0 ? placedCharms[placedCharms.length - 1].charm : null);
+                    if (activeItem) {
+                        alert(`Metadata:\nName: ${activeItem.name}\nPrice: ₹${activeItem.price}\nID: ${activeItem.id}`);
                     } else {
                         alert("Please select a charm to view its details.");
                     }
@@ -143,30 +159,29 @@ export default function Home() {
             />
         </div>
         
-        {/* Sidebar */}
-        {isSidebarOpen && (
-            <div className="absolute right-0 top-0 bottom-0 z-40 h-full flex">
-                 <div className="fixed inset-0 bg-black/20 z-30" onClick={() => setIsSidebarOpen(false)}></div>
-                 <div className="relative z-40 h-full bg-white shadow-2xl animate-in slide-in-from-right duration-300">
-                     <button onClick={() => setIsSidebarOpen(false)} className="absolute top-2 right-2 p-2">✕</button>
-                     <div className="mt-8">
-                        <SelectedCharmsSidebar 
-                            selectedCharms={placedCharms}
-                            onRemove={(id) => setPlacedCharms(placedCharms.filter(p => p.id !== id))}
-                        />
-                     </div>
-                 </div>
-            </div>
-        )}
+            {isModalOpen && (
+                <SelectedCharmsModal 
+                    selectedCharms={placedCharms}
+                    onClose={() => setIsModalOpen(false)}
+                    onRemove={handleRemoveCharm}
+                    onAddAnother={handleCharmSelect}
+                    onReset={handleReset}
+                />
+            )}
 
         {/* Canvas Area - Flex Grow to Fill */}
-        <div className="flex-1 w-full relative min-h-0">
+        <div className="flex-1 w-full relative min-h-0 bg-white">
             <JewelryCanvas 
                 baseProduct={selectedBase}
                 placedCharms={placedCharms}
                 spacingMode={spacingMode}
-                onToggleSidebar={() => setIsSidebarOpen(true)}
             />
+            {currentStep !== 'space' && placedCharms.length > 0 && (
+                <SummaryOverlay 
+                    charms={placedCharms}
+                    onViewAll={() => setIsModalOpen(true)}
+                />
+            )}
         </div>
 
         {/* Drawer / Spacing Controls - Constrained Container */}
@@ -206,7 +221,7 @@ export default function Home() {
 
                 </div>
             ) : (
-                <div className="h-[340px] w-full"> {/* Fixed height for drawer as per design proportion */}
+                <div className="h-[360px] w-full"> {/* Fixed height for drawer as per design proportion */}
                     <SelectionDrawer {...drawerProps} />
                 </div>
             )}
@@ -218,7 +233,13 @@ export default function Home() {
       <WhatsappFloating />
 
       <Footer 
-        highlightedItem={currentStep === 'space' ? null : (highlightedItem ? { name: highlightedItem.name, price: highlightedItem.price } : null)}
+        highlightedItem={
+            currentStep === 'space' ? null : (
+                highlightedItem 
+                ? { name: highlightedItem.name, price: highlightedItem.price } 
+                : (placedCharms.length > 0 ? { name: placedCharms[placedCharms.length - 1].charm.name, price: placedCharms[placedCharms.length - 1].charm.price } : null)
+            )
+        }
         defaultTotal={totalPrice}
         isFinalStep={currentStep === 'space'}
         onNext={() => {
@@ -228,9 +249,12 @@ export default function Home() {
         onAdd={() => {
             if (currentStep === 'space') {
                 alert("Order added to cart with note: " + note);
-            } else if (highlightedItem) {
-                if (currentStep === 'charms') handleCharmSelect(highlightedItem);
-                if (currentStep === 'base') handleBaseSelect(highlightedItem);
+            } else {
+                const activeItem = highlightedItem || (placedCharms.length > 0 ? placedCharms[placedCharms.length - 1].charm : null);
+                if (activeItem) {
+                    if (currentStep === 'charms') handleCharmSelect(activeItem);
+                    if (currentStep === 'base') handleBaseSelect(activeItem);
+                }
             }
         }}
       />

@@ -6,17 +6,16 @@ interface JewelryCanvasProps {
     baseProduct: Product | null;
     placedCharms: { charm: Charm; anchorId: string }[];
     spacingMode: 'standard' | 'spaced';
-    onToggleSidebar: () => void; // Trigger for sidebar
 }
 
-export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, onToggleSidebar }: JewelryCanvasProps) {
+export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode }: JewelryCanvasProps) {
     
     // Get anchors for the current base product and mode
     const anchorConfig = baseProduct ? PRODUCT_ANCHORS[baseProduct.id] : null;
     const anchors = anchorConfig ? anchorConfig[spacingMode] : [];
 
     return (
-        <div className="w-full h-full flex items-center justify-center bg-[#F3F4F6]/50 relative overflow-hidden rounded-lg min-h-[400px]">
+        <div className="w-full h-full flex items-center justify-center bg-transparent relative overflow-hidden rounded-lg min-h-[400px]">
              
             {/* Guide Lines / Dimensions (from design) - Purely decorative for now */}
 
@@ -29,23 +28,25 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                         className="w-full h-full object-contain"
                     />
                 ) : (
-                    // Floating Charms State
-                    <div className="w-full h-full flex flex-wrap content-center justify-center gap-4 p-8 opacity-100 relative">
-                       {/* Center Ring Graphic (Mockup) */}
-                        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-16 h-16 border-4 border-[#eecfa1] rounded-full shadow-inner z-0"></div>
-
-                       {placedCharms.length === 0 && (
-                            <div className="text-gray-400 text-sm text-center z-10 mt-32">
-                                Start adding charms from the drawer!
+                    // Big Preview State (No Base Selected)
+                    <div className="w-full h-full flex items-center justify-center relative animate-in fade-in zoom-in duration-700">
+                        
+                        {/* Latest Charm in Big Preview */}
+                        {placedCharms.length > 0 && (
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 z-10 animate-in slide-in-from-bottom-4 duration-500">
+                                <img 
+                                    src={placedCharms[placedCharms.length - 1].charm.image} 
+                                    alt="" 
+                                    className="w-full h-full object-contain drop-shadow-[0_10px_15px_rgba(0,0,0,0.05)] transition-transform hover:scale-110" 
+                                />
                             </div>
-                       )}
-                       
-                       {/* Render Charms in a "Cluster" if no base */}
-                       {placedCharms.map((pc, i) => (
-                           <div key={i} className="w-16 h-16 z-10 animate-in zoom-in duration-300">
-                               <img src={pc.charm.image} alt={pc.charm.name} className="w-full h-full object-contain drop-shadow-lg" />
-                           </div>
-                       ))}
+                        )}
+
+                        {placedCharms.length === 0 && (
+                            <div className="text-[#1F4B30]/30 text-xs font-medium uppercase tracking-widest animate-pulse">
+                                Select a charm to preview
+                            </div>
+                        )}
                     </div>
                 )}
 
@@ -81,15 +82,6 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                 })}
             </div>
 
-            {/* View All Label (Only - No FAB) */}
-             <div className="absolute bottom-6 right-6 z-20">
-                 <button 
-                    onClick={onToggleSidebar}
-                    className="bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg text-[10px] font-bold text-[#1F4B30] shadow-sm hover:bg-white transition-colors"
-                 >
-                     {placedCharms.length} Selected | <span className="text-[#DE3C27]">View All</span>
-                 </button>
-             </div>
 
             {/* No Info Icon here anymore */}
 

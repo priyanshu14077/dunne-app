@@ -19,69 +19,43 @@ export default function Footer({
     isFinalStep = false
 }: FooterProps) {
   return (
-    <footer className="fixed bottom-0 left-0 w-full bg-[#1F4B30] text-white px-6 py-4 z-50 shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
-      <div className="flex items-center justify-between max-w-md mx-auto w-full md:max-w-4xl">
+    <footer className="fixed bottom-0 left-0 w-full bg-[#1F4B30] text-white px-[48px] py-5 z-50 shadow-[0_-10px_40px_rgba(0,0,0,0.15)]">
+      <div className="flex items-center justify-between max-w-4xl mx-auto w-full">
         
         {/* Info Side */}
         <div className="flex flex-col">
-            {highlightedItem ? (
-                <>
-                  <span className="text-xs font-bold text-[#A3CFA9] uppercase tracking-wider mb-0.5">
-                      Selected Item
-                  </span>
-                  <span className="text-sm font-bold uppercase tracking-wide text-white/90 truncate max-w-[150px]">
-                      {highlightedItem.name}
-                  </span>
-                  <span className="text-xl font-serif text-[#A3CFA9]">
-                      ₹{highlightedItem.price.toFixed(2)}
-                  </span>
-                </>
-            ) : (
-                <>
-                  <span className="text-xs font-bold text-[#A3CFA9] uppercase tracking-wider mb-0.5">
-                      {isFinalStep ? 'Final Total' : 'Total Cart'}
-                  </span>
-                   <span className="text-xl font-serif text-[#A3CFA9]">
-                      ₹{defaultTotal.toFixed(2)}
-                  </span>
-                </>
-            )}
+            <span className="text-[10px] font-bold text-[#A3CFA9] uppercase tracking-[0.2em] mb-1">
+                {isFinalStep ? 'Final Total' : 'Total Price'}
+            </span>
+             <span className="text-2xl font-serif text-white tracking-tight">
+                ₹{defaultTotal.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            </span>
         </div>
 
         {/* Actions Side */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-6">
           
           {isFinalStep ? (
-              // Final Step: "Add to Cart" full width button style
+              // Final Step: "Add to Cart"
               <button 
                 onClick={onAdd}
-                className="flex items-center gap-2 px-8 py-3 bg-white text-[#1F4B30] rounded-full font-bold text-sm hover:scale-105 transition-transform shadow-lg"
+                className="flex items-center gap-2.5 px-10 py-3.5 bg-white text-[#1F4B30] rounded-full font-bold text-[15px] hover:scale-105 transition-all shadow-xl active:scale-95"
               >
                 <span className="whitespace-nowrap">Add to Cart</span>
-                <ShoppingBag className="w-4 h-4" />
+                <img src="/icons/web-icons-clean/cart.png" alt="" className="w-5 h-5 object-contain" />
               </button>
           ) : (
-              // Navigation Steps: "Add" + "Next"
-              <>
-                <button 
-                    onClick={onAdd}
-                    className="flex items-center gap-2 px-5 py-2.5 bg-white text-[#1F4B30] rounded-full font-bold text-sm hover:scale-105 transition-transform active:scale-95 shadow-lg"
-                >
-                    <Plus className="w-4 h-4" />
-                    Add
-                </button>
-                
+              // Navigation Steps: "Next" Only (Green Variant)
+              <div className="flex items-center gap-4">
                 <button 
                     onClick={onNext}
-                    className="px-8 py-2.5 bg-white/10 border border-white/20 text-white rounded-full font-bold text-sm hover:bg-white/20 transition-colors backdrop-blur-sm"
+                    className="flex items-center gap-2 px-12 py-3.5 bg-[#1F4B30] text-white border border-[#A3CFA9]/30 rounded-full font-bold text-[15px] hover:translate-y-[-1px] transition-all active:translate-y-0 shadow-lg"
                 >
                     Next
                 </button>
-              </>
+              </div>
           )}
-
         </div>
-
       </div>
     </footer>
   );
