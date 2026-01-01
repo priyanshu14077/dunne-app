@@ -24,8 +24,8 @@ export default function SelectedCharmsModal({
                 <div className="px-6 py-6 border-b border-gray-100 flex flex-col gap-4">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                            <span className="text-[#1F4B30] font-serif text-2xl font-bold">Total Charms</span>
-                            <div className="w-8 h-8 rounded-full bg-[#F5EBDD] flex items-center justify-center font-bold text-[#1F4B30] text-sm">
+                            <span className="text-[#1F4B30] font-serif text-3xl font-bold tracking-tight">Total Charms</span>
+                            <div className="w-8 h-8 rounded-full bg-[#F5EBDD] flex items-center justify-center font-bold text-[#1F4B30] text-sm font-serif">
                                 {totalCount}
                             </div>
                         </div>
@@ -76,8 +76,8 @@ export default function SelectedCharmsModal({
                                     <h4 className="text-[#1F4B30] font-bold text-[12px] leading-tight mb-1 line-clamp-2 min-h-[30px] flex items-center">
                                         {item.charm.name}
                                     </h4>
-                                    <span className="text-[#DE3C27] font-bold text-[14px]">
-                                        +₹{item.charm.price.toFixed(2)}
+                                    <span className="text-[#1F4B30] font-bold text-[14px]">
+                                        +SAR {item.charm.price.toFixed(2)}
                                     </span>
                                 </div>
 

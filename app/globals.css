@@ -1,15 +1,41 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Hillstown Sans Aged";
+  src: url("/fonts/HillstownSansAged.woff2") format("woff2"),
+    url("/fonts/HillstownSansAged.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neutra Text";
+  src: url("/fonts/NeutraText-Book.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neutra Text";
+  src: url("/fonts/NeutraText-Bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-manrope);
-  
+@theme {
+  --font-content: "Neutra Text", "Manrope", sans-serif;
+  --font-heading: "Hillstown Sans Aged", "Playfair Display", serif;
+  --font-sans: "Neutra Text", "Manrope", sans-serif;
+  --font-serif: "Hillstown Sans Aged", "Playfair Display", serif;
+
   /* Custom Palette */
   --color-dunne-red: #DE3C27;
   --color-dunne-green: #1F4B30;
@@ -21,7 +47,8 @@
 }
 
 body {
-  background: var(--color-dunne-beige); /* Main background color from design */
+  background: var(--color-dunne-beige);
+  /* Main background color from design */
   color: var(--color-dunne-black);
   font-family: var(--font-manrope), sans-serif;
 }

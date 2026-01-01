@@ -5,34 +5,34 @@ import { Menu, ShoppingBag } from "lucide-react";
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-[#F5EBDD] shadow-sm">
-      {/* Main Nav */}
-      <div className="flex items-center justify-between px-6 py-[19px] relative z-10 bg-[#F5EBDD] h-[120px]">
+      {/* Main Nav - Strict 82px */}
+      <div className="flex items-center justify-between px-6 bg-[#F5EBDD] h-[82px] relative z-10 w-full max-w-5xl mx-auto">
         {/* Mobile Menu */}
-        <button className="p-2 -ml-2">
-          <Menu className="w-6 h-6 text-[#1F4B30]" strokeWidth={1.5} />
+        <button className="p-2 -ml-2 hover:opacity-70 transition-opacity text-[#1F4B30]">
+          <Menu className="w-6 h-6" strokeWidth={1.5} />
         </button>
 
-        {/* Logo */}
-        <Link href="/" className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+        {/* Logo - Centered */}
+        <Link href="/" className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
              <Image 
                src="/Workmark_Dunne.svg" 
                alt="Dunne Jewelry" 
-               width={160} 
-               height={64} 
+               width={120} 
+               height={48} 
                priority
-               className="h-[64px] w-auto opacity-90" 
+               className="h-[40px] w-auto opacity-100" 
              />
         </Link>
 
-        {/* Cart */}
-        <button className="p-2 -mr-2 relative hover:scale-110 transition-transform active:scale-95">
-          <img src="/icons/web-icons-clean/cart.png" alt="Cart" className="w-8 h-8 object-contain" />
+        {/* Cart - Perfectly aligned with Menu */}
+        <button className="p-2 -mr-2 relative hover:scale-105 transition-transform active:scale-95 group flex items-center justify-center text-[#1F4B30]">
+           <ShoppingBag className="w-6 h-6" strokeWidth={1.5} />
         </button>
       </div>
 
-      {/* Promo Banner */}
-      <div className="bg-[#DE3C27] text-white text-center flex items-center justify-center text-xs font-medium tracking-wide h-[31px]">
-        USE "DUNNE10" ON YOUR FIRST ORDER
+      {/* Promo Banner - Strict 26px */}
+      <div className="bg-[#DE3C27] text-white text-center flex items-center justify-center text-[10px] font-bold tracking-widest uppercase h-[26px] w-full">
+         USE "DUNNE10" ON YOUR FIRST ORDER
       </div>
     </header>
   );

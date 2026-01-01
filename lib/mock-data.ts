@@ -66,921 +66,504 @@ export const BASE_PRODUCTS: Product[] = [
 ];
 
 export const CHARMS: Charm[] = [
+  // Eternal Bloom
   {
-    "id": "eternalbloom-1",
-    "name": "Bloom Vase",
-    "price": 840,
-    "category": "Eternal Bloom",
-    "image": "/charms-categories/Eternal Bloom/Bloom Vase Charm M.png"
+    id: "eb-1",
+    name: "Bloom Vase Floral Charm",
+    price: 690,
+    category: "Eternal Bloom",
+    image: "/charms-cards/Eternal Bloom/Label = Bloom Vase Charm.png"
   },
   {
-    "id": "eternalbloom-2",
-    "name": "Blooming Lily",
-    "price": 840,
-    "category": "Eternal Bloom",
-    "image": "/charms-categories/Eternal Bloom/Blooming Lily Charm M.png"
+    id: "eb-2",
+    name: "Blooming Lily Flower Charm",
+    price: 690,
+    category: "Eternal Bloom",
+    image: "/charms-cards/Eternal Bloom/Label = Blooming Lily Charm.png"
   },
   {
-    "id": "eternalbloom-3",
-    "name": "Blossom Vase",
-    "price": 690,
-    "category": "Eternal Bloom",
-    "image": "/charms-categories/Eternal Bloom/Blossom Vase Charm M.png"
+    id: "eb-3",
+    name: "Blossom Vase Floral Charm",
+    price: 690,
+    category: "Eternal Bloom",
+    image: "/charms-cards/Eternal Bloom/Label = Blossom Vase Charm.png"
   },
   {
-    "id": "eternalbloom-4",
-    "name": "Blue Blossom Heart",
-    "price": 690,
-    "category": "Eternal Bloom",
-    "image": "/charms-categories/Eternal Bloom/Blue Blossom Heart Charm M.png"
+    id: "eb-4",
+    name: "Blue Blossom Heart Charm",
+    price: 690,
+    category: "Eternal Bloom",
+    image: "/charms-cards/Eternal Bloom/Label = Blue Blossom Heart Charm.png"
   },
   {
-    "id": "eternalbloom-5",
-    "name": "Blue Meadow Bloom",
-    "price": 690,
-    "category": "Eternal Bloom",
-    "image": "/charms-categories/Eternal Bloom/Blue Meadow Bloom Charm M.png"
+    id: "eb-5",
+    name: "Blue Meadow Bloom Charm",
+    price: 690,
+    category: "Eternal Bloom",
+    image: "/charms-cards/Eternal Bloom/Label = Blue Meadow Bloom Charm.png"
   },
   {
-    "id": "eternalbloom-6",
-    "name": "Blue Rose",
-    "price": 840,
-    "category": "Eternal Bloom",
-    "image": "/charms-categories/Eternal Bloom/Blue Rose Charm L.png"
+    id: "eb-6",
+    name: "Blue Rose Floral Charm",
+    price: 840,
+    category: "Eternal Bloom",
+    image: "/charms-cards/Eternal Bloom/Label = Blue Rose Charm.png"
   },
   {
-    "id": "eternalbloom-7",
-    "name": "DescriBlue Heart",
-    "price": 790,
-    "category": "Eternal Bloom",
-    "image": "/charms-categories/Eternal Bloom/DescriBlue Heart Charm M.png"
+    id: "eb-7",
+    name: "DescriBlue Heart Charm",
+    price: 790,
+    category: "Eternal Bloom",
+    image: "/charms-cards/Eternal Bloom/Label = DescriBlue Heart Charm.png"
   },
   {
-    "id": "eternalbloom-8",
-    "name": "Eternal Rose Oval",
-    "price": 690,
-    "category": "Eternal Bloom",
-    "image": "/charms-categories/Eternal Bloom/Eternal Rose Oval Charm M.png"
+    id: "eb-8",
+    name: "Eternal Rose Oval Charm",
+    price: 690,
+    category: "Eternal Bloom",
+    image: "/charms-cards/Eternal Bloom/Label = Eternal Rose Oval Charm.png"
   },
   {
-    "id": "eternalbloom-9",
-    "name": "Folk Bloom",
-    "price": 740,
-    "category": "Eternal Bloom",
-    "image": "/charms-categories/Eternal Bloom/Folk Bloom Charm M.png"
+    id: "eb-9",
+    name: "Folk Bloom Floral Charm",
+    price: 740,
+    category: "Eternal Bloom",
+    image: "/charms-cards/Eternal Bloom/Label = Folk Bloom Charm.png"
   },
   {
-    "id": "eternalbloom-10",
-    "name": "Love Note",
-    "price": 740,
-    "category": "Eternal Bloom",
-    "image": "/charms-categories/Eternal Bloom/Love Note Charm S.png"
+    id: "eb-10",
+    name: "Love Note Heart Charm",
+    price: 740,
+    category: "Eternal Bloom",
+    image: "/charms-cards/Eternal Bloom/Label = Love Note Charm.png"
   },
   {
-    "id": "eternalbloom-11",
-    "name": "Mama",
-    "price": 740,
-    "category": "Eternal Bloom",
-    "image": "/charms-categories/Eternal Bloom/Mama Charm S.png"
+    id: "eb-11",
+    name: "Mama Script Heart Charm",
+    price: 740,
+    category: "Eternal Bloom",
+    image: "/charms-cards/Eternal Bloom/Label = Mama Charm.png"
   },
   {
-    "id": "eternalbloom-12",
-    "name": "Mom’s Heart",
-    "price": 690,
-    "category": "Eternal Bloom",
-    "image": "/charms-categories/Eternal Bloom/Mom’s Heart Charm S.png"
+    id: "eb-12",
+    name: "Mom’s Heart Floral Charm",
+    price: 690,
+    category: "Eternal Bloom",
+    image: "/charms-cards/Eternal Bloom/Label = Mom’s Heart Charm.png"
   },
   {
-    "id": "eternalbloom-13",
-    "name": "Mom’s Heart Charm",
-    "price": 840,
-    "category": "Eternal Bloom",
-    "image": "/charms-categories/Eternal Bloom/Mom’s Heart Charm.png"
+    id: "eb-13",
+    name: "Pop Heart Red Charm",
+    price: 890,
+    category: "Eternal Bloom",
+    image: "/charms-cards/Eternal Bloom/Label = Pop Heart Charm.png"
   },
   {
-    "id": "eternalbloom-14",
-    "name": "Pop Heart",
-    "price": 890,
-    "category": "Eternal Bloom",
-    "image": "/charms-categories/Eternal Bloom/Pop Heart Charm M.png"
+    id: "eb-14",
+    name: "Red Heart Simple Charm",
+    price: 840,
+    category: "Eternal Bloom",
+    image: "/charms-cards/Eternal Bloom/Label = Red Heart Charm.png"
   },
   {
-    "id": "eternalbloom-15",
-    "name": "Red Heart",
-    "price": 840,
-    "category": "Eternal Bloom",
-    "image": "/charms-categories/Eternal Bloom/Red Heart Charm M.png"
+    id: "eb-15",
+    name: "Rosette Bloom Floral Charm",
+    price: 690,
+    category: "Eternal Bloom",
+    image: "/charms-cards/Eternal Bloom/Label = Rosette Bloom Charm.png"
   },
   {
-    "id": "eternalbloom-16",
-    "name": "Rosette Bloom",
-    "price": 690,
-    "category": "Eternal Bloom",
-    "image": "/charms-categories/Eternal Bloom/Rosette Bloom Charm M.png"
+    id: "eb-16",
+    name: "Scarlet Tulip Flower Charm",
+    price: 740,
+    category: "Eternal Bloom",
+    image: "/charms-cards/Eternal Bloom/Label = Scarlet Tulip Charm.png"
   },
   {
-    "id": "eternalbloom-17",
-    "name": "Scarlet Tulip",
-    "price": 740,
-    "category": "Eternal Bloom",
-    "image": "/charms-categories/Eternal Bloom/Scarlet Tulip Charm M.png"
+    id: "eb-17",
+    name: "Starlit Crescent Moon Charm",
+    price: 790,
+    category: "Eternal Bloom",
+    image: "/charms-cards/Eternal Bloom/Label = Starlit Crescent Charm.png"
   },
   {
-    "id": "eternalbloom-18",
-    "name": "Starlit Crescent",
-    "price": 790,
-    "category": "Eternal Bloom",
-    "image": "/charms-categories/Eternal Bloom/Starlit Crescent Charm L.png"
+    id: "eb-18",
+    name: "Tulip Dawn Floral Charm",
+    price: 890,
+    category: "Eternal Bloom",
+    image: "/charms-cards/Eternal Bloom/Label = Tulip Dawn Charm.png"
   },
   {
-    "id": "eternalbloom-19",
-    "name": "Tulip Dawn",
-    "price": 890,
-    "category": "Eternal Bloom",
-    "image": "/charms-categories/Eternal Bloom/Tulip Dawn Charm M.png"
+    id: "eb-19",
+    name: "Twin Blossom Flower Charm",
+    price: 790,
+    category: "Eternal Bloom",
+    image: "/charms-cards/Eternal Bloom/Label = Twin Blossom Charm.png"
   },
+
+  // Game On
   {
-    "id": "eternalbloom-20",
-    "name": "Twin Blossom",
-    "price": 790,
-    "category": "Eternal Bloom",
-    "image": "/charms-categories/Eternal Bloom/Twin Blossom Charm M.png"
+    id: "go-1",
+    name: "Golden Ping Pong Passion Charm",
+    price: 790,
+    category: "Game On",
+    image: "/charms-cards/Game On/Label = Golden Ping Pong Passion.png"
   },
   {
-    "id": "gameon-21",
-    "name": "Golden Ping Pong Passion",
-    "price": 790,
-    "category": "Game On",
-    "image": "/charms-categories/Game On/Golden Ping Pong Passion Charm  M.png"
+    id: "go-2",
+    name: "Pickleball Spark Sport Charm",
+    price: 790,
+    category: "Game On",
+    image: "/charms-cards/Game On/Label = Pickleball Spark Charm.png"
   },
   {
-    "id": "gameon-22",
-    "name": "Pickleball Spark",
-    "price": 790,
-    "category": "Game On",
-    "image": "/charms-categories/Game On/Pickleball Spark Charm L.png"
+    id: "go-3",
+    name: "Pink Smash Tennis Charm",
+    price: 840,
+    category: "Game On",
+    image: "/charms-cards/Game On/Label = Pink Smash Charm.png"
   },
   {
-    "id": "gameon-23",
-    "name": "Pink Smash",
-    "price": 890,
-    "category": "Game On",
-    "image": "/charms-categories/Game On/Pink Smash Charm M.png"
+    id: "go-4",
+    name: "Silver Tennis Spark Charm",
+    price: 890,
+    category: "Game On",
+    image: "/charms-cards/Game On/Label = Silver Tennis Spark Charm.png"
   },
   {
-    "id": "gameon-24",
-    "name": "Silver Tennis Spark",
-    "price": 890,
-    "category": "Game On",
-    "image": "/charms-categories/Game On/Silver Tennis Spark Charm L.png"
+    id: "go-5",
+    name: "Tennis Ace Racket Charm",
+    price: 690,
+    category: "Game On",
+    image: "/charms-cards/Game On/Label = Tennis Ace Charm.png"
   },
   {
-    "id": "gameon-25",
-    "name": "Tennis Ace",
-    "price": 690,
-    "category": "Game On",
-    "image": "/charms-categories/Game On/Tennis Ace Charm L.png"
+    id: "go-6",
+    name: "Tennis Sparkle Racket Charm",
+    price: 890,
+    category: "Game On",
+    image: "/charms-cards/Game On/Label = Tennis Sparkle Racket Charm.png"
   },
+
+  // Guardian
   {
-    "id": "gameon-26",
-    "name": "Tennis Sparkle Racket",
-    "price": 890,
-    "category": "Game On",
-    "image": "/charms-categories/Game On/Tennis Sparkle Racket Charm L.png"
+    id: "gu-1",
+    name: "Aqua Vision Eye Charm",
+    price: 790,
+    category: "Guardian",
+    image: "/charms-cards/Guardian/Label = Aqua Vision Charm.png"
   },
   {
-    "id": "guardian-27",
-    "name": "Aqua Vision",
-    "price": 790,
-    "category": "Guardian",
-    "image": "/charms-categories/Guardian/Aqua Vision Charm M.png"
+    id: "gu-2",
+    name: "Blush Teardrop Eye Charm",
+    price: 790,
+    category: "Guardian",
+    image: "/charms-cards/Guardian/Label = Blush Teardrop Eye Charm.png"
   },
   {
-    "id": "guardian-28",
-    "name": "Blush Teardrop Eye",
-    "price": 790,
-    "category": "Guardian",
-    "image": "/charms-categories/Guardian/Blush Teardrop Eye Charm M.png"
+    id: "gu-3",
+    name: "Celestial Eye Protection Charm",
+    price: 840,
+    category: "Guardian",
+    image: "/charms-cards/Guardian/Label = Celestial Eye Charm.png"
   },
   {
-    "id": "guardian-29",
-    "name": "Celestial Eye",
-    "price": 790,
-    "category": "Guardian",
-    "image": "/charms-categories/Guardian/Celestial Eye Charm M.png"
+    id: "gu-4",
+    name: "Crescent Star Guardian Charm",
+    price: 790,
+    category: "Guardian",
+    image: "/charms-cards/Guardian/Label = Crescent Star Charm.png"
   },
   {
-    "id": "guardian-30",
-    "name": "Crescent Star",
-    "price": 790,
-    "category": "Guardian",
-    "image": "/charms-categories/Guardian/Crescent Star Charm M.png"
+    id: "gu-5",
+    name: "Guardian Eye Mystic Charm",
+    price: 790,
+    category: "Guardian",
+    image: "/charms-cards/Guardian/Label = Guardian Eye Charm.png"
   },
   {
-    "id": "guardian-31",
-    "name": "Guardian Eye",
-    "price": 790,
-    "category": "Guardian",
-    "image": "/charms-categories/Guardian/Guardian Eye Charm M.png"
+    id: "gu-6",
+    name: "Guardian Hamsa Hand Charm",
+    price: 690,
+    category: "Guardian",
+    image: "/charms-cards/Guardian/Label = Guardian Hamsa Charm.png"
   },
   {
-    "id": "guardian-32",
-    "name": "Guardian Hamsa",
-    "price": 790,
-    "category": "Guardian",
-    "image": "/charms-categories/Guardian/Guardian Hamsa Charm M.png"
+    id: "gu-7",
+    name: "Guardian Hand Protection Charm",
+    price: 840,
+    category: "Guardian",
+    image: "/charms-cards/Guardian/Label = Guardian Hand Charm.png"
   },
   {
-    "id": "guardian-33",
-    "name": "Guardian Hand",
-    "price": 840,
-    "category": "Guardian",
-    "image": "/charms-categories/Guardian/Guardian Hand Charm L.png"
+    id: "gu-8",
+    name: "Guardian Heart Eye Charm",
+    price: 840,
+    category: "Guardian",
+    image: "/charms-cards/Guardian/Label = Guardian Heart Eye Charm.png"
   },
   {
-    "id": "guardian-34",
-    "name": "Guardian Heart Eye",
-    "price": 840,
-    "category": "Guardian",
-    "image": "/charms-categories/Guardian/Guardian Heart Eye Charm M.png"
+    id: "gu-9",
+    name: "Luminous Eye Charm",
+    price: 840,
+    category: "Guardian",
+    image: "/charms-cards/Guardian/Label = Luminous Eye Charm.png"
   },
   {
-    "id": "guardian-35",
-    "name": "Luminous Eye",
-    "price": 840,
-    "category": "Guardian",
-    "image": "/charms-categories/Guardian/Luminous Eye Charm M.png"
+    id: "gu-10",
+    name: "Midnight Eye Protection Charm",
+    price: 740,
+    category: "Guardian",
+    image: "/charms-cards/Guardian/Label = Midnight Eye Charm.png"
   },
   {
-    "id": "guardian-36",
-    "name": "Midnight Eye",
-    "price": 740,
-    "category": "Guardian",
-    "image": "/charms-categories/Guardian/Midnight Eye Charm M.png"
+    id: "gu-11",
+    name: "Mystic Eye Guardian Charm",
+    price: 740,
+    category: "Guardian",
+    image: "/charms-cards/Guardian/Label = Mystic Eye Charm.png"
   },
   {
-    "id": "guardian-37",
-    "name": "Mystic Eye",
-    "price": 740,
-    "category": "Guardian",
-    "image": "/charms-categories/Guardian/Mystic Eye Charm M.png"
+    id: "gu-12",
+    name: "North Star Guide Charm",
+    price: 790,
+    category: "Guardian",
+    image: "/charms-cards/Guardian/Label = North Star Charm.png"
   },
   {
-    "id": "guardian-38",
-    "name": "North Star",
-    "price": 790,
-    "category": "Guardian",
-    "image": "/charms-categories/Guardian/North Star Charm M.png"
+    id: "gu-13",
+    name: "Prism Eye Crystal Charm",
+    price: 840,
+    category: "Guardian",
+    image: "/charms-cards/Guardian/Label = Prism Eye Charm.png"
   },
   {
-    "id": "guardian-39",
-    "name": "Prism Eye",
-    "price": 840,
-    "category": "Guardian",
-    "image": "/charms-categories/Guardian/Prism Eye Charm XL.png"
+    id: "gu-14",
+    name: "Radiant Eye Charm - Large",
+    price: 740,
+    category: "Guardian",
+    image: "/charms-cards/Guardian/Label = Radiant Eye Charm - 3-1.png"
   },
   {
-    "id": "guardian-40",
-    "name": "Radiant Eye Charm -",
-    "price": 690,
-    "category": "Guardian",
-    "image": "/charms-categories/Guardian/Radiant Eye Charm - 2 M.png"
+    id: "gu-15",
+    name: "Radiant Eye Charm - Medium",
+    price: 740,
+    category: "Guardian",
+    image: "/charms-cards/Guardian/Label = Radiant Eye Charm - 3.png"
   },
   {
-    "id": "guardian-41",
-    "name": "Radiant Eye",
-    "price": 740,
-    "category": "Guardian",
-    "image": "/charms-categories/Guardian/Radiant Eye Charm M.png"
+    id: "gu-16",
+    name: "Radiant Eye Charm - Small",
+    price: 690,
+    category: "Guardian",
+    image: "/charms-cards/Guardian/Label = Radiant Eye Charm.png"
   },
   {
-    "id": "guardian-42",
-    "name": "Sentinel Eye",
-    "price": 790,
-    "category": "Guardian",
-    "image": "/charms-categories/Guardian/Sentinel Eye Charm M.png"
+    id: "gu-17",
+    name: "Sentinel Eye Protection Charm",
+    price: 790,
+    category: "Guardian",
+    image: "/charms-cards/Guardian/Label = Sentinel Eye Charm.png"
   },
   {
-    "id": "guardian-43",
-    "name": "Solara",
-    "price": 740,
-    "category": "Guardian",
-    "image": "/charms-categories/Guardian/Solara Charm M.png"
+    id: "gu-18",
+    name: "Solara Sun Eye Charm",
+    price: 740,
+    category: "Guardian",
+    image: "/charms-cards/Guardian/Label = Solara Charm.png"
   },
   {
-    "id": "guardian-44",
-    "name": "Turquoise Eye",
-    "price": 790,
-    "category": "Guardian",
-    "image": "/charms-categories/Guardian/Turquoise Eye Charm M.png"
+    id: "gu-19",
+    name: "Turquoise Eye Protection Charm",
+    price: 790,
+    category: "Guardian",
+    image: "/charms-cards/Guardian/Label = Turquoise Eye Charm.png"
   },
+
+  // LoveStruck
   {
-    "id": "lovestruck-45",
-    "name": "Blooming Heart",
-    "price": 790,
-    "category": "LoveStruck",
-    "image": "/charms-categories/LoveStruck/Blooming Heart Charm L.png"
+    id: "ls-1",
+    name: "Blooming Heart Floral Charm",
+    price: 790,
+    category: "LoveStruck",
+    image: "/charms-cards/LoveStruck/Label = Blooming Heart Charm.png"
   },
   {
-    "id": "lovestruck-46",
-    "name": "Blush Heart",
-    "price": 690,
-    "category": "LoveStruck",
-    "image": "/charms-categories/LoveStruck/Blush Heart Charm S.png"
+    id: "ls-2",
+    name: "Blush Heart Simple Charm",
+    price: 690,
+    category: "LoveStruck",
+    image: "/charms-cards/LoveStruck/Label = Blush Heart Charm.png"
   },
   {
-    "id": "lovestruck-47",
-    "name": "Crystal Green candy",
-    "price": 840,
-    "category": "LoveStruck",
-    "image": "/charms-categories/LoveStruck/Crystal Green candy L.png"
+    id: "ls-3",
+    name: "Crystal Green Candy Charm",
+    price: 840,
+    category: "LoveStruck",
+    image: "/charms-cards/LoveStruck/Label = Crystal Green candy.png"
   },
   {
-    "id": "lovestruck-48",
-    "name": "Crystal Heart",
-    "price": 840,
-    "category": "LoveStruck",
-    "image": "/charms-categories/LoveStruck/Crystal Heart Charm L.png"
+    id: "ls-4",
+    name: "Crystal Heart Sparkle Charm",
+    price: 840,
+    category: "LoveStruck",
+    image: "/charms-cards/LoveStruck/Label = Crystal Heart Charm.png"
   },
   {
-    "id": "lovestruck-49",
-    "name": "Crystal Pink candy",
-    "price": 840,
-    "category": "LoveStruck",
-    "image": "/charms-categories/LoveStruck/Crystal Pink candy L.png"
+    id: "ls-5",
+    name: "Crystal Pink Candy Charm",
+    price: 840,
+    category: "LoveStruck",
+    image: "/charms-cards/LoveStruck/Label = Crystal Pink candy.png"
   },
   {
-    "id": "lovestruck-50",
-    "name": "Daisy Heart",
-    "price": 740,
-    "category": "LoveStruck",
-    "image": "/charms-categories/LoveStruck/Daisy Heart Charm M.png"
+    id: "ls-6",
+    name: "Daisy Heart Floral Charm",
+    price: 740,
+    category: "LoveStruck",
+    image: "/charms-cards/LoveStruck/Label = Daisy Heart Charm.png"
   },
-  {
-    "id": "lovestruck-51",
-    "name": "Ember Heart",
-    "price": 690,
-    "category": "LoveStruck",
-    "image": "/charms-categories/LoveStruck/Ember Heart Charm S.png"
-  },
-  {
-    "id": "lovestruck-52",
-    "name": "Emerald Heart",
-    "price": 740,
-    "category": "LoveStruck",
-    "image": "/charms-categories/LoveStruck/Emerald Heart Charm S.png"
-  },
-  {
-    "id": "lovestruck-53",
-    "name": "Eternal Heart",
-    "price": 690,
-    "category": "LoveStruck",
-    "image": "/charms-categories/LoveStruck/Eternal Heart Charm S.png"
-  },
-  {
-    "id": "lovestruck-54",
-    "name": "Heart of Vision",
-    "price": 690,
-    "category": "LoveStruck",
-    "image": "/charms-categories/LoveStruck/Heart of Vision Charm 1 M.png"
-  },
-  {
-    "id": "lovestruck-55",
-    "name": "Lilac Drop Hearh",
-    "price": 740,
-    "category": "LoveStruck",
-    "image": "/charms-categories/LoveStruck/Lilac Drop Hearh Charm M.png"
-  },
-  {
-    "id": "lovestruck-56",
-    "name": "Love Letter",
-    "price": 740,
-    "category": "LoveStruck",
-    "image": "/charms-categories/LoveStruck/Love Letter Charm M.png"
-  },
-  {
-    "id": "lovestruck-57",
-    "name": "Peach Blush Heart",
-    "price": 840,
-    "category": "LoveStruck",
-    "image": "/charms-categories/LoveStruck/Peach Blush Heart S.png"
-  },
-  {
-    "id": "lovestruck-58",
-    "name": "Pure Heart",
-    "price": 790,
-    "category": "LoveStruck",
-    "image": "/charms-categories/LoveStruck/Pure Heart Charm S.png"
-  },
-  {
-    "id": "lovestruck-59",
-    "name": "Retro Heart",
-    "price": 840,
-    "category": "LoveStruck",
-    "image": "/charms-categories/LoveStruck/Retro Heart Charm M.png"
-  },
-  {
-    "id": "lovestruck-60",
-    "name": "Sacred Heart",
-    "price": 790,
-    "category": "LoveStruck",
-    "image": "/charms-categories/LoveStruck/Sacred Heart charm L.png"
-  },
-  {
-    "id": "persona-61",
-    "name": "A Initial Charm",
-    "price": 690,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/A Initial Charm (BG-Removed) M.png"
-  },
-  {
-    "id": "persona-62",
-    "name": "B Initial Charm",
-    "price": 690,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/B Initial Charm (BG-Removed) M.png"
-  },
-  {
-    "id": "persona-63",
-    "name": "Capricorn Zodiac",
-    "price": 690,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/Capricorn Zodiac Pendant (BG - Removed) M.png"
-  },
-  {
-    "id": "persona-64",
-    "name": "D Initial Charm",
-    "price": 840,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/D Initial Charm (BG-Removed) M.png"
-  },
-  {
-    "id": "persona-65",
-    "name": "E Initial Charm",
-    "price": 740,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/E Initial Charm (BG-Removed) M.png"
-  },
-  {
-    "id": "persona-66",
-    "name": "H Initial Charm",
-    "price": 740,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/H Initial Charm (BG-Removed) M.png"
-  },
-  {
-    "id": "persona-67",
-    "name": "I Initial Charm",
-    "price": 840,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/I Initial Charm (BG-Removed) M.png"
-  },
-  {
-    "id": "persona-68",
-    "name": "Leo Zodiac",
-    "price": 740,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/Leo Zodiac Pendant (BG-Removed) M.png"
-  },
-  {
-    "id": "persona-69",
-    "name": "Libra Zodiac",
-    "price": 740,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/Libra Zodiac Pendant (BG-Removed) M.png"
-  },
-  {
-    "id": "persona-70",
-    "name": "M Initial Charm",
-    "price": 790,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/M Initial Charm (BG-Removed) M.png"
-  },
-  {
-    "id": "persona-71",
-    "name": "N Initial Charm",
-    "price": 840,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/N Initial Charm (BG-Removed) M.png"
-  },
-  {
-    "id": "persona-72",
-    "name": "O Initial Charm",
-    "price": 890,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/O Initial Charm (BG-Removed) M.png"
-  },
-  {
-    "id": "persona-73",
-    "name": "P Initial Charm",
-    "price": 890,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/P Initial Charm (BG-Removed) M.png"
-  },
-  {
-    "id": "persona-74",
-    "name": "Pisces Zodiac",
-    "price": 740,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/Pisces Zodiac Pendant (BG-Removed) M.png"
-  },
-  {
-    "id": "persona-75",
-    "name": "Q Initial Charm",
-    "price": 790,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/Q Initial Charm (BG-Removed) M.png"
-  },
-  {
-    "id": "persona-76",
-    "name": "R Initial Charm",
-    "price": 690,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/R Initial Charm (BG-Removed) M.png"
-  },
-  {
-    "id": "persona-77",
-    "name": "Sagittarius Zodiac",
-    "price": 690,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/Sagittarius Zodiac Pendant (BG-Removed) M.png"
-  },
-  {
-    "id": "persona-78",
-    "name": "Scorpio Zodiac",
-    "price": 840,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/Scorpio Zodiac Pendant (BG-Removed) M.png"
-  },
-  {
-    "id": "persona-79",
-    "name": "T Initial Charm",
-    "price": 890,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/T Initial Charm (BG-Removed) M.png"
-  },
-  {
-    "id": "persona-80",
-    "name": "Taurus Zodiac",
-    "price": 840,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/Taurus Zodiac Pendant (BG-Removed) M.png"
-  },
-  {
-    "id": "persona-81",
-    "name": "Virgo Zodiac",
-    "price": 890,
-    "category": "Persona",
-    "image": "/charms-categories/Persona/Virgo Zodiac Pendant (BG-Removed) M.png"
-  },
-  {
-    "id": "sugarpop-82",
-    "name": "Acorn Strength",
-    "price": 890,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Acorn Strength Charm M.png"
-  },
-  {
-    "id": "sugarpop-83",
-    "name": "Aurora Croissant",
-    "price": 840,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Aurora Croissant Charm M.png"
-  },
-  {
-    "id": "sugarpop-84",
-    "name": "Avocado Love",
-    "price": 790,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Avocado Love Charm M.png"
-  },
-  {
-    "id": "sugarpop-85",
-    "name": "Avocado Toast",
-    "price": 840,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Avocado Toast Charm M.png"
-  },
-  {
-    "id": "sugarpop-86",
-    "name": "Banana Fun",
-    "price": 740,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Banana Fun Charm M.png"
-  },
-  {
-    "id": "sugarpop-87",
-    "name": "Burger Bite",
-    "price": 690,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Burger Bite Charm M.png"
-  },
-  {
-    "id": "sugarpop-88",
-    "name": "Cherry Pop",
-    "price": 840,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Cherry Pop Charm M.png"
-  },
-  {
-    "id": "sugarpop-89",
-    "name": "Coffee Cup",
-    "price": 690,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Coffee Cup Charm M.png"
-  },
-  {
-    "id": "sugarpop-90",
-    "name": "Croissant",
-    "price": 740,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Croissant Charm M.png"
-  },
-  {
-    "id": "sugarpop-91",
-    "name": "Donut Delight",
-    "price": 790,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Donut Delight Charm M.png"
-  },
-  {
-    "id": "sugarpop-92",
-    "name": "Golden Croissant",
-    "price": 790,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Golden Croissant Charm M.png"
-  },
-  {
-    "id": "sugarpop-93",
-    "name": "Grapes",
-    "price": 690,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Grapes Charm M.png"
-  },
-  {
-    "id": "sugarpop-94",
-    "name": "Hotdog",
-    "price": 890,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Hotdog Charm M.png"
-  },
-  {
-    "id": "sugarpop-95",
-    "name": "Mango Bliss",
-    "price": 890,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Mango Bliss Charm M.png"
-  },
-  {
-    "id": "sugarpop-96",
-    "name": "Mango",
-    "price": 740,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Mango Charm M.png"
-  },
-  {
-    "id": "sugarpop-97",
-    "name": "Mystic Mushroom",
-    "price": 840,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Mystic Mushroom Charm M.png"
-  },
-  {
-    "id": "sugarpop-98",
-    "name": "Orange Zest",
-    "price": 840,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Orange Zest Charm M.png"
-  },
-  {
-    "id": "sugarpop-99",
-    "name": "Papaya",
-    "price": 840,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Papaya Charm M.png"
-  },
-  {
-    "id": "sugarpop-100",
-    "name": "Pink Donut",
-    "price": 890,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Pink Donut with Golden Sprinkles Charm M.png"
-  },
-  {
-    "id": "sugarpop-101",
-    "name": "Pink Popsicle",
-    "price": 740,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Pink Popsicle Charm M.png"
-  },
-  {
-    "id": "sugarpop-102",
-    "name": "Popsicle",
-    "price": 740,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Popsicle Charm M.png"
-  },
-  {
-    "id": "sugarpop-103",
-    "name": "Strawberry Shortcake",
-    "price": 740,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Strawberry Shortcake Charm S.png"
-  },
-  {
-    "id": "sugarpop-104",
-    "name": "Sunny Toast",
-    "price": 840,
-    "category": "Sugar Pop",
-    "image": "/charms-categories/Sugar Pop/Sunny Toast Charm M.png"
-  },
-  {
-    "id": "wildfree-105",
-    "name": "Aurora Fish",
-    "price": 690,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Aurora Fish Charm XL.png"
-  },
-  {
-    "id": "wildfree-111",
-    "name": "Golden Conch",
-    "price": 890,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Golden Conch Charm M.png"
-  },
-  {
-    "id": "wildfree-106",
-    "name": "Bloom",
-    "price": 890,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Bloom Charm M.png"
-  },
-  {
-    "id": "wildfree-107",
-    "name": "Blue Rose Oval",
-    "price": 690,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Blue Rose Oval Charm M.png"
-  },
-  {
-    "id": "wildfree-108",
-    "name": "Emerald Bloom",
-    "price": 790,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Emerald Bloom Charm M.png"
-  },
-  {
-    "id": "wildfree-109",
-    "name": "Eye",
-    "price": 840,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Eye Charm M.png"
-  },
-  {
-    "id": "wildfree-110",
-    "name": "Flutter",
-    "price": 840,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Flutter Charm M.png"
-  },
-  {
-    "id": "wildfree-112",
-    "name": "Golden Elephant",
-    "price": 890,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Golden Elephant Charm S.png"
-  },
-  {
-    "id": "wildfree-113",
-    "name": "Golden Koi",
-    "price": 690,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Golden Koi Charm M.png"
-  },
-  {
-    "id": "wildfree-114",
-    "name": "Golden Palm",
-    "price": 690,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Golden Palm Charm S.png"
-  },
-  {
-    "id": "wildfree-115",
-    "name": "Lavender Wave",
-    "price": 790,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Lavender Wave Charm M.png"
-  },
-  {
-    "id": "wildfree-116",
-    "name": "Lotus Bloom",
-    "price": 740,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Lotus Bloom Charm M.png"
-  },
-  {
-    "id": "wildfree-117",
-    "name": "Lucky Horseshoe",
-    "price": 740,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Lucky Horseshoe Charm M.png"
-  },
-  {
-    "id": "wildfree-118",
-    "name": "Lustrous Pearl",
-    "price": 790,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Lustrous Pearl Charm M.png"
-  },
-  {
-    "id": "wildfree-119",
-    "name": "Majestic Koi",
-    "price": 690,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Majestic Koi Charm XL.png"
-  },
-  {
-    "id": "wildfree-120",
-    "name": "Midnight Owl",
-    "price": 690,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Midnight Owl Charm M.png"
-  },
-  {
-    "id": "wildfree-121",
-    "name": "Midnight Palm",
-    "price": 690,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Midnight Palm Charm S.png"
-  },
-  {
-    "id": "wildfree-122",
-    "name": "Noir Gem",
-    "price": 740,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Noir Gem Charm M.png"
-  },
-  {
-    "id": "wildfree-123",
-    "name": "OMG",
-    "price": 740,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/OMG Charm M.png"
-  },
-  {
-    "id": "wildfree-124",
-    "name": "Ocean Shell",
-    "price": 840,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Ocean Shell Charm L.png"
-  },
-  {
-    "id": "wildfree-125",
-    "name": "Palm Paradise",
-    "price": 690,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Palm Paradise Charm M.png"
-  },
-  {
-    "id": "wildfree-126",
-    "name": "Pearl Fish",
-    "price": 890,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Pearl Fish Charm S.png"
-  },
-  {
-    "id": "wildfree-127",
-    "name": "Pink Lagoon",
-    "price": 890,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Pink Lagoon Charm M.png"
-  },
-  {
-    "id": "wildfree-128",
-    "name": "Rising Sun",
-    "price": 690,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Rising Sun Charm M.png"
-  },
-  {
-    "id": "wildfree-129",
-    "name": "Seafoam Dream",
-    "price": 740,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Seafoam Dream Charm M.png"
-  },
-  {
-    "id": "wildfree-130",
-    "name": "Sunny Fish",
-    "price": 690,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Sunny Fish Charm M.png"
-  },
-  {
-    "id": "wildfree-131",
-    "name": "Wanderlust Trio",
-    "price": 690,
-    "category": "Wild & Free",
-    "image": "/charms-categories/Wild & Free/Wanderlust Trio L.png"
-  }
+  {
+    id: "ls-7",
+    name: "Ember Heart Fire Charm",
+    price: 690,
+    category: "LoveStruck",
+    image: "/charms-cards/LoveStruck/Label = Ember Heart Charm.png"
+  },
+  {
+    id: "ls-8",
+    name: "Emerald Heart Gem Charm",
+    price: 740,
+    category: "LoveStruck",
+    image: "/charms-cards/LoveStruck/Label = Emerald Heart Charm.png"
+  },
+  {
+    id: "ls-9",
+    name: "Eternal Heart Love Charm",
+    price: 690,
+    category: "LoveStruck",
+    image: "/charms-cards/LoveStruck/Label = Eternal Heart Charm.png"
+  },
+  {
+    id: "ls-10",
+    name: "Heart of Vision Charm",
+    price: 690,
+    category: "LoveStruck",
+    image: "/charms-cards/LoveStruck/Label = Heart of Vision Charm.png"
+  },
+  {
+    id: "ls-11",
+    name: "Love Letter Envelope Charm",
+    price: 790,
+    category: "LoveStruck",
+    image: "/charms-cards/LoveStruck/Label = Love Letter Charm.png"
+  },
+  {
+    id: "ls-12",
+    name: "Peach Blush Heart Charm",
+    price: 840,
+    category: "LoveStruck",
+    image: "/charms-cards/LoveStruck/Label = Peach Blush Heart Charm.png"
+  },
+  {
+    id: "ls-13",
+    name: "Pure Heart Simple Charm",
+    price: 790,
+    category: "LoveStruck",
+    image: "/charms-cards/LoveStruck/Label = Pure Heart Charm.png"
+  },
+  {
+    id: "ls-14",
+    name: "Retro Heart Vintage Charm",
+    price: 840,
+    category: "LoveStruck",
+    image: "/charms-cards/LoveStruck/Label = Retro Heart Charm.png"
+  },
+  {
+    id: "ls-15",
+    name: "Sacred Heart Divine Charm",
+    price: 790,
+    category: "LoveStruck",
+    image: "/charms-cards/LoveStruck/Label = Sacred Heart charm.png"
+  },
+
+  // Persona (Initials & Zodiacs)
+  { id: "pe-1", name: "Letter A Initial Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = A Initial Charm.png" },
+  { id: "pe-2", name: "Letter B Initial Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = B Initial Charm.png" },
+  { id: "pe-3", name: "Letter D Initial Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = D Initial Charm.png" },
+  { id: "pe-4", name: "Letter E Initial Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = E Initial Charm.png" },
+  { id: "pe-5", name: "Letter H Initial Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = H Initial Charm.png" },
+  { id: "pe-6", name: "Letter I Initial Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = I Initial Charm.png" },
+  { id: "pe-7", name: "Letter M Initial Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = M Initial Charm.png" },
+  { id: "pe-8", name: "Letter N Initial Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = N Initial Charm.png" },
+  { id: "pe-9", name: "Letter O Initial Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = O Initial Charm.png" },
+  { id: "pe-10", name: "Letter P Initial Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = P Initial Charm.png" },
+  { id: "pe-11", name: "Letter Q Initial Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = Q Initial Charm.png" },
+  { id: "pe-12", name: "Letter R Initial Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = R Initial Charm.png" },
+  { id: "pe-13", name: "Letter T Initial Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = T Initial Charm.png" },
+  { id: "pe-14", name: "Letter U Initial Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = U Initial Charm.png" },
+  { id: "pe-15", name: "Letter V Initial Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = V Initial Charm.png" },
+  { id: "pe-16", name: "Letter X Initial Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = X Initial Charm.png" },
+  { id: "pe-17", name: "Letter Y Initial Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = Y Initial Charm.png" },
+  { id: "pe-18", name: "Letter Z Initial Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = Z Initial Charm.png" },
+  // Zodiacs
+  { id: "pe-z1", name: "Aquarius Zodiac Pendant Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = Aquarius Zodiac Pendant.png" },
+  { id: "pe-z2", name: "Aries Zodiac Pendant Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = Aries Zodiac Pendant.png" },
+  { id: "pe-z3", name: "Capricorn Zodiac Pendant Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = Capricorn Zodiac Pendant.png" },
+  { id: "pe-z4", name: "Gemini Zodiac Pendant Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = Gemini Zodiac Pendant.png" },
+  { id: "pe-z5", name: "Pisces Zodiac Pendant Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = Pisces Zodiac Pendan.png" },
+  { id: "pe-z6", name: "Sagittarius Zodiac Pendant Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = Sagittarius Zodiac Pendant.png" },
+  { id: "pe-z7", name: "Scorpio Zodiac Pendant Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = Scorpio Zodiac Pendant.png" },
+  { id: "pe-z8", name: "Taurus Zodiac Pendant Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = Taurus Zodiac Pendan.png" },
+  { id: "pe-z9", name: "Virgo Zodiac Pendant Charm", price: 690, category: "Persona", image: "/charms-cards/Persona/Label = Virgo Zodiac Pendant.png" },
+
+  // Sugar Pop
+  { id: "sp-1", name: "Acorn Strength Nature Charm", price: 690, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Acorn Strength Charm.png" },
+  { id: "sp-2", name: "Aurora Croissant Sweet Charm", price: 840, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Aurora Croissant Charm.png" },
+  { id: "sp-3", name: "Avocado Love Food Charm", price: 790, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Avocado Love Charm.png" },
+  { id: "sp-4", name: "Avocado Toast Brunch Charm", price: 840, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Avocado Toast Charm.png" },
+  { id: "sp-5", name: "Banana Fun Fruit Charm", price: 740, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Banana Fun Charm.png" },
+  { id: "sp-6", name: "Burger Bite Food Charm", price: 690, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Burger Bite Charm.png" },
+  { id: "sp-7", name: "Cherry Pop Fruit Charm", price: 840, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Cherry Pop Charm.png" },
+  { id: "sp-8", name: "Coffee Cup Morning Charm", price: 690, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Coffee Cup Charm.png" },
+  { id: "sp-9", name: "Croissant Pastry Charm", price: 740, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Croissant Charm.png" },
+  { id: "sp-10", name: "Donut Delight Sweet Charm", price: 790, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Donut Delight Charm.png" },
+  { id: "sp-11", name: "Golden Croissant Charm", price: 790, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Golden Croissant Charm.png" },
+  { id: "sp-12", name: "Grapes Fruit Fresh Charm", price: 690, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Grapes Charm.png" },
+  { id: "sp-13", name: "Hotdog Fast Food Charm", price: 890, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Hotdog Charm.png" },
+  { id: "sp-14", name: "Mango Bliss Fruit Charm", price: 890, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Mango Bliss Charm.png" },
+  { id: "sp-15", name: "Mango Fruit Fresh Charm", price: 740, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Mango Charm.png" },
+  { id: "sp-16", name: "Mystic Mushroom Charm", price: 840, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Mystic Mushroom Charm.png" },
+  { id: "sp-17", name: "Orange Zest Fruit Charm", price: 840, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Orange Zest Charm.png" },
+  { id: "sp-18", name: "Papaya Fruit Fresh Charm", price: 840, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Papaya Charm.png" },
+  { id: "sp-19", name: "Pink Donut Gold Sprinkles", price: 890, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Pink Donut with Golden Sprinkles Charm.png" },
+  { id: "sp-20", name: "Pink Popsicle Sweet Charm", price: 740, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Pink Popsicle Charm.png" },
+  { id: "sp-21", name: "Popsicle Summer Charm", price: 740, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Popsicle Charm.png" },
+  { id: "sp-22", name: "Strawberry Shortcake Charm", price: 740, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Strawberry Shortcake Charm.png" },
+  { id: "sp-23", name: "Sunny Toast Brunch Charm", price: 840, category: "Sugar Pop", image: "/charms-cards/Sugarpop/Label = Sunny Toast Charm.png" },
+
+  // Wild & Free
+  { id: "wf-1", name: "Aurora Fish Ocean Charm", price: 690, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Aurora Fish Charm.png" },
+  { id: "wf-2", name: "Bloom Flower Wild Charm", price: 890, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Bloom Charm.png" },
+  { id: "wf-3", name: "Blue Rose Oval Charm", price: 840, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Blue Rose Oval Charm.png" },
+  { id: "wf-4", name: "Emerald Bloom Wild Charm", price: 840, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Emerald Bloom Charm.png" },
+  { id: "wf-5", name: "Eye of Protection Charm", price: 790, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Eye Charm.png" },
+  { id: "wf-6", name: "Flutter Butterfly Charm", price: 840, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Flutter Charm.png" },
+  { id: "wf-7", name: "Golden Conch Shell Charm", price: 890, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Golden Conch Charm.png" },
+  { id: "wf-8", name: "Golden Elephant Lucky Charm", price: 890, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Golden Elephant Charm.png" },
+  { id: "wf-9", name: "Golden Koi Fish Charm", price: 840, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Golden Koi Charm.png" },
+  { id: "wf-10", name: "Golden Palm Tree Charm", price: 840, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Golden Palm Charm.png" },
+  { id: "wf-11", name: "Lavender Wave Ocean Charm", price: 790, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Lavender Wave Charm.png" },
+  { id: "wf-12", name: "Lotus Bloom Flower Charm", price: 740, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Lotus Bloom Charm.png" },
+  { id: "wf-13", name: "Lucky Horseshoe Charm", price: 690, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Lucky Horseshoe Charm.png" },
+  { id: "wf-14", name: "Lustrous Pearl Ocean Charm", price: 790, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Lustrous Pearl Charm.png" },
+  { id: "wf-15", name: "Majestic Koi Fish Charm", price: 840, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Majestic Koi Charm.png" },
+  { id: "wf-16", name: "Midnight Palm Tree Charm", price: 740, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Midnight Palm Charm.png" },
+  { id: "wf-17", name: "Ocean Shell Seashell Charm", price: 840, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Ocean Shell Charm.png" },
+  { id: "wf-18", name: "Palm Paradise Tree Charm", price: 790, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Palm Paradise Charm.png" },
+  { id: "wf-19", name: "Pearl Fish Ocean Charm", price: 840, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Pearl Fish Charm.png" },
+  { id: "wf-20", name: "Pink Lagoon Ocean Charm", price: 890, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Pink Lagoon Charm.png" },
+  { id: "wf-21", name: "Seafoam Dream Ocean Charm", price: 790, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Seafoam Dream Charm.png" },
+  { id: "wf-22", name: "Sunny Fish Ocean Charm", price: 690, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Sunny Fish Charm.png" },
+  { id: "wf-23", name: "Wanderlust Trio Travel Charm", price: 890, category: "Wild & Free", image: "/charms-cards/Wild & Free/Label = Wanderlust Trio.png" }
 ];

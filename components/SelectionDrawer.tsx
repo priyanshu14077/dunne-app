@@ -9,6 +9,7 @@ interface SelectionDrawerProps {
     onSelect: (item: Product | Charm) => void;
     onRemove?: (itemId: string) => void; 
     selectedIds?: string[];
+    charmCounts?: Record<string, number>; // Renamed from counts
     
     // Categorization
     activeCategory: string;
@@ -24,6 +25,7 @@ export default function SelectionDrawer({
     onSelect, 
     onRemove, 
     selectedIds = [],
+    charmCounts = {}, // Default empty object
     activeCategory,
     onCategoryChange,
     onRandomize
@@ -81,7 +83,7 @@ export default function SelectionDrawer({
     };
 
     return (
-        <div className="bg-[#F5EBDD] w-full pt-4 pb-[120px] flex flex-col gap-4 relative z-30 shadow-[0_-5px_20px_rgba(0,0,0,0.05)] h-full">
+        <div className="bg-[#F5EBDD] w-full pt-4 pb-[90px] flex flex-col gap-4 relative z-30 shadow-[0_-5px_20px_rgba(0,0,0,0.05)] h-full">
              
              {/* Header Section */}
              <div className="px-6 flex items-center justify-between relative z-40">
@@ -107,7 +109,7 @@ export default function SelectionDrawer({
                         <div className="relative">
                             <button 
                                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                                className="flex items-center gap-2 text-[#1F4B30] font-serif text-xl hover:opacity-80 transition-opacity"
+                                className="flex items-center gap-2 text-[#1F4B30] font-sans text-xl hover:opacity-80 transition-opacity"
                             >
                                 <span className="font-bold tracking-tight">{activeCategory}</span>
                                 {isDropdownOpen ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
@@ -123,10 +125,10 @@ export default function SelectionDrawer({
                                                 onCategoryChange(cat);
                                                 setIsDropdownOpen(false);
                                             }}
-                                            className={`w-full text-left px-4 py-2 text-sm font-medium hover:bg-gray-50 flex items-center justify-between ${activeCategory === cat ? 'text-[#DE3C27]' : 'text-gray-700'}`}
+                                            className={`w-full text-left px-4 py-2 text-sm font-medium hover:bg-gray-50 flex items-center justify-between ${activeCategory === cat ? 'text-[#1F4B30]' : 'text-gray-700'}`}
                                         >
                                             {cat}
-                                            {activeCategory === cat && <span className="w-1.5 h-1.5 rounded-full bg-[#DE3C27]"></span>}
+                                            {activeCategory === cat && <span className="w-1.5 h-1.5 rounded-full bg-[#1F4B30]"></span>}
                                         </button>
                                     ))}
                                 </div>
@@ -137,7 +139,7 @@ export default function SelectionDrawer({
                         <div className="flex items-center gap-3">
                             <div className="w-[100px] h-[3px] bg-[#F5EBDD] rounded-full overflow-hidden relative">
                                 <div 
-                                    className="absolute inset-y-0 left-0 bg-[#DE3C27] transition-all duration-100 ease-out"
+                                    className="absolute inset-y-0 left-0 bg-[#1F4B30] transition-all duration-100 ease-out"
                                     style={{ width: `${scrollProgress}%` }}
                                 />
                             </div>
@@ -147,7 +149,7 @@ export default function SelectionDrawer({
              </div>
 
              {/* Carousel Container with Arrows */}
-             <div className="relative flex-1 min-h-0 flex flex-col group">
+             <div className="relative flex-1 min-h-0 flex flex-col group mt-[10px]">
                  
                  {/* Left Arrow */}
                  <button 
@@ -168,19 +170,20 @@ export default function SelectionDrawer({
                  {/* Carousel Container */}
                  <div 
                     ref={scrollContainerRef}
-                    className="flex overflow-x-auto px-6 gap-6 scrollbar-hide items-center justify-center min-h-[220px]" 
+                    className="flex overflow-x-auto px-6 gap-[10px] scrollbar-hide items-center justify-center min-h-[220px]" 
                  >
-                    <div className="flex gap-6 items-center">
+                    <div className="flex gap-[10px] items-center">
                         {filteredItems.map((item) => {
-                            const isSelected = selectedIds.includes(item.id);
-                            
-                            return (
+                             const count = charmCounts[item.id] || 0;
+                             
+                             return (
                                 <CharmCard 
-                                    key={item.id}
-                                    item={item}
-                                    isSelected={isSelected}
-                                    onSelect={onSelect}
-                                    onRemove={onRemove}
+                                    key={item.id} 
+                                    item={item} 
+                                    isSelected={count > 0} 
+                                    count={count} 
+                                    onSelect={() => onSelect(item)}
+                                    onRemove={() => onRemove && onRemove(item.id)}
                                     type={type}
                                 />
                             );
