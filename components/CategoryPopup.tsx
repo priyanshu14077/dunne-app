@@ -26,8 +26,8 @@ export default function CategoryPopup({ categories, activeCategory, onSelect, on
                 style={{ height: '363px' }}
             >
                 {/* Header */}
-                <div className="px-6 py-5 flex items-center justify-center border-b border-[#1F4B30]/5 relative">
-                    <h2 className="text-[#1F4B30] font-serif text-xl font-bold">Choose Category</h2>
+                <div className="flex items-center justify-between p-6 border-b border-gray-100">
+                    <h2 className="text-2xl font-bold font-serif text-[#1F4B30]">Select Category</h2>
                     <button 
                         onClick={onClose}
                         className="absolute right-4 p-1 text-[#1F4B30]/50 hover:text-[#1F4B30] transition-colors"
@@ -52,12 +52,22 @@ export default function CategoryPopup({ categories, activeCategory, onSelect, on
                                 }
                             `}
                         >
-                            <span className={`text-[16px] transition-all ${activeCategory === cat ? 'font-bold' : 'group-hover:translate-x-1'}`}>
-                                {cat}
-                                {activeCategory === cat && (
-                                    <span className="inline-block ml-2 w-1 h-1 rounded-full bg-[#DE3C27]" />
-                                )}
-                            </span>
+                            <div className="flex items-center gap-4">
+                                {/* Category Icon based on name - placeholder or first letter */}
+                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-xl font-serif font-bold
+                                    ${activeCategory === cat ? 'bg-[#1F4B30] text-white' : 'bg-[#F5EBDD] text-[#1F4B30] group-hover:bg-[#E5DCCF]'}`}>
+                                    {cat[0]}
+                                </div>
+                                
+                                <div className="text-left">
+                                    <h3 className={`font-bold font-serif text-lg ${activeCategory === cat ? 'text-[#1F4B30]' : 'text-gray-900 group-hover:text-[#1F4B30]'}`}>
+                                        {cat}
+                                    </h3>
+                                </div>
+                            </div>
+                            {activeCategory === cat && (
+                                <span className="inline-block ml-2 w-1 h-1 rounded-full bg-[#1F4B30]" />
+                            )}
                             <span className="text-[14px] text-[#1F4B30]/40 font-medium">
                                 {categoryCounts[cat] || 0}
                             </span>

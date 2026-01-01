@@ -19,42 +19,28 @@ export default function Footer({
     isFinalStep = false
 }: FooterProps) {
   return (
-    <footer className="fixed bottom-0 left-0 w-full bg-[#1F4B30] text-white px-[48px] py-5 z-50 shadow-[0_-10px_40px_rgba(0,0,0,0.15)]">
-      <div className="flex items-center justify-between max-w-4xl mx-auto w-full">
+    <footer className="fixed bottom-0 left-0 w-full bg-[#1F4B30] text-white px-6 py-4 z-50 shadow-[0_-10px_40px_rgba(0,0,0,0.15)] h-[80px]">
+      <div className="flex items-center justify-between max-w-5xl mx-auto w-full h-full">
         
-        {/* Info Side */}
+        {/* Left: Product Details */}
         <div className="flex flex-col">
-            <span className="text-[10px] font-bold text-[#A3CFA9] uppercase tracking-[0.2em] mb-1">
-                {isFinalStep ? 'Final Total' : 'Total Price'}
-            </span>
-             <span className="text-2xl font-serif text-white tracking-tight">
-                ₹{defaultTotal.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-            </span>
+            <h3 className="font-heading text-lg leading-tight tracking-wide uppercase">
+                {highlightedItem ? highlightedItem.name : "Select an Item"}
+            </h3>
+            <p className="font-heading text-sm opacity-90 text-white/80 italic">
+                {highlightedItem ? `SAR ${highlightedItem.price}` : "Start Customizing"}
+            </p>
         </div>
 
-        {/* Actions Side */}
-        <div className="flex items-center gap-6">
-          
-          {isFinalStep ? (
-              // Final Step: "Add to Cart"
-              <button 
-                onClick={onAdd}
-                className="flex items-center gap-2.5 px-10 py-3.5 bg-white text-[#1F4B30] rounded-full font-bold text-[15px] hover:scale-105 transition-all shadow-xl active:scale-95"
-              >
-                <span className="whitespace-nowrap">Add to Cart</span>
-                <img src="/icons/web-icons-clean/cart.png" alt="" className="w-5 h-5 object-contain" />
-              </button>
-          ) : (
-              // Navigation Steps: "Next" Only (Green Variant)
-              <div className="flex items-center gap-4">
-                <button 
-                    onClick={onNext}
-                    className="flex items-center gap-2 px-12 py-3.5 bg-[#1F4B30] text-white border border-[#A3CFA9]/30 rounded-full font-bold text-[15px] hover:translate-y-[-1px] transition-all active:translate-y-0 shadow-lg"
-                >
-                    Next
-                </button>
-              </div>
-          )}
+        {/* Right: Actions */}
+        <div className="flex items-center gap-3">
+            {/* Next Button Only */}
+            <button 
+                onClick={onNext}
+                className="bg-white text-[#1F4B30] px-8 py-2.5 rounded-full font-bold text-sm hover:bg-gray-100 transition-colors"
+            >
+                Next
+            </button>
         </div>
       </div>
     </footer>

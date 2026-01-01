@@ -107,14 +107,26 @@ export default function Home() {
 
   const getDrawerProps = () => {
       if (currentStep === 'charms') {
-          return {
+          // Count occurences of each charm ID in placedCharms
+          const charmCounts: Record<string, number> = {};
+          placedCharms.forEach(p => {
+              charmCounts[p.charm.id] = (charmCounts[p.charm.id] || 0) + 1;
+          });
+
+            return {
               type: 'charms' as const,
               items: CHARMS,
               activeCategory: activeCharmCategory,
               onCategoryChange: setActiveCharmCategory,
               onSelect: handleCharmSelect,
               onRandomize: handleRandomize,
-              selectedIds: [] 
+              selectedIds: [], // Not used for charms anymore
+              charmCounts: charmCounts, // Pass the counts as charmCounts
+              onRemoveCharm: (charmId: string) => {
+                  // Find last instance of this charm
+                  const lastInstance = [...placedCharms].reverse().find(p => p.charm.id === charmId);
+                  if (lastInstance) handleRemoveCharm(lastInstance.id);
+              }
           };
       } else {
           return {
@@ -149,12 +161,12 @@ export default function Home() {
                 currentStep={currentStep} 
                 onStepChange={setCurrentStep}
                 onInfoClick={() => {
-                    const activeItem = highlightedItem || (placedCharms.length > 0 ? placedCharms[placedCharms.length - 1].charm : null);
-                    if (activeItem) {
-                        alert(`Metadata:\nName: ${activeItem.name}\nPrice: ₹${activeItem.price}\nID: ${activeItem.id}`);
-                    } else {
-                        alert("Please select a charm to view its details.");
-                    }
+                        const activeItem = highlightedItem || (placedCharms.length > 0 ? placedCharms[placedCharms.length - 1].charm : null);
+                        if (activeItem) {
+                            alert(`Metadata:\nName: ${activeItem.name}\nPrice: ₹${activeItem.price}\nID: ${activeItem.id}`);
+                        } else {
+                            alert("Select a charm to view details.");
+                        }
                 }}
             />
         </div>
@@ -176,16 +188,18 @@ export default function Home() {
                 placedCharms={placedCharms}
                 spacingMode={spacingMode}
             />
-            {currentStep !== 'space' && placedCharms.length > 0 && (
-                <SummaryOverlay 
-                    charms={placedCharms}
-                    onViewAll={() => setIsModalOpen(true)}
-                />
-            )}
         </div>
 
+        {/* Summary Strip - Statically Positioned between Canvas and Drawer */}
+        {currentStep !== 'space' && placedCharms.length > 0 && (
+            <SummaryOverlay 
+                charms={placedCharms}
+                onViewAll={() => setIsModalOpen(true)}
+            />
+        )}
+
         {/* Drawer / Spacing Controls - Constrained Container */}
-        <div className="flex-shrink-0 relative z-30 w-full"> 
+        <div className="h-[375px] bg-[#F4EFE6] border-t border-[#E6DCC9] relative z-30 w-full"> 
             {currentStep === 'space' ? (
                 <div className="bg-[#F5EBDD] w-full py-6 flex flex-col items-center gap-6 rounded-t-[30px] shadow-lg px-6 pb-24">
                     

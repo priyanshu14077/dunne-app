@@ -1,49 +1,43 @@
 import { Plus } from "lucide-react";
-import { Charm } from "../lib/mock-data";
+import { Charm } from "@/lib/mock-data";
 
 interface SummaryOverlayProps {
-    charms: { charm: Charm; id: string }[];
+    charms: { charm: Charm; anchorId: string; id: string }[];
     onViewAll: () => void;
 }
 
 export default function SummaryOverlay({ charms, onViewAll }: SummaryOverlayProps) {
-    // Take last 5 unique charms for display
-    const visibleCharms = charms.slice(-12);
-
+    const maxDisplayCharms = 5;
+    const displayCharms = charms.slice(-maxDisplayCharms);
+    
     return (
-        <div className="absolute bottom-[30px] right-8 z-40 bg-transparent animate-in slide-in-from-right-4 duration-500">
-            <div className="flex items-center gap-3 px-4 py-1.5 rounded-full">
-                
-                {/* Horizontal Icons: No background, floating */}
-                <div className="flex items-center -space-x-5">
-                    {visibleCharms.map((item, i) => {
-                        return (
-                            <div 
-                                key={item.id} 
-                                className="w-[42px] h-[42px] rounded-full flex items-center justify-center p-1.5 overflow-hidden transition-all hover:scale-125 hover:z-50 relative"
-                                style={{ zIndex: 50 - i }}
-                            >
-                                <img 
-                                    src={item.charm.image} 
-                                    alt="" 
-                                    className="w-full h-full object-contain drop-shadow-[0_4px_8px_rgba(0,0,0,0.15)]" 
-                                />
-                            </div>
-                        );
-                    })}
-                </div>
-
-                {/* Vertical Divider (Subtle) */}
-                <div className="w-[1px] h-6 bg-black/5 mx-1" />
-
-                {/* View All Button */}
-                <button 
-                    onClick={onViewAll}
-                    className="text-[#DE3C27] text-[15px] font-bold hover:opacity-80 transition-all whitespace-nowrap drop-shadow-sm"
-                >
-                    View All
-                </button>
+        <div className="w-full bg-white flex flex-col items-end gap-1 px-6 py-2 relative z-30">
+            
+            {/* Top Row: Stack Only */}
+            <div className="flex items-center gap-3 pr-2" onClick={onViewAll}>
+                 
+                 <div className="flex items-center pl-1 cursor-pointer">
+                    {displayCharms.map((item, i) => (
+                        <div 
+                            key={item.id} 
+                            className="w-11 h-11 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center -ml-5 first:ml-0 relative transition-transform hover:scale-110 hover:z-50"
+                            style={{ zIndex: i }} // Stack: Rightmost on top
+                        >
+                            <img src={item.charm.image} alt="" className="w-4/5 h-4/5 object-contain" />
+                        </div>
+                    ))}
+                 </div>
             </div>
+
+            {/* Bottom Row: Text */}
+            <button 
+                onClick={onViewAll}
+                className="text-sm font-medium hover:opacity-80 transition-opacity"
+            >
+                <span className="text-[#1F4B30]">{charms.length} Selected</span>
+                <span className="mx-1.5 text-gray-300">|</span>
+                <span className="text-[#DE3C27] font-bold">View All</span>
+            </button>
         </div>
     );
 }
