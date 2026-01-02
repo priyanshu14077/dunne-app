@@ -22,11 +22,8 @@ def rename_charms():
     new_lines = []
     pending_name = None
     
-    # Regex to find ID line and capture prefix + number: "id": "eternalbloom-1"
-    # Note: the file uses double quotes based on the snippet.
     id_pattern = re.compile(r'^\s*"?id"?: ["\']([a-zA-Z0-9]+)-(\d+)["\'],?')
     
-    # Regex to key match "name": "..."
     name_pattern = re.compile(r'^(\s*"?name"?: )["\'].*?["\'](,?)$')
 
     for line in lines:

@@ -1,5 +1,3 @@
-import { Plus, ShoppingBag } from "lucide-react";
-
 interface FooterProps {
     highlightedItem?: {
         name: string;
@@ -28,7 +26,7 @@ export default function Footer({
                 {highlightedItem ? highlightedItem.name : "Select an Item"}
             </h3>
             <p className="font-heading text-sm opacity-90 text-white/80 italic">
-                {highlightedItem ? `SAR ${highlightedItem.price}` : "Start Customizing"}
+                {highlightedItem ? `₹ ${highlightedItem.price}` : "Start Customizing"}
             </p>
         </div>
 

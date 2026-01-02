@@ -11,7 +11,7 @@ export default function SummaryOverlay({ charms, onViewAll }: SummaryOverlayProp
     const displayCharms = charms.slice(-maxDisplayCharms);
     
     return (
-        <div className="w-full bg-white flex flex-col items-end gap-1 px-6 py-2 relative z-30">
+        <div className="w-full bg-transparent flex flex-col items-end gap-1 px-6 py-2 relative z-50">
             
             {/* Top Row: Stack Only */}
             <div className="flex items-center gap-3 pr-2" onClick={onViewAll}>

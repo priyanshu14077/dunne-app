@@ -83,10 +83,10 @@ export default function SelectionDrawer({
     };
 
     return (
-        <div className="bg-[#F5EBDD] w-full pt-4 pb-[90px] flex flex-col gap-4 relative z-30 shadow-[0_-5px_20px_rgba(0,0,0,0.05)] h-full">
+        <div className="bg-[#F5EBDD] w-full pt-6 pb-0 flex flex-col gap-0 relative z-30 shadow-[0_-5px_20px_rgba(0,0,0,0.05)] h-full">
              
              {/* Header Section */}
-             <div className="px-6 flex items-center justify-between relative z-40">
+             <div className="px-6 flex items-center justify-between relative z-40 h-[24px]">
                  
                  {type === 'base' ? (
                      // Base: Toggle Buttons
@@ -106,33 +106,44 @@ export default function SelectionDrawer({
                     <div className="w-full flex items-center justify-between">
                         
                         {/* Dropdown Trigger */}
-                        <div className="relative">
+                        <div className="flex items-center gap-1.5">
+                            <div className="relative">
+                                <button 
+                                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                                    className="flex items-center gap-2 text-[#1F4B30] font-sans text-xl hover:opacity-80 transition-opacity"
+                                >
+                                    <span className="font-bold tracking-tight">{activeCategory}</span>
+                                    {isDropdownOpen ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                                </button>
+
+                                {/* Dropdown Menu - Opens Upward */}
+                                {isDropdownOpen && (
+                                    <div className="absolute bottom-full left-0 mb-2 bg-white rounded-xl shadow-xl border border-gray-100 py-2 min-w-[200px] z-50 animate-in fade-in slide-in-from-bottom-2 duration-200">
+                                        {categories.map((cat) => (
+                                            <button
+                                                key={cat}
+                                                onClick={() => {
+                                                    onCategoryChange(cat);
+                                                    setIsDropdownOpen(false);
+                                                }}
+                                                className={`w-full text-left px-4 py-2 text-sm font-medium hover:bg-gray-50 flex items-center justify-between ${activeCategory === cat ? 'text-[#1F4B30]' : 'text-gray-700'}`}
+                                            >
+                                                {cat}
+                                                {activeCategory === cat && <span className="w-1.5 h-1.5 rounded-full bg-[#1F4B30]"></span>}
+                                            </button>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Black Navigation Indicator */}
+                            <div className="text-black/30 font-sans text-xl font-bold tracking-tight">/</div>
                             <button 
                                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                                className="flex items-center gap-2 text-[#1F4B30] font-sans text-xl hover:opacity-80 transition-opacity"
+                                className="text-black/60 font-sans text-xl font-bold tracking-tight hover:text-black transition-colors"
                             >
-                                <span className="font-bold tracking-tight">{activeCategory}</span>
-                                {isDropdownOpen ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                                Categories
                             </button>
-
-                            {/* Dropdown Menu - Opens Upward */}
-                            {isDropdownOpen && (
-                                <div className="absolute bottom-full left-0 mb-2 bg-white rounded-xl shadow-xl border border-gray-100 py-2 min-w-[200px] z-50 animate-in fade-in slide-in-from-bottom-2 duration-200">
-                                    {categories.map((cat) => (
-                                        <button
-                                            key={cat}
-                                            onClick={() => {
-                                                onCategoryChange(cat);
-                                                setIsDropdownOpen(false);
-                                            }}
-                                            className={`w-full text-left px-4 py-2 text-sm font-medium hover:bg-gray-50 flex items-center justify-between ${activeCategory === cat ? 'text-[#1F4B30]' : 'text-gray-700'}`}
-                                        >
-                                            {cat}
-                                            {activeCategory === cat && <span className="w-1.5 h-1.5 rounded-full bg-[#1F4B30]"></span>}
-                                        </button>
-                                    ))}
-                                </div>
-                            )}
                         </div>
 
                         {/* Scroll Progress Bar (Replaces Randomize) */}
@@ -149,7 +160,7 @@ export default function SelectionDrawer({
              </div>
 
              {/* Carousel Container with Arrows */}
-             <div className="relative flex-1 min-h-0 flex flex-col group mt-[10px]">
+             <div className="relative flex-1 flex flex-col group mt-[24px] mb-[10px]">
                  
                  {/* Left Arrow */}
                  <button 
