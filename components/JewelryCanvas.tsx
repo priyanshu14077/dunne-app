@@ -15,11 +15,11 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode }
     const anchors = anchorConfig ? anchorConfig[spacingMode] : [];
 
     return (
-        <div className="w-full h-full flex items-center justify-center bg-transparent relative overflow-hidden rounded-lg min-h-[400px]">
+        <div className="w-full h-full flex items-center justify-center bg-transparent relative overflow-hidden rounded-lg">
              
             {/* Guide Lines / Dimensions (from design) - Purely decorative for now */}
 
-            <div className="relative w-[300px] md:w-[400px] aspect-square flex items-center justify-center">
+            <div className="relative w-[350px] md:w-[450px] aspect-square flex items-center justify-center">
                 {/* Base Product */}
                 {baseProduct ? (
                     <img 
@@ -31,13 +31,13 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode }
                     // Big Preview State (No Base Selected)
                     <div className="w-full h-full flex items-center justify-center relative animate-in fade-in zoom-in duration-700">
                         
-                        {/* Latest Charm in Big Preview */}
+                        {/* Latest Charm in Big Preview - ENHANCED SIZE */}
                         {placedCharms.length > 0 && (
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 z-10 animate-in slide-in-from-bottom-4 duration-500">
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] z-10 animate-in slide-in-from-bottom-4 duration-500">
                                 <img 
-                                    src={placedCharms[placedCharms.length - 1].charm.image} 
+                                    src={placedCharms[placedCharms.length - 1].charm.previewImage || placedCharms[placedCharms.length - 1].charm.image} 
                                     alt="" 
-                                    className="w-full h-full object-contain drop-shadow-[0_10px_15px_rgba(0,0,0,0.05)] transition-transform hover:scale-110" 
+                                    className="w-full h-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-transform hover:scale-105" 
                                 />
                             </div>
                         )}
@@ -65,9 +65,9 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode }
                             }}
                         >
                             {occupiedBy ? (
-                                <div className="relative group w-12 h-12 -mt-2"> 
+                                <div className="relative group w-16 h-16 -mt-4"> 
                                     <img 
-                                        src={occupiedBy.charm.image} 
+                                        src={occupiedBy.charm.previewImage || occupiedBy.charm.image} 
                                         alt={occupiedBy.charm.name}
                                         className="w-full h-full object-contain drop-shadow-md transform transition-transform hover:scale-110"
                                     />

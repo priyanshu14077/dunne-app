@@ -29,7 +29,7 @@ export default function SelectedCharmsSidebar({ selectedCharms, onRemove }: Sele
                         
                         <div className="flex-1 min-w-0">
                             <p className="text-[10px] font-medium text-gray-800 truncate leading-tight">{item.charm.name}</p>
-                            <p className="text-[9px] text-[#1F4B30] font-bold">SAR {item.charm.price}</p>
+                            <p className="text-[9px] text-[#1F4B30] font-bold">₹ {item.charm.price}</p>
                         </div>
 
                         <button 

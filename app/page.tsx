@@ -8,6 +8,8 @@ import SelectionDrawer from "@/components/SelectionDrawer";
 import JewelryCanvas from "@/components/JewelryCanvas";
 import SelectedCharmsModal from "@/components/SelectedCharmsModal";
 import SummaryOverlay from "@/components/SummaryOverlay";
+import InfoModal from "@/components/InfoModal";
+import ShareModal from "@/components/ShareModal";
 import { BASE_PRODUCTS, CHARMS, Product, Charm } from "@/lib/mock-data";
 import { PRODUCT_ANCHORS } from "@/lib/anchors";
 
@@ -25,23 +27,11 @@ export default function Home() {
   const [activeBaseCategory, setActiveBaseCategory] = useState("Bracelets");
   const [highlightedItem, setHighlightedItem] = useState<Product | Charm | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [infoItem, setInfoItem] = useState<Product | Charm | null>(null);
 
-  // Initial Logic: Random charm on land
-  useEffect(() => {
-    // Landing state: No base selected, only one random charm icon shown
-    if (placedCharms.length === 0) {
-      const randomCharm = CHARMS[Math.floor(Math.random() * CHARMS.length)];
-      
-      // Since no base is selected, we use a temporary anchor ID for the clustering logic
-      const targetAnchorId = `init-${Date.now()}`;
-      
-      setPlacedCharms([{ 
-        charm: randomCharm, 
-        anchorId: targetAnchorId, 
-        id: `init-${Date.now()}` 
-      }]);
-    }
-  }, []);
+  // No landing effect - start with fresh state
 
   // Price Calculation
   const basePrice = selectedBase?.price || 0;
@@ -161,13 +151,24 @@ export default function Home() {
                 currentStep={currentStep} 
                 onStepChange={setCurrentStep}
                 onInfoClick={() => {
-                        const activeItem = highlightedItem || (placedCharms.length > 0 ? placedCharms[placedCharms.length - 1].charm : null);
-                        if (activeItem) {
-                            alert(`Metadata:\nName: ${activeItem.name}\nPrice: ₹${activeItem.price}\nID: ${activeItem.id}`);
+                        let itemToShow: Product | Charm | null = null;
+                        
+                        if (currentStep === 'charms' && placedCharms.length > 0) {
+                            itemToShow = placedCharms[placedCharms.length - 1].charm;
+                        } else if (currentStep === 'base' && selectedBase) {
+                            itemToShow = selectedBase;
+                        } else if (highlightedItem) {
+                            itemToShow = highlightedItem;
+                        }
+                        
+                        if (itemToShow) {
+                            setInfoItem(itemToShow);
+                            setIsInfoModalOpen(true);
                         } else {
-                            alert("Select a charm to view details.");
+                            // Optional: show some feedback if nothing is selected
                         }
                 }}
+                onShareClick={() => setIsShareModalOpen(true)}
             />
         </div>
         
@@ -181,24 +182,44 @@ export default function Home() {
                 />
             )}
 
+            {isInfoModalOpen && (
+                <InfoModal 
+                    item={infoItem}
+                    onClose={() => setIsInfoModalOpen(false)}
+                />
+            )}
+
+            <ShareModal 
+                isOpen={isShareModalOpen}
+                onClose={() => setIsShareModalOpen(false)}
+                selectedBase={selectedBase}
+                placedCharms={placedCharms}
+                spacingMode={spacingMode}
+                note={note}
+            />
+
         {/* Canvas Area - Flex Grow to Fill */}
         <div className="flex-1 w-full relative min-h-0 bg-white">
             <JewelryCanvas 
-                baseProduct={selectedBase}
+                baseProduct={currentStep === 'charms' ? null : selectedBase}
                 placedCharms={placedCharms}
                 spacingMode={spacingMode}
             />
+            
+            {/* Summary Strip - Absolute Positioned within Canvas Area */}
+            {currentStep !== 'space' && placedCharms.length > 0 && (
+                <div className="absolute bottom-4 right-0 z-50">
+                    <SummaryOverlay 
+                        charms={placedCharms}
+                        onViewAll={() => setIsModalOpen(true)}
+                    />
+                </div>
+            )}
         </div>
 
-        {/* Summary Strip - Statically Positioned between Canvas and Drawer */}
-        {currentStep !== 'space' && placedCharms.length > 0 && (
-            <SummaryOverlay 
-                charms={placedCharms}
-                onViewAll={() => setIsModalOpen(true)}
-            />
-        )}
+        {/* Summary Strip - Moved above into relative canvas area */}
 
-        {/* Drawer / Spacing Controls - Constrained Container */}
+        {/* Drawer / Spacing Controls - Standard Position (No Overlap) */}
         <div className="h-[375px] bg-[#F4EFE6] border-t border-[#E6DCC9] relative z-30 w-full"> 
             {currentStep === 'space' ? (
                 <div className="bg-[#F5EBDD] w-full py-6 flex flex-col items-center gap-6 rounded-t-[30px] shadow-lg px-6 pb-24">

@@ -77,7 +77,7 @@ export default function SelectedCharmsModal({
                                         {item.charm.name}
                                     </h4>
                                     <span className="text-[#1F4B30] font-bold text-[14px]">
-                                        +SAR {item.charm.price.toFixed(2)}
+                                        +₹ {item.charm.price.toFixed(2)}
                                     </span>
                                 </div>
 
