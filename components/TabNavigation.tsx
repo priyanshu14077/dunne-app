@@ -19,7 +19,7 @@ export default function TabNavigation({ currentStep, onStepChange, onInfoClick, 
     const currentIndex = order.indexOf(currentStep);
 
     return (
-        <div className="relative flex items-center justify-between h-[62px] w-full px-12 bg-white select-none">
+        <div className="relative flex items-center justify-between h-[62px] w-full px-6 lg:px-12 bg-white select-none">
             
             {/* Left: Info Icon */}
             <button 
@@ -59,8 +59,11 @@ export default function TabNavigation({ currentStep, onStepChange, onInfoClick, 
                             )}
 
                             <button 
-                                onClick={() => onStepChange(step.id)}
-                                className="flex flex-col items-center group justify-center relative z-10"
+                                onClick={() => {
+                                    if (index <= currentIndex) onStepChange(step.id);
+                                }}
+                                disabled={index > currentIndex}
+                                className={`flex flex-col items-center group justify-center relative z-10 ${index > currentIndex ? 'cursor-default' : 'cursor-pointer'}`}
                             >
                                 <div className={`w-[28px] h-[28px] flex items-center justify-center relative rounded-full transition-all mb-1
                                     ${isCompleted ? 'bg-[#1F4B30]' : isActive ? 'bg-[#DE3C27]' : 'bg-[#F2F2F2]'}

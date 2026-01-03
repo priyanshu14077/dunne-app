@@ -1,4 +1,4 @@
-import { Plus, Trash2, Shuffle, ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from "lucide-react";
+import { Plus, Trash2, Shuffle, ChevronLeft, ChevronRight } from "lucide-react";
 import { Product, Charm } from "../lib/mock-data";
 import { useRef, useState, useEffect } from "react";
 import CharmCard from "./CharmCard";
@@ -7,9 +7,10 @@ interface SelectionDrawerProps {
     type: 'base' | 'charms';
     items: (Product | Charm)[];
     onSelect: (item: Product | Charm) => void;
+    onPreview?: (item: Product | Charm) => void; // Passed down
     onRemove?: (itemId: string) => void; 
     selectedIds?: string[];
-    charmCounts?: Record<string, number>; // Renamed from counts
+    charmCounts?: Record<string, number>; 
     
     // Categorization
     activeCategory: string;
@@ -23,16 +24,21 @@ export default function SelectionDrawer({
     type, 
     items, 
     onSelect, 
+    onPreview,
     onRemove, 
     selectedIds = [],
-    charmCounts = {}, // Default empty object
+    charmCounts = {}, 
     activeCategory,
     onCategoryChange,
     onRandomize
 }: SelectionDrawerProps) {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [scrollProgress, setScrollProgress] = useState(0);
+
+    // Draggable State
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
 
     // Initial Logic: Scroll Percentage
     useEffect(() => {
@@ -53,6 +59,31 @@ export default function SelectionDrawer({
             return () => container.removeEventListener('scroll', handleScroll);
         }
     }, []);
+
+    // Draggable Handlers
+    const handleMouseDown = (e: React.MouseEvent) => {
+        if (!scrollContainerRef.current) return;
+        setIsDragging(true);
+        setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+        setScrollLeft(scrollContainerRef.current.scrollLeft);
+    };
+
+    const handleMouseLeave = () => {
+        setIsDragging(false);
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+    };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (!isDragging || !scrollContainerRef.current) return;
+        e.preventDefault();
+        const x = e.pageX - scrollContainerRef.current.offsetLeft;
+        const walk = (x - startX) * 2; // Scroll speed multiplier
+        scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+    };
+
 
     // Derived categories based on type
     const categories = type === 'base' 
@@ -83,7 +114,7 @@ export default function SelectionDrawer({
     };
 
     return (
-        <div className="bg-[#F5EBDD] w-full pt-6 pb-0 flex flex-col gap-0 relative z-30 shadow-[0_-5px_20px_rgba(0,0,0,0.05)] h-full">
+        <div className="bg-[#F5EBDD] w-full pt-2 lg:pt-6 pb-0 flex flex-col gap-0 relative z-30 shadow-[0_-5px_20px_rgba(0,0,0,0.05)] h-auto lg:h-full min-h-[160px] lg:min-h-0">
              
              {/* Header Section */}
              <div className="px-6 flex items-center justify-between relative z-40 h-[24px]">
@@ -102,65 +133,43 @@ export default function SelectionDrawer({
                          ))}
                      </div>
                  ) : (
-                     // Charms: Dropdown + Randomize
-                    <div className="w-full flex items-center justify-between">
+                     // Charms: Horizontal Category Pills
+                     <div className="w-full flex items-center justify-between gap-4 overflow-hidden">
                         
-                        {/* Dropdown Trigger */}
-                        <div className="flex items-center gap-1.5">
-                            <div className="relative">
-                                <button 
-                                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                                    className="flex items-center gap-2 text-[#1F4B30] font-sans text-xl hover:opacity-80 transition-opacity"
+                        {/* Category List - Scrollable */}
+                        <div className="flex-1 overflow-x-auto scrollbar-hide flex items-center gap-3 py-2 pr-4 mask-linear-fade">
+                            {categories.map((cat) => (
+                                <button
+                                    key={cat}
+                                    onClick={() => onCategoryChange(cat)}
+                                    className={`
+                                        whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 ease-out flex-shrink-0
+                                        ${activeCategory === cat 
+                                            ? 'bg-[#1F4B30] text-white shadow-lg scale-110 mx-2' // Active: Scaled up, shadow, margin for spacing
+                                            : 'bg-white/50 text-[#1F4B30]/70 hover:bg-white hover:scale-105' // Inactive
+                                        }
+                                    `}
                                 >
-                                    <span className="font-bold tracking-tight">{activeCategory}</span>
-                                    {isDropdownOpen ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                                    {cat}
                                 </button>
-
-                                {/* Dropdown Menu - Opens Upward */}
-                                {isDropdownOpen && (
-                                    <div className="absolute bottom-full left-0 mb-2 bg-white rounded-xl shadow-xl border border-gray-100 py-2 min-w-[200px] z-50 animate-in fade-in slide-in-from-bottom-2 duration-200">
-                                        {categories.map((cat) => (
-                                            <button
-                                                key={cat}
-                                                onClick={() => {
-                                                    onCategoryChange(cat);
-                                                    setIsDropdownOpen(false);
-                                                }}
-                                                className={`w-full text-left px-4 py-2 text-sm font-medium hover:bg-gray-50 flex items-center justify-between ${activeCategory === cat ? 'text-[#1F4B30]' : 'text-gray-700'}`}
-                                            >
-                                                {cat}
-                                                {activeCategory === cat && <span className="w-1.5 h-1.5 rounded-full bg-[#1F4B30]"></span>}
-                                            </button>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-
-                            {/* Black Navigation Indicator */}
-                            <div className="text-black/30 font-sans text-xl font-bold tracking-tight">/</div>
-                            <button 
-                                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                                className="text-black/60 font-sans text-xl font-bold tracking-tight hover:text-black transition-colors"
-                            >
-                                Categories
-                            </button>
+                            ))}
                         </div>
 
-                        {/* Scroll Progress Bar (Replaces Randomize) */}
-                        <div className="flex items-center gap-3">
-                            <div className="w-[100px] h-[3px] bg-[#F5EBDD] rounded-full overflow-hidden relative">
+                        {/* Scroll Progress Bar (kept as requested previously) */}
+                        <div className="hidden lg:flex items-center gap-3 shrink-0">
+                            <div className="w-[80px] h-[3px] bg-[#E6DCC9] rounded-full overflow-hidden relative">
                                 <div 
                                     className="absolute inset-y-0 left-0 bg-[#1F4B30] transition-all duration-100 ease-out"
                                     style={{ width: `${scrollProgress}%` }}
                                 />
                             </div>
                         </div>
-                    </div>
+                     </div>
                  )}
              </div>
 
              {/* Carousel Container with Arrows */}
-             <div className="relative flex-1 flex flex-col group mt-[24px] mb-[10px]">
+             <div className="relative flex-1 flex flex-col group mt-[5px] lg:mt-[24px] mb-[10px]">
                  
                  {/* Left Arrow */}
                  <button 
@@ -181,10 +190,28 @@ export default function SelectionDrawer({
                  {/* Carousel Container */}
                  <div 
                     ref={scrollContainerRef}
-                    className="flex overflow-x-auto px-6 gap-[10px] scrollbar-hide items-center justify-center min-h-[220px]" 
+                    className={`
+                        flex overflow-x-auto px-6 gap-[10px] scrollbar-hide items-center min-h-[160px] 
+                        ${isDragging ? 'cursor-grabbing select-none' : 'cursor-grab'}
+                    `}
+                    onMouseDown={handleMouseDown}
+                    onMouseLeave={handleMouseLeave}
+                    onMouseUp={handleMouseUp}
+                    onMouseMove={handleMouseMove}
                  >
-                    <div className="flex gap-[10px] items-center">
-                        {filteredItems.map((item) => {
+                    <div className="flex gap-[10px] items-center pointer-events-none"> {/* pointer-events-none to prevent image drag, re-enable click on cards via parent? No, wait. */}
+                       {/* 
+                         Correction: pointer-events-none on wrapper will break clicks. 
+                         We should simply rely on child click handlers. 
+                         CharmCard should handle clicks. We need strictly stopPropagation on drag? 
+                         Actually, standard click works fine if mouseup happens on same element. 
+                         If dragging occurs, click is usually suppressed or we can filter it.
+                         For now, removing pointer-events-none wrapper to allow card interaction.
+                       */}
+                    </div>
+
+                     {/* Direct mapping to avoid extra wrapper if possible, or key off filteredItems */}
+                     {filteredItems.map((item) => {
                              const count = charmCounts[item.id] || 0;
                              
                              return (
@@ -194,12 +221,12 @@ export default function SelectionDrawer({
                                     isSelected={count > 0} 
                                     count={count} 
                                     onSelect={() => onSelect(item)}
+                                    onPreview={() => onPreview && onPreview(item)} // Pass preview
                                     onRemove={() => onRemove && onRemove(item.id)}
                                     type={type}
                                 />
                             );
                         })}
-                    </div>
                  </div>
              </div>
         </div>

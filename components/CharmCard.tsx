@@ -1,35 +1,47 @@
 import { Plus, Minus, Trash2 } from "lucide-react";
 import { Product, Charm } from "../lib/mock-data";
 
+// New Props Interface
 interface CharmCardProps {
     item: Product | Charm;
     isSelected: boolean;
-    onSelect: (item: Product | Charm) => void;
+    onSelect: (item: Product | Charm) => void; // Triggered by Add Button now
+    onPreview?: (item: Product | Charm) => void; // Triggered by Card Body
     onRemove?: (itemId: string) => void;
     type: 'base' | 'charms';
     count?: number;
 }
 
-export default function CharmCard({ item, isSelected, onSelect, onRemove, type, count = 0 }: CharmCardProps) {
+export default function CharmCard({ item, isSelected, onSelect, onPreview, onRemove, type, count = 0 }: CharmCardProps) {
     // Only charms have categories in our mock data
     const isMockCharm = 'category' in item;
 
     // Helper to determine if we should show the counter
     const showCounter = type === 'charms' && count > 0;
 
+    // Handler for Card Body Click -> PREVIEW
+    const handleBodyClick = () => {
+        if (onPreview) {
+            onPreview(item);
+        } else {
+            // Fallback for base products or if no preview handler
+            onSelect(item);
+        }
+    };
+
     return (
         <div 
-            onClick={() => onSelect(item)}
+            onClick={handleBodyClick}
             className={`
                 group shrink-0 relative flex flex-col items-center bg-[#F4EFE6] rounded-[20px]
                 border transition-all duration-300 cursor-pointer overflow-hidden
-                w-[107px] h-[193px]
+                w-[107px] h-[160px] lg:h-[193px]
                 ${isSelected ? 'border-[#1F4B30] shadow-md' : 'border-transparent hover:border-gray-200'}
             `}
         >
-            {/* Image Container (Increased height to fill space and avoid overlap) */}
-            <div className="flex items-center justify-center w-full h-[95px] pt-4">
-                <div className="w-[60px] h-[60px] flex items-center justify-center">
+            {/* Image Container (Reduced height on mobile) */}
+            <div className="flex items-center justify-center w-full h-[70px] lg:h-[95px] pt-4">
+                <div className="w-[50px] h-[50px] lg:w-[60px] lg:h-[60px] flex items-center justify-center">
                     <img 
                         src={item.image} 
                         alt={item.name}
@@ -68,8 +80,12 @@ export default function CharmCard({ item, isSelected, onSelect, onRemove, type, 
                                 {count}
                             </span>
                             
+                            {/* Add More Button */}
                             <button 
-                                onClick={() => onSelect(item)}
+                                onClick={(e) => {
+                                    e.stopPropagation(); // Stop bubbling to preview
+                                    onSelect(item);
+                                }}
                                 className="w-7 h-7 flex items-center justify-center bg-[#F4EFE6] rounded-full shadow-sm hover:scale-105 transition-transform active:scale-95 text-[#1F4B30]"
                             >
                                 <Plus size={14} />
@@ -77,11 +93,15 @@ export default function CharmCard({ item, isSelected, onSelect, onRemove, type, 
                         </div>
                     ) : (
                         <button
+                            onClick={(e) => {
+                                e.stopPropagation(); // Prevent preview trigger when clicking add directly
+                                onSelect(item);
+                            }}
                             className={`
                                 w-[90px] h-full rounded-full text-[14px] font-bold transition-all duration-300 flex items-center justify-center gap-1.5 font-sans
                                 ${isSelected && type === 'base' 
                                     ? 'bg-[#1F4B30] text-white' 
-                                    : 'bg-white text-[#1F4B30] hover:bg-[#EEDDCC] hover:scale-105 active:scale-95'
+                                    : 'bg-white text-[#1F4B30] hover:bg-[#EEDDCC] hover:scale-105 active:scale-95 shadow-sm'
                                 }
                             `}
                         >
