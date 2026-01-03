@@ -17,15 +17,15 @@ export default function Footer({
     isFinalStep = false
 }: FooterProps) {
   return (
-    <footer className="fixed bottom-0 left-0 w-full bg-[#1F4B30] text-white px-6 py-4 z-50 shadow-[0_-10px_40px_rgba(0,0,0,0.15)] h-[80px]">
+    <footer className="fixed bottom-0 left-0 w-full bg-[#1F4B30] text-white px-6 py-2 z-50 shadow-[0_-10px_40px_rgba(0,0,0,0.15)] h-[65px]">
       <div className="flex items-center justify-between max-w-5xl mx-auto w-full h-full">
         
         {/* Left: Product Details */}
-        <div className="flex flex-col">
-            <h3 className="font-heading text-lg leading-tight tracking-wide uppercase">
+        <div className="flex flex-col max-w-[50%]">
+            <h3 className="font-heading text-base lg:text-lg leading-tight tracking-wide uppercase truncate">
                 {highlightedItem ? highlightedItem.name : "Select an Item"}
             </h3>
-            <p className="font-heading text-sm opacity-90 text-white/80 italic">
+            <p className="font-heading text-xs lg:text-sm opacity-90 text-white/80 italic">
                 {highlightedItem ? `₹ ${highlightedItem.price}` : "Start Customizing"}
             </p>
         </div>
@@ -35,7 +35,7 @@ export default function Footer({
             {/* Next Button Only */}
             <button 
                 onClick={onNext}
-                className="bg-white text-[#1F4B30] px-8 py-2.5 rounded-full font-bold text-sm hover:bg-gray-100 transition-colors"
+                className="bg-white text-[#1F4B30] px-6 lg:px-8 py-2 rounded-full font-bold text-xs lg:text-sm hover:bg-gray-100 transition-colors"
             >
                 Next
             </button>

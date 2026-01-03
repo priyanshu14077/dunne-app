@@ -6,10 +6,10 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-[#F5EBDD] shadow-sm">
       {/* Main Nav - Updated to 96px with 48px padding */}
-      <div className="flex items-center justify-between px-12 bg-[#F5EBDD] h-[96px] relative z-10 w-full">
+      <div className="flex items-center justify-between px-6 lg:px-12 bg-[#F5EBDD] h-[64px] lg:h-[96px] relative z-10 w-full transition-[height] duration-300">
         {/* Mobile Menu */}
         <button className="hover:opacity-70 transition-opacity text-[#1F4B30]">
-          <Menu className="w-7 h-7" strokeWidth={2} />
+          <Menu className="w-6 h-6 lg:w-7 lg:h-7" strokeWidth={2} />
         </button>
 
         {/* Logo - Centered and Enlarged */}
@@ -20,18 +20,18 @@ export default function Header() {
                width={160} 
                height={64} 
                priority
-               className="h-[48px] w-auto opacity-100" 
+               className="h-[32px] lg:h-[48px] w-auto opacity-100 transition-[height] duration-300" 
              />
         </Link>
 
         {/* Cart - Perfectly aligned with Menu */}
         <button className="relative hover:scale-105 transition-transform active:scale-95 group flex items-center justify-center text-[#1F4B30]">
-           <ShoppingBag className="w-7 h-7" strokeWidth={2} />
+           <ShoppingBag className="w-6 h-6 lg:w-7 lg:h-7" strokeWidth={2} />
         </button>
       </div>
 
       {/* Promo Banner - Updated to 31px */}
-      <div className="bg-[#DE3C27] text-white text-center flex items-center justify-center text-[12px] font-bold tracking-[0.15em] uppercase h-[31px] w-full">
+      <div className="bg-[#DE3C27] text-white text-center flex items-center justify-center text-[10px] lg:text-[12px] font-bold tracking-[0.15em] uppercase h-[24px] lg:h-[31px] w-full transition-[height] duration-300">
          USE "DUNNE10" ON YOUR FIRST ORDER
       </div>
     </header>

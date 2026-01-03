@@ -35,7 +35,7 @@ export const BASE_PRODUCTS: Product[] = [
     id: 'classic-loop',
     name: 'Classic Loop Bracelet',
     price: 850,
-    image: '/base-products/Classic Loop bracelet.png',
+    image: '/bracelets/Classic Loop bracelet.png',
     type: 'bracelet',
     isBestSeller: true,
     description: "Premium base jewelry crafted from high-quality materials. Designed to hold your favorite charms securely with elegant spacing and durable construction.",
@@ -52,7 +52,7 @@ export const BASE_PRODUCTS: Product[] = [
     id: 'lustre-link',
     name: 'Lustre Link Bracelet',
     price: 950,
-    image: '/base-products/Lustre Link bracelet.png',
+    image: '/bracelets/Lustre Link bracelet.png',
     type: 'bracelet',
     description: "Premium base jewelry crafted from high-quality materials. Designed to hold your favorite charms securely with elegant spacing and durable construction.",
     specifications: {
@@ -68,7 +68,7 @@ export const BASE_PRODUCTS: Product[] = [
     id: 'dual-link',
     name: 'Dual Link Bracelet',
     price: 1100,
-    image: '/base-products/Dual Link Bracelet.png',
+    image: '/bracelets/Dual Link Bracelet.png',
     type: 'bracelet',
     description: "Premium base jewelry crafted from high-quality materials. Designed to hold your favorite charms securely with elegant spacing and durable construction.",
     specifications: {
@@ -84,7 +84,7 @@ export const BASE_PRODUCTS: Product[] = [
     id: 'paper-clip',
     name: 'Paper Clip Bracelet',
     price: 750,
-    image: '/base-products/paper clip bracelet.png',
+    image: '/bracelets/paper clip bracelet.png',
     type: 'bracelet',
     description: "Premium base jewelry crafted from high-quality materials. Designed to hold your favorite charms securely with elegant spacing and durable construction.",
     specifications: {
@@ -100,7 +100,7 @@ export const BASE_PRODUCTS: Product[] = [
     id: 'golden-charm',
     name: 'Golden Charm Chain',
     price: 1200,
-    image: '/base-products/Golden Charm Chain Bracelet.png',
+    image: '/bracelets/Golden Charm Chain Bracelet.png',
     type: 'bracelet',
     description: "Premium base jewelry crafted from high-quality materials. Designed to hold your favorite charms securely with elegant spacing and durable construction.",
     specifications: {
@@ -116,7 +116,7 @@ export const BASE_PRODUCTS: Product[] = [
     id: 'luxe-chain',
     name: 'Luxe Chain Bracelet',
     price: 1350,
-    image: '/base-products/Luxe Chain Bracelet.png',
+    image: '/bracelets/Luxe Chain Bracelet.png',
     type: 'bracelet',
     isNew: true,
     description: "Premium base jewelry crafted from high-quality materials. Designed to hold your favorite charms securely with elegant spacing and durable construction.",
@@ -128,8 +128,186 @@ export const BASE_PRODUCTS: Product[] = [
       finish: "Polished",
       weight: "~15 g"
     }
+  },
+  // --- Necklaces ---
+  {
+    id: 'chain-01',
+    name: 'Paperclip Link Necklace',
+    price: 1250,
+    image: '/necklace/Paperclip Link Necklace.png',
+    type: 'necklace',
+    description: "Elegant necklace chain designed for versatility and style.",
+    specifications: {
+      material: "Sterling Silver 925",
+      length: "45 cm",
+      width: "2 mm",
+      clasp: "Lobster clasp",
+      finish: "Polished",
+      weight: "~8 g"
+    }
+  },
+  {
+    id: 'chain-02',
+    name: 'Twist Chain Necklace',
+    price: 1250,
+    image: '/necklace/Twist Chain Necklace.png',
+    type: 'necklace',
+    description: "Elegant necklace chain designed for versatility and style.",
+    specifications: {
+      material: "Sterling Silver 925",
+      length: "45 cm",
+      width: "2 mm",
+      clasp: "Lobster clasp",
+      finish: "Polished",
+      weight: "~8 g"
+    }
+  },
+  {
+    id: 'chain-03',
+    name: 'Golden Figaro Necklace',
+    price: 1250,
+    image: '/necklace/Golden Figaro Necklace.png',
+    type: 'necklace',
+    description: "Elegant necklace chain designed for versatility and style.",
+    specifications: {
+      material: "Sterling Silver 925",
+      length: "45 cm",
+      width: "2 mm",
+      clasp: "Lobster clasp",
+      finish: "Polished",
+      weight: "~8 g"
+    }
+  },
+  {
+    id: 'chain-04',
+    name: 'Aurora Link Necklace',
+    price: 1250,
+    image: '/necklace/Aurora Link Necklace.png',
+    type: 'necklace',
+    description: "Elegant necklace chain designed for versatility and style.",
+    specifications: {
+      material: "Sterling Silver 925",
+      length: "45 cm",
+      width: "2 mm",
+      clasp: "Lobster clasp",
+      finish: "Polished",
+      weight: "~8 g"
+    }
+  },
+  {
+    id: 'chain-05',
+    name: 'Golden Miami Necklace',
+    price: 1250,
+    image: '/necklace/Golden Miami Necklace.png',
+    type: 'necklace',
+    description: "Elegant necklace chain designed for versatility and style.",
+    specifications: {
+      material: "Sterling Silver 925",
+      length: "45 cm",
+      width: "2 mm",
+      clasp: "Lobster clasp",
+      finish: "Polished",
+      weight: "~8 g"
+    }
+  },
+  {
+    id: 'chain-06',
+    name: 'Golden loop Necklace',
+    price: 1250,
+    image: '/necklace/Golden loop Necklace.png',
+    type: 'necklace',
+    description: "Elegant necklace chain designed for versatility and style.",
+    specifications: {
+      material: "Sterling Silver 925",
+      length: "45 cm",
+      width: "2 mm",
+      clasp: "Lobster clasp",
+      finish: "Polished",
+      weight: "~8 g"
+    }
+  },
+  {
+    id: 'chain-07',
+    name: 'Nautical Ring Necklace',
+    price: 1250,
+    image: '/necklace/Nautical Ring Necklace.png',
+    type: 'necklace',
+    description: "Elegant necklace chain designed for versatility and style.",
+    specifications: {
+      material: "Sterling Silver 925",
+      length: "45 cm",
+      width: "2 mm",
+      clasp: "Lobster clasp",
+      finish: "Polished",
+      weight: "~8 g"
+    }
+  },
+  {
+    id: 'chain-08',
+    name: 'Oval Lock Necklace',
+    price: 1250,
+    image: '/necklace/Oval Lock Necklace.png',
+    type: 'necklace',
+    description: "Elegant necklace chain designed for versatility and style.",
+    specifications: {
+      material: "Sterling Silver 925",
+      length: "45 cm",
+      width: "2 mm",
+      clasp: "Lobster clasp",
+      finish: "Polished",
+      weight: "~8 g"
+    }
+  },
+  {
+    id: 'chain-09',
+    name: 'Paperclip Link (Thin) Necklace',
+    price: 1250,
+    image: '/necklace/Paperclip Link (Thin) Necklace.png',
+    type: 'necklace',
+    description: "Elegant necklace chain designed for versatility and style.",
+    specifications: {
+      material: "Sterling Silver 925",
+      length: "45 cm",
+      width: "2 mm",
+      clasp: "Lobster clasp",
+      finish: "Polished",
+      weight: "~8 g"
+    }
+  },
+  {
+    id: 'chain-10',
+    name: 'Thin Chain Necklace',
+    price: 1250,
+    image: '/necklace/Thin Chain Necklace.png',
+    type: 'necklace',
+    description: "Elegant necklace chain designed for versatility and style.",
+    specifications: {
+      material: "Sterling Silver 925",
+      length: "45 cm",
+      width: "2 mm",
+      clasp: "Lobster clasp",
+      finish: "Polished",
+      weight: "~8 g"
+    }
+  },
+  {
+    id: 'chain-11',
+    name: 'Vero Link Necklace',
+    price: 1250,
+    image: '/necklace/Vero Link Necklace.png',
+    type: 'necklace',
+    description: "Elegant necklace chain designed for versatility and style.",
+    specifications: {
+      material: "Sterling Silver 925",
+      length: "45 cm",
+      width: "2 mm",
+      clasp: "Lobster clasp",
+      finish: "Polished",
+      weight: "~8 g"
+    }
   }
 ];
+
 
 export const CHARMS: Charm[] = [
   // Eternal Bloom
