@@ -136,17 +136,17 @@ export default function SelectionDrawer({
                      // Charms: Horizontal Category Pills
                      <div className="w-full flex items-center justify-between gap-4 overflow-hidden">
                         
-                        {/* Category List - Scrollable */}
-                        <div className="flex-1 overflow-x-auto scrollbar-hide flex items-center gap-3 py-2 pr-4 mask-linear-fade">
+                        {/* Category List - Scrollable with padding to prevent mask clip */}
+                        <div className="flex-1 overflow-x-auto scrollbar-hide flex items-center gap-3 py-2 px-4 mask-linear-fade">
                             {categories.map((cat) => (
                                 <button
                                     key={cat}
                                     onClick={() => onCategoryChange(cat)}
                                     className={`
-                                        whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 ease-out flex-shrink-0
+                                        whitespace-nowrap px-4 py-1.5 lg:px-5 lg:py-2 rounded-full text-xs lg:text-sm font-bold transition-all duration-300 ease-out flex-shrink-0
                                         ${activeCategory === cat 
-                                            ? 'bg-[#1F4B30] text-white shadow-lg scale-110 mx-2' // Active: Scaled up, shadow, margin for spacing
-                                            : 'bg-white/50 text-[#1F4B30]/70 hover:bg-white hover:scale-105' // Inactive
+                                            ? 'bg-[#1F4B30] text-white shadow-lg scale-105 mx-1' 
+                                            : 'bg-white/50 text-[#1F4B30]/70 hover:bg-white hover:scale-105'
                                         }
                                     `}
                                 >
@@ -168,8 +168,8 @@ export default function SelectionDrawer({
                  )}
              </div>
 
-             {/* Carousel Container with Arrows */}
-             <div className="relative flex-1 flex flex-col group mt-[5px] lg:mt-[24px] mb-[10px]">
+             {/* Carousel Container with Arrows - mb-5 for 20px spacing */}
+             <div className="relative flex-1 flex flex-col group mt-[5px] lg:mt-[24px] mb-5">
                  
                  {/* Left Arrow */}
                  <button 
