@@ -26,21 +26,22 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
     }
 
     return (
-        <div className="w-full h-full flex items-center justify-center bg-transparent relative overflow-hidden rounded-lg">
+        <div className="w-full h-full flex items-center justify-center bg-transparent relative overflow-hidden rounded-lg p-2 lg:p-4">
              
             {/* Guide Lines / Dimensions (from design) - Purely decorative for now */}
             
             {/* 
                RESPONSIVE CONTAINER CONFIG:
-               - Min Width: 225px, Max Width: 490px
-               - Min Height: 180px, Max Height: 392px
-               - Aspect Ratio: ~1.25 (5:4) based on dimensions.
+               - Dimensions strictly constrained by user limits and available space.
+               - Uses min() to ensure it never exceeds screen limits even if constraints are larger.
+               - w-auto h-auto + aspect allows it to shrink based on whichever dimension is tighter.
             */}
             <div className={`
                 relative 
-                h-auto w-full
-                min-w-[225px] max-w-[490px]
-                min-h-[180px] max-h-[392px]
+                w-auto h-auto
+                max-w-[min(100%,490px)]
+                max-h-[min(100%,392px)]
+                min-w-[225px] min-h-[180px]
                 aspect-[1.25]
                 flex items-center justify-center 
                 transition-all duration-300

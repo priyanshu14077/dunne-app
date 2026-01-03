@@ -249,9 +249,9 @@ export default function Home() {
         {/* Summary Strip - Moved above into relative canvas area */}
 
         {/* Drawer / Spacing Controls - Responsive Height */}
-        <div className="h-auto shrink-0 bg-[#F4EFE6] border-t border-[#E6DCC9] relative z-30 w-full pb-[calc(65px+env(safe-area-inset-bottom))]"> 
+        <div className="h-auto shrink-0 bg-[#F4EFE6] border-t border-[#E6DCC9] relative z-30 w-full pb-[calc(60px+env(safe-area-inset-bottom))]"> 
             {currentStep === 'space' ? (
-                <div className="bg-[#F5EBDD] w-full py-6 flex flex-col items-center gap-6 rounded-t-[30px] shadow-lg px-6 pb-24">
+                <div className="bg-[#F5EBDD] w-full py-4 lg:py-6 flex flex-col items-center gap-3 lg:gap-6 rounded-t-[30px] shadow-lg px-6 pb-4 lg:pb-8">
                     
                     {/* Spacing Controls */}
                     <div className="w-full flex flex-col gap-2">
