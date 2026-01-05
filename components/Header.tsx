@@ -2,7 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, ShoppingBag } from "lucide-react";
 
-export default function Header() {
+interface HeaderProps {
+  onCartClick?: () => void;
+  cartItemCount?: number;
+}
+
+export default function Header({ onCartClick, cartItemCount = 0 }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 w-full bg-[#F5EBDD] shadow-sm">
       {/* Main Nav - Updated to 96px with 48px padding */}
@@ -25,13 +30,24 @@ export default function Header() {
         </Link>
 
         {/* Cart - Perfectly aligned with Menu */}
-        <button className="relative hover:scale-105 transition-transform active:scale-95 group flex items-center justify-center text-[#1F4B30]">
+        <button 
+          onClick={onCartClick}
+          className="relative hover:scale-105 transition-transform active:scale-95 group flex items-center justify-center text-[#1F4B30]"
+        >
            <ShoppingBag className="w-6 h-6 lg:w-7 lg:h-7" strokeWidth={2} />
+           {cartItemCount > 0 && (
+             <span className="absolute -top-1 -right-1 bg-[#DE3C27] text-white text-[10px] w-4 h-4 lg:w-5 lg:h-5 rounded-full flex items-center justify-center font-bold animate-fade-in shadow-sm">
+               {cartItemCount}
+             </span>
+           )}
         </button>
       </div>
 
       {/* Promo Banner - Updated to 31px */}
-      <div className="bg-[#DE3C27] text-white text-center flex items-center justify-center text-[10px] lg:text-[12px] font-bold tracking-[0.15em] uppercase h-[24px] lg:h-[31px] w-full transition-[height] duration-300">
+      <div 
+        className="bg-[#DE3C27] text-white text-center flex items-center justify-center text-[10px] lg:text-[12px] font-bold tracking-[0.15em] uppercase h-[24px] lg:h-[31px] w-full transition-[height] duration-300"
+        style={{ fontFamily: 'Manrope, sans-serif' }}
+      >
          USE "DUNNE10" ON YOUR FIRST ORDER
       </div>
     </header>

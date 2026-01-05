@@ -26,8 +26,8 @@ export default function TabNavigation({ currentStep, onStepChange, onInfoClick, 
                 onClick={onInfoClick}
                 className="hover:opacity-70 transition-opacity flex items-center justify-center"
             >
-                <div className="w-[32px] h-[32px] flex items-center justify-center">
-                    <Info className="w-[20px] h-[20px] text-[#1F4B30]" strokeWidth={2} />
+                <div className="w-[28px] h-[28px] flex items-center justify-center">
+                    <Info className="w-[16px] h-[16px] text-[#1F4B30]" strokeWidth={2} />
                 </div>
             </button>
 
@@ -65,26 +65,29 @@ export default function TabNavigation({ currentStep, onStepChange, onInfoClick, 
                                 disabled={index > currentIndex}
                                 className={`flex flex-col items-center group justify-center relative z-10 ${index > currentIndex ? 'cursor-default' : 'cursor-pointer'}`}
                             >
-                                <div className={`w-[28px] h-[28px] flex items-center justify-center relative rounded-full transition-all mb-1
+                                <div className={`w-[24px] h-[24px] flex items-center justify-center relative rounded-full transition-all mb-1
                                     ${isCompleted ? 'bg-[#1F4B30]' : isActive ? 'bg-[#DE3C27]' : 'bg-[#F2F2F2]'}
                                 `}>
                                     {isCompleted ? (
-                                        <Check className="w-[15px] h-[15px] text-white" strokeWidth={3} />
+                                        <Check className="w-[12px] h-[12px] text-white" strokeWidth={3} />
                                     ) : isActive ? (
                                         <img 
                                             src={step.activeIcon} 
                                             alt={step.label} 
-                                            className="w-[15px] h-[15px] object-contain brightness-0 invert" 
+                                            className="w-[12px] h-[12px] object-contain brightness-0 invert" 
                                         />
                                     ) : (
                                         <img 
                                             src={step.defaultIcon} 
                                             alt={step.label} 
-                                            className="w-[15px] h-[15px] object-contain opacity-40 group-hover:opacity-60" 
+                                            className="w-[12px] h-[12px] object-contain opacity-40 group-hover:opacity-60" 
                                         />
                                     )}
                                 </div>
-                                <span className={`text-[8px] font-bold font-sans uppercase tracking-[0.05em] absolute -bottom-3 white-space-nowrap ${labelColor}`}>
+                                <span 
+                                    className={`text-[8px] font-bold uppercase tracking-[0.05em] absolute -bottom-3 whitespace-nowrap ${labelColor}`}
+                                    style={{ fontFamily: 'Manrope, sans-serif' }}
+                                >
                                     {labelText}
                                 </span>
                             </button>
@@ -98,8 +101,8 @@ export default function TabNavigation({ currentStep, onStepChange, onInfoClick, 
                 onClick={onShareClick}
                 className="hover:opacity-70 transition-opacity flex items-center justify-center"
             >
-                <div className="w-[32px] h-[32px] flex items-center justify-center">
-                    <Share className="w-[20px] h-[20px] text-[#1F4B30]" strokeWidth={2} />
+                <div className="w-[28px] h-[28px] flex items-center justify-center">
+                    <Share className="w-[16px] h-[16px] text-[#1F4B30]" strokeWidth={2} />
                 </div>
             </button>
         </div>

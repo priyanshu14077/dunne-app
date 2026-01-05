@@ -19,13 +19,18 @@ export default function SelectedCharmsModal({
     const totalCount = selectedCharms.length;
 
     return (
-        <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
-            <div className="bg-white w-full max-w-[400px] rounded-[32px] shadow-2xl overflow-hidden animate-in slide-in-from-bottom-8 duration-500">
-                <div className="px-6 py-6 border-b border-gray-100 flex flex-col gap-4">
+        <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-fade-in">
+            <div className="bg-[#F4EFE6] w-full max-w-[400px] rounded-[32px] shadow-2xl overflow-hidden animate-modal-slide-up">
+                <div className="px-6 py-6 border-b border-[#E6DCC9] flex flex-col gap-4">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                            <span className="text-[#1F4B30] font-serif text-3xl font-bold tracking-tight">Total Charms</span>
-                            <div className="w-8 h-8 rounded-full bg-[#F5EBDD] flex items-center justify-center font-bold text-[#1F4B30] text-sm font-serif">
+                            <span 
+                                className="text-[#1F4B30] text-2xl lg:text-3xl font-bold tracking-tight"
+                                style={{ fontFamily: 'Manrope, sans-serif' }}
+                            >
+                                Total Selected
+                            </span>
+                            <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center font-bold text-[#1F4B30] shadow-sm">
                                 {totalCount}
                             </div>
                         </div>
@@ -42,6 +47,7 @@ export default function SelectedCharmsModal({
                         <button 
                             onClick={onClose}
                             className="flex items-center gap-1.5 text-[#1F4B30] hover:opacity-70 transition-opacity font-bold text-[15px]"
+                            style={{ fontFamily: 'Manrope, sans-serif' }}
                         >
                             Close <img src="/icons/web-icons-clean/close-small.png" alt="" className="w-4 h-4 object-contain" />
                         </button>
