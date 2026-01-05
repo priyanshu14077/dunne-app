@@ -211,7 +211,7 @@ export default function Home() {
 
 
   return (
-    <div className="flex flex-col h-[100dvh] bg-white font-sans text-slate-900 overflow-hidden relative">
+    <div className="flex flex-col h-[100dvh] bg-white font-sans text-slate-900 overflow-hidden">
       {/* Toast Notification */}
       {showToast && (
         <div className="fixed top-24 left-1/2 -translate-x-1/2 z-[100] bg-[#DE3C27] text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 animate-modal-slide-up select-none pointer-events-none lg:pointer-events-auto">
@@ -222,165 +222,153 @@ export default function Home() {
         </div>
       )}
 
-      <main className="flex-1 flex flex-col relative bg-white min-h-0 overflow-hidden"> 
-        
-        {/* Tab Nav - Progress Indicator - MOVED TO TOP */}
-        <div className="flex-shrink-0 relative z-20 bg-white pt-[10px]">
-          <TabNavigation 
-            currentStep={currentStep} 
-            onStepChange={setCurrentStep}
-            onInfoClick={() => {
-              let itemToShow: Product | Charm | null = previewedItem;
-              
-              if (!itemToShow && placedCharms.length > 0) {
-                itemToShow = placedCharms[placedCharms.length - 1].charm;
-              } else if (!itemToShow && selectedBase) {
-                itemToShow = selectedBase;
-              }
-              
-              if (itemToShow) {
-                setInfoItem(itemToShow);
-                setIsInfoModalOpen(true);
-              }
-            }}
-            onShareClick={() => setIsShareModalOpen(true)}
-          />
-        </div>
+      {/* 1. Header Area (Static) */}
+      <div className="flex-shrink-0 bg-white pt-[10px]">
+        <TabNavigation 
+          currentStep={currentStep} 
+          onStepChange={setCurrentStep}
+          onInfoClick={() => {
+            let itemToShow: Product | Charm | null = previewedItem;
+            if (!itemToShow && placedCharms.length > 0) {
+              itemToShow = placedCharms[placedCharms.length - 1].charm;
+            } else if (!itemToShow && selectedBase) {
+              itemToShow = selectedBase;
+            }
+            if (itemToShow) {
+              setInfoItem(itemToShow);
+              setIsInfoModalOpen(true);
+            }
+          }}
+          onShareClick={() => setIsShareModalOpen(true)}
+        />
+      </div>
 
-        {/* Modals */}
-        {isModalOpen && (
-          <SelectedCharmsModal 
-            selectedCharms={placedCharms}
-            onClose={() => setIsModalOpen(false)}
-            onRemove={(instanceId) => {
-              // Extract charm ID from instance ID
-              const charmId = instanceId.split('-')[1];
-              if (charmId) handleCharmRemove(charmId);
-            }}
-            onAddAnother={(charm) => handleCharmAdd(charm)}
-            onReset={handleReset}
-          />
-        )}
-
-        {isInfoModalOpen && (
-          <InfoModal 
-            item={infoItem}
-            onClose={() => setIsInfoModalOpen(false)}
-          />
-        )}
-
-        <ShareModal 
-          isOpen={isShareModalOpen}
-          onClose={() => setIsShareModalOpen(false)}
-          selectedBase={selectedBase}
+      {/* 2. Canvas Area (Middle - fills available space) */}
+      <div className="flex-1 w-full bg-white relative min-h-0 flex items-center justify-center overflow-hidden">
+        <JewelryCanvas 
+          baseProduct={currentStep === 'charms' ? null : selectedBase}
           placedCharms={placedCharms}
           spacingMode={spacingMode}
-          note={note}
+          previewCharm={previewedItem as Charm | null}
         />
+      </div>
 
-        <DeleteConfirmationDialog 
-          isOpen={deleteConfirmation.isOpen}
-          onClose={() => setDeleteConfirmation({ isOpen: false, itemId: '', itemName: '' })}
-          onConfirm={confirmCharmRemoval}
-          itemName={deleteConfirmation.itemName}
-        />
-
-        {/* Canvas Area - Flex-1 to fill all remaining space */}
-        <div className="flex-1 w-full relative min-h-0 bg-white flex items-center justify-center">
-          <JewelryCanvas 
-            baseProduct={currentStep === 'charms' ? null : selectedBase}
-            placedCharms={placedCharms}
-            spacingMode={spacingMode}
-            previewCharm={previewedItem as Charm | null}
-          />
-          
-          <div className="absolute bottom-4 right-0 z-50 flex flex-col items-end gap-3 pr-[30px]">
-            <SummaryOverlay 
-              charms={placedCharms}
-              onViewAll={() => setIsModalOpen(true)}
-            />
-            
-            {/* New Minimalist Green Navigation Strip */}
-            <button
-              onClick={handleNavigate}
-              disabled={totalCharmCount === 0}
-              className={`
-                flex items-center gap-4 bg-[#1F4B30] text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300
-                ${totalCharmCount > 0 
-                  ? 'opacity-100 hover:scale-105 active:scale-95 cursor-pointer' 
-                  : 'opacity-0 pointer-events-none scale-95'}
-              `}
-              style={{ fontFamily: 'Manrope, sans-serif' }}
-            >
-              <div className="flex flex-col items-end leading-none">
-                <span className="text-[10px] opacity-80 uppercase tracking-wider mb-0.5">Total Value</span>
-                <span className="text-[16px] font-extrabold text-white">₹{totalPrice.toFixed(0)}</span>
-              </div>
-              <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center border border-white/20">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </div>
-            </button>
-          </div>
+      {/* View All Section - Positioned exactly ABOVE the green navigation bar */}
+      {currentStep === 'charms' && totalCharmCount > 0 && (
+        <div className="flex-shrink-0 bg-white pt-2">
+           <SummaryOverlay 
+             charms={placedCharms}
+             onViewAll={() => setIsModalOpen(true)}
+           />
         </div>
+      )}
 
-        {/* Cart Bar - REMOVED for minimal layout - Using new strip above instead */}
+      {/* 4. Total Value Bar (Strict Requirement: h-12 Static Block) */}
+      <div className="flex-shrink-0 h-12 w-full bg-[#1F4B30] flex items-center justify-center px-6">
+        <button
+          onClick={handleNavigate}
+          disabled={totalCharmCount === 0}
+          className={`
+            w-full max-w-[400px] flex items-center justify-between transition-all duration-300
+            ${totalCharmCount > 0 ? 'opacity-100' : 'opacity-30 cursor-not-allowed'}
+          `}
+          style={{ fontFamily: 'Manrope, sans-serif' }}
+        >
+          <div className="flex flex-col items-start leading-none text-white">
+            <span className="text-[10px] opacity-80 uppercase tracking-wider mb-0.5">Total Value</span>
+            <span className="text-[18px] font-extrabold">₹{totalPrice.toFixed(0)}</span>
+          </div>
+          <div className="flex items-center gap-3 text-white">
+            <span className="text-sm font-bold uppercase tracking-widest">{currentStep === 'charms' ? 'Select Base' : 'Select Spacing'}</span>
+            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center border border-white/20">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </button>
+      </div>
 
-        {/* Bottom Selection Area */}
-        <div className="flex flex-col shrink-0 relative z-30 w-full pb-8"> 
-          {currentStep === 'space' ? (
-            <div className="bg-[#F5EBDD] w-full py-4 lg:py-6 flex flex-col items-center gap-3 lg:gap-6 rounded-t-[30px] shadow-lg px-6 pb-2">
-              {/* Spacing Controls */}
-              <div className="w-full flex flex-col gap-2">
-                <h3 className="text-[#1F4B30] text-sm font-medium">Select Spacing</h3>
-                <div className="flex items-center gap-2">
-                  <button 
-                    onClick={() => handleSpacingToggle('standard')} 
-                    className={`flex-1 py-3 rounded-xl font-bold text-sm border shadow-sm transition-all ${spacingMode === 'standard' ? 'bg-[#DE3C27] text-white border-[#DE3C27]' : 'bg-white text-[#1F4B30] hover:bg-white/80'}`}
-                  >
-                    Standard
-                  </button>
-                  <button 
-                    onClick={() => handleSpacingToggle('spaced')} 
-                    className={`flex-1 py-3 rounded-xl font-bold text-sm border shadow-sm transition-all ${spacingMode === 'spaced' ? 'bg-[#DE3C27] text-white border-[#DE3C27]' : 'bg-white text-[#1F4B30] hover:bg-white/80'}`}
-                  >
-                    Spaced
-                  </button>
-                </div>
-              </div>
-
-              {/* Note Input */}
-              <div className="w-full flex flex-col gap-2">
-                <h3 className="text-[#1F4B30] text-sm font-medium">Add a Note</h3>
-                <textarea 
-                  value={note}
-                  onChange={(e) => setNote(e.target.value)}
-                  placeholder="Have any instructions for us?"
-                  className="w-full p-4 rounded-xl border-none shadow-inner bg-white text-sm focus:ring-2 focus:ring-[#DE3C27] outline-none min-h-[60px]"
-                />
+      {/* 5. Product Card Carousel (Very bottom of flow) */}
+      <div className="flex-shrink-0 bg-[#F5EBDD]">
+        {currentStep === 'space' ? (
+          <div className="w-full py-4 lg:py-6 flex flex-col items-center gap-3 lg:gap-6 px-6">
+            <div className="w-full flex flex-col gap-2">
+              <h3 className="text-[#1F4B30] text-sm font-medium">Select Spacing</h3>
+              <div className="flex items-center gap-2">
+                <button 
+                  onClick={() => handleSpacingToggle('standard')} 
+                  className={`flex-1 py-3 rounded-xl font-bold text-sm border shadow-sm transition-all ${spacingMode === 'standard' ? 'bg-[#DE3C27] text-white border-[#DE3C27]' : 'bg-white text-[#1F4B30] hover:bg-white/80'}`}
+                >
+                  Standard
+                </button>
+                <button 
+                  onClick={() => handleSpacingToggle('spaced')} 
+                  className={`flex-1 py-3 rounded-xl font-bold text-sm border shadow-sm transition-all ${spacingMode === 'spaced' ? 'bg-[#DE3C27] text-white border-[#DE3C27]' : 'bg-white text-[#1F4B30] hover:bg-white/80'}`}
+                >
+                  Spaced
+                </button>
               </div>
             </div>
-          ) : (
-            <SelectionDrawer 
-              type={currentStep === 'charms' ? 'charms' : 'base'}
-              items={currentStep === 'charms' ? CHARMS : BASE_PRODUCTS}
-              cardStates={currentStep === 'charms' ? charmCardStates : baseCardStates}
-              quantities={currentStep === 'charms' ? charmQuantities : {}}
-              onCardBodyClick={currentStep === 'charms' ? handleCharmBodyClick : handleBaseBodyClick}
-              onAdd={currentStep === 'charms' ? handleCharmAdd : handleBaseAdd}
-              onIncrement={handleCharmIncrement}
-              onRemove={currentStep === 'charms' ? handleCharmRemove : handleBaseRemove}
-              activeCategory={currentStep === 'charms' ? activeCharmCategory : activeBaseCategory}
-              onCategoryChange={currentStep === 'charms' ? setActiveCharmCategory : setActiveBaseCategory}
-              onRandomize={currentStep === 'charms' ? handleRandomize : undefined}
-              maxReached={maxReached}
-            />
-          )}
-        </div>
+            <div className="w-full flex flex-col gap-2">
+              <h3 className="text-[#1F4B30] text-sm font-medium">Add a Note</h3>
+              <textarea 
+                value={note}
+                onChange={(e) => setNote(e.target.value)}
+                placeholder="Have any instructions for us?"
+                className="w-full p-4 rounded-xl border-none shadow-inner bg-white text-sm focus:ring-2 focus:ring-[#DE3C27] outline-none min-h-[60px]"
+              />
+            </div>
+          </div>
+        ) : (
+          <SelectionDrawer 
+            type={currentStep === 'charms' ? 'charms' : 'base'}
+            items={currentStep === 'charms' ? CHARMS : BASE_PRODUCTS}
+            cardStates={currentStep === 'charms' ? charmCardStates : baseCardStates}
+            quantities={currentStep === 'charms' ? charmQuantities : {}}
+            onCardBodyClick={currentStep === 'charms' ? handleCharmBodyClick : handleBaseBodyClick}
+            onAdd={currentStep === 'charms' ? handleCharmAdd : handleBaseAdd}
+            onIncrement={handleCharmIncrement}
+            onRemove={currentStep === 'charms' ? handleCharmRemove : handleBaseRemove}
+            activeCategory={currentStep === 'charms' ? activeCharmCategory : activeBaseCategory}
+            onCategoryChange={currentStep === 'charms' ? setActiveCharmCategory : setActiveBaseCategory}
+            onRandomize={currentStep === 'charms' ? handleRandomize : undefined}
+            maxReached={maxReached}
+          />
+        )}
+      </div>
 
-      </main>
-
-      
-      
+      {/* Modals placed outside main flow */}
+      {isModalOpen && (
+        <SelectedCharmsModal 
+          selectedCharms={placedCharms}
+          onClose={() => setIsModalOpen(false)}
+          onRemove={(instanceId) => {
+            const charmId = instanceId.split('-')[1];
+            if (charmId) handleCharmRemove(charmId);
+          }}
+          onAddAnother={(charm) => handleCharmAdd(charm)}
+          onReset={handleReset}
+        />
+      )}
+      {isInfoModalOpen && (
+        <InfoModal 
+          item={infoItem}
+          onClose={() => setIsInfoModalOpen(false)}
+        />
+      )}
+      <ShareModal 
+        isOpen={isShareModalOpen}
+        onClose={() => setIsShareModalOpen(false)}
+        selectedBase={selectedBase}
+        placedCharms={placedCharms}
+        spacingMode={spacingMode}
+        note={note}
+      />
+      <DeleteConfirmationDialog 
+        isOpen={deleteConfirmation.isOpen}
+        onClose={() => setDeleteConfirmation({ isOpen: false, itemId: '', itemName: '' })}
+        onConfirm={confirmCharmRemoval}
+        itemName={deleteConfirmation.itemName}
+      />
     </div>
   );
 }

@@ -26,8 +26,8 @@ export default function TabNavigation({ currentStep, onStepChange, onInfoClick, 
                 onClick={onInfoClick}
                 className="hover:opacity-70 transition-opacity flex items-center justify-center"
             >
-                <div className="w-[28px] h-[28px] flex items-center justify-center">
-                    <Info className="w-[16px] h-[16px] text-[#1F4B30]" strokeWidth={2} />
+                <div className="w-[44px] h-[44px] rounded-full bg-[#F5EBDD] flex items-center justify-center shadow-sm">
+                    <Info className="w-[18px] h-[18px] text-[#1F4B30]" strokeWidth={2} />
                 </div>
             </button>
 
@@ -42,10 +42,9 @@ export default function TabNavigation({ currentStep, onStepChange, onInfoClick, 
                      let labelColor = "text-gray-400";
                      
                      if (isCompleted) {
-                         labelText = "Completed";
                          labelColor = "text-[#1F4B30]"; // Green
                      } else if (isActive) {
-                         labelText = "In Progress";
+                         labelText = "In progress";
                          labelColor = "text-[#DE3C27]"; // Brand Red
                      }
 
@@ -85,8 +84,8 @@ export default function TabNavigation({ currentStep, onStepChange, onInfoClick, 
                                     )}
                                 </div>
                                 <span 
-                                    className={`text-[8px] font-bold uppercase tracking-[0.05em] absolute -bottom-3 whitespace-nowrap ${labelColor}`}
-                                    style={{ fontFamily: 'Manrope, sans-serif' }}
+                                    className={`text-[9px] lg:text-[11px] font-bold tracking-[0.02em] absolute -bottom-4 whitespace-nowrap ${labelColor}`}
+                                    style={{ fontFamily: 'Neutra Text, sans-serif' }}
                                 >
                                     {labelText}
                                 </span>
@@ -101,8 +100,8 @@ export default function TabNavigation({ currentStep, onStepChange, onInfoClick, 
                 onClick={onShareClick}
                 className="hover:opacity-70 transition-opacity flex items-center justify-center"
             >
-                <div className="w-[28px] h-[28px] flex items-center justify-center">
-                    <Share className="w-[16px] h-[16px] text-[#1F4B30]" strokeWidth={2} />
+                <div className="w-[44px] h-[44px] rounded-full bg-[#F5EBDD] flex items-center justify-center shadow-sm">
+                    <Share className="w-[18px] h-[18px] text-[#1F4B30]" strokeWidth={2} />
                 </div>
             </button>
         </div>

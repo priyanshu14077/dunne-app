@@ -27,7 +27,7 @@
 
 @font-face {
   font-family: "Manrope";
-  src: url("/fonts/Manrope/manrope-regular.woff2") format("woff2");
+  src: url("/fonts/Manrope/static/Manrope-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -35,7 +35,7 @@
 
 @font-face {
   font-family: "Manrope";
-  src: url("/fonts/Manrope/manrope-bold.woff2") format("woff2");
+  src: url("/fonts/Manrope/static/Manrope-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -182,4 +182,8 @@ body {
   .animate-modal-slide-up {
     animation: modalSlideUp 300ms var(--ease-out-cubic);
   }
+}
+@utility debug-layout {
+  outline: 1px solid red;
+  background: rgba(255, 0, 0, 0.1);
 }
