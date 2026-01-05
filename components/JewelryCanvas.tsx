@@ -25,95 +25,90 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
         }
     }
 
+    // Step 1: Charm-only preview (no baseProduct)
+    // Step 2: Base product preview or Base + Charms
+    const isStep1 = !baseProduct;
+
     return (
-        <div className="w-full h-full flex items-center justify-center bg-transparent relative overflow-hidden rounded-lg">
+        <div className="w-full h-full flex items-center justify-center bg-transparent relative overflow-hidden p-4 lg:p-8">
              
-            {/* Guide Lines / Dimensions (from design) - Purely decorative for now */}
-            
             {/* 
                RESPONSIVE CONTAINER CONFIG:
-               - Min Width: 225px, Max Width: 490px
-               - Min Height: 180px, Max Height: 392px
-               - Aspect Ratio: ~1.25 (5:4) based on dimensions.
+               - Mobile: 441 x 352.5px (aspect 1.25)
+               - Desktop: 440 x 321.9px (aspect ~1.367)
             */}
             <div className={`
                 relative 
-                h-auto w-full
-                min-w-[225px] max-w-[490px]
-                min-h-[180px] max-h-[392px]
-                aspect-[1.25]
+                w-full h-full
+                max-w-[441px] 
+                lg:max-w-[600px]
                 flex items-center justify-center 
                 transition-all duration-300
                 mx-auto
+                aspect-[1.25] lg:aspect-[1.367]
             `}>
-                {/* Base Product */}
-                {baseProduct ? (
-                    <img 
-                        src={baseProduct.image} 
-                        alt={baseProduct.name}
-                        className="w-full h-full object-contain"
-                    />
-                ) : (
-                    // Big Preview State (No Base Selected)
-                    <div className="w-full h-full flex items-center justify-center relative animate-in fade-in zoom-in duration-700">
-                        
-                        {/* Latest Charm in Big Preview - ENHANCED SIZE */}
-                        {(previewCharm || placedCharms.length > 0) && (
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] z-10 animate-in slide-in-from-bottom-4 duration-500">
+                {/* Main Product / Preview Image */}
+                {isStep1 ? (
+                    // Step 1: Big Charm Preview
+                    <div className="w-full h-full flex items-center justify-center relative animate-fade-in">
+                        {(previewCharm || placedCharms.length > 0) ? (
+                            <div className="w-[80%] h-[80%] z-10 animate-fade-in-up">
                                 <img 
                                     src={(previewCharm || placedCharms[placedCharms.length - 1].charm).previewImage || (previewCharm || placedCharms[placedCharms.length - 1].charm).image} 
-                                    alt="" 
-                                    className="w-full h-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-transform hover:scale-105" 
+                                    alt="Charm Preview" 
+                                    className="w-full h-full object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.12)] transition-transform duration-500 hover:scale-105" 
                                 />
                             </div>
-                        )}
-
-                        {!previewCharm && placedCharms.length === 0 && (
-                            <div className="text-[#1F4B30]/30 text-xs font-medium uppercase tracking-widest animate-pulse">
-                                Select a charm to preview
+                        ) : (
+                            <div className="text-[#1F4B30]/30 text-xs font-bold uppercase tracking-widest animate-pulse" style={{ fontFamily: 'Manrope, sans-serif' }}>
+                                TAP A CHARM TO PREVIEW
                             </div>
                         )}
                     </div>
+                ) : (
+                    // Step 2/3: Base Product + Charms
+                    <div className="w-full h-full flex items-center justify-center relative animate-fade-in">
+                        {baseProduct && (
+                            <img 
+                                src={baseProduct.image} 
+                                alt={baseProduct.name}
+                                className="w-full h-full object-contain select-none"
+                            />
+                        )}
+
+                        {/* Anchors & Charms */}
+                        {baseProduct && anchors.map((anchor) => {
+                            const occupiedBy = placedCharms.find(p => p.anchorId === anchor.id);
+                            const isPreview = previewPlacement?.anchorId === anchor.id;
+                            const itemToShow = occupiedBy ? occupiedBy.charm : (isPreview ? previewPlacement?.charm : null);
+
+                            if (!itemToShow && !isPreview) return null;
+
+                            return (
+                                <div 
+                                    key={anchor.id}
+                                    className={`absolute w-[10%] h-[10%] flex items-center justify-center transition-all duration-300 ${isPreview ? 'z-20 animate-pulse opacity-90' : 'z-10'}`}
+                                    style={{
+                                        left: `${anchor.x}%`,
+                                        top: `${anchor.y}%`,
+                                        transform: `translate(-50%, -100%) rotate(${anchor.rotation || 0}deg)`,
+                                    }}
+                                >
+                                    {itemToShow && (
+                                        <div className="relative w-[250%] h-[250%] -mt-[50%] flex items-center justify-center"> 
+                                            <img 
+                                                src={itemToShow.previewImage || itemToShow.image} 
+                                                alt={itemToShow.name}
+                                                className="w-full h-full object-contain drop-shadow-md select-none pointer-events-none"
+                                            />
+                                        </div>
+                                    )}
+                                </div>
+                            );
+                        })}
+                    </div>
                 )}
-
-                {/* Anchors & Charms (Only if base is selected) */}
-                {baseProduct && anchors.map((anchor) => {
-                    const occupiedBy = placedCharms.find(p => p.anchorId === anchor.id);
-                    
-                    const isPreview = previewPlacement?.anchorId === anchor.id;
-                    const itemToShow = occupiedBy ? occupiedBy.charm : (isPreview ? previewPlacement?.charm : null);
-
-                    return (
-                        <div 
-                            key={anchor.id}
-                            className={`absolute w-[8%] h-[8%] flex items-center justify-center ${isPreview ? 'z-20 animate-pulse' : 'z-10'}`}
-                            style={{
-                                left: `${anchor.x}%`,
-                                top: `${anchor.y}%`,
-                                transform: `translate(-50%, -100%) rotate(${anchor.rotation || 0}deg)`,
-                            }}
-                        >
-                            {itemToShow ? (
-                                <div className={`relative group w-[200%] h-[200%] -mt-[50%] flex items-center justify-center ${isPreview ? 'opacity-90' : ''}`}> 
-                                    <img 
-                                        src={itemToShow.previewImage || itemToShow.image} 
-                                        alt={itemToShow.name}
-                                        className="w-full h-full object-contain drop-shadow-md transform transition-transform hover:scale-110"
-                                    />
-                                </div>
-                            ) : (
-                                <div className="hidden group-hover:flex w-4 h-4 rounded-full bg-white/50 border border-dashed border-gray-400 items-center justify-center">
-                                    <Plus className="w-2 h-2 text-gray-400" />
-                                </div>
-                            )}
-                        </div>
-                    );
-                })}
             </div>
-
-
-            {/* No Info Icon here anymore */}
-
         </div>
     );
 }

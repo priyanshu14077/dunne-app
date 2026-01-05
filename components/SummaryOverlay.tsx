@@ -32,7 +32,8 @@ export default function SummaryOverlay({ charms, onViewAll }: SummaryOverlayProp
             {/* Bottom Row: Text */}
             <button 
                 onClick={onViewAll}
-                className="text-sm font-medium hover:opacity-80 transition-opacity"
+                className="text-xs lg:text-sm font-medium hover:opacity-80 transition-opacity"
+                style={{ fontFamily: 'Neutra Text, sans-serif' }}
             >
                 <span className="text-[#1F4B30]">{charms.length} Selected</span>
                 <span className="mx-1.5 text-gray-300">|</span>
