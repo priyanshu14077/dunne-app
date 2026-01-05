@@ -116,10 +116,10 @@ export default function SelectionDrawer({
     };
 
     return (
-        <div className="bg-[#F5EBDD] w-full pt-4 flex flex-col gap-3 relative z-30 h-auto overflow-visible shadow-[0_-1px_10px_rgba(0,0,0,0.05)]">
+        <div className="bg-[#F5EBDD] w-full pt-0 flex flex-col gap-0 relative z-10 transition-all duration-300">
              
              {/* Header Section: Category Tabs */}
-             <div className="px-6 flex items-center justify-between relative z-40 min-h-[32px]">
+             <div className="px-1 flex items-center justify-between relative z-40 min-h-0">
                  {type === 'base' ? (
                      // Base: Toggle Buttons
                      <div className="flex bg-white/50 p-1 rounded-full mx-auto">
@@ -192,7 +192,7 @@ export default function SelectionDrawer({
                  <div 
                     ref={scrollContainerRef}
                     className={`
-                        flex overflow-x-auto px-6 gap-[12px] lg:gap-[16px] scrollbar-hide items-center min-h-[160px] w-full
+                        flex overflow-x-auto px-2 pt-0 pb-0 gap-[12px] lg:gap-[16px] scrollbar-hide items-center min-h-0 w-full
                         ${isDragging ? 'cursor-grabbing select-none' : 'cursor-grab'}
                     `}
                     onMouseDown={handleMouseDown}
