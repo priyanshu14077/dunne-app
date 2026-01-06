@@ -20,17 +20,17 @@ export default function SelectedCharmsModal({
 
     return (
         <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-fade-in">
-            <div className="bg-[#F4EFE6] w-full max-w-[400px] rounded-[32px] shadow-2xl overflow-hidden animate-modal-slide-up">
+            <div className="bg-[#FCFBF7] w-full max-w-[400px] rounded-[32px] shadow-2xl overflow-hidden animate-modal-slide-up">
                 <div className="px-6 py-6 border-b border-[#E6DCC9] flex flex-col gap-4">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                             <span 
-                                className="text-[#1F4B30] text-2xl lg:text-3xl font-bold tracking-tight"
+                                className="text-black text-2xl lg:text-3xl font-bold tracking-tight"
                                 style={{ fontFamily: 'Manrope, sans-serif' }}
                             >
                                 Total Selected
                             </span>
-                            <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center font-bold text-[#1F4B30] shadow-sm">
+                            <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center font-bold text-black shadow-sm">
                                 {totalCount}
                             </div>
                         </div>
@@ -46,7 +46,7 @@ export default function SelectedCharmsModal({
                         </button>
                         <button 
                             onClick={onClose}
-                            className="flex items-center gap-1.5 text-[#1F4B30] hover:opacity-70 transition-opacity font-bold text-[15px]"
+                            className="flex items-center gap-1.5 text-black hover:opacity-70 transition-opacity font-bold text-[15px]"
                             style={{ fontFamily: 'Manrope, sans-serif' }}
                         >
                             Close <img src="/icons/web-icons-clean/close-small.png" alt="" className="w-4 h-4 object-contain" />
@@ -79,10 +79,10 @@ export default function SelectedCharmsModal({
 
                                 {/* Content */}
                                 <div className="flex-1 min-w-0">
-                                    <h4 className="text-[#1F4B30] font-bold text-[12px] leading-tight mb-1 line-clamp-2 min-h-[30px] flex items-center">
+                                    <h4 className="text-black font-bold text-[12px] leading-tight mb-1 line-clamp-2 min-h-[30px] flex items-center">
                                         {item.charm.name}
                                     </h4>
-                                    <span className="text-[#1F4B30] font-bold text-[14px]">
+                                    <span className="text-black font-bold text-[14px]">
                                         +₹ {item.charm.price.toFixed(2)}
                                     </span>
                                 </div>
@@ -95,7 +95,7 @@ export default function SelectedCharmsModal({
                                     >
                                         <img src="/icons/web-icons-clean/trash.png" alt="Delete" className="w-4.5 h-4.5 object-contain" />
                                     </button>
-                                    <span className="text-[#1F4B30] font-bold text-sm">1</span>
+                                    <span className="text-black font-bold text-sm">1</span>
                                     <button 
                                         onClick={() => onAddAnother(item.charm)}
                                         className="p-1 px-1.5 hover:scale-110 transition-transform active:scale-95"

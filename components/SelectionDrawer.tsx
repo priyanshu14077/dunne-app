@@ -49,6 +49,25 @@ export default function SelectionDrawer({
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
     const [scrollLeft, setScrollLeft] = useState(0);
+    
+    // Category scroll state
+    const categoryScrollRef = useRef<HTMLDivElement>(null);
+    const [canScrollLeft, setCanScrollLeft] = useState(false);
+    const [canScrollRight, setCanScrollRight] = useState(false);
+
+    const checkCategoryScroll = () => {
+        if (categoryScrollRef.current) {
+            const { scrollLeft, scrollWidth, clientWidth } = categoryScrollRef.current;
+            setCanScrollLeft(scrollLeft > 5); // small buffer
+            setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 5);
+        }
+    };
+
+    useEffect(() => {
+        checkCategoryScroll();
+        window.addEventListener('resize', checkCategoryScroll);
+        return () => window.removeEventListener('resize', checkCategoryScroll);
+    }, [items]); // Re-check when items change
 
     // Scroll Progress Logic
     useEffect(() => {
@@ -119,54 +138,75 @@ export default function SelectionDrawer({
         <div className="bg-[#F5EBDD] w-full pt-0 flex flex-col gap-0 relative z-10 transition-all duration-300">
              
              {/* Header Section: Category Tabs */}
-             <div className="px-1 flex items-center justify-between relative z-40 min-h-0">
+             <div className="px-1 flex items-center justify-between relative z-40 min-h-[50px] lg:min-h-[60px]">
                  {type === 'base' ? (
-                     // Base: Toggle Buttons
-                     <div className="flex bg-white/50 p-1 rounded-full mx-auto">
-                         {categories.map(cat => (
-                             <button
-                                key={cat}
-                                onClick={() => onCategoryChange(cat)}
-                                className={`px-8 py-2.5 rounded-full text-sm font-bold transition-all ${activeCategory === cat ? 'bg-[#1F4B30] text-white shadow-md' : 'text-[#1F4B30]/70 hover:bg-white/80'}`}
-                                style={{ fontFamily: 'Neutra Text, sans-serif' }}
-                             >
-                                 {cat}
-                             </button>
-                         ))}
+                     // Base: Toggle Buttons (Simplified border-only style)
+                     <div className="flex items-center justify-center gap-4 mx-auto py-2">
+                          {categories.map(cat => (
+                              <button
+                                 key={cat}
+                                 onClick={() => onCategoryChange(cat)}
+                                 className={`
+                                    w-[90px] h-[34px] lg:w-auto lg:h-auto lg:px-8 lg:py-2.5 
+                                    rounded-[20px] lg:rounded-full 
+                                    text-[14px] font-normal transition-all flex items-center justify-center
+                                    ${activeCategory === cat 
+                                        ? 'border-[0.5px] border-black text-black bg-[#F5EBDD]/50 shadow-sm' 
+                                        : 'bg-transparent text-black/60 hover:text-black'
+                                    }
+                                 `}
+                                 style={{ fontFamily: 'Neutra Text, sans-serif' }}
+                              >
+                                  {cat}
+                              </button>
+                          ))}
                      </div>
-                 ) : (
-                     // Charms: Horizontal Category Pills
-                     <div className="w-full flex items-center justify-between gap-4 overflow-hidden">
-                        {/* Category List - Scrollable */}
-                        <div className="flex-1 overflow-x-auto scrollbar-hide flex items-center gap-2 lg:gap-3 py-1 px-2">
-                            {categories.map((cat) => (
-                                <button
-                                    key={cat}
-                                    onClick={() => onCategoryChange(cat)}
-                                    className={`
-                                        whitespace-nowrap px-4 py-2 lg:px-5 lg:py-2.5 rounded-full text-[10px] lg:text-[12px] font-bold transition-all duration-300 ease-out flex-shrink-0
-                                        ${activeCategory === cat 
-                                            ? 'bg-[#1F4B30] text-white shadow-lg scale-105' 
-                                            : 'bg-white/50 text-[#1F4B30]/70 hover:bg-white hover:scale-105'
-                                        }
-                                    `}
-                                    style={{ fontFamily: 'Neutra Text, sans-serif' }}
-                                >
-                                    {cat}
-                                </button>
-                            ))}
-                        </div>
+                  ) : (
+                        <div className="w-full flex items-center px-1 py-1 h-full relative">
+                          {/* Left Arrow */}
+                          <button 
+                            onClick={() => {
+                                categoryScrollRef.current?.scrollBy({ left: -100, behavior: 'smooth' });
+                            }}
+                            className={`flex-shrink-0 px-[10px] transition-opacity duration-300 ${canScrollLeft ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                          >
+                               <img src="/icons/web-icons-clean/chevron-left.png" alt="" className="w-6 h-6 object-contain brightness-0" />
+                          </button>
 
-                        {/* Scroll Progress Bar */}
-                        <div className="flex items-center gap-3 shrink-0">
-                            <div className="w-[80px] h-[3px] bg-[#E6DCC9] rounded-full overflow-hidden relative">
-                                <div 
-                                    className="absolute inset-y-0 left-0 bg-[#1F4B30] transition-all duration-100 ease-out"
-                                    style={{ width: `${scrollProgress}%` }}
-                                />
-                            </div>
-                        </div>
-                     </div>
+                          {/* Category List - Scrollable */}
+                          <div 
+                            ref={categoryScrollRef}
+                            onScroll={checkCategoryScroll}
+                            className="flex-1 overflow-x-auto scrollbar-hide flex items-center gap-6 py-1"
+                          >
+                              {categories.map((cat) => (
+                                  <button
+                                      key={cat}
+                                      onClick={() => onCategoryChange(cat)}
+                                      className={`
+                                          whitespace-nowrap rounded-full text-[14px] font-normal transition-all duration-300 ease-out flex-shrink-0
+                                          ${activeCategory === cat 
+                                              ? 'border-[0.5px] border-black text-black bg-transparent px-5 py-2' 
+                                              : 'bg-transparent text-black/60 hover:text-black px-2 py-2'
+                                          }
+                                      `}
+                                      style={{ fontFamily: 'Neutra Text, sans-serif' }}
+                                  >
+                                      {cat}
+                                  </button>
+                              ))}
+                          </div>
+
+                          {/* Right Arrow */}
+                          <button 
+                            onClick={() => {
+                                categoryScrollRef.current?.scrollBy({ left: 100, behavior: 'smooth' });
+                            }}
+                            className={`flex-shrink-0 px-[10px] transition-opacity duration-300 ${canScrollRight ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                          >
+                               <img src="/icons/web-icons-clean/chevron-right.png" alt="" className="w-6 h-6 object-contain brightness-0" />
+                          </button>
+                       </div>
                  )}
              </div>
 
@@ -192,7 +232,7 @@ export default function SelectionDrawer({
                  <div 
                     ref={scrollContainerRef}
                     className={`
-                        flex overflow-x-auto px-2 pt-0 pb-0 gap-[12px] lg:gap-[16px] scrollbar-hide items-center min-h-0 w-full
+                        flex overflow-x-auto px-2 py-2 gap-[12px] lg:gap-[16px] scrollbar-hide items-center w-full flex-1
                         ${isDragging ? 'cursor-grabbing select-none' : 'cursor-grab'}
                     `}
                     onMouseDown={handleMouseDown}

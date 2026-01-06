@@ -29,7 +29,7 @@ export default function Home() {
   const [previewedItem, setPreviewedItem] = useState<Product | Charm | null>(null);
   
   // Existing state
-  const [spacingMode, setSpacingMode] = useState<'standard' | 'spaced'>('standard');
+  const [spacingMode, setSpacingMode] = useState<'standard' | 'spaced' | 'customize'>('standard');
   const [note, setNote] = useState("");
   
   // Category state
@@ -205,13 +205,21 @@ export default function Home() {
     }
   };
 
-  const handleSpacingToggle = (mode: 'standard' | 'spaced') => {
+  const handleBack = () => {
+    if (currentStep === 'base') {
+      setCurrentStep('charms');
+    } else if (currentStep === 'space') {
+      setCurrentStep('base');
+    }
+  };
+
+  const handleSpacingToggle = (mode: 'standard' | 'spaced' | 'customize') => {
     setSpacingMode(mode);
   };
 
 
   return (
-    <div className="flex flex-col h-[100dvh] bg-white font-sans text-slate-900 overflow-hidden">
+    <div className="flex flex-col h-[100dvh] bg-white font-sans text-slate-900 overflow-hidden pb-0">
       {/* Toast Notification */}
       {showToast && (
         <div className="fixed top-24 left-1/2 -translate-x-1/2 z-[100] bg-[#DE3C27] text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 animate-modal-slide-up select-none pointer-events-none lg:pointer-events-auto">
@@ -255,7 +263,7 @@ export default function Home() {
 
       {/* View All Section - Positioned exactly ABOVE the green navigation bar */}
       {currentStep === 'charms' && totalCharmCount > 0 && (
-        <div className="flex-shrink-0 bg-white pt-2">
+        <div className="flex-shrink-0 bg-white">
            <SummaryOverlay 
              charms={placedCharms}
              onViewAll={() => setIsModalOpen(true)}
@@ -264,57 +272,71 @@ export default function Home() {
       )}
 
       {/* 4. Total Value Bar (Strict Requirement: h-12 Static Block) */}
-      <div className="flex-shrink-0 h-12 w-full bg-[#1F4B30] flex items-center justify-center px-6">
-        <button
-          onClick={handleNavigate}
-          disabled={totalCharmCount === 0}
-          className={`
-            w-full max-w-[400px] flex items-center justify-between transition-all duration-300
-            ${totalCharmCount > 0 ? 'opacity-100' : 'opacity-30 cursor-not-allowed'}
-          `}
-          style={{ fontFamily: 'Manrope, sans-serif' }}
-        >
-          <div className="flex flex-col items-start leading-none text-white">
-            <span className="text-[10px] opacity-80 uppercase tracking-wider mb-0.5">Total Value</span>
-            <span className="text-[18px] font-extrabold">₹{totalPrice.toFixed(0)}</span>
-          </div>
-          <div className="flex items-center gap-3 text-white">
-            <span className="text-sm font-bold uppercase tracking-widest">{currentStep === 'charms' ? 'Select Base' : 'Select Spacing'}</span>
-            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center border border-white/20">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </div>
-        </button>
+      <div className="flex-shrink-0 h-12 w-full bg-[#1F4B30] relative flex items-center px-[30px]">
+        {/* Back Arrow (Left-aligned with 30px padding) */}
+        {(currentStep === 'base' || currentStep === 'space') && (
+          <button 
+            onClick={handleBack}
+            className="flex items-center justify-center text-white hover:opacity-70 transition-opacity"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </button>
+        )}
+
+        {/* Centered Price Section */}
+        <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center text-white text-center">
+          <span className="text-[10px] opacity-90 mb-0.5" style={{ fontFamily: 'Neutra Text, sans-serif' }}>Cart Value</span>
+          <span className="text-[14px] font-bold leading-none" style={{ fontFamily: 'Manrope, sans-serif' }}>₹{totalPrice.toFixed(0)}</span>
+        </div>
+
+        {/* Forward Arrow (Right-aligned with 30px padding) */}
+        {totalCharmCount > 0 && currentStep !== 'space' && (
+          <button
+            onClick={handleNavigate}
+            className="ml-auto flex items-center justify-center text-white hover:opacity-70 transition-opacity"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        )}
       </div>
 
       {/* 5. Product Card Carousel (Very bottom of flow) */}
-      <div className="flex-shrink-0 bg-[#F5EBDD]">
+      <div className="flex-shrink-0 bg-[#F5EBDD] w-full lg:h-[245px] h-[260px] flex flex-col pb-[env(safe-area-inset-bottom)]">
         {currentStep === 'space' ? (
-          <div className="w-full py-4 lg:py-6 flex flex-col items-center gap-3 lg:gap-6 px-6">
-            <div className="w-full flex flex-col gap-2">
-              <h3 className="text-[#1F4B30] text-sm font-medium">Select Spacing</h3>
-              <div className="flex items-center gap-2">
-                <button 
-                  onClick={() => handleSpacingToggle('standard')} 
-                  className={`flex-1 py-3 rounded-xl font-bold text-sm border shadow-sm transition-all ${spacingMode === 'standard' ? 'bg-[#DE3C27] text-white border-[#DE3C27]' : 'bg-white text-[#1F4B30] hover:bg-white/80'}`}
-                >
-                  Standard
-                </button>
-                <button 
-                  onClick={() => handleSpacingToggle('spaced')} 
-                  className={`flex-1 py-3 rounded-xl font-bold text-sm border shadow-sm transition-all ${spacingMode === 'spaced' ? 'bg-[#DE3C27] text-white border-[#DE3C27]' : 'bg-white text-[#1F4B30] hover:bg-white/80'}`}
-                >
-                  Spaced
-                </button>
+          <div className="w-full flex-1 flex flex-col gap-0">
+            {/* Header: Spacing Buttons (Matching category tabs) */}
+            <div className="w-full px-1 flex items-center justify-center min-h-[50px] lg:min-h-[60px] py-1">
+              <div className="flex items-center justify-center gap-4 mx-auto">
+                {(['standard', 'spaced', 'customize'] as const).map((mode) => (
+                  <button
+                    key={mode}
+                    onClick={() => handleSpacingToggle(mode)}
+                    className={`
+                      px-6 py-2 lg:px-8 lg:py-2.5 
+                      rounded-full text-[14px] font-normal transition-all duration-300
+                      ${spacingMode === mode 
+                        ? 'border-[0.5px] border-black text-black bg-transparent shadow-sm' 
+                        : 'bg-transparent text-black/60 hover:text-black'
+                      }
+                    `}
+                    style={{ fontFamily: 'Neutra Text, sans-serif' }}
+                  >
+                    {mode.charAt(0).toUpperCase() + mode.slice(1)}
+                  </button>
+                ))}
               </div>
             </div>
-            <div className="w-full flex flex-col gap-2">
-              <h3 className="text-[#1F4B30] text-sm font-medium">Add a Note</h3>
+
+            <div className="flex-1 flex flex-col items-center">
+              <h3 className="text-black text-[15px] font-normal mb-[10px] uppercase tracking-wider" style={{ fontFamily: 'Neutra Text, sans-serif' }}>
+                 Add a Note
+              </h3>
               <textarea 
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
                 placeholder="Have any instructions for us?"
-                className="w-full p-4 rounded-xl border-none shadow-inner bg-white text-sm focus:ring-2 focus:ring-[#DE3C27] outline-none min-h-[60px]"
+                className="w-full max-w-[340px] lg:max-w-[876px] h-[120px] lg:h-[135px] p-4 rounded-[20px] border-none shadow-sm bg-[#F4EFE6] text-sm focus:ring-0 outline-none resize-none placeholder:text-gray-500/50"
+                style={{ fontFamily: 'Manrope, sans-serif' }}
               />
             </div>
           </div>

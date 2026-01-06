@@ -13,7 +13,7 @@ export default function Header({ onCartClick, cartItemCount = 0 }: HeaderProps) 
       {/* Main Nav - Updated to 96px with 48px padding */}
       <div className="flex items-center justify-between px-6 lg:px-12 bg-[#F5EBDD] h-[64px] lg:h-[96px] relative z-10 w-full transition-[height] duration-300">
         {/* Mobile Menu */}
-        <button className="hover:opacity-70 transition-opacity text-[#1F4B30]">
+        <button className="hover:opacity-70 transition-opacity text-black">
           <Menu className="w-6 h-6 lg:w-7 lg:h-7" strokeWidth={2} />
         </button>
 
@@ -32,7 +32,7 @@ export default function Header({ onCartClick, cartItemCount = 0 }: HeaderProps) 
         {/* Cart - Perfectly aligned with Menu */}
         <button 
           onClick={onCartClick}
-          className="relative hover:scale-105 transition-transform active:scale-95 group flex items-center justify-center text-[#1F4B30]"
+          className="relative hover:scale-105 transition-transform active:scale-95 group flex items-center justify-center text-black"
         >
            <ShoppingBag className="w-6 h-6 lg:w-7 lg:h-7" strokeWidth={2} />
            {cartItemCount > 0 && (

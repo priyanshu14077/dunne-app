@@ -4,7 +4,7 @@ import { BASE_PRODUCTS, CHARMS, Product, Charm } from "@/lib/mock-data";
 export interface SharedConfig {
   baseId: string | null;
   charms: { charmId: string; anchorId: string }[];
-  spacingMode: 'standard' | 'spaced';
+  spacingMode: 'standard' | 'spaced' | 'customize';
   note?: string;
 }
 
@@ -61,7 +61,7 @@ export function decodeShareConfig(encoded: string): SharedConfig | null {
     return {
       baseId: config.baseId || null,
       charms: config.charms || [],
-      spacingMode: config.spacingMode === 'spaced' ? 'spaced' : 'standard',
+      spacingMode: config.spacingMode === 'customize' ? 'customize' : (config.spacingMode === 'spaced' ? 'spaced' : 'standard'),
       note: config.note ? sanitizeNote(config.note) : undefined
     };
   } catch (error) {

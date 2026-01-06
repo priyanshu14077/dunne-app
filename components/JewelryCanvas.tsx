@@ -5,7 +5,7 @@ import { Plus } from "lucide-react";
 interface JewelryCanvasProps {
     baseProduct: Product | null;
     placedCharms: { charm: Charm; anchorId: string }[];
-    spacingMode: 'standard' | 'spaced';
+    spacingMode: 'standard' | 'spaced' | 'customize';
     previewCharm?: Charm | null;
 }
 
@@ -13,7 +13,7 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
     
     // Get anchors for the current base product and mode
     const anchorConfig = baseProduct ? PRODUCT_ANCHORS[baseProduct.id] : null;
-    const anchors = anchorConfig ? anchorConfig[spacingMode] : [];
+    const anchors = anchorConfig ? (anchorConfig[spacingMode === 'customize' ? 'spaced' : spacingMode] || []) : [];
 
     // --- PREVIEW LOGIC ---
     let previewPlacement: { charm: Charm; anchorId: string } | null = null;
