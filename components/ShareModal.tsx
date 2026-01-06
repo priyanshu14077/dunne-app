@@ -11,7 +11,7 @@ interface ShareModalProps {
   onClose: () => void;
   selectedBase: Product | null;
   placedCharms: { charm: Charm; anchorId: string; id: string }[];
-  spacingMode: 'standard' | 'spaced';
+  spacingMode: 'standard' | 'spaced' | 'customize';
   note?: string;
 }
 

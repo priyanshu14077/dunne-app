@@ -1,4 +1,4 @@
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Minus, Trash2 } from "lucide-react";
 import { Product, Charm } from "../lib/mock-data";
 
 export type CardState = 'default' | 'preview' | 'added';
@@ -83,7 +83,7 @@ export default function CharmCard({
         <div 
             onClick={handleBodyClick}
             className={`
-                group shrink-0 relative flex flex-col items-center bg-[#F4EFE6] rounded-[15px]
+                group shrink-0 relative flex flex-col items-center bg-[#F5EBDD] rounded-[15px]
                 border transition-all duration-300 cursor-pointer overflow-hidden
                 w-[103px] h-[160px] lg:w-[120px] lg:h-[145px]
                 ${isPreview ? 'border-black border-[0.5px] shadow-sm' : 'border-transparent hover:border-gray-200'}
@@ -100,30 +100,30 @@ export default function CharmCard({
                 </div>
             </div>
 
-            {/* Content Container */}
-            <div className="w-full flex-1 flex flex-col items-center px-1 pb-0 gap-0">
+            {/* Content Container - 12px from Image Container top */}
+            <div className="w-full flex-1 flex flex-col items-center px-1 pb-1 pt-[12px] gap-0">
                 {/* Name - Forced 2 lines */}
                 <h3 
-                    className="text-[11px] lg:text-[13px] leading-[1.1] text-black text-center h-[26px] lg:h-[32px] flex flex-col items-center justify-center w-full px-0.5"
+                    className="text-[10px] leading-[1.1] text-black text-center h-[26px] lg:h-[32px] flex flex-col items-center justify-center w-full px-0.5 font-normal"
                     style={{ fontFamily: 'Neutra Text, sans-serif' }}
                 >
                     <span className="block truncate w-full">{line1}</span>
                     {line2 && <span className="block truncate w-full">{line2}</span>}
                 </h3>
 
-                {/* State-dependent Area: Price OR Buttons */}
-                <div className="w-full flex-1 flex flex-col items-center justify-center">
+                {/* State-dependent Area: Price OR Buttons - 10px from Name */}
+                <div className="w-full flex-1 flex flex-col items-center justify-between pb-2 mt-[10px]">
                     {/* NEW VERTICAL DESIGN FOR PREVIEW */}
                     {isPreview ? (
                         <div className="w-full flex flex-col items-center justify-center animate-fade-in py-1">
                             <button
                                 onClick={handleAddClick}
                                 disabled={disabled}
-                                className={`flex flex-col items-center gap-0 transition-all duration-200 ${disabled ? 'opacity-50' : 'hover:scale-105 active:scale-95'}`}
+                                className={`flex flex-col items-center gap-0 transition-all duration-200 bg-transparent active:bg-transparent ${disabled ? 'opacity-50' : 'hover:scale-105 active:scale-95'}`}
                             >
                                 <Plus size={24} strokeWidth={2} className="text-black mb-0" />
                                 <span 
-                                    className="text-[12px] lg:text-[14px] font-bold text-black leading-tight"
+                                    className="text-[10px] text-black leading-tight"
                                     style={{ fontFamily: 'Neutra Text, sans-serif' }}
                                 >
                                     Add to cart
@@ -142,10 +142,10 @@ export default function CharmCard({
                                     {/* Trash Button */}
                                     <button 
                                         onClick={handleRemoveClick}
-                                        className="w-7 h-7 flex items-center justify-center bg-[#F4EFE6] rounded-full shadow-sm hover:scale-110 transition-transform active:scale-95 text-[#DE3C27]"
-                                        aria-label={`Remove ${rawName}`}
+                                        className={`w-7 h-7 flex items-center justify-center bg-[#F4EFE6] rounded-full shadow-sm hover:scale-110 transition-transform active:scale-95 ${quantity > 1 ? 'text-[#1F4B30]' : 'text-[#DE3C27]'}`}
+                                        aria-label={quantity > 1 ? `Decrease ${rawName} quantity` : `Remove ${rawName}`}
                                     >
-                                        <Trash2 size={14} />
+                                        {quantity > 1 ? <Minus size={14} /> : <Trash2 size={14} />}
                                     </button>
                                     
                                     {/* Quantity Display */}
@@ -182,7 +182,7 @@ export default function CharmCard({
                     ) : (
                         /* DEFAULT STATE: Price */
                         <p 
-                            className="text-[12px] font-bold text-black/60 animate-fade-in"
+                            className="text-[12px] font-bold text-[#DE3C27] animate-fade-in"
                             style={{ fontFamily: 'Manrope, sans-serif' }}
                         >
                             ₹{item.price}

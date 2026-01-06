@@ -29,7 +29,7 @@ export default function Home() {
   const [previewedItem, setPreviewedItem] = useState<Product | Charm | null>(null);
   
   // Existing state
-  const [spacingMode, setSpacingMode] = useState<'standard' | 'spaced'>('standard');
+  const [spacingMode, setSpacingMode] = useState<'standard' | 'spaced' | 'customize'>('standard');
   const [note, setNote] = useState("");
   
   // Category state
@@ -213,13 +213,13 @@ export default function Home() {
     }
   };
 
-  const handleSpacingToggle = (mode: 'standard' | 'spaced') => {
+  const handleSpacingToggle = (mode: 'standard' | 'spaced' | 'customize') => {
     setSpacingMode(mode);
   };
 
 
   return (
-    <div className="flex flex-col h-[100dvh] bg-white font-sans text-slate-900 overflow-hidden">
+    <div className="flex flex-col h-[100dvh] bg-white font-sans text-slate-900 overflow-hidden pb-0">
       {/* Toast Notification */}
       {showToast && (
         <div className="fixed top-24 left-1/2 -translate-x-1/2 z-[100] bg-[#DE3C27] text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 animate-modal-slide-up select-none pointer-events-none lg:pointer-events-auto">
@@ -263,7 +263,7 @@ export default function Home() {
 
       {/* View All Section - Positioned exactly ABOVE the green navigation bar */}
       {currentStep === 'charms' && totalCharmCount > 0 && (
-        <div className="flex-shrink-0 bg-white pt-2">
+        <div className="flex-shrink-0 bg-white">
            <SummaryOverlay 
              charms={placedCharms}
              onViewAll={() => setIsModalOpen(true)}
@@ -301,33 +301,42 @@ export default function Home() {
       </div>
 
       {/* 5. Product Card Carousel (Very bottom of flow) */}
-      <div className="flex-shrink-0 bg-[#F5EBDD]">
+      <div className="flex-shrink-0 bg-[#F5EBDD] w-full lg:h-[245px] h-[260px] flex flex-col pb-[env(safe-area-inset-bottom)]">
         {currentStep === 'space' ? (
-          <div className="w-full py-4 lg:py-6 flex flex-col items-center gap-3 lg:gap-6 px-6">
-            <div className="w-full flex flex-col gap-2">
-              <h3 className="text-[#1F4B30] text-sm font-medium">Select Spacing</h3>
-              <div className="flex items-center gap-2">
-                <button 
-                  onClick={() => handleSpacingToggle('standard')} 
-                  className={`flex-1 py-3 rounded-xl font-bold text-sm border shadow-sm transition-all ${spacingMode === 'standard' ? 'bg-[#DE3C27] text-white border-[#DE3C27]' : 'bg-white text-[#1F4B30] hover:bg-white/80'}`}
-                >
-                  Standard
-                </button>
-                <button 
-                  onClick={() => handleSpacingToggle('spaced')} 
-                  className={`flex-1 py-3 rounded-xl font-bold text-sm border shadow-sm transition-all ${spacingMode === 'spaced' ? 'bg-[#DE3C27] text-white border-[#DE3C27]' : 'bg-white text-[#1F4B30] hover:bg-white/80'}`}
-                >
-                  Spaced
-                </button>
+          <div className="w-full flex-1 flex flex-col gap-0">
+            {/* Header: Spacing Buttons (Matching category tabs) */}
+            <div className="w-full px-1 flex items-center justify-center min-h-[50px] lg:min-h-[60px] py-1">
+              <div className="flex items-center justify-center gap-4 mx-auto">
+                {(['standard', 'spaced', 'customize'] as const).map((mode) => (
+                  <button
+                    key={mode}
+                    onClick={() => handleSpacingToggle(mode)}
+                    className={`
+                      px-6 py-2 lg:px-8 lg:py-2.5 
+                      rounded-full text-[14px] font-normal transition-all duration-300
+                      ${spacingMode === mode 
+                        ? 'border-[0.5px] border-black text-black bg-transparent shadow-sm' 
+                        : 'bg-transparent text-black/60 hover:text-black'
+                      }
+                    `}
+                    style={{ fontFamily: 'Neutra Text, sans-serif' }}
+                  >
+                    {mode.charAt(0).toUpperCase() + mode.slice(1)}
+                  </button>
+                ))}
               </div>
             </div>
-            <div className="w-full flex flex-col gap-2">
-              <h3 className="text-[#1F4B30] text-sm font-medium">Add a Note</h3>
+
+            <div className="flex-1 flex flex-col items-center">
+              <h3 className="text-black text-[15px] font-normal mb-[10px] uppercase tracking-wider" style={{ fontFamily: 'Neutra Text, sans-serif' }}>
+                 Add a Note
+              </h3>
               <textarea 
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
                 placeholder="Have any instructions for us?"
-                className="w-full p-4 rounded-xl border-none shadow-inner bg-white text-sm focus:ring-2 focus:ring-[#DE3C27] outline-none min-h-[60px]"
+                className="w-full max-w-[340px] lg:max-w-[876px] h-[120px] lg:h-[135px] p-4 rounded-[20px] border-none shadow-sm bg-[#F4EFE6] text-sm focus:ring-0 outline-none resize-none placeholder:text-gray-500/50"
+                style={{ fontFamily: 'Manrope, sans-serif' }}
               />
             </div>
           </div>
