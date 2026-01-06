@@ -121,52 +121,50 @@ export default function SelectionDrawer({
              {/* Header Section: Category Tabs */}
              <div className="px-1 flex items-center justify-between relative z-40 min-h-0">
                  {type === 'base' ? (
-                     // Base: Toggle Buttons
-                     <div className="flex bg-white/50 p-1 rounded-full mx-auto">
-                         {categories.map(cat => (
-                             <button
-                                key={cat}
-                                onClick={() => onCategoryChange(cat)}
-                                className={`px-8 py-2.5 rounded-full text-sm font-bold transition-all ${activeCategory === cat ? 'bg-[#1F4B30] text-white shadow-md' : 'text-[#1F4B30]/70 hover:bg-white/80'}`}
-                                style={{ fontFamily: 'Neutra Text, sans-serif' }}
-                             >
-                                 {cat}
-                             </button>
-                         ))}
+                     // Base: Toggle Buttons (Simplified border-only style)
+                     <div className="flex items-center justify-center gap-4 mx-auto py-2">
+                          {categories.map(cat => (
+                              <button
+                                 key={cat}
+                                 onClick={() => onCategoryChange(cat)}
+                                 className={`
+                                    w-[90px] h-[34px] lg:w-auto lg:h-auto lg:px-8 lg:py-2.5 
+                                    rounded-[20px] lg:rounded-full 
+                                    text-[12px] lg:text-sm font-bold transition-all flex items-center justify-center
+                                    ${activeCategory === cat 
+                                        ? 'border-2 border-[#1F4B30] text-[#1F4B30] bg-transparent shadow-sm scale-105' 
+                                        : 'bg-white/50 text-[#1F4B30]/70 hover:bg-white hover:scale-105'
+                                    }
+                                 `}
+                                 style={{ fontFamily: 'Neutra Text, sans-serif' }}
+                              >
+                                  {cat}
+                              </button>
+                          ))}
                      </div>
                  ) : (
-                     // Charms: Horizontal Category Pills
-                     <div className="w-full flex items-center justify-between gap-4 overflow-hidden">
-                        {/* Category List - Scrollable */}
-                        <div className="flex-1 overflow-x-auto scrollbar-hide flex items-center gap-2 lg:gap-3 py-1 px-2">
-                            {categories.map((cat) => (
-                                <button
-                                    key={cat}
-                                    onClick={() => onCategoryChange(cat)}
-                                    className={`
-                                        whitespace-nowrap px-4 py-2 lg:px-5 lg:py-2.5 rounded-full text-[10px] lg:text-[12px] font-bold transition-all duration-300 ease-out flex-shrink-0
-                                        ${activeCategory === cat 
-                                            ? 'bg-[#1F4B30] text-white shadow-lg scale-105' 
-                                            : 'bg-white/50 text-[#1F4B30]/70 hover:bg-white hover:scale-105'
-                                        }
-                                    `}
-                                    style={{ fontFamily: 'Neutra Text, sans-serif' }}
-                                >
-                                    {cat}
-                                </button>
-                            ))}
-                        </div>
-
-                        {/* Scroll Progress Bar */}
-                        <div className="flex items-center gap-3 shrink-0">
-                            <div className="w-[80px] h-[3px] bg-[#E6DCC9] rounded-full overflow-hidden relative">
-                                <div 
-                                    className="absolute inset-y-0 left-0 bg-[#1F4B30] transition-all duration-100 ease-out"
-                                    style={{ width: `${scrollProgress}%` }}
-                                />
-                            </div>
-                        </div>
-                     </div>
+                      // Charms: Horizontal Category Pills
+                      <div className="w-full flex items-center overflow-hidden">
+                         {/* Category List - Scrollable */}
+                         <div className="flex-1 overflow-x-auto scrollbar-hide flex items-center gap-4 py-2 px-2 pb-4">
+                             {categories.map((cat) => (
+                                 <button
+                                     key={cat}
+                                     onClick={() => onCategoryChange(cat)}
+                                     className={`
+                                         whitespace-nowrap px-5 py-2 lg:px-6 lg:py-2.5 rounded-full text-[11px] lg:text-[13px] font-bold transition-all duration-300 ease-out flex-shrink-0
+                                         ${activeCategory === cat 
+                                             ? 'border-2 border-[#1F4B30] text-[#1F4B30] bg-transparent scale-105' 
+                                             : 'bg-white/50 text-[#1F4B30]/70 hover:bg-white hover:scale-105'
+                                         }
+                                     `}
+                                     style={{ fontFamily: 'Neutra Text, sans-serif' }}
+                                 >
+                                     {cat}
+                                 </button>
+                             ))}
+                         </div>
+                      </div>
                  )}
              </div>
 
@@ -192,7 +190,7 @@ export default function SelectionDrawer({
                  <div 
                     ref={scrollContainerRef}
                     className={`
-                        flex overflow-x-auto px-2 pt-0 pb-0 gap-[12px] lg:gap-[16px] scrollbar-hide items-center min-h-0 w-full
+                        flex overflow-x-auto px-2 pt-0 pb-4 gap-[12px] lg:gap-[16px] scrollbar-hide items-center min-h-0 w-full
                         ${isDragging ? 'cursor-grabbing select-none' : 'cursor-grab'}
                     `}
                     onMouseDown={handleMouseDown}

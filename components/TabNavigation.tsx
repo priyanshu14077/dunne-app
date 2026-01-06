@@ -32,7 +32,7 @@ export default function TabNavigation({ currentStep, onStepChange, onInfoClick, 
             </button>
 
             {/* Center Section: Compact centered container */}
-            <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-between w-[180px] h-[46px] translate-y-[2px]"> 
+            <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-between w-[160px] h-[46px] translate-y-[2px]"> 
                 {steps.map((step, index) => {
                      const isCompleted = index < currentIndex;
                      const isActive = index === currentIndex;
@@ -50,36 +50,30 @@ export default function TabNavigation({ currentStep, onStepChange, onInfoClick, 
 
                      return (
                         <div key={step.id} className="flex items-center relative">
-                            {/* Connector Line - Tightened for 180px width */}
+                            {/* Connector Line - Tightened for 160px width */}
                             {index < steps.length - 1 && (
-                                <div className="absolute left-[28px] w-[50px] top-[14px] -translate-y-1/2 flex items-center justify-center z-0">
+                                <div className="absolute left-[24px] w-[46px] top-[14px] -translate-y-1/2 flex items-center justify-center z-0">
                                      <div className={`w-full h-[1px] transition-colors duration-300 ${index <= currentIndex ? 'bg-[#1F4B30]' : 'bg-gray-300'}`}></div>
                                 </div>
                             )}
 
-                            <button 
-                                onClick={() => {
-                                    if (index <= currentIndex) onStepChange(step.id);
-                                }}
-                                disabled={index > currentIndex}
-                                className={`flex flex-col items-center group justify-center relative z-10 ${index > currentIndex ? 'cursor-default' : 'cursor-pointer'}`}
-                            >
-                                <div className={`w-[24px] h-[24px] flex items-center justify-center relative rounded-full transition-all mb-1
+                            <div className="flex flex-col items-center group justify-center relative z-10 cursor-default">
+                                <div className={`w-[20px] h-[20px] flex items-center justify-center relative rounded-full transition-all mb-1
                                     ${isCompleted ? 'bg-[#1F4B30]' : isActive ? 'bg-[#DE3C27]' : 'bg-[#F2F2F2]'}
                                 `}>
                                     {isCompleted ? (
-                                        <Check className="w-[12px] h-[12px] text-white" strokeWidth={3} />
+                                        <Check className="w-[10px] h-[10px] text-white" strokeWidth={3} />
                                     ) : isActive ? (
                                         <img 
                                             src={step.activeIcon} 
                                             alt={step.label} 
-                                            className="w-[12px] h-[12px] object-contain brightness-0 invert" 
+                                            className="w-[10px] h-[10px] object-contain brightness-0 invert" 
                                         />
                                     ) : (
                                         <img 
                                             src={step.defaultIcon} 
                                             alt={step.label} 
-                                            className="w-[12px] h-[12px] object-contain opacity-40 group-hover:opacity-60" 
+                                            className="w-[10px] h-[10px] object-contain opacity-40" 
                                         />
                                     )}
                                 </div>
@@ -89,7 +83,7 @@ export default function TabNavigation({ currentStep, onStepChange, onInfoClick, 
                                 >
                                     {labelText}
                                 </span>
-                            </button>
+                            </div>
                         </div>
                      )
                 })}

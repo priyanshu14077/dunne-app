@@ -62,14 +62,31 @@ export default function CharmCard({
         }
     };
 
+    // Strip "Charm" and force split into two lines
+    const rawName = item.name.replace(/charm/gi, '').trim();
+    const words = rawName.split(' ');
+    
+    let line1 = rawName;
+    let line2 = '';
+
+    if (words.length === 2) {
+        line1 = words[0];
+        line2 = words[1];
+    } else if (words.length >= 3) {
+        // Simple balance for 3+ words: first 1 or 2 on line 1, rest on line 2
+        const mid = Math.ceil(words.length / 2);
+        line1 = words.slice(0, mid).join(' ');
+        line2 = words.slice(mid).join(' ');
+    }
+
     return (
         <div 
             onClick={handleBodyClick}
             className={`
                 group shrink-0 relative flex flex-col items-center bg-[#F4EFE6] rounded-[15px]
-                border-2 transition-all duration-300 cursor-pointer overflow-hidden
+                border transition-all duration-300 cursor-pointer overflow-hidden
                 w-[103px] h-[160px] lg:w-[120px] lg:h-[145px]
-                ${(isPreview || isAdded) ? 'border-[#1F4B30] shadow-sm' : 'border-transparent hover:border-gray-200'}
+                ${isPreview ? 'border-black border-[0.5px] shadow-sm' : 'border-transparent hover:border-gray-200'}
             `}
         >
             {/* Image Container */}
@@ -77,36 +94,44 @@ export default function CharmCard({
                 <div className="w-[67px] h-[58px] lg:w-[79px] lg:h-[68px] flex items-center justify-center">
                     <img 
                         src={item.image} 
-                        alt={item.name}
+                        alt={rawName}
                         className="w-full h-full object-contain drop-shadow-sm transition-transform duration-300 group-hover:scale-110"
                     />
                 </div>
             </div>
 
             {/* Content Container */}
-            <div className="w-full flex-1 flex flex-col items-center px-1.5 pb-0 gap-0">
-                {/* Name */}
+            <div className="w-full flex-1 flex flex-col items-center px-1 pb-0 gap-0">
+                {/* Name - Forced 2 lines */}
                 <h3 
-                    className="text-[11px] lg:text-[14px] leading-tight text-black text-center line-clamp-2 h-[26px] lg:h-[30px] flex items-center justify-center w-full px-1"
+                    className="text-[11px] lg:text-[13px] leading-[1.1] text-black text-center h-[26px] lg:h-[32px] flex flex-col items-center justify-center w-full px-0.5"
                     style={{ fontFamily: 'Neutra Text, sans-serif' }}
                 >
-                    {item.name}
+                    <span className="block truncate w-full">{line1}</span>
+                    {line2 && <span className="block truncate w-full">{line2}</span>}
                 </h3>
 
                 {/* State-dependent Area: Price OR Buttons */}
                 <div className="w-full flex-1 flex flex-col items-center justify-center">
-                    {/* Price - Only visible in Default state */}
-                    {!isPreview && !isAdded && (
-                        <p 
-                            className="text-[12px] font-bold text-black animate-fade-in"
-                            style={{ fontFamily: 'Manrope, sans-serif' }}
-                        >
-                            ₹{item.price}
-                        </p>
-                    )}
-
-                    {/* Action Area - Visible in Preview or Added state */}
-                    {(isPreview || isAdded) && (
+                    {/* NEW VERTICAL DESIGN FOR PREVIEW */}
+                    {isPreview ? (
+                        <div className="w-full flex flex-col items-center justify-center animate-fade-in py-1">
+                            <button
+                                onClick={handleAddClick}
+                                disabled={disabled}
+                                className={`flex flex-col items-center gap-0 transition-all duration-200 ${disabled ? 'opacity-50' : 'hover:scale-105 active:scale-95'}`}
+                            >
+                                <Plus size={24} strokeWidth={2} className="text-black mb-0" />
+                                <span 
+                                    className="text-[12px] lg:text-[14px] font-bold text-black leading-tight"
+                                    style={{ fontFamily: 'Neutra Text, sans-serif' }}
+                                >
+                                    Add to cart
+                                </span>
+                            </button>
+                        </div>
+                    ) : isAdded ? (
+                        /* ADDED STATE: Quantity Controls or Selected Label */
                         <div className="h-[34px] w-full flex items-center justify-center mb-0.5 animate-fade-in-up">
                             {showQuantityControls ? (
                                 <div 
@@ -118,7 +143,7 @@ export default function CharmCard({
                                     <button 
                                         onClick={handleRemoveClick}
                                         className="w-7 h-7 flex items-center justify-center bg-[#F4EFE6] rounded-full shadow-sm hover:scale-110 transition-transform active:scale-95 text-[#DE3C27]"
-                                        aria-label={`Remove ${item.name}`}
+                                        aria-label={`Remove ${rawName}`}
                                     >
                                         <Trash2 size={14} />
                                     </button>
@@ -127,7 +152,6 @@ export default function CharmCard({
                                     <span 
                                         className="text-[14px] font-bold text-[#1F4B30] w-5 text-center"
                                         style={{ fontFamily: 'Manrope, sans-serif' }}
-                                        aria-live="polite"
                                     >
                                         {quantity}
                                     </span>
@@ -141,40 +165,28 @@ export default function CharmCard({
                                                 ? 'opacity-50 cursor-not-allowed' 
                                                 : 'hover:scale-110 active:scale-95'
                                         }`}
-                                        aria-label={`Add another ${item.name}`}
+                                        aria-label={`Add another ${rawName}`}
                                     >
                                         <Plus size={14} />
                                     </button>
                                 </div>
                             ) : (
-                                <button
-                                    onClick={handleAddClick}
-                                    disabled={disabled}
-                                    className={`
-                                        w-[90px] h-full rounded-full text-[12px] lg:text-[14px] font-bold transition-all duration-200 flex items-center justify-center gap-1
-                                        ${isAdded && type === 'base' 
-                                            ? 'bg-[#1F4B30] text-white' 
-                                            : 'bg-white text-[#1F4B30] shadow-sm'
-                                        }
-                                        ${disabled 
-                                            ? 'opacity-50 cursor-not-allowed' 
-                                            : 'hover:scale-105 active:scale-95'
-                                        }
-                                    `}
+                                <div 
+                                    className="bg-[#1F4B30] text-white px-4 py-1.5 rounded-full text-[12px] font-bold"
                                     style={{ fontFamily: 'Neutra Text, sans-serif' }}
-                                    aria-label={`Add ${item.name} to cart`}
                                 >
-                                    {isAdded && type === 'base' ? (
-                                        'Selected'
-                                    ) : (
-                                        <>
-                                            <Plus size={14} className="shrink-0" />
-                                            <span className="whitespace-nowrap">Add to cart</span>
-                                        </>
-                                    )}
-                                </button>
+                                    Selected
+                                </div>
                             )}
                         </div>
+                    ) : (
+                        /* DEFAULT STATE: Price */
+                        <p 
+                            className="text-[12px] font-bold text-black/60 animate-fade-in"
+                            style={{ fontFamily: 'Manrope, sans-serif' }}
+                        >
+                            ₹{item.price}
+                        </p>
                     )}
                 </div>
             </div>

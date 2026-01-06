@@ -205,6 +205,14 @@ export default function Home() {
     }
   };
 
+  const handleBack = () => {
+    if (currentStep === 'base') {
+      setCurrentStep('charms');
+    } else if (currentStep === 'space') {
+      setCurrentStep('base');
+    }
+  };
+
   const handleSpacingToggle = (mode: 'standard' | 'spaced') => {
     setSpacingMode(mode);
   };
@@ -264,27 +272,32 @@ export default function Home() {
       )}
 
       {/* 4. Total Value Bar (Strict Requirement: h-12 Static Block) */}
-      <div className="flex-shrink-0 h-12 w-full bg-[#1F4B30] flex items-center justify-center px-6">
-        <button
-          onClick={handleNavigate}
-          disabled={totalCharmCount === 0}
-          className={`
-            w-full max-w-[400px] flex items-center justify-between transition-all duration-300
-            ${totalCharmCount > 0 ? 'opacity-100' : 'opacity-30 cursor-not-allowed'}
-          `}
-          style={{ fontFamily: 'Manrope, sans-serif' }}
-        >
-          <div className="flex flex-col items-start leading-none text-white">
-            <span className="text-[10px] opacity-80 uppercase tracking-wider mb-0.5">Total Value</span>
-            <span className="text-[18px] font-extrabold">₹{totalPrice.toFixed(0)}</span>
-          </div>
-          <div className="flex items-center gap-3 text-white">
-            <span className="text-sm font-bold uppercase tracking-widest">{currentStep === 'charms' ? 'Select Base' : 'Select Spacing'}</span>
-            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center border border-white/20">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </div>
-        </button>
+      <div className="flex-shrink-0 h-12 w-full bg-[#1F4B30] relative flex items-center px-[30px]">
+        {/* Back Arrow (Left-aligned with 30px padding) */}
+        {(currentStep === 'base' || currentStep === 'space') && (
+          <button 
+            onClick={handleBack}
+            className="flex items-center justify-center text-white hover:opacity-70 transition-opacity"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </button>
+        )}
+
+        {/* Centered Price Section */}
+        <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center text-white text-center">
+          <span className="text-[10px] opacity-90 mb-0.5" style={{ fontFamily: 'Neutra Text, sans-serif' }}>Cart Value</span>
+          <span className="text-[14px] font-bold leading-none" style={{ fontFamily: 'Manrope, sans-serif' }}>₹{totalPrice.toFixed(0)}</span>
+        </div>
+
+        {/* Forward Arrow (Right-aligned with 30px padding) */}
+        {totalCharmCount > 0 && currentStep !== 'space' && (
+          <button
+            onClick={handleNavigate}
+            className="ml-auto flex items-center justify-center text-white hover:opacity-70 transition-opacity"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        )}
       </div>
 
       {/* 5. Product Card Carousel (Very bottom of flow) */}
