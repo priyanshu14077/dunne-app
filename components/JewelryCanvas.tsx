@@ -1,15 +1,17 @@
+import Image from "next/image";
 import { Product, Charm } from "../lib/mock-data";
 import { PRODUCT_ANCHORS } from "../lib/anchors";
-import { Plus } from "lucide-react";
+import { CANVAS_HEIGHTS } from "../lib/design-tokens";
 
 interface JewelryCanvasProps {
     baseProduct: Product | null;
     placedCharms: { charm: Charm; anchorId: string }[];
     spacingMode: 'standard' | 'spaced' | 'customize';
     previewCharm?: Charm | null;
+    currentStep: string;
 }
 
-export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, previewCharm }: JewelryCanvasProps) {
+export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, previewCharm, currentStep }: JewelryCanvasProps) {
     
     // Get anchors for the current base product and mode
     const anchorConfig = baseProduct ? PRODUCT_ANCHORS[baseProduct.id] : null;
@@ -25,38 +27,43 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
         }
     }
 
-    // Step 1: Charm-only preview (no baseProduct)
-    // Step 2: Base product preview or Base + Charms
     const isStep1 = !baseProduct;
 
+    // Image sizing string for Next.js Image component
+    const canvasSizes = "(max-width: 375px) 336px, (max-width: 768px) 441px, (max-width: 1024px) 600px, 800px";
+
     return (
-        <div className="w-full h-full flex items-center justify-center bg-transparent relative overflow-hidden p-4 lg:p-8">
+        <div className="w-full flex-1 min-h-0 flex items-center justify-center bg-transparent relative overflow-hidden p-4 lg:p-8">
              
             {/* 
                RESPONSIVE CONTAINER CONFIG:
-               - Mobile: 441 x 352.5px (aspect 1.25)
-               - Desktop: 440 x 321.9px (aspect ~1.367)
+               - Mobile: 70vh, aspect-ratio 3:4
+               - Tablet/Desktop: 75vh, aspect-ratio 1.38:1
             */}
             <div className={`
                 relative 
-                w-full h-full
-                max-w-[441px] 
-                lg:max-w-[600px]
+                w-full 
+                max-w-[441px] md:max-w-[600px] lg:max-w-[800px]
+                h-[70vh] md:h-[75vh] lg:h-[75vh]
                 flex items-center justify-center 
                 transition-all duration-300
                 mx-auto
-                aspect-[1.25] lg:aspect-[1.367]
+                canvas-aspect
             `}>
                 {/* Main Product / Preview Image */}
                 {isStep1 ? (
                     // Step 1: Big Charm Preview
                     <div className="w-full h-full flex items-center justify-center relative animate-fade-in">
                         {(previewCharm || placedCharms.length > 0) ? (
-                            <div className="w-[80%] h-[80%] z-10 animate-fade-in-up">
-                                <img 
+                            <div className="w-[95%] h-[95%] z-10 animate-fade-in-up relative">
+                                <Image 
                                     src={(previewCharm || placedCharms[placedCharms.length - 1].charm).previewImage || (previewCharm || placedCharms[placedCharms.length - 1].charm).image} 
                                     alt="Charm Preview" 
-                                    className="w-full h-full object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.12)] transition-transform duration-500 hover:scale-105" 
+                                    fill
+                                    className="object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.12)] transition-transform duration-500 hover:scale-105"
+                                    sizes={canvasSizes}
+                                    priority={currentStep === 'charms'}
+                                    quality={85}
                                 />
                             </div>
                         ) : (
@@ -67,12 +74,16 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                     </div>
                 ) : (
                     // Step 2/3: Base Product + Charms
-                    <div className="w-full h-full flex items-center justify-center relative animate-fade-in">
+                    <div className="w-full h-full flex items-center justify-center relative animate-fade-in scale-[1.2] transition-transform duration-700 ease-in-out">
                         {baseProduct && (
-                            <img 
+                            <Image 
                                 src={baseProduct.image} 
                                 alt={baseProduct.name}
-                                className="w-full h-full object-contain select-none"
+                                fill
+                                className="object-contain select-none"
+                                sizes={canvasSizes}
+                                priority={currentStep === 'base'}
+                                quality={85}
                             />
                         )}
 
@@ -96,10 +107,13 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                 >
                                     {itemToShow && (
                                         <div className="relative w-[250%] h-[250%] -mt-[50%] flex items-center justify-center"> 
-                                            <img 
+                                            <Image 
                                                 src={itemToShow.previewImage || itemToShow.image} 
                                                 alt={itemToShow.name}
-                                                className="w-full h-full object-contain drop-shadow-md select-none pointer-events-none"
+                                                fill
+                                                className="object-contain drop-shadow-md select-none pointer-events-none"
+                                                sizes="100px" // Small ornaments don't need large sizing
+                                                quality={85}
                                             />
                                         </div>
                                     )}

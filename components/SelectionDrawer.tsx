@@ -232,7 +232,7 @@ export default function SelectionDrawer({
                  <div 
                     ref={scrollContainerRef}
                     className={`
-                        flex overflow-x-auto px-2 py-2 gap-[12px] lg:gap-[16px] scrollbar-hide items-center w-full flex-1
+                        flex overflow-x-auto px-4 py-4 lg:py-2 gap-[12px] lg:gap-[16px] scrollbar-hide items-center w-full flex-1
                         ${isDragging ? 'cursor-grabbing select-none' : 'cursor-grab'}
                     `}
                     onMouseDown={handleMouseDown}

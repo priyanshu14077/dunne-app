@@ -64,6 +64,17 @@ export const SPACING = {
   '3XL': '44px',
 } as const;
 
+export const CANVAS_HEIGHTS = {
+  MOBILE: '70vh',
+  TABLET: '75vh',
+  DESKTOP: '75vh',
+} as const;
+
+export const CANVAS_ASPECT_RATIOS = {
+  MOBILE: '3 / 4',
+  TABLET_DESKTOP: '1.38 / 1',
+} as const;
+
 export const BORDER_RADIUS = {
   CARD: '15px',
   BUTTON: '20px',
@@ -90,12 +101,17 @@ export const PREVIEW_DIMENSIONS = {
   MOBILE: {
     width: 441,
     height: 352.5,
-    aspectRatio: '441:352.5',
+    aspectRatio: '3/4',
+  },
+  TABLET: {
+    width: 600,
+    height: 435,
+    aspectRatio: '1.38/1',
   },
   DESKTOP: {
-    width: 440,
-    height: 321.9,
-    aspectRatio: '440:321.9',
+    width: 800,
+    height: 580,
+    aspectRatio: '1.38/1',
   },
 } as const;
 

@@ -183,6 +183,21 @@ body {
     animation: modalSlideUp 300ms var(--ease-out-cubic);
   }
 }
+/* Responsive Canvas Aspect Ratios */
+@layer utilities {
+  .canvas-aspect {
+    aspect-ratio: 1.38 / 1;
+  }
+}
+
+@media (max-width: 767px) {
+  @layer utilities {
+    .canvas-aspect {
+      aspect-ratio: 3 / 4;
+    }
+  }
+}
+
 @utility debug-layout {
   outline: 1px solid red;
   background: rgba(255, 0, 0, 0.1);

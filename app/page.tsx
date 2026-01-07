@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Header from "@/components/Header";
 import TabNavigation from "@/components/TabNavigation";
 import SelectionDrawer from "@/components/SelectionDrawer";
@@ -86,10 +86,21 @@ export default function Home() {
     const charm = item as Charm;
     setPreviewedItem(charm);
     
-    // Update card state to preview if not already added
-    if (!charmCardStates[charm.id] || charmCardStates[charm.id] === 'default') {
-      setCharmCardStates(prev => ({ ...prev, [charm.id]: 'preview' }));
-    }
+    // Clear any existing preview states before setting the new one
+    setCharmCardStates(prev => {
+      const newStates = { ...prev };
+      Object.keys(newStates).forEach(id => {
+        if (newStates[id] === 'preview') {
+          newStates[id] = 'default';
+        }
+      });
+      
+      // Update the new item to preview if not already added
+      if (!newStates[charm.id] || newStates[charm.id] === 'default') {
+        newStates[charm.id] = 'preview';
+      }
+      return newStates;
+    });
   };
 
   const handleCharmAdd = (item: Product | Charm) => {
@@ -175,10 +186,21 @@ export default function Home() {
     const product = item as Product;
     setPreviewedItem(product);
     
-    // Update card state to preview if not already selected
-    if (!selectedBase || selectedBase.id !== product.id) {
-      setBaseCardStates({ [product.id]: 'preview' });
-    }
+    // Clear any existing preview states before setting the new one
+    setBaseCardStates(prev => {
+      const newStates = { ...prev };
+      Object.keys(newStates).forEach(id => {
+        if (newStates[id] === 'preview') {
+          newStates[id] = 'default';
+        }
+      });
+
+      // Update card state to preview if not already selected
+      if (!selectedBase || selectedBase.id !== product.id) {
+        newStates[product.id] = 'preview';
+      }
+      return newStates;
+    });
   };
 
   const handleBaseAdd = (item: Product | Charm) => {
@@ -196,11 +218,35 @@ export default function Home() {
   };
 
   // --- NAVIGATION ---
+
+  // Helper to determine which base product to show on the canvas
+  const baseToDisplay = useMemo(() => {
+    if (currentStep === 'charms') return null;
+    
+    // In Step 2 (Base Selection), prefer the previewed item if it's a base product
+    if (currentStep === 'base' && previewedItem && 'type' in previewedItem) {
+      return previewedItem as Product;
+    }
+    
+    return selectedBase;
+  }, [currentStep, previewedItem, selectedBase]);
   
   const handleNavigate = () => {
     if (currentStep === 'charms') {
       setCurrentStep('base');
     } else if (currentStep === 'base') {
+      // Clear preview when moving to space step if it's a base preview
+      if (previewedItem && 'type' in previewedItem) {
+        setPreviewedItem(null);
+        // Also clear the preview card state
+        setBaseCardStates(prev => {
+          const newStates = { ...prev };
+          Object.keys(newStates).forEach(id => {
+            if (newStates[id] === 'preview') newStates[id] = 'default';
+          });
+          return newStates;
+        });
+      }
       setCurrentStep('space');
     }
   };
@@ -254,15 +300,16 @@ export default function Home() {
       {/* 2. Canvas Area (Middle - fills available space) */}
       <div className="flex-1 w-full bg-white relative min-h-0 flex items-center justify-center overflow-hidden">
         <JewelryCanvas 
-          baseProduct={currentStep === 'charms' ? null : selectedBase}
+          baseProduct={baseToDisplay}
           placedCharms={placedCharms}
           spacingMode={spacingMode}
-          previewCharm={previewedItem as Charm | null}
+          previewCharm={previewedItem && 'category' in previewedItem ? (previewedItem as Charm) : null}
+          currentStep={currentStep}
         />
       </div>
 
       {/* View All Section - Positioned exactly ABOVE the green navigation bar */}
-      {currentStep === 'charms' && totalCharmCount > 0 && (
+      {totalCharmCount > 0 && (
         <div className="flex-shrink-0 bg-white">
            <SummaryOverlay 
              charms={placedCharms}
@@ -293,7 +340,10 @@ export default function Home() {
         {totalCharmCount > 0 && currentStep !== 'space' && (
           <button
             onClick={handleNavigate}
-            className="ml-auto flex items-center justify-center text-white hover:opacity-70 transition-opacity"
+            disabled={currentStep === 'base' && !selectedBase}
+            className={`ml-auto flex items-center justify-center text-white hover:opacity-70 transition-opacity ${
+              currentStep === 'base' && !selectedBase ? 'opacity-30 cursor-not-allowed' : ''
+            }`}
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
@@ -301,7 +351,7 @@ export default function Home() {
       </div>
 
       {/* 5. Product Card Carousel (Very bottom of flow) */}
-      <div className="flex-shrink-0 bg-[#F5EBDD] w-full lg:h-[245px] h-[260px] flex flex-col pb-[env(safe-area-inset-bottom)]">
+      <div className="flex-shrink-0 bg-[#F5EBDD] w-full lg:h-[265px] h-[260px] flex flex-col pb-[env(safe-area-inset-bottom)]">
         {currentStep === 'space' ? (
           <div className="w-full flex-1 flex flex-col gap-0">
             {/* Header: Spacing Buttons (Matching category tabs) */}
