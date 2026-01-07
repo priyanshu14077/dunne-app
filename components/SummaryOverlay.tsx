@@ -11,7 +11,6 @@ export default function SummaryOverlay({ charms, onViewAll }: SummaryOverlayProp
 
     return (
         <div className="w-full bg-transparent flex flex-col items-center justify-center pb-[10px] relative z-50">
-            {/* Text Only Overlay */}
             <button 
                 onClick={onViewAll}
                 className="text-xs lg:text-sm font-medium hover:opacity-80 transition-opacity"

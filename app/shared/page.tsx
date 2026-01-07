@@ -76,6 +76,7 @@ function SharedViewContent() {
                 baseProduct={baseProduct} 
                 placedCharms={placedCharms} 
                 spacingMode={decoded.spacingMode} 
+                currentStep="space"
              />
           </div>
 

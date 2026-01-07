@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Plus, Minus, Trash2 } from "lucide-react";
 import { Product, Charm } from "../lib/mock-data";
 
@@ -85,17 +86,21 @@ export default function CharmCard({
             className={`
                 group shrink-0 relative flex flex-col items-center bg-[#F5EBDD] rounded-[15px]
                 border transition-all duration-300 cursor-pointer overflow-hidden
-                w-[103px] h-[160px] lg:w-[120px] lg:h-[145px]
+                w-[103px] h-[160px] lg:w-[130px] lg:h-[170px]
                 ${isPreview ? 'border-black border-[0.5px] shadow-sm' : 'border-transparent hover:border-gray-200'}
             `}
         >
             {/* Image Container */}
-            <div className="flex items-center justify-center w-full h-[70px] lg:h-[75px] pt-1">
-                <div className="w-[67px] h-[58px] lg:w-[79px] lg:h-[68px] flex items-center justify-center">
-                    <img 
+            <div className="flex items-center justify-center w-full h-[70px] lg:h-[85px] pt-1">
+                <div className="w-[67px] h-[58px] lg:w-[79px] lg:h-[68px] flex items-center justify-center relative">
+                    <Image 
                         src={item.image} 
                         alt={rawName}
-                        className="w-full h-full object-contain drop-shadow-sm transition-transform duration-300 group-hover:scale-110"
+                        fill
+                        className="object-contain drop-shadow-sm transition-transform duration-300 group-hover:scale-110"
+                        loading="lazy"
+                        sizes="(max-width: 1024px) 67px, 79px"
+                        quality={85}
                     />
                 </div>
             </div>
