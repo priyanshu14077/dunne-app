@@ -129,6 +129,102 @@ export const BASE_PRODUCTS: Product[] = [
       weight: "~15 g"
     }
   },
+  {
+    id: 'monochrome-braid',
+    name: 'Monochrome Braid Bracelet',
+    price: 850,
+    image: '/bracelets/Monochrome Braid Bracelet.png',
+    type: 'bracelet',
+    description: "A sleek and versatile bracelet featuring a black-and-white braided design accented with polished gold-tone details.",
+    specifications: {
+      material: "Braided Cord with Gold-Tone Stainless Steel Accents, Hypoallergenic",
+      length: "Standard bracelet length (7\" / 18 cm, Adjustable fit)",
+      width: "N/A",
+      clasp: "Slider Clasp",
+      finish: "Matte Cord with High Polish Gold Accents",
+      weight: "Light (comfortable for all-day wear)"
+    }
+  },
+  {
+    id: 'neon-twist',
+    name: 'Neon Twist Bracelet',
+    price: 850,
+    image: '/bracelets/Neon Twist Bracelet.png',
+    type: 'bracelet',
+    description: "A playful and energetic bracelet featuring a vibrant neon pink-and-white braided design, finished with gleaming gold-tone accents.",
+    specifications: {
+      material: "Braided Cord with Gold-Tone Stainless Steel Accents, Hypoallergenic",
+      length: "Standard bracelet length (7\" / 18 cm, Adjustable fit)",
+      width: "N/A",
+      clasp: "Slider Clasp",
+      finish: "Matte Cord with High Polish Gold Accents",
+      weight: "Light (comfortable for all-day wear)"
+    }
+  },
+  {
+    id: 'ocean-weave',
+    name: 'Ocean Weave Bracelet',
+    price: 850,
+    image: '/bracelets/Ocean Weave Bracelet.png',
+    type: 'bracelet',
+    description: "A cool and contemporary bracelet featuring a navy-and-silver braided design highlighted with glossy gold-tone accents.",
+    specifications: {
+      material: "Braided Cord with Gold-Tone Stainless Steel Accents, Hypoallergenic",
+      length: "Standard bracelet length (7\" / 18 cm, Adjustable fit)",
+      width: "N/A",
+      clasp: "Slider Clasp",
+      finish: "Matte Cord with High Polish Gold Accents",
+      weight: "Light (comfortable for all-day wear)"
+    }
+  },
+  {
+    id: 'skyline-braid',
+    name: 'Skyline Braid Bracelet',
+    price: 850,
+    image: '/bracelets/Skyline Braid Bracelet.png',
+    type: 'bracelet',
+    description: "A fresh and breezy bracelet in a light blue-and-white braided design, finished with polished gold-tone details.",
+    specifications: {
+      material: "Braided Cord with Gold-Tone Stainless Steel Accents, Hypoallergenic",
+      length: "Standard bracelet length (7\" / 18 cm, Adjustable fit)",
+      width: "N/A",
+      clasp: "Slider Clasp",
+      finish: "Matte Cord with High Polish Gold Accents",
+      weight: "Light (comfortable for all-day wear)"
+    }
+  },
+  {
+    id: 'twist-elegance',
+    name: 'Twist Elegance Bracelet',
+    price: 650,
+    image: '/bracelets/Twist Elegance Bracelet.png',
+    type: 'bracelet',
+    description: "A delicate gold toned bracelet featuring subtle twisted links that catch the light beautifully. Minimal yet refined, this piece is perfect for layering or wearing alone for a graceful touch of sophistication.",
+    specifications: {
+      material: "Stainless Steel with 18kt Gold Plating, Hypoallergenic",
+      length: "Standard bracelet length (7\" / 18 cm)",
+      width: "N/A",
+      clasp: "Lobster Clasp",
+      finish: "High Polish Gold",
+      weight: "Light (comfortable for everyday wear)"
+    }
+  },
+  {
+    id: 'verdant-braid',
+    name: 'Verdant Braid Bracelet',
+    price: 850,
+    image: '/bracelets/Verdant Braid Bracelet.png',
+    type: 'bracelet',
+    description: "A vibrant and refreshing bracelet in a rich green braided design, accented with gleaming gold-tone details.",
+    specifications: {
+      material: "Braided Cord with Gold-Tone Stainless Steel Accents, Hypoallergenic",
+      length: "Standard bracelet length (7\" / 18 cm, Adjustable fit)",
+      width: "N/A",
+      clasp: "Slider Clasp",
+      finish: "Matte Cord with High Polish Gold Accents",
+      weight: "Light (comfortable for all-day wear)"
+    }
+  },
   // --- Necklaces ---
   {
     id: 'chain-01',
@@ -1071,7 +1167,7 @@ export const CHARMS: Charm[] = [
     price: 790,
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Blooming Heart Charm.png",
-    previewImage: "/charms-canvas/LoveStruck/Label = Blooming Heart Charm.png",
+    previewImage: "/charms-canvas/Lovestruck/Label = Blooming Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1088,7 +1184,7 @@ export const CHARMS: Charm[] = [
     price: 690,
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Blush Heart Charm.png",
-    previewImage: "/charms-canvas/LoveStruck/Label = Blush Heart Charm.png",
+    previewImage: "/charms-canvas/Lovestruck/Label = Blush Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1105,7 +1201,7 @@ export const CHARMS: Charm[] = [
     price: 840,
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Crystal Green candy.png",
-    previewImage: "/charms-canvas/LoveStruck/Label = Crystal Green candy.png",
+    previewImage: "/charms-canvas/Lovestruck/Label = Crystal Green candy.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1122,7 +1218,7 @@ export const CHARMS: Charm[] = [
     price: 840,
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Crystal Heart Charm.png",
-    previewImage: "/charms-canvas/LoveStruck/Label = Crystal Heart Charm.png",
+    previewImage: "/charms-canvas/Lovestruck/Label = Crystal Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1139,7 +1235,7 @@ export const CHARMS: Charm[] = [
     price: 840,
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Crystal Pink candy.png",
-    previewImage: "/charms-canvas/LoveStruck/Label = Crystal Pink candy.png",
+    previewImage: "/charms-canvas/Lovestruck/Label = Crystal Pink candy.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1156,7 +1252,7 @@ export const CHARMS: Charm[] = [
     price: 740,
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Daisy Heart Charm.png",
-    previewImage: "/charms-canvas/LoveStruck/Label = Daisy Heart Charm.png",
+    previewImage: "/charms-canvas/Lovestruck/Label = Daisy Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1173,7 +1269,7 @@ export const CHARMS: Charm[] = [
     price: 690,
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Ember Heart Charm.png",
-    previewImage: "/charms-canvas/LoveStruck/Label = Ember Heart Charm.png",
+    previewImage: "/charms-canvas/Lovestruck/Label = Ember Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1190,7 +1286,7 @@ export const CHARMS: Charm[] = [
     price: 740,
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Emerald Heart Charm.png",
-    previewImage: "/charms-canvas/LoveStruck/Label = Emerald Heart Charm.png",
+    previewImage: "/charms-canvas/Lovestruck/Label = Emerald Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1207,7 +1303,7 @@ export const CHARMS: Charm[] = [
     price: 690,
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Eternal Heart Charm.png",
-    previewImage: "/charms-canvas/LoveStruck/Label = Eternal Heart Charm.png",
+    previewImage: "/charms-canvas/Lovestruck/Label = Eternal Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1224,7 +1320,7 @@ export const CHARMS: Charm[] = [
     price: 690,
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Heart of Vision Charm.png",
-    previewImage: "/charms-canvas/LoveStruck/Label = Heart of Vision Charm.png",
+    previewImage: "/charms-canvas/Lovestruck/Label = Heart of Vision Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1241,7 +1337,7 @@ export const CHARMS: Charm[] = [
     price: 790,
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Love Letter Charm.png",
-    previewImage: "/charms-canvas/LoveStruck/Label = Love Letter Charm.png",
+    previewImage: "/charms-canvas/Lovestruck/Label = Love Letter Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1258,7 +1354,7 @@ export const CHARMS: Charm[] = [
     price: 840,
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Peach Blush Heart Charm.png",
-    previewImage: "/charms-canvas/LoveStruck/Label = Peach Blush Heart Charm.png",
+    previewImage: "/charms-canvas/Lovestruck/Label = Peach Blush Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1275,7 +1371,7 @@ export const CHARMS: Charm[] = [
     price: 790,
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Pure Heart Charm.png",
-    previewImage: "/charms-canvas/LoveStruck/Label = Pure Heart Charm.png",
+    previewImage: "/charms-canvas/Lovestruck/Label = Pure Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1286,29 +1382,14 @@ export const CHARMS: Charm[] = [
       quality: "Anti Tarnish, Hypoallergenic"
     }
   },
-  {
-    id: "ls-14",
-    name: "Retro Heart Vintage Charm",
-    price: 840,
-    category: "LoveStruck",
-    image: "/charms-cards/Lovestruck/Label = Retro Heart Charm.png",
-    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
-    specifications: {
-      style: "Single charm",
-      size: "~2 cm",
-      weight: "~3 g",
-      material: "Stainless Steel with Gold Plating",
-      finish: "Gloss enamel + gold plating",
-      quality: "Anti Tarnish, Hypoallergenic"
-    }
-  },
+
   {
     id: "ls-15",
     name: "Sacred Heart Divine Charm",
     price: 790,
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Sacred Heart charm.png",
-    previewImage: "/charms-canvas/LoveStruck/Label = Sacred Heart charm.png",
+    previewImage: "/charms-canvas/Lovestruck/Label = Sacred Heart charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
