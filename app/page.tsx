@@ -318,8 +318,8 @@ export default function Home() {
         </div>
       )}
 
-      {/* 4. Total Value Bar (Strict Requirement: h-12 Static Block) */}
-      <div className="flex-shrink-0 h-12 w-full bg-[#1F4B30] relative flex items-center px-[30px]">
+      {/* 4. Total Value Bar */}
+      <div className="flex-shrink-0 w-full bg-[#1F4B30] relative flex items-center px-[30px] py-2 min-h-12">
         {/* Back Arrow (Left-aligned with 30px padding) */}
         {(currentStep === 'base' || currentStep === 'space') && (
           <button 

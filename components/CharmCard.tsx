@@ -177,7 +177,7 @@ export default function CharmCard({
                                 </div>
                             ) : (
                                 <div 
-                                    className="bg-[#1F4B30] text-white px-4 py-1.5 rounded-full text-[12px] font-bold"
+                                    className="bg-[#1F4B30] text-white px-4 py-2 rounded-full text-[12px] font-bold"
                                     style={{ fontFamily: 'Neutra Text, sans-serif' }}
                                 >
                                     Selected
