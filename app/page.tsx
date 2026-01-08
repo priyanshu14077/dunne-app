@@ -19,6 +19,15 @@ import { CONSTRAINTS } from "@/lib/design-tokens";
 export default function Home() {
   const [currentStep, setCurrentStep] = useState<'charms' | 'base' | 'space'>('charms');
   
+  // Audio Helper
+  const playSelectSound = () => {
+    try {
+      const audio = new Audio('/sounds/select.mp3');
+      audio.volume = 0.5;
+      audio.play().catch(() => {}); // Ignore errors if file not found or browser blocks
+    } catch (e) {}
+  };
+  
   // NEW State Structure for 3-state system
   const [charmCardStates, setCharmCardStates] = useState<Record<string, CardState>>({});
   const [charmQuantities, setCharmQuantities] = useState<Record<string, number>>({});
@@ -113,6 +122,7 @@ export default function Home() {
     setCharmCardStates(prev => ({ ...prev, [charm.id]: 'added' }));
     setCharmQuantities(prev => ({ ...prev, [charm.id]: (prev[charm.id] || 0) + 1 }));
     setPreviewedItem(null); // Clear preview after adding
+    playSelectSound();
   };
 
   const handleCharmIncrement = (item: Product | Charm) => {
@@ -208,6 +218,7 @@ export default function Home() {
     setSelectedBase(product);
     setBaseCardStates({ [product.id]: 'added' });
     setPreviewedItem(null);
+    playSelectSound();
   };
 
   const handleBaseRemove = (productId: string) => {
@@ -319,7 +330,7 @@ export default function Home() {
       )}
 
       {/* 4. Total Value Bar (Strict Requirement: h-12 Static Block) */}
-      <div className="flex-shrink-0 h-12 w-full bg-[#1F4B30] relative flex items-center px-[30px]">
+      <div className="flex-shrink-0 h-auto min-h-[48px] py-1 w-full bg-[#1F4B30] relative flex items-center px-[30px]">
         {/* Back Arrow (Left-aligned with 30px padding) */}
         {(currentStep === 'base' || currentStep === 'space') && (
           <button 
@@ -332,8 +343,8 @@ export default function Home() {
 
         {/* Centered Price Section */}
         <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center text-white text-center">
-          <span className="text-[10px] opacity-90 mb-0.5" style={{ fontFamily: 'Neutra Text, sans-serif' }}>Cart Value</span>
-          <span className="text-[14px] font-bold leading-none" style={{ fontFamily: 'Manrope, sans-serif' }}>₹{totalPrice.toFixed(0)}</span>
+          <span className="text-[16px] opacity-90 mb-0.5" style={{ fontFamily: 'Neutra Text, sans-serif' }}>Cart Value</span>
+          <span className="text-[18px] font-bold leading-none" style={{ fontFamily: 'Manrope, sans-serif' }}>₹{totalPrice.toFixed(0)}</span>
         </div>
 
         {/* Forward Arrow (Right-aligned with 30px padding) */}
@@ -351,7 +362,7 @@ export default function Home() {
       </div>
 
       {/* 5. Product Card Carousel (Very bottom of flow) */}
-      <div className="flex-shrink-0 bg-[#F5EBDD] w-full lg:h-[265px] h-[260px] flex flex-col pb-[env(safe-area-inset-bottom)]">
+      <div className="flex-shrink-0 bg-[#F5EBDD] w-full lg:h-[265px] h-[235px] flex flex-col pb-[env(safe-area-inset-bottom)]">
         {currentStep === 'space' ? (
           <div className="w-full flex-1 flex flex-col gap-0">
             {/* Header: Spacing Buttons (Matching category tabs) */}
