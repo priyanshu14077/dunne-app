@@ -332,8 +332,8 @@ export default function Home() {
 
         {/* Centered Price Section */}
         <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center text-white text-center">
-          <span className="text-[10px] opacity-90 mb-0.5" style={{ fontFamily: 'Neutra Text, sans-serif' }}>Cart Value</span>
-          <span className="text-[14px] font-bold leading-none" style={{ fontFamily: 'Manrope, sans-serif' }}>₹{totalPrice.toFixed(0)}</span>
+          <span className="text-[16px] opacity-90 mb-0.5" style={{ fontFamily: 'Neutra Text, sans-serif' }}>Cart Value</span>
+          <span className="text-[20px] font-bold leading-none" style={{ fontFamily: 'Manrope, sans-serif' }}>₹{totalPrice.toFixed(0)}</span>
         </div>
 
         {/* Forward Arrow (Right-aligned with 30px padding) */}
@@ -351,7 +351,7 @@ export default function Home() {
       </div>
 
       {/* 5. Product Card Carousel (Very bottom of flow) */}
-      <div className="flex-shrink-0 bg-[#F5EBDD] w-full lg:h-[265px] h-[260px] flex flex-col pb-[env(safe-area-inset-bottom)]">
+      <div className="flex-shrink-0 bg-[#F5EBDD] w-full lg:h-[265px] h-[235px] flex flex-col pb-[env(safe-area-inset-bottom)]">
         {currentStep === 'space' ? (
           <div className="w-full flex-1 flex flex-col gap-0">
             {/* Header: Spacing Buttons (Matching category tabs) */}

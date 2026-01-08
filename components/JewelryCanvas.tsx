@@ -74,10 +74,10 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                     </div>
                 ) : (
                     // Step 2/3: Base Product + Charms
-                    // Apply dynamic scaling: 1.2x for necklaces, 1.0x for bracelets (to prevent clipping)
+                    // Apply dynamic scaling: 1.2x for necklaces, 0.8x for bracelets (to prevent clipping)
                     <div 
                         className="w-full h-full flex items-center justify-center relative animate-fade-in transition-transform duration-700 ease-in-out"
-                        style={{ transform: `scale(${baseProduct?.type === 'necklace' ? 1.2 : 1.0})` }}
+                        style={{ transform: `scale(${baseProduct?.type === 'necklace' ? 1.2 : 0.8})` }}
                     >
                         {baseProduct && (
                             <Image 

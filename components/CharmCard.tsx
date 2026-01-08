@@ -109,7 +109,7 @@ export default function CharmCard({
             <div className="w-full flex-1 flex flex-col items-center px-1 pb-1 pt-[12px] gap-0">
                 {/* Name - Forced 2 lines */}
                 <h3 
-                    className="text-[10px] leading-[1.1] text-black text-center h-[26px] lg:h-[32px] flex flex-col items-center justify-center w-full px-0.5 font-normal"
+                    className="text-[12px] leading-[1.1] text-black text-center h-[30px] lg:h-[36px] flex flex-col items-center justify-center w-full px-0.5 font-normal"
                     style={{ fontFamily: 'Neutra Text, sans-serif' }}
                 >
                     <span className="block truncate w-full">{line1}</span>
@@ -187,7 +187,7 @@ export default function CharmCard({
                     ) : (
                         /* DEFAULT STATE: Price */
                         <p 
-                            className="text-[12px] font-bold text-[#DE3C27] animate-fade-in"
+                            className="text-[14px] font-bold text-[#DE3C27] animate-fade-in"
                             style={{ fontFamily: 'Manrope, sans-serif' }}
                         >
                             ₹{item.price}

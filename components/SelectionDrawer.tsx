@@ -149,7 +149,7 @@ export default function SelectionDrawer({
                                  className={`
                                     w-[90px] h-[34px] lg:w-auto lg:h-auto lg:px-8 lg:py-2.5 
                                     rounded-[20px] lg:rounded-full 
-                                    text-[14px] font-normal transition-all flex items-center justify-center
+                                    text-[18px] font-normal transition-all flex items-center justify-center
                                     ${activeCategory === cat 
                                         ? 'border-[0.5px] border-black text-black bg-[#F5EBDD]/50 shadow-sm' 
                                         : 'bg-transparent text-black/60 hover:text-black'
@@ -184,7 +184,7 @@ export default function SelectionDrawer({
                                       key={cat}
                                       onClick={() => onCategoryChange(cat)}
                                       className={`
-                                          whitespace-nowrap rounded-full text-[14px] font-normal transition-all duration-300 ease-out flex-shrink-0
+                                          whitespace-nowrap rounded-full text-[18px] font-normal transition-all duration-300 ease-out flex-shrink-0
                                           ${activeCategory === cat 
                                               ? 'border-[0.5px] border-black text-black bg-transparent px-5 py-2' 
                                               : 'bg-transparent text-black/60 hover:text-black px-2 py-2'
@@ -232,7 +232,7 @@ export default function SelectionDrawer({
                  <div 
                     ref={scrollContainerRef}
                     className={`
-                        flex overflow-x-auto px-4 py-4 lg:py-2 gap-[12px] lg:gap-[16px] scrollbar-hide items-center w-full flex-1
+                        flex overflow-x-auto px-4 py-1 lg:py-2 gap-[12px] lg:gap-[16px] scrollbar-hide items-center w-full flex-1
                         ${isDragging ? 'cursor-grabbing select-none' : 'cursor-grab'}
                     `}
                     onMouseDown={handleMouseDown}
