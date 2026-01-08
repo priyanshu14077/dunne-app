@@ -149,7 +149,7 @@ export default function SelectionDrawer({
                                  className={`
                                     w-[90px] h-[34px] lg:w-auto lg:h-auto lg:px-8 lg:py-2.5 
                                     rounded-[20px] lg:rounded-full 
-                                    text-[18px] font-normal transition-all flex items-center justify-center
+                                    text-[14px] lg:text-[18px] font-normal transition-all flex items-center justify-center
                                     ${activeCategory === cat 
                                         ? 'border-[0.5px] border-black text-black bg-[#F5EBDD]/50 shadow-sm' 
                                         : 'bg-transparent text-black/60 hover:text-black'
@@ -177,14 +177,14 @@ export default function SelectionDrawer({
                           <div 
                             ref={categoryScrollRef}
                             onScroll={checkCategoryScroll}
-                            className="flex-1 overflow-x-auto scrollbar-hide flex items-center gap-6 py-1"
+                            className="flex-1 overflow-x-auto scrollbar-hide flex items-center lg:justify-center gap-6 py-1"
                           >
                               {categories.map((cat) => (
                                   <button
                                       key={cat}
                                       onClick={() => onCategoryChange(cat)}
                                       className={`
-                                          whitespace-nowrap rounded-full text-[18px] font-normal transition-all duration-300 ease-out flex-shrink-0
+                                          whitespace-nowrap rounded-full text-[14px] lg:text-[18px] font-normal transition-all duration-300 ease-out flex-shrink-0
                                           ${activeCategory === cat 
                                               ? 'border-[0.5px] border-black text-black bg-transparent px-5 py-2' 
                                               : 'bg-transparent text-black/60 hover:text-black px-2 py-2'
@@ -215,24 +215,24 @@ export default function SelectionDrawer({
                  {/* Left Arrow */}
                  <button 
                     onClick={() => scroll('left')}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center text-[#1F4B30] opacity-0 group-hover:opacity-100 transition-opacity hover:scale-110"
+                    className="absolute left-2 lg:left-[88px] top-1/2 -translate-y-1/2 z-20 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center text-[#1F4B30] opacity-0 group-hover:opacity-100 transition-opacity hover:scale-110"
                  >
-                     <img src="/icons/web-icons-clean/chevron-left.png" alt="Left" className="w-4 h-4 object-contain" />
+                     <img src="/icons/web-icons-clean/chevron-left.png" alt="Left" className="w-4 h-4 object-contain brightness-0" />
                  </button>
 
                  {/* Right Arrow */}
                  <button 
                     onClick={() => scroll('right')}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center text-[#1F4B30] opacity-0 group-hover:opacity-100 transition-opacity hover:scale-110"
+                    className="absolute right-2 lg:right-[88px] top-1/2 -translate-y-1/2 z-20 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center text-[#1F4B30] opacity-0 group-hover:opacity-100 transition-opacity hover:scale-110"
                  >
-                     <img src="/icons/web-icons-clean/chevron-right.png" alt="Right" className="w-4 h-4 object-contain" />
+                     <img src="/icons/web-icons-clean/chevron-right.png" alt="Right" className="w-4 h-4 object-contain brightness-0" />
                  </button>
 
                  {/* Carousel Container */}
                  <div 
                     ref={scrollContainerRef}
                     className={`
-                        flex overflow-x-auto px-4 py-1 lg:py-2 gap-[12px] lg:gap-[16px] scrollbar-hide items-center w-full flex-1
+                        flex overflow-x-auto lg:overflow-hidden px-4 lg:mx-[150px] lg:px-0 py-1 lg:py-2 gap-[12px] lg:gap-[16px] scrollbar-hide items-center flex-1
                         ${isDragging ? 'cursor-grabbing select-none' : 'cursor-grab'}
                     `}
                     onMouseDown={handleMouseDown}
