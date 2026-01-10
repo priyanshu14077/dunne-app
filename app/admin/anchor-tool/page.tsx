@@ -28,7 +28,7 @@ export default function AnchorToolPage() {
   
   const [points, setPoints] = useState<AnchorPoint[]>([]);
   const [isGalleryOpen, setIsGalleryOpen] = useState(true);
-  const imageRef = useRef<HTMLImageElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // Load existing points if available when switching images or breakpoints
   useEffect(() => {
@@ -59,11 +59,11 @@ export default function AnchorToolPage() {
   };
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-      if (!activeDrag || !imageRef.current) return;
+      if (!activeDrag || !containerRef.current) return;
 
       e.preventDefault();
 
-      const rect = imageRef.current.getBoundingClientRect();
+      const rect = containerRef.current.getBoundingClientRect();
       const deltaX = e.clientX - activeDrag.startX;
       const deltaY = e.clientY - activeDrag.startY;
 
@@ -93,7 +93,7 @@ export default function AnchorToolPage() {
 
   const handleCanvasClick = (e: MouseEvent<HTMLDivElement>) => {
     if (activeDrag) return; // Ignore click if dragging
-    if (!imageRef.current) return;
+    if (!containerRef.current) return;
 
     // We click on the overlay div that matches the image size
     const rect = e.currentTarget.getBoundingClientRect();
@@ -323,14 +323,16 @@ export default function AnchorToolPage() {
 
       {/* CANVAS AREA (Right) */}
       <div className="flex-1 bg-[#e5e7eb] flex items-center justify-center p-8 overflow-auto relative">
-         <div className="relative shadow-2xl bg-white rounded-sm overflow-hidden ring-1 ring-black/5">
+         <div 
+            ref={containerRef}
+            className="relative shadow-2xl bg-white rounded-sm overflow-hidden ring-1 ring-black/5 aspect-square h-full max-h-[85vh] max-w-[90vw]"
+         >
            
             {/* The Image */}
             <img 
-               ref={imageRef}
                src={currentProduct.imageUrl} 
                alt="Base Product" 
-               className="max-h-[85vh] max-w-[90vw] object-contain pointer-events-none block"
+               className="w-full h-full object-contain pointer-events-none block"
             />
 
             {/* Interactive Overlay Layer */}
@@ -365,9 +367,11 @@ export default function AnchorToolPage() {
                             }}
                         >
                              {/* Ghost Charm Body */}
-                             <div className="w-full aspect-square bg-blue-500/20 border-2 border-dashed border-blue-400 rounded-md flex items-center justify-center backdrop-blur-[0px]">
-                                <div className="w-0.5 h-full bg-blue-400/50 absolute top-0" /> {/* Vertical Center Line */}
-                             </div>
+                             <img 
+                                src="/overlay-charms/Eternal Bloom/Bloom Vase Charm.png" 
+                                alt="Ghost Charm"
+                                className="w-full h-auto drop-shadow-lg opacity-80"
+                             />
                         </div>
 
                         {/* Label */}

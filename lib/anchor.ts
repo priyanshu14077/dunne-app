@@ -138,12 +138,196 @@ export const PRODUCT_ANCHORS: Record<string, ProductAnchorData> = {
     id: "twist-elegance",
     category: "bracelets",
     imageUrl: "/bracelets/Twist Elegance Bracelet.png",
+    // Populated via anchor-tool
     anchors: {
-      mobile: [{"x":50,"y":84,"rotation":0,"scale":1.5,"label":"p0"},{"x":61.97,"y":81.29,"rotation":-25.08,"scale":1.5,"label":"p1"},{"x":38.03,"y":81.29,"rotation":25.08,"scale":1.5,"label":"p2"},{"x":72.5,"y":73.47,"rotation":-47.17,"scale":1.5,"label":"p3"},{"x":27.5,"y":73.47,"rotation":47.17,"scale":1.5,"label":"p4"},{"x":80.31,"y":61.5,"rotation":-65.82,"scale":1.5,"label":"p5"},{"x":19.69,"y":61.5,"rotation":65.82,"scale":1.5,"label":"p6"},{"x":84.47,"y":46.81,"rotation":-82.19,"scale":1.5,"label":"p7"},{"x":15.53,"y":46.81,"rotation":82.19,"scale":1.5,"label":"p8"}], 
-      tablet: [{"x":50,"y":84,"rotation":0,"scale":1.5,"label":"p0"},{"x":61.97,"y":81.29,"rotation":-25.08,"scale":1.5,"label":"p1"},{"x":38.03,"y":81.29,"rotation":25.08,"scale":1.5,"label":"p2"},{"x":72.5,"y":73.47,"rotation":-47.17,"scale":1.5,"label":"p3"},{"x":27.5,"y":73.47,"rotation":47.17,"scale":1.5,"label":"p4"},{"x":80.31,"y":61.5,"rotation":-65.82,"scale":1.5,"label":"p5"},{"x":19.69,"y":61.5,"rotation":65.82,"scale":1.5,"label":"p6"},{"x":84.47,"y":46.81,"rotation":-82.19,"scale":1.5,"label":"p7"},{"x":15.53,"y":46.81,"rotation":82.19,"scale":1.5,"label":"p8"}],
-      desktop: [{"x":50,"y":84,"rotation":0,"scale":1.5,"label":"p0"},{"x":61.97,"y":81.29,"rotation":-25.08,"scale":1.5,"label":"p1"},{"x":38.03,"y":81.29,"rotation":25.08,"scale":1.5,"label":"p2"},{"x":72.5,"y":73.47,"rotation":-47.17,"scale":1.5,"label":"p3"},{"x":27.5,"y":73.47,"rotation":47.17,"scale":1.5,"label":"p4"},{"x":80.31,"y":61.5,"rotation":-65.82,"scale":1.5,"label":"p5"},{"x":19.69,"y":61.5,"rotation":65.82,"scale":1.5,"label":"p6"},{"x":84.47,"y":46.81,"rotation":-82.19,"scale":1.5,"label":"p7"},{"x":15.53,"y":46.81,"rotation":82.19,"scale":1.5,"label":"p8"}]
+  "mobile": [
+    {
+      "x": 50,
+      "y": 84,
+      "rotation": 0,
+      "scale": 1.5,
+      "label": "p0"
     },
-    center: { x: 0.5, y: 0.5 }
+    {
+      "x": 61.97,
+      "y": 81.29,
+      "rotation": -25.08,
+      "scale": 1.5,
+      "label": "p1"
+    },
+    {
+      "x": 38.03,
+      "y": 81.29,
+      "rotation": 25.08,
+      "scale": 1.5,
+      "label": "p2"
+    },
+    {
+      "x": 72.5,
+      "y": 73.47,
+      "rotation": -47.17,
+      "scale": 1.5,
+      "label": "p3"
+    },
+    {
+      "x": 27.5,
+      "y": 73.47,
+      "rotation": 47.17,
+      "scale": 1.5,
+      "label": "p4"
+    },
+    {
+      "x": 80.31,
+      "y": 61.5,
+      "rotation": -65.82,
+      "scale": 1.5,
+      "label": "p5"
+    },
+    {
+      "x": 19.69,
+      "y": 61.5,
+      "rotation": 65.82,
+      "scale": 1.5,
+      "label": "p6"
+    },
+    {
+      "x": 84.47,
+      "y": 46.81,
+      "rotation": -82.19,
+      "scale": 1.5,
+      "label": "p7"
+    },
+    {
+      "x": 15.53,
+      "y": 46.81,
+      "rotation": 82.19,
+      "scale": 1.5,
+      "label": "p8"
+    }
+  ],
+  "tablet": [
+    {
+      "x": 50,
+      "y": 84,
+      "rotation": 0,
+      "scale": 1.5,
+      "label": "p0"
+    },
+    {
+      "x": 61.97,
+      "y": 81.29,
+      "rotation": -25.08,
+      "scale": 1.5,
+      "label": "p1"
+    },
+    {
+      "x": 38.03,
+      "y": 81.29,
+      "rotation": 25.08,
+      "scale": 1.5,
+      "label": "p2"
+    },
+    {
+      "x": 72.5,
+      "y": 73.47,
+      "rotation": -47.17,
+      "scale": 1.5,
+      "label": "p3"
+    },
+    {
+      "x": 27.5,
+      "y": 73.47,
+      "rotation": 47.17,
+      "scale": 1.5,
+      "label": "p4"
+    },
+    {
+      "x": 80.31,
+      "y": 61.5,
+      "rotation": -65.82,
+      "scale": 1.5,
+      "label": "p5"
+    },
+    {
+      "x": 19.69,
+      "y": 61.5,
+      "rotation": 65.82,
+      "scale": 1.5,
+      "label": "p6"
+    },
+    {
+      "x": 84.47,
+      "y": 46.81,
+      "rotation": -82.19,
+      "scale": 1.5,
+      "label": "p7"
+    },
+    {
+      "x": 15.53,
+      "y": 46.81,
+      "rotation": 82.19,
+      "scale": 1.5,
+      "label": "p8"
+    }
+  ],
+  "desktop": [
+    {
+      "x": 51.06,
+      "y": 76.79,
+      "rotation": 0,
+      "scale": 1.5
+    },
+    {
+      "x": 66.02,
+      "y": 72.67,
+      "rotation": 33,
+      "scale": 1.5
+    },
+    {
+      "x": 33.16,
+      "y": 72.2,
+      "rotation": -33,
+      "scale": 1.5
+    },
+    {
+      "x": 76.38,
+      "y": 60.78,
+      "rotation": 66,
+      "scale": 1.5
+    },
+    {
+      "x": 22.91,
+      "y": 60.54,
+      "rotation": -66,
+      "scale": 1.5
+    },
+    {
+      "x": 79.09,
+      "y": 45.11,
+      "rotation": 132,
+      "scale": 1.5
+    },
+    {
+      "x": 20.32,
+      "y": 45,
+      "rotation": -131,
+      "scale": 1.5
+    },
+    {
+      "x": 72.49,
+      "y": 30.04,
+      "rotation": 155,
+      "scale": 1.5
+    },
+    {
+      "x": 27.04,
+      "y": 28.63,
+      "rotation": -154,
+      "scale": 1.5
+    }
+  ]
+},
+    center: { x: 50, y: 50 }
   },
   "verdant-braid": {
     id: "verdant-braid",
@@ -161,9 +345,119 @@ export const PRODUCT_ANCHORS: Record<string, ProductAnchorData> = {
     category: "necklace",
     imageUrl: "/necklace/Paperclip Link Necklace.png",
     anchors: {
-      mobile: [{"x":50,"y":67.5,"rotation":0,"scale":1.5,"label":"p0"},{"x":61.97,"y":64.79,"rotation":-25.08,"scale":1.5,"label":"p1"},{"x":38.03,"y":64.79,"rotation":25.08,"scale":1.5,"label":"p2"},{"x":72.5,"y":56.97,"rotation":-47.17,"scale":1.5,"label":"p3"},{"x":27.5,"y":56.97,"rotation":47.17,"scale":1.5,"label":"p4"},{"x":80.31,"y":45,"rotation":-65.82,"scale":1.5,"label":"p5"},{"x":19.69,"y":45,"rotation":65.82,"scale":1.5,"label":"p6"},{"x":84.47,"y":30.31,"rotation":-82.19,"scale":1.5,"label":"p7"},{"x":15.53,"y":30.31,"rotation":82.19,"scale":1.5,"label":"p8"}], 
-      tablet: [{"x":50,"y":70,"rotation":0,"scale":1.5,"label":"p0"},{"x":61.97,"y":67.29,"rotation":-25.08,"scale":1.5,"label":"p1"},{"x":38.03,"y":67.29,"rotation":25.08,"scale":1.5,"label":"p2"},{"x":72.5,"y":59.47,"rotation":-47.17,"scale":1.5,"label":"p3"},{"x":27.5,"y":59.47,"rotation":47.17,"scale":1.5,"label":"p4"},{"x":80.31,"y":47.5,"rotation":-65.82,"scale":1.5,"label":"p5"},{"x":19.69,"y":47.5,"rotation":65.82,"scale":1.5,"label":"p6"},{"x":84.47,"y":32.81,"rotation":-82.19,"scale":1.5,"label":"p7"},{"x":15.53,"y":32.81,"rotation":82.19,"scale":1.5,"label":"p8"}],
-      desktop: [{"x":50,"y":70,"rotation":0,"scale":1.5,"label":"p0"},{"x":61.97,"y":67.29,"rotation":-25.08,"scale":1.5,"label":"p1"},{"x":38.03,"y":67.29,"rotation":25.08,"scale":1.5,"label":"p2"},{"x":72.5,"y":59.47,"rotation":-47.17,"scale":1.5,"label":"p3"},{"x":27.5,"y":59.47,"rotation":47.17,"scale":1.5,"label":"p4"},{"x":80.31,"y":47.5,"rotation":-65.82,"scale":1.5,"label":"p5"},{"x":19.69,"y":47.5,"rotation":65.82,"scale":1.5,"label":"p6"},{"x":84.47,"y":32.81,"rotation":-82.19,"scale":1.5,"label":"p7"},{"x":15.53,"y":32.81,"rotation":82.19,"scale":1.5,"label":"p8"}]
+      mobile: [], 
+      tablet: [],
+      desktop: []
+    },
+    center: { x: 0.5, y: 0.5 }
+  },
+  "chain-02": {
+    id: "chain-02",
+    category: "necklace",
+    imageUrl: "/necklace/Twist Chain Necklace.png",
+    anchors: {
+      mobile: [], 
+      tablet: [],
+      desktop: []
+    },
+    center: { x: 0.5, y: 0.5 }
+  },
+  "chain-03": {
+    id: "chain-03",
+    category: "necklace",
+    imageUrl: "/necklace/Golden Figaro Necklace.png",
+    anchors: {
+      mobile: [], 
+      tablet: [],
+      desktop: []
+    },
+    center: { x: 0.5, y: 0.5 }
+  },
+  "chain-04": {
+    id: "chain-04",
+    category: "necklace",
+    imageUrl: "/necklace/Aurora Link Necklace.png",
+    anchors: {
+      mobile: [], 
+      tablet: [],
+      desktop: []
+    },
+    center: { x: 0.5, y: 0.5 }
+  },
+  "chain-05": {
+    id: "chain-05",
+    category: "necklace",
+    imageUrl: "/necklace/Golden Miami Necklace.png",
+    anchors: {
+      mobile: [], 
+      tablet: [],
+      desktop: []
+    },
+    center: { x: 0.5, y: 0.5 }
+  },
+  "chain-06": {
+    id: "chain-06",
+    category: "necklace",
+    imageUrl: "/necklace/Golden loop Necklace.png",
+    anchors: {
+      mobile: [], 
+      tablet: [],
+      desktop: []
+    },
+    center: { x: 0.5, y: 0.5 }
+  },
+  "chain-07": {
+    id: "chain-07",
+    category: "necklace",
+    imageUrl: "/necklace/Nautical Ring Necklace.png",
+    anchors: {
+      mobile: [], 
+      tablet: [],
+      desktop: []
+    },
+    center: { x: 0.5, y: 0.5 }
+  },
+  "chain-08": {
+    id: "chain-08",
+    category: "necklace",
+    imageUrl: "/necklace/Oval Lock Necklace.png",
+    anchors: {
+      mobile: [], 
+      tablet: [],
+      desktop: []
+    },
+    center: { x: 0.5, y: 0.5 }
+  },
+  "chain-09": {
+    id: "chain-09",
+    category: "necklace",
+    imageUrl: "/necklace/Paperclip Link (Thin) Necklace.png",
+    anchors: {
+      mobile: [], 
+      tablet: [],
+      desktop: []
+    },
+    center: { x: 0.5, y: 0.5 }
+  },
+  "chain-10": {
+    id: "chain-10",
+    category: "necklace",
+    imageUrl: "/necklace/Thin Chain Necklace.png",
+    anchors: {
+      mobile: [], 
+      tablet: [],
+      desktop: []
+    },
+    center: { x: 0.5, y: 0.5 }
+  },
+  "chain-11": {
+    id: "chain-11",
+    category: "necklace",
+    imageUrl: "/necklace/Vero Link Necklace.png",
+    anchors: {
+      mobile: [], 
+      tablet: [],
+      desktop: []
     },
     center: { x: 0.5, y: 0.5 }
   },
