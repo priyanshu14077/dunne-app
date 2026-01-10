@@ -16,7 +16,7 @@ export default function CharmOverlay({
   
   // Get anchors for this product from the 'PRODUCT_ANCHORS' constant
   // If no anchors exist, we default to an empty array (render nothing)
-  const anchors = PRODUCT_ANCHORS[baseProductId]?.anchors || [];
+  const anchors = PRODUCT_ANCHORS[baseProductId]?.anchors?.mobile || [];
 
   return (
     <div className="relative w-full h-auto aspect-auto flex items-center justify-center">
