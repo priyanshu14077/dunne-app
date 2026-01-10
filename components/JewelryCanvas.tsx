@@ -1,7 +1,8 @@
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { } from "react";
 import { Product, Charm } from "../lib/mock-data";
-import { PRODUCT_ANCHORS, AnchorPoint } from "@/lib/anchor";
+import { PRODUCT_ANCHORS, ChainAnchor } from "@/lib/anchor";
+import { useChainAnchors } from "@/hooks/useChainAnchors";
 import { CANVAS_HEIGHTS } from "../lib/design-tokens";
 
 interface JewelryCanvasProps {
@@ -14,51 +15,8 @@ interface JewelryCanvasProps {
 
 export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, previewCharm, currentStep }: JewelryCanvasProps) {
     
-    // --- RESPONSIVE BREAKPOINT DETECTION (SSR-safe) ---
-    const [currentBreakpoint, setCurrentBreakpoint] = useState<'mobile' | 'tablet' | 'desktop'>('mobile');
-    
-    useEffect(() => {
-        const updateBreakpoint = () => {
-            const width = window.innerWidth;
-            if (width < 768) {
-                setCurrentBreakpoint('mobile');
-            } else if (width < 1024) {
-                setCurrentBreakpoint('tablet');
-            } else {
-                setCurrentBreakpoint('desktop');
-            }
-        };
-        
-        updateBreakpoint();
-        window.addEventListener('resize', updateBreakpoint);
-        return () => window.removeEventListener('resize', updateBreakpoint);
-    }, []);
-    
-    // Get anchors for the current base product
-    const productData = baseProduct ? PRODUCT_ANCHORS[baseProduct.id] : null;
-    
-    // Get anchors with fallback: prefer current breakpoint, fall back to any available
-    const getAnchorsWithFallback = (): AnchorPoint[] => {
-        if (!productData?.anchors) return [];
-        
-        const { mobile, tablet, desktop } = productData.anchors;
-        
-        // Priority based on current breakpoint
-        const priorities: Array<'mobile' | 'tablet' | 'desktop'> = 
-            currentBreakpoint === 'mobile' ? ['mobile', 'tablet', 'desktop'] :
-            currentBreakpoint === 'tablet' ? ['tablet', 'mobile', 'desktop'] :
-            ['desktop', 'tablet', 'mobile'];
-        
-        for (const bp of priorities) {
-            if (productData.anchors[bp] && productData.anchors[bp].length > 0) {
-                return productData.anchors[bp];
-            }
-        }
-        
-        return [];
-    };
-    
-    const anchors = getAnchorsWithFallback();
+    // --- RESPONSIVE ANCHOR SELECTION ---
+    const { anchors, currentBreakpoint } = useChainAnchors(baseProduct);
 
     // --- PREVIEW LOGIC ---
     // In index-based system, preview is just the next available slot
@@ -144,7 +102,7 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                 )}
 
                                 {/* Anchors & Charms */}
-                                {baseProduct && anchors.map((anchor, index) => {
+                                {baseProduct && (anchors as ChainAnchor[]).map((anchor, index) => {
                                     // Check if this anchor index has a charm
                                     const placedCharm = placedCharms[index]?.charm;
                                     const isPreview = index === previewPlacementIndex;
@@ -155,19 +113,21 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                     return (
                                         <div 
                                             key={`anchor-${index}`}
-                                            className={`absolute flex items-center justify-center transition-all duration-300 ${isPreview ? 'z-20' : 'z-10'} 
+                                            className={`absolute flex items-start justify-center transition-all duration-300 ${isPreview ? 'z-20' : 'z-10'} 
                                                 ${itemToShow?.overlayImage 
                                                     ? 'w-[20%] h-[20%] md:w-[22%] md:h-[22%] lg:w-[25%] lg:h-[25%]' 
                                                     : 'w-[12%] h-[12%] md:w-[14%] md:h-[14%] lg:w-[15%] lg:h-[15%]'}`}
                                             style={{
                                                 left: `${anchor.x}%`,
                                                 top: `${anchor.y}%`,
-                                                // Top-Center alignment with -4% overlap for bail (per spec)
-                                                transform: `translate(-50%, -4%) rotate(${anchor.rotation || 0}deg) scale(${anchor.scale || 1})`,
+                                                // Top-Center alignment: center horizontally, align bail top to anchor point
+                                                // We use 0% vertical translation so the top edge (the bail) hangs exactly from the anchor coord
+                                                transformOrigin: "top center",
+                                                transform: `translateX(-50%) translateY(0%) rotate(${anchor.rotation || 0}deg) scale(${anchor.scale || 1})`,
                                             }}
                                         >
                                             {itemToShow && (
-                                                <div className={`relative w-full h-full flex items-center justify-center ${isPreview ? 'opacity-40 brightness-110' : ''}`}> 
+                                                <div className={`relative w-full h-full flex items-start justify-center ${isPreview ? 'opacity-40 brightness-110' : ''}`}> 
  
                                                     <Image 
                                                         src={itemToShow.overlayImage || itemToShow.previewImage || itemToShow.image} 
