@@ -16,6 +16,14 @@ export default function PreviewModal({
   placedCharms, 
   initialBaseProduct 
 }: PreviewModalProps) {
+  const [selectedBaseId, setSelectedBaseId] = useState<string>(initialBaseProduct?.id || BASE_PRODUCTS[0].id);
+
+  useEffect(() => {
+    if (isOpen && initialBaseProduct) {
+      setSelectedBaseId(initialBaseProduct.id);
+    }
+  }, [isOpen, initialBaseProduct]);
+
   if (!isOpen) return null;
 
   const currentBaseProduct = BASE_PRODUCTS.find(p => p.id === selectedBaseId) || BASE_PRODUCTS[0];
