@@ -1,16 +1,8 @@
-#!/usr/bin/env node
+
 
 import 'dotenv/config'
 
-/**
- * Image Migration Script
- * 
- * This script migrates images from a local directory to Supabase Storage
- * and updates the database with new URLs.
- * 
- * Usage:
- *   npm run migrate:images -- --images-dir ./downloaded-images
- */
+
 
 import { createClient } from '@supabase/supabase-js'
 import * as fs from 'fs'
@@ -53,9 +45,7 @@ const stats: MigrationStats = {
     errors: [],
 }
 
-/**
- * Step 1: Create storage buckets
- */
+
 async function setupStorageBuckets() {
     console.log('\n📦 Setting up storage buckets...\n')
 
@@ -69,9 +59,6 @@ async function setupStorageBuckets() {
     }
 }
 
-/**
- * Step 2: Export current URLs to CSV for backup
- */
 async function backupCurrentUrls() {
     console.log('💾 Backing up current URLs...\n')
 

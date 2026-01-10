@@ -11,8 +11,9 @@ import InfoModal from "@/components/InfoModal";
 import ShareModal from "@/components/ShareModal";
 import CartBar from "@/components/CartBar";
 import DeleteConfirmationDialog from "@/components/DeleteConfirmationDialog";
+import PreviewModal from "@/components/preview/PreviewModal";
 import { BASE_PRODUCTS, CHARMS, Product, Charm } from "@/lib/mock-data";
-import { PRODUCT_ANCHORS } from "@/lib/anchors";
+import { PRODUCT_ANCHORS } from "@/lib/anchor";
 import { CardState } from "@/components/CharmCard";
 import { CONSTRAINTS } from "@/lib/design-tokens";
 
@@ -56,6 +57,7 @@ export default function Home() {
     itemName: string;
   }>({ isOpen: false, itemId: '', itemName: '' });
   const [showToast, setShowToast] = useState(false);
+  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
 
   const triggerToast = () => {
     setShowToast(true);
@@ -259,6 +261,8 @@ export default function Home() {
         });
       }
       setCurrentStep('space');
+    } else if (currentStep === 'space') {
+      setIsPreviewModalOpen(true);
     }
   };
 
@@ -348,7 +352,7 @@ export default function Home() {
         </div>
 
         {/* Forward Arrow (Right-aligned with 30px padding) */}
-        {totalCharmCount > 0 && currentStep !== 'space' && (
+        {totalCharmCount > 0 && (
           <button
             onClick={handleNavigate}
             disabled={currentStep === 'base' && !selectedBase}
@@ -451,6 +455,12 @@ export default function Home() {
         onClose={() => setDeleteConfirmation({ isOpen: false, itemId: '', itemName: '' })}
         onConfirm={confirmCharmRemoval}
         itemName={deleteConfirmation.itemName}
+      />
+      <PreviewModal 
+        isOpen={isPreviewModalOpen} 
+        onClose={() => setIsPreviewModalOpen(false)}
+        placedCharms={placedCharms}
+        initialBaseProduct={selectedBase}
       />
     </div>
   );

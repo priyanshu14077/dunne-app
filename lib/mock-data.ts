@@ -23,6 +23,7 @@ export interface Charm {
   price: number;
   image: string;
   previewImage?: string; // High-quality preview version for canvas
+  overlayImage?: string; // High-fidelity overlay version with jump ring
   category: string;
   isNew?: boolean;
   isBestSeller?: boolean;
@@ -414,6 +415,7 @@ export const CHARMS: Charm[] = [
     category: "Eternal Bloom",
     image: "/charms-cards/Eternal Bloom/Label = Bloom Vase Charm.png",
     previewImage: "/charms-canvas/Eternal bloom/Label = Bloom Vase Charm.png",
+    overlayImage: "/overlay-charms/Eternal Bloom/Bloom Vase Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -431,6 +433,7 @@ export const CHARMS: Charm[] = [
     category: "Eternal Bloom",
     image: "/charms-cards/Eternal Bloom/Label = Blooming Lily Charm.png",
     previewImage: "/charms-canvas/Eternal bloom/Label = Blooming Lily Charm.png",
+    overlayImage: "/overlay-charms/Eternal Bloom/Blooming Lily Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -448,6 +451,7 @@ export const CHARMS: Charm[] = [
     category: "Eternal Bloom",
     image: "/charms-cards/Eternal Bloom/Label = Blossom Vase Charm.png",
     previewImage: "/charms-canvas/Eternal bloom/Label = Blossom Vase Charm.png",
+    overlayImage: "/overlay-charms/Eternal Bloom/Blossom Vase Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -465,6 +469,7 @@ export const CHARMS: Charm[] = [
     category: "Eternal Bloom",
     image: "/charms-cards/Eternal Bloom/Label = Blue Blossom Heart Charm.png",
     previewImage: "/charms-canvas/Eternal bloom/Label = Blue Blossom Heart Charm.png",
+    overlayImage: "/overlay-charms/Eternal Bloom/Blue Blossom Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -482,6 +487,7 @@ export const CHARMS: Charm[] = [
     category: "Eternal Bloom",
     image: "/charms-cards/Eternal Bloom/Label = Blue Meadow Bloom Charm.png",
     previewImage: "/charms-canvas/Eternal bloom/Label = Blue Meadow Bloom Charm.png",
+    overlayImage: "/overlay-charms/Eternal Bloom/Blue Meadow Bloom Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -499,6 +505,7 @@ export const CHARMS: Charm[] = [
     category: "Eternal Bloom",
     image: "/charms-cards/Eternal Bloom/Label = Blue Rose Charm.png",
     previewImage: "/charms-canvas/Eternal bloom/Label = Blue Rose Charm.png",
+    overlayImage: "/overlay-charms/Eternal Bloom/Blue Rose Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -516,6 +523,7 @@ export const CHARMS: Charm[] = [
     category: "Eternal Bloom",
     image: "/charms-cards/Eternal Bloom/Label = DescriBlue Heart Charm.png",
     previewImage: "/charms-canvas/Eternal bloom/Label = DescriBlue Heart Charm.png",
+    overlayImage: "/overlay-charms/Eternal Bloom/DescriBlue Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -533,6 +541,7 @@ export const CHARMS: Charm[] = [
     category: "Eternal Bloom",
     image: "/charms-cards/Eternal Bloom/Label = Eternal Rose Oval Charm.png",
     previewImage: "/charms-canvas/Eternal bloom/Label = Eternal Rose Oval Charm.png",
+    overlayImage: "/overlay-charms/Eternal Bloom/Eternal Rose Oval Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -550,6 +559,7 @@ export const CHARMS: Charm[] = [
     category: "Eternal Bloom",
     image: "/charms-cards/Eternal Bloom/Label = Folk Bloom Charm.png",
     previewImage: "/charms-canvas/Eternal bloom/Label = Folk Bloom Charm.png",
+    overlayImage: "/overlay-charms/Eternal Bloom/Folk Bloom Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -567,6 +577,7 @@ export const CHARMS: Charm[] = [
     category: "Eternal Bloom",
     image: "/charms-cards/Eternal Bloom/Label = Love Note Charm.png",
     previewImage: "/charms-canvas/Eternal bloom/Label = Love Note Charm.png",
+    overlayImage: "/overlay-charms/Eternal Bloom/Love Note Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -584,6 +595,7 @@ export const CHARMS: Charm[] = [
     category: "Eternal Bloom",
     image: "/charms-cards/Eternal Bloom/Label = Mama Charm.png",
     previewImage: "/charms-canvas/Eternal bloom/Label = Mama Charm.png",
+    overlayImage: "/overlay-charms/Eternal Bloom/Mama Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -601,6 +613,7 @@ export const CHARMS: Charm[] = [
     category: "Eternal Bloom",
     image: "/charms-cards/Eternal Bloom/Label = Mom’s Heart Charm.png",
     previewImage: "/charms-canvas/Eternal bloom/Label = Mom’s Heart Charm.png",
+    overlayImage: "/overlay-charms/Eternal Bloom/Mom’s Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -618,6 +631,7 @@ export const CHARMS: Charm[] = [
     category: "Eternal Bloom",
     image: "/charms-cards/Eternal Bloom/Label = Pop Heart Charm.png",
     previewImage: "/charms-canvas/Eternal bloom/Label = Pop Heart Charm.png",
+    overlayImage: "/overlay-charms/Eternal Bloom/Pop Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -635,6 +649,7 @@ export const CHARMS: Charm[] = [
     category: "Eternal Bloom",
     image: "/charms-cards/Eternal Bloom/Label = Red Heart Charm.png",
     previewImage: "/charms-canvas/Eternal bloom/Label = Red Heart Charm.png",
+    overlayImage: "/overlay-charms/Eternal Bloom/Red Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -652,6 +667,7 @@ export const CHARMS: Charm[] = [
     category: "Eternal Bloom",
     image: "/charms-cards/Eternal Bloom/Label = Rosette Bloom Charm.png",
     previewImage: "/charms-canvas/Eternal bloom/Label = Rosette Bloom Charm.png",
+    overlayImage: "/overlay-charms/Eternal Bloom/Rosette Bloom Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -669,6 +685,7 @@ export const CHARMS: Charm[] = [
     category: "Eternal Bloom",
     image: "/charms-cards/Eternal Bloom/Label = Scarlet Tulip Charm.png",
     previewImage: "/charms-canvas/Eternal bloom/Label = Scarlet Tulip Charm.png",
+    overlayImage: "/overlay-charms/Eternal Bloom/Scarlet Tulip Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -686,6 +703,7 @@ export const CHARMS: Charm[] = [
     category: "Eternal Bloom",
     image: "/charms-cards/Eternal Bloom/Label = Starlit Crescent Charm.png",
     previewImage: "/charms-canvas/Eternal bloom/Label = Starlit Crescent Charm.png",
+    overlayImage: "/overlay-charms/Eternal Bloom/Starlit Crescent Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -703,6 +721,7 @@ export const CHARMS: Charm[] = [
     category: "Eternal Bloom",
     image: "/charms-cards/Eternal Bloom/Label = Tulip Dawn Charm.png",
     previewImage: "/charms-canvas/Eternal bloom/Label = Tulip Dawn Charm.png",
+    overlayImage: "/overlay-charms/Eternal Bloom/Tulip Dawn Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -720,6 +739,7 @@ export const CHARMS: Charm[] = [
     category: "Eternal Bloom",
     image: "/charms-cards/Eternal Bloom/Label = Twin Blossom Charm.png",
     previewImage: "/charms-canvas/Eternal bloom/Label = Twin Blossom Charm.png",
+    overlayImage: "/overlay-charms/Eternal Bloom/Twin Blossom Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -756,6 +776,7 @@ export const CHARMS: Charm[] = [
     category: "Game On",
     image: "/charms-cards/Game On/Label = Pickleball Spark Charm.png",
     previewImage: "/charms-canvas/Game On/Label = Pickleball Spark Charm.png",
+    overlayImage: "/overlay-charms/Game On/Pickleball Spark Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -773,6 +794,7 @@ export const CHARMS: Charm[] = [
     category: "Game On",
     image: "/charms-cards/Game On/Label = Pink Smash Charm.png",
     previewImage: "/charms-canvas/Game On/Label = Pink Smash Charm.png",
+    overlayImage: "/overlay-charms/Game On/Pink Smash Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -790,6 +812,7 @@ export const CHARMS: Charm[] = [
     category: "Game On",
     image: "/charms-cards/Game On/Label = Silver Tennis Spark Charm.png",
     previewImage: "/charms-canvas/Game On/Label = Silver Tennis Spark Charm.png",
+    overlayImage: "/overlay-charms/Game On/Silver Tennis Spark Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -807,6 +830,7 @@ export const CHARMS: Charm[] = [
     category: "Game On",
     image: "/charms-cards/Game On/Label = Tennis Ace Charm.png",
     previewImage: "/charms-canvas/Game On/Label = Tennis Ace Charm.png",
+    overlayImage: "/overlay-charms/Game On/Tennis Ace Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -824,6 +848,7 @@ export const CHARMS: Charm[] = [
     category: "Game On",
     image: "/charms-cards/Game On/Label = Tennis Sparkle Racket Charm.png",
     previewImage: "/charms-canvas/Game On/Label = Tennis Sparkle Racket Charm.png",
+    overlayImage: "/overlay-charms/Game On/Tennis Sparkle Racket Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -843,6 +868,7 @@ export const CHARMS: Charm[] = [
     category: "Guardian",
     image: "/charms-cards/Guardian/Label = Aqua Vision Charm.png",
     previewImage: "/charms-canvas/Guardian/Label = Aqua Vision Charm.png",
+    overlayImage: "/overlay-charms/Guardian/Aqua Vision Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -860,6 +886,7 @@ export const CHARMS: Charm[] = [
     category: "Guardian",
     image: "/charms-cards/Guardian/Label = Blush Teardrop Eye Charm.png",
     previewImage: "/charms-canvas/Guardian/Label = Blush Teardrop Eye Charm.png",
+    overlayImage: "/overlay-charms/Guardian/Blush Teardrop Eye Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -877,6 +904,7 @@ export const CHARMS: Charm[] = [
     category: "Guardian",
     image: "/charms-cards/Guardian/Label = Celestial Eye Charm.png",
     previewImage: "/charms-canvas/Guardian/Label = Celestial Eye Charm.png",
+    overlayImage: "/overlay-charms/Guardian/Celestial Eye Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -894,6 +922,7 @@ export const CHARMS: Charm[] = [
     category: "Guardian",
     image: "/charms-cards/Guardian/Label = Crescent Star Charm.png",
     previewImage: "/charms-canvas/Guardian/Label = Crescent Star Charm.png",
+    overlayImage: "/overlay-charms/Guardian/Crescent Star Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -911,6 +940,7 @@ export const CHARMS: Charm[] = [
     category: "Guardian",
     image: "/charms-cards/Guardian/Label = Guardian Eye Charm.png",
     previewImage: "/charms-canvas/Guardian/Label = Guardian Eye Charm.png",
+    overlayImage: "/overlay-charms/Guardian/Guardian Eye Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -928,6 +958,7 @@ export const CHARMS: Charm[] = [
     category: "Guardian",
     image: "/charms-cards/Guardian/Label = Guardian Hamsa Charm.png",
     previewImage: "/charms-canvas/Guardian/Label = Guardian Hamsa Charm.png",
+    overlayImage: "/overlay-charms/Guardian/Guardian Hamsa Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -945,6 +976,7 @@ export const CHARMS: Charm[] = [
     category: "Guardian",
     image: "/charms-cards/Guardian/Label = Guardian Hand Charm.png",
     previewImage: "/charms-canvas/Guardian/Label = Guardian Hand Charm.png",
+    overlayImage: "/overlay-charms/Guardian/Guardian Hand Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -962,6 +994,7 @@ export const CHARMS: Charm[] = [
     category: "Guardian",
     image: "/charms-cards/Guardian/Label = Guardian Heart Eye Charm.png",
     previewImage: "/charms-canvas/Guardian/Label = Guardian Heart Eye Charm.png",
+    overlayImage: "/overlay-charms/Guardian/Guardian Heart Eye Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -979,6 +1012,7 @@ export const CHARMS: Charm[] = [
     category: "Guardian",
     image: "/charms-cards/Guardian/Label = Luminous Eye Charm.png",
     previewImage: "/charms-canvas/Guardian/Label = Luminous Eye Charm.png",
+    overlayImage: "/overlay-charms/Guardian/Luminous Eye Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -996,6 +1030,7 @@ export const CHARMS: Charm[] = [
     category: "Guardian",
     image: "/charms-cards/Guardian/Label = Midnight Eye Charm.png",
     previewImage: "/charms-canvas/Guardian/Label = Midnight Eye Charm.png",
+    overlayImage: "/overlay-charms/Guardian/Midnight Eye Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1013,6 +1048,7 @@ export const CHARMS: Charm[] = [
     category: "Guardian",
     image: "/charms-cards/Guardian/Label = Mystic Eye Charm.png",
     previewImage: "/charms-canvas/Guardian/Label = Mystic Eye Charm.png",
+    overlayImage: "/overlay-charms/Guardian/Mystic Eye Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1030,6 +1066,7 @@ export const CHARMS: Charm[] = [
     category: "Guardian",
     image: "/charms-cards/Guardian/Label = North Star Charm.png",
     previewImage: "/charms-canvas/Guardian/Label = North Star Charm.png",
+    overlayImage: "/overlay-charms/Guardian/North Star Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1047,6 +1084,7 @@ export const CHARMS: Charm[] = [
     category: "Guardian",
     image: "/charms-cards/Guardian/Label = Prism Eye Charm.png",
     previewImage: "/charms-canvas/Guardian/Label = Prism Eye Charm.png",
+    overlayImage: "/overlay-charms/Guardian/Prism Eye Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1064,6 +1102,7 @@ export const CHARMS: Charm[] = [
     category: "Guardian",
     image: "/charms-cards/Guardian/Label = Radiant Eye Charm - 3-1.png",
     previewImage: "/charms-canvas/Guardian/Label = Radiant Eye Charm.png",
+    overlayImage: "/overlay-charms/Guardian/Radiant Eye Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1081,6 +1120,7 @@ export const CHARMS: Charm[] = [
     category: "Guardian",
     image: "/charms-cards/Guardian/Label = Radiant Eye Charm - 3.png",
     previewImage: "/charms-canvas/Guardian/Label = Radiant Eye Charm.png",
+    overlayImage: "/overlay-charms/Guardian/Radiant Eye Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1098,6 +1138,7 @@ export const CHARMS: Charm[] = [
     category: "Guardian",
     image: "/charms-cards/Guardian/Label = Radiant Eye Charm.png",
     previewImage: "/charms-canvas/Guardian/Label = Radiant Eye Charm.png",
+    overlayImage: "/overlay-charms/Guardian/Radiant Eye Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1115,6 +1156,7 @@ export const CHARMS: Charm[] = [
     category: "Guardian",
     image: "/charms-cards/Guardian/Label = Sentinel Eye Charm.png",
     previewImage: "/charms-canvas/Guardian/Label = Sentinel Eye Charm.png",
+    overlayImage: "/overlay-charms/Guardian/Sentinel Eye Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1132,6 +1174,7 @@ export const CHARMS: Charm[] = [
     category: "Guardian",
     image: "/charms-cards/Guardian/Label = Solara Charm.png",
     previewImage: "/charms-canvas/Guardian/Label = Solara Charm.png",
+    overlayImage: "/overlay-charms/Guardian/Solara Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1149,6 +1192,7 @@ export const CHARMS: Charm[] = [
     category: "Guardian",
     image: "/charms-cards/Guardian/Label = Turquoise Eye Charm.png",
     previewImage: "/charms-canvas/Guardian/Label = Turquoise Eye Charm.png",
+    overlayImage: "/overlay-charms/Guardian/Turquoise Eye Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1168,6 +1212,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Blooming Heart Charm.png",
     previewImage: "/charms-canvas/Lovestruck/Label = Blooming Heart Charm.png",
+    overlayImage: "/overlay-charms/LoveStruck/Blooming Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1185,6 +1230,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Blush Heart Charm.png",
     previewImage: "/charms-canvas/Lovestruck/Label = Blush Heart Charm.png",
+    overlayImage: "/overlay-charms/LoveStruck/Blush Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1202,6 +1248,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Crystal Green candy.png",
     previewImage: "/charms-canvas/Lovestruck/Label = Crystal Green candy.png",
+    overlayImage: "/overlay-charms/LoveStruck/Crystal Green candy.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1219,6 +1266,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Crystal Heart Charm.png",
     previewImage: "/charms-canvas/Lovestruck/Label = Crystal Heart Charm.png",
+    overlayImage: "/overlay-charms/LoveStruck/Crystal Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1236,6 +1284,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Crystal Pink candy.png",
     previewImage: "/charms-canvas/Lovestruck/Label = Crystal Pink candy.png",
+    overlayImage: "/overlay-charms/LoveStruck/Crystal Pink candy.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1253,6 +1302,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Daisy Heart Charm.png",
     previewImage: "/charms-canvas/Lovestruck/Label = Daisy Heart Charm.png",
+    overlayImage: "/overlay-charms/LoveStruck/Daisy Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1270,6 +1320,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Ember Heart Charm.png",
     previewImage: "/charms-canvas/Lovestruck/Label = Ember Heart Charm.png",
+    overlayImage: "/overlay-charms/LoveStruck/Ember Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1287,6 +1338,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Emerald Heart Charm.png",
     previewImage: "/charms-canvas/Lovestruck/Label = Emerald Heart Charm.png",
+    overlayImage: "/overlay-charms/LoveStruck/Emerald Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1304,6 +1356,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Eternal Heart Charm.png",
     previewImage: "/charms-canvas/Lovestruck/Label = Eternal Heart Charm.png",
+    overlayImage: "/overlay-charms/LoveStruck/Eternal Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1338,6 +1391,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Love Letter Charm.png",
     previewImage: "/charms-canvas/Lovestruck/Label = Love Letter Charm.png",
+    overlayImage: "/overlay-charms/LoveStruck/Love Letter Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1372,6 +1426,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Pure Heart Charm.png",
     previewImage: "/charms-canvas/Lovestruck/Label = Pure Heart Charm.png",
+    overlayImage: "/overlay-charms/LoveStruck/Pure Heart Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1390,6 +1445,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: "/charms-cards/Lovestruck/Label = Sacred Heart charm.png",
     previewImage: "/charms-canvas/Lovestruck/Label = Sacred Heart charm.png",
+    overlayImage: "/overlay-charms/LoveStruck/Sacred Heart charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1409,6 +1465,7 @@ export const CHARMS: Charm[] = [
     category: "Persona",
     image: "/charms-cards/Persona/Label = A Initial Charm.png",
     previewImage: "/charms-canvas/Persona/Label = A Initial Charm.png",
+    overlayImage: "/overlay-charms/Persona/A Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1426,6 +1483,7 @@ export const CHARMS: Charm[] = [
     category: "Persona",
     image: "/charms-cards/Persona/Label = B Initial Charm.png",
     previewImage: "/charms-canvas/Persona/Label = B Initial Charm.png",
+    overlayImage: "/overlay-charms/Persona/B Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1443,6 +1501,7 @@ export const CHARMS: Charm[] = [
     category: "Persona",
     image: "/charms-cards/Persona/Label = D Initial Charm.png",
     previewImage: "/charms-canvas/Persona/Label = D Initial Charm.png",
+    overlayImage: "/overlay-charms/Persona/D Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1460,6 +1519,7 @@ export const CHARMS: Charm[] = [
     category: "Persona",
     image: "/charms-cards/Persona/Label = E Initial Charm.png",
     previewImage: "/charms-canvas/Persona/Label = E Initial Charm.png",
+    overlayImage: "/overlay-charms/Persona/E Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1477,6 +1537,7 @@ export const CHARMS: Charm[] = [
     category: "Persona",
     image: "/charms-cards/Persona/Label = H Initial Charm.png",
     previewImage: "/charms-canvas/Persona/Label = H Initial Charm.png",
+    overlayImage: "/overlay-charms/Persona/H Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1494,6 +1555,7 @@ export const CHARMS: Charm[] = [
     category: "Persona",
     image: "/charms-cards/Persona/Label = I Initial Charm.png",
     previewImage: "/charms-canvas/Persona/Label = I Initial Charm.png",
+    overlayImage: "/overlay-charms/Persona/I Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1511,6 +1573,7 @@ export const CHARMS: Charm[] = [
     category: "Persona",
     image: "/charms-cards/Persona/Label = M Initial Charm.png",
     previewImage: "/charms-canvas/Persona/Label = M Initial Charm.png",
+    overlayImage: "/overlay-charms/Persona/M Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1528,6 +1591,7 @@ export const CHARMS: Charm[] = [
     category: "Persona",
     image: "/charms-cards/Persona/Label = N Initial Charm.png",
     previewImage: "/charms-canvas/Persona/Label = N Initial Charm.png",
+    overlayImage: "/overlay-charms/Persona/N Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1545,6 +1609,7 @@ export const CHARMS: Charm[] = [
     category: "Persona",
     image: "/charms-cards/Persona/Label = O Initial Charm.png",
     previewImage: "/charms-canvas/Persona/Label = O Initial Charm.png",
+    overlayImage: "/overlay-charms/Persona/O Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1562,6 +1627,7 @@ export const CHARMS: Charm[] = [
     category: "Persona",
     image: "/charms-cards/Persona/Label = P Initial Charm.png",
     previewImage: "/charms-canvas/Persona/Label = P Initial Charm.png",
+    overlayImage: "/overlay-charms/Persona/P Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1579,6 +1645,7 @@ export const CHARMS: Charm[] = [
     category: "Persona",
     image: "/charms-cards/Persona/Label = Q Initial Charm.png",
     previewImage: "/charms-canvas/Persona/Label = Q Initial Charm.png",
+    overlayImage: "/overlay-charms/Persona/Q Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1596,6 +1663,7 @@ export const CHARMS: Charm[] = [
     category: "Persona",
     image: "/charms-cards/Persona/Label = R Initial Charm.png",
     previewImage: "/charms-canvas/Persona/Label = R Initial Charm.png",
+    overlayImage: "/overlay-charms/Persona/R Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1613,6 +1681,7 @@ export const CHARMS: Charm[] = [
     category: "Persona",
     image: "/charms-cards/Persona/Label = T Initial Charm.png",
     previewImage: "/charms-canvas/Persona/Label = T Initial Charm.png",
+    overlayImage: "/overlay-charms/Persona/T Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1751,6 +1820,7 @@ export const CHARMS: Charm[] = [
     category: "Persona",
     image: "/charms-cards/Persona/Label = Capricorn Zodiac Pendant.png",
     previewImage: "/charms-canvas/Persona/Label = Capricorn Zodiac Pendant.png",
+    overlayImage: "/overlay-charms/Persona/Capricorn Zodiac Pendant.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1802,6 +1872,7 @@ export const CHARMS: Charm[] = [
     category: "Persona",
     image: "/charms-cards/Persona/Label = Sagittarius Zodiac Pendant.png",
     previewImage: "/charms-canvas/Persona/Label = Sagittarius Zodiac Pendant.png",
+    overlayImage: "/overlay-charms/Persona/Sagittarius Zodiac Pendant.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1819,6 +1890,7 @@ export const CHARMS: Charm[] = [
     category: "Persona",
     image: "/charms-cards/Persona/Label = Scorpio Zodiac Pendant.png",
     previewImage: "/charms-canvas/Persona/Label = Scorpio Zodiac Pendant.png",
+    overlayImage: "/overlay-charms/Persona/Scorpio Zodiac Pendant.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1853,6 +1925,7 @@ export const CHARMS: Charm[] = [
     category: "Persona",
     image: "/charms-cards/Persona/Label = Virgo Zodiac Pendant.png",
     previewImage: "/charms-canvas/Persona/Label = Virgo Zodiac Pendant.png",
+    overlayImage: "/overlay-charms/Persona/Virgo Zodiac Pendant.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1872,6 +1945,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Acorn Strength Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Acorn Strength Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Acorn Strength Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1889,6 +1963,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Aurora Croissant Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Aurora Croissant Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Aurora Croissant Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1906,6 +1981,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Avocado Love Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Avocado Love Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Avocado Love Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1923,6 +1999,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Avocado Toast Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Avocado Toast Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Avocado Toast Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1940,6 +2017,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Banana Fun Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Banana Fun Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Banana Fun Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1957,6 +2035,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Burger Bite Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Burger Bite Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Burger Bite Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1974,6 +2053,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Cherry Pop Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Cherry Pop Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Cherry Pop Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1991,6 +2071,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Coffee Cup Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Coffee Cup Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Coffee Cup Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2008,6 +2089,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Croissant Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Croissant Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Croissant Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2025,6 +2107,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Donut Delight Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Donut Delight Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Donut Delight Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2042,6 +2125,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Golden Croissant Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Golden Croissant Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Golden Croissant Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2059,6 +2143,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Grapes Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Grapes Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Grapes Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2076,6 +2161,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Hotdog Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Hotdog Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Hotdog Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2093,6 +2179,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Mango Bliss Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Mango Bliss Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Mango Bliss Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2110,6 +2197,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Mango Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Mango Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Mango Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2127,6 +2215,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Mystic Mushroom Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Mystic Mushroom Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Mystic Mushroom Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2144,6 +2233,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Orange Zest Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Orange Zest Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Orange Zest Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2161,6 +2251,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Papaya Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Papaya Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Papaya Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2178,6 +2269,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Pink Donut with Golden Sprinkles Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Pink Donut with Golden Sprinkles Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Pink Donut with Golden Sprinkles Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2195,6 +2287,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Pink Popsicle Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Pink Popsicle Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Pink Popsicle Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2212,6 +2305,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Popsicle Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Popsicle Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Popsicle Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2229,6 +2323,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Strawberry Shortcake Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Strawberry Shortcake Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Strawberry Shortcake Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2246,6 +2341,7 @@ export const CHARMS: Charm[] = [
     category: "Sugar Pop",
     image: "/charms-cards/Sugarpop/Label = Sunny Toast Charm.png",
     previewImage: "/charms-canvas/Sugar Pop/Label = Sunny Toast Charm.png",
+    overlayImage: "/overlay-charms/Sugar Pop/Sunny Toast Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2265,6 +2361,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Aurora Fish Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Aurora Fish Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Aurora Fish Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2282,6 +2379,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Bloom Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Bloom Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Bloom Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2299,6 +2397,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Blue Rose Oval Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Blue Rose Oval Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Blue Rose Oval Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2316,6 +2415,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Emerald Bloom Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Emerald Bloom Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Emerald Bloom Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2333,6 +2433,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Eye Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Eye Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Eye Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2350,6 +2451,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Flutter Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Flutter Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Flutter Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2367,6 +2469,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Golden Conch Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Golden Conch Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Golden Conch Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2384,6 +2487,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Golden Elephant Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Golden Elephant Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Golden Elephant Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2401,6 +2505,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Golden Koi Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Golden Koi Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Golden Koi Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2418,6 +2523,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Golden Palm Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Golden Palm Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Golden Palm Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2435,6 +2541,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Lavender Wave Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Lavender Wave Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Lavender Wave Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2452,6 +2559,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Lotus Bloom Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Lotus Bloom Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Lotus Bloom Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2469,6 +2577,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Lucky Horseshoe Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Lucky Horseshoe Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Lucky Horseshoe Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2486,6 +2595,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Lustrous Pearl Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Lustrous Pearl Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Lustrous Pearl Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2503,6 +2613,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Majestic Koi Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Majestic Koi Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Majestic Koi Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2520,6 +2631,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Midnight Palm Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Midnight Palm Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Midnight Palm Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2537,6 +2649,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Ocean Shell Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Ocean Shell Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Ocean Shell Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2554,6 +2667,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Palm Paradise Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Palm Paradise Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Palm Paradise Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2571,6 +2685,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Pearl Fish Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Pearl Fish Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Pearl Fish Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2588,6 +2703,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Pink Lagoon Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Pink Lagoon Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Pink Lagoon Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2605,6 +2721,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Seafoam Dream Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Seafoam Dream Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Seafoam Dream Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2622,6 +2739,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Sunny Fish Charm.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Sunny Fish Charm.png",
+    overlayImage: "/overlay-charms/Wild & Free/Sunny Fish Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2639,6 +2757,7 @@ export const CHARMS: Charm[] = [
     category: "Wild & Free",
     image: "/charms-cards/Wild & Free/Label = Wanderlust Trio.png",
     previewImage: "/charms-canvas/Wild & Free/Label = Wanderlust Trio.png",
+    overlayImage: "/overlay-charms/Wild & Free/Wanderlust Trio.png",
     description: "Three symbols of freedom and creativity – a crystal camera, vibrant skateboard, and golden airplane. For those who explore, create, and play.",
     specifications: {
       style: "Cluster charm",
