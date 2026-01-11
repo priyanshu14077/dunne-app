@@ -244,13 +244,14 @@ export default function SelectionDrawer({
                         <CharmCard 
                             key={item.id} 
                             item={item} 
-                            state={cardStates[item.id] || 'default'}
+                            isPreview={cardStates[item.id] === 'preview'}
+                            isAdded={quantities[item.id] > 0 || cardStates[item.id] === 'added'}
                             quantity={quantities[item.id] || 0}
                             onBodyClick={onCardBodyClick}
                             onAdd={onAdd}
                             onIncrement={onIncrement}
                             onRemove={onRemove}
-                            disabled={maxReached && cardStates[item.id] !== 'added'}
+                            disabled={type === 'charms' && maxReached && !quantities[item.id]}
                             type={type}
                         />
                      ))}

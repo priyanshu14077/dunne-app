@@ -49,8 +49,8 @@ export default function CartBar({ totalPrice, itemCount, onNavigate }: CartBarPr
         {/* Center: Cart Value stacked */}
         <div className="flex-1 flex items-center justify-center">
           <div className="flex flex-col items-center leading-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
-            <span className="text-[14px] lg:text-[12px] opacity-90">Cart Value</span>
-            <span className="text-[16px] lg:text-[14px] font-bold">₹{displayPrice.toFixed(2)}</span>
+            <span className="text-[12px] opacity-90">Cart Value</span>
+            <span className="text-[16px] font-bold">₹{displayPrice.toFixed(2)}</span>
           </div>
         </div>
 
