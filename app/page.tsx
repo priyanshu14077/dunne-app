@@ -81,8 +81,8 @@ export default function Home() {
   const charmCardStates = useMemo(() => {
     const states: Record<string, any> = {};
     CHARMS.forEach(c => {
-      if (charmQuantities[c.id]) states[c.id] = 'added';
-      else if (previewedItem?.id === c.id) states[c.id] = 'preview';
+      if (previewedItem?.id === c.id) states[c.id] = 'preview';
+      else if (charmQuantities[c.id]) states[c.id] = 'added';
       else states[c.id] = 'default';
     });
     return states;

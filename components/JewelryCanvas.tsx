@@ -107,7 +107,7 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                 {isStep1 ? (
                     <div className="w-full h-full flex items-center justify-center relative animate-fade-in">
                         {(previewCharm || placedCharms.length > 0) ? (
-                            <div className="w-[95%] h-[95%] z-10 animate-fade-in-up relative">
+                            <div className="w-[95%] h-[95%] z-10 animate-fade-in-up relative translate-y-12">
                                 <Image 
                                     src={(previewCharm || placedCharms[placedCharms.length - 1]?.charm).previewImage || (previewCharm || placedCharms[placedCharms.length - 1]?.charm).image} 
                                     alt="Charm Preview" 
@@ -186,7 +186,7 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                                 left: `${anchor.x}%`,
                                                 top: `${anchor.y}%`,
                                                 transformOrigin: "top center",
-                                                transform: `translateX(-50%) translateY(0%) rotate(${anchor.rotation || 0}deg) scale(${anchor.scale || 1})`,
+                                                transform: `translateX(-50%) translateY(0%) rotate(${anchor.rotation || 0}deg) scale(${(anchor.scale || 1) * 1.2})`,
                                             }}
                                         >
                                             {itemToShow && (

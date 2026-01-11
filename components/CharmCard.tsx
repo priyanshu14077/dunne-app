@@ -34,9 +34,7 @@ export default function CharmCard({
 
     // Handler for Card Body Click → PREVIEW (State 2)
     const handleBodyClick = () => {
-        if (!isAdded) {
-            onBodyClick(item);
-        }
+        onBodyClick(item);
     };
 
     // Handler for Add Button Click
