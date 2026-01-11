@@ -8,7 +8,7 @@ import JewelryCanvas from '@/components/JewelryCanvas';
 import Header from '@/components/Header';
 import { Suspense, useMemo } from 'react';
 import { ArrowLeft, Plus, AlertCircle } from 'lucide-react';
-import { PlacedCharmInstance } from '../page';
+import { PlacedCharmInstance } from '@/lib/types';
 
 function SharedViewContent() {
   const searchParams = useSearchParams();

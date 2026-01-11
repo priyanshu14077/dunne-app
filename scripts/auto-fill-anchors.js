@@ -13,41 +13,7 @@ const OUTPUT_FILE = path.join(__dirname, '../lib/anchor.ts');
 function reorderCenterOut(points) {
     if (!points.length) return [];
 
-    // 1. Sort by Y to find the "bottom" part (which is visually where we want to start)
-    // Actually, for bracelets (circle), "bottom" is max Y. for necklaces (U), "bottom" is max Y.
-    // But we need to be careful.
-    // "Center most point that is at the bottom".
-
-    // Let's find the point with the highest Y value (max Y = bottom in dom coords)
-    // Then alternate left/right from there.
-
-    // Sort all points by X to establish a "linear" order (left to right) works well for U-shape.
-    // For a circle (bracelet), it's trickier because it wraps.
-    // But my generation logic generates them in order (top->right->bottom->left for bracelet, left->right for necklace).
-
-    // BRACELET STRATEGY: 
-    // My getBraceletPoints generates clockwise from top (-PI/2).
-    // Indices: 0 (top), ... 3 (right), ... 6 (bottom), ... 9 (left).
-    // If steps=9, indices 0..8. Bottom is roughly index 4 or 5.
-
-    // NECKLACE STRATEGY:
-    // Left to right. Center is middle index.
-
-    // GENERAL STRATEGY:
-    // 1. Find the point closest to {x: 50, y: 100} (Bottom Center).
-    // 2. That is index 0.
-    // 3. Then take the next closest, etc? 
-    // Better: Sort by "distance from bottom center" is risky if shape is specific.
-    // "Start from center most point... next should be on right and then left"
-
-    // Let's stick to the generation order I Control.
-    // Necklace: 0..8 (Left->Right). Center is 4. Order: 4, 5, 3, 6, 2, 7, 1, 8, 0.
-    // Bracelet: 0..8 (Top->Clockwise->Top). bottom is ~4.
-
-    // Let's implement a generic "Center-Out" sorter for an array that is ALREADY sorted linearly/circularly such that the "middle" of the array is the "bottom center".
-
-    // For Necklace (generated left->right): Middle index is bottom.
-    // For Bracelet (generated top->clockwise): Bottom is roughly half-way.
+    
 
     const centerIndex = Math.floor((points.length - 1) / 2); // e.g. 9 points -> index 4
 
@@ -88,12 +54,7 @@ function getBraceletPoints() {
         const x = (centerX + radiusX * Math.cos(angle)) * 100;
         const y = (centerY + radiusY * Math.sin(angle)) * 100;
 
-        // Rotation: Align with radius. 
-        // At Bottom (PI/2), rotation should be 0.
-        // At Left (PI), rotation should be 90.
-        // Formula: (Angle - PI/2) * (180/PI).
-        // Check: PI -> PI/2 -> 90. Correct.
-        // Check: 0 -> -PI/2 -> -90. Correct.
+        
         const rotation = (angle - Math.PI / 2) * (180 / Math.PI);
 
         points.push({
@@ -122,12 +83,7 @@ function getNecklacePoints() {
         const x = xVal * 100;
         const y = yVal * 100;
 
-        // Rotation for necklace:
-        // Usually gravity takes over, so 0 is best.
-        // But to "fan out" slightly:
-        // Left side (t < 0.5): Positive rotation?
-        // Right side (t > 0.5): Negative rotation?
-        // Let's try a subtle fan.
+        
         const rotation = (0.5 - t) * 30; // +/- 15 degrees max
 
         points.push({
@@ -140,24 +96,24 @@ function getNecklacePoints() {
     return reorderCenterOut(points);
 }
 
-// Function to handle ID Overrides
+
 const ID_OVERRIDES = {
     // Bracelets
     "golden-charm-chain": "golden-charm",
     "golden-charm-chain-bracelet": "golden-charm",
 
-    // Necklaces - Map to chain-XX format from mock-data.ts
-    "paperclip-link": "chain-01",           // Paperclip Link Necklace
-    "twist-chain": "chain-02",              // Twist Chain Necklace
-    "golden-figaro": "chain-03",            // Golden Figaro Necklace
-    "aurora-link": "chain-04",              // Aurora Link Necklace
-    "golden-miami": "chain-05",             // Golden Miami Necklace
-    "golden-loop": "chain-06",              // Golden loop Necklace
-    "nautical-ring": "chain-07",            // Nautical Ring Necklace
-    "oval-lock": "chain-08",                // Oval Lock Necklace
-    "paperclip-link-(thin)": "chain-09",    // Paperclip Link (Thin) Necklace
-    "thin-chain": "chain-10",               // Thin Chain Necklace
-    "vero-link": "chain-11"                 // Vero Link Necklace
+    
+    "paperclip-link": "chain-01",           
+    "twist-chain": "chain-02",              
+    "golden-figaro": "chain-03",            
+    "aurora-link": "chain-04",              
+    "golden-miami": "chain-05",             
+    "golden-loop": "chain-06",              
+    "nautical-ring": "chain-07",            
+    "oval-lock": "chain-08",                
+    "paperclip-link-(thin)": "chain-09",    
+    "thin-chain": "chain-10",               
+    "vero-link": "chain-11"                 
 };
 
 const generateEntry = (rawId, webPath, category) => {

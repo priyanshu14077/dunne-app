@@ -4,7 +4,7 @@ import { Product, Charm } from "../lib/mock-data";
 import { PRODUCT_ANCHORS, ChainAnchor } from "@/lib/anchor";
 import { useChainAnchors } from "@/hooks/useChainAnchors";
 import { CANVAS_HEIGHTS } from "../lib/design-tokens";
-import { PlacedCharmInstance } from "../app/page";
+import { PlacedCharmInstance } from "@/lib/types";
 
 interface JewelryCanvasProps {
     baseProduct: Product | null;
@@ -14,12 +14,28 @@ interface JewelryCanvasProps {
     currentStep: string;
     onUpdateAnchor?: (instanceId: string, newIndex: number) => void;
     onActionTrigger?: () => void;
+    forceDragEnabled?: boolean; // New prop
 }
 
-export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, previewCharm, currentStep, onUpdateAnchor, onActionTrigger }: JewelryCanvasProps) {
+export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, previewCharm, currentStep, onUpdateAnchor, onActionTrigger, forceDragEnabled }: JewelryCanvasProps) {
     
     // --- RESPONSIVE ANCHOR SELECTION ---
-    const { anchors, currentBreakpoint } = useChainAnchors(baseProduct);
+    // Use fallback anchors if forcing drag without a base product
+    const { anchors: hookAnchors, currentBreakpoint } = useChainAnchors(baseProduct);
+    
+    // Fallback specific for Walkthrough Drag step (using classic-loop or generic curve)
+    // We need anchors to exist for dragging logic to work.
+    const effectiveAnchors = (baseProduct || forceDragEnabled) && hookAnchors.length === 0 
+        ? [ // Default curve if hook returns nothing (e.g. no base)
+            { x: 50, y: 75 }, { x: 60, y: 73 }, { x: 40, y: 73 }, 
+            { x: 70, y: 68 }, { x: 30, y: 68 }, { x: 76, y: 60 }, 
+            { x: 24, y: 60 }, { x: 79, y: 51 }, { x: 21, y: 51 }
+          ] 
+        : hookAnchors;
+
+    // Use effective anchors for logic
+    const anchors = effectiveAnchors.length > 0 ? effectiveAnchors : hookAnchors;
+
     const containerRef = useRef<HTMLDivElement>(null);
 
     // --- DRAG AND DROP STATE ---
@@ -29,7 +45,7 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
 
     // --- PREVIEW LOGIC ---
     let previewPlacementIndex = -1;
-    if (previewCharm && baseProduct) {
+    if (previewCharm && (baseProduct || forceDragEnabled)) {
         const occupiedIndices = new Set(placedCharms.map(pc => pc.anchorIndex));
         let nextIndex = 0;
         while (occupiedIndices.has(nextIndex) && nextIndex < 9) {
@@ -40,14 +56,18 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
         }
     }
 
-    const isStep1 = !baseProduct;
+    // Determine Mode: Step 1 (Preview) vs Canvas Mode
+    // If forcing drag, we MUST be in Canvas mode (isStep1 = false) to show anchors/individual charms
+    const isStep1 = !baseProduct && !forceDragEnabled;
 
     // Image sizing string for Next.js Image component
     const canvasSizes = "(max-width: 375px) 336px, (max-width: 768px) 441px, (max-width: 1024px) 600px, 800px";
 
     // --- DRAG HANDLERS ---
     const handlePointerDown = (e: React.PointerEvent, instanceId: string) => {
-        if (currentStep !== 'space' && currentStep !== 'base') return;
+        // Allow drag if in correct step OR forced
+        if ((currentStep !== 'space' && currentStep !== 'base') && !forceDragEnabled) return;
+        
         setDraggingId(instanceId);
         (e.target as HTMLElement).setPointerCapture(e.pointerId);
     };
@@ -63,8 +83,8 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
         // Find nearest anchor
         let minInfo = { dist: Infinity, index: -1 };
         anchors.forEach((anchor, i) => {
-            const dx = x - anchor.x;
-            const dy = y - anchor.y;
+            const dx = x - (anchor as any).x; // Safe cast if types mismatch slightly
+            const dy = y - (anchor as any).y;
             const dist = Math.sqrt(dx * dx + dy * dy);
             if (dist < minInfo.dist) {
                 minInfo = { dist, index: i };
@@ -140,7 +160,7 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                     transition: 'transform 0.5s ease-out'
                                 }}
                             >
-                                {baseProduct && (
+                                {baseProduct ? (
                                     <Image 
                                         src={baseProduct.image} 
                                         alt={baseProduct.name}
@@ -150,12 +170,17 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                         priority={currentStep === 'base'}
                                         quality={85}
                                     />
+                                ) : (
+                                    /* Render Placeholder/Ghost Bracelet if forcing drag without product */
+                                    forceDragEnabled && (
+                                         <div className="absolute inset-0 rounded-full border-4 border-dashed border-gray-200/50 opacity-50 scale-90" />
+                                    )
                                 )}
 
-                                {/* Render empty anchor slots as targets in space/base step during dragging */}
-                                {(currentStep === 'space' || (currentStep === 'base' && draggingId)) && (anchors as ChainAnchor[]).map((anchor, index) => (
+                                {/* Render empty anchor slots as targets in space/base step during dragging OR if forced */ }
+                                {(currentStep === 'space' || (currentStep === 'base' && draggingId) || (forceDragEnabled && draggingId)) && (anchors as any[]).map((anchor, index) => (
                                     <div 
-                                        key={`target-${index}`}
+                                        key={`target-${index}`} // anchor.x not guaranteed unique
                                         className={`absolute flex items-center justify-center rounded-full transition-all duration-300
                                             ${activeTargetIndex === index ? 'bg-indigo-400/20 scale-125' : 'bg-transparent'}`}
                                         style={{
@@ -169,12 +194,13 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                 ))}
 
                                 {/* Anchors & Charms */}
-                                {(anchors as ChainAnchor[]).map((anchor, index) => {
+                                {(anchors as any[]).map((anchor: any, index: number) => {
                                     const placedCharmInstance = placedCharms.find(pc => pc.anchorIndex === index);
                                     const isPreview = index === previewPlacementIndex;
                                     const itemToShow = placedCharmInstance?.charm || (isPreview ? previewCharm : null);
                                     const isBeingDragged = placedCharmInstance?.id === draggingId;
-
+                                    
+                                    // If forcing drag, ensure we show charms even if logic typically hides them
                                     if (!itemToShow && !isPreview) return null;
 
                                     return (
@@ -185,7 +211,7 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                             className={`absolute flex items-start justify-center transition-all duration-300 
                                                 ${isPreview ? 'z-20' : 'z-10'}
                                                 ${isBeingDragged ? 'opacity-0' : 'opacity-100'}
-                                                ${currentStep === 'space' || currentStep === 'base' ? 'cursor-grab active:cursor-grabbing' : ''}
+                                                ${(currentStep === 'space' || currentStep === 'base' || forceDragEnabled) ? 'cursor-grab active:cursor-grabbing' : ''}
                                                 ${itemToShow?.overlayImage 
                                                     ? 'w-[20%] h-[20%] md:w-[22%] md:h-[22%] lg:w-[25%] lg:h-[25%]' 
                                                     : 'w-[12%] h-[12%] md:w-[14%] md:h-[14%] lg:w-[15%] lg:h-[15%]'}`}

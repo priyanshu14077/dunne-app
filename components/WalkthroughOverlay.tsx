@@ -29,8 +29,17 @@ export default function WalkthroughOverlay() {
 
         // Tooltip logic: mostly center/bottom or clever positioning
         const isTop = rect.top > window.innerHeight / 2;
+        let finalTop = isTop ? rect.top - 120 : rect.bottom + 20;
+        
+        // Override if explicit placement is set
+        if (step.tooltipPlacement === 'top') {
+           finalTop = rect.top - 140; // slightly more clearance for top
+        } else if (step.tooltipPlacement === 'bottom') {
+           finalTop = rect.bottom + 20;
+        }
+
         setTooltipPos({
-          top: isTop ? rect.top - 120 : rect.bottom + 20,
+          top: finalTop,
           left: Math.max(20, Math.min(window.innerWidth - 300, rect.left + rect.width / 2 - 140))
         });
 
@@ -68,31 +77,53 @@ export default function WalkthroughOverlay() {
         <defs>
           <mask id="spotlight-mask">
             <rect width="100%" height="100%" fill="white" />
-            <rect 
-              x={targetRect.left - 5}
-              y={targetRect.top - 5}
-              width={targetRect.width + 10}
-              height={targetRect.height + 10}
-              rx={15}
-              fill="black"
-            />
+            {step.shape === 'circle' ? (
+              <circle 
+                cx={targetRect.left + targetRect.width / 2}
+                cy={targetRect.top + targetRect.height / 2}
+                r={Math.max(targetRect.width, targetRect.height) / 2 + 10}
+                fill="black"
+              />
+            ) : (
+              <rect 
+                x={targetRect.left - 5}
+                y={targetRect.top - 5}
+                width={targetRect.width + 10}
+                height={targetRect.height + 10}
+                rx={15}
+                fill="black"
+              />
+            )}
           </mask>
         </defs>
         <rect width="100%" height="100%" fill="rgba(0,0,0,0.7)" mask="url(#spotlight-mask)" />
         
         {/* Dashed highlight border */}
-        <rect 
-          x={targetRect.left - 5}
-          y={targetRect.top - 5}
-          width={targetRect.width + 10}
-          height={targetRect.height + 10}
-          rx={15}
-          fill="none"
-          stroke="white"
-          strokeWidth="2"
-          strokeDasharray="6,4"
-          className="animate-pulse"
-        />
+        {step.shape === 'circle' ? (
+           <circle 
+              cx={targetRect.left + targetRect.width / 2}
+              cy={targetRect.top + targetRect.height / 2}
+              r={Math.max(targetRect.width, targetRect.height) / 2 + 10}
+              fill="none"
+              stroke="white"
+              strokeWidth="2"
+              strokeDasharray="6,4"
+              className="animate-pulse"
+           />
+        ) : (
+           <rect 
+              x={targetRect.left - 5}
+              y={targetRect.top - 5}
+              width={targetRect.width + 10}
+              height={targetRect.height + 10}
+              rx={15}
+              fill="none"
+              stroke="white"
+              strokeWidth="2"
+              strokeDasharray="6,4"
+              className="animate-pulse"
+           />
+        )}
       </svg>
 
       {/* Tooltip */}
