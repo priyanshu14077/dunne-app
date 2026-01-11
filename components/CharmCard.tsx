@@ -6,7 +6,8 @@ export type CardState = 'default' | 'preview' | 'added';
 
 interface CharmCardProps {
     item: Product | Charm;
-    state: CardState;
+    isPreview: boolean;
+    isAdded: boolean;
     quantity?: number;
     onBodyClick: (item: Product | Charm) => void;
     onAdd: (item: Product | Charm) => void;
@@ -18,7 +19,8 @@ interface CharmCardProps {
 
 export default function CharmCard({ 
     item, 
-    state,
+    isPreview,
+    isAdded,
     quantity = 0,
     onBodyClick, 
     onAdd,
@@ -28,8 +30,6 @@ export default function CharmCard({
     type
 }: CharmCardProps) {
     
-    const isPreview = state === 'preview';
-    const isAdded = state === 'added';
     const showQuantityControls = isAdded && quantity > 0;
 
     // Handler for Card Body Click → PREVIEW (State 2)
@@ -116,24 +116,7 @@ export default function CharmCard({
 
                 {/* State-dependent Area: Price OR Buttons - 10px from Name */}
                 <div className="w-full flex-1 flex flex-col items-center justify-between pb-2 mt-[10px]">
-                    {/* NEW VERTICAL DESIGN FOR PREVIEW */}
-                    {isPreview ? (
-                        <div className="w-full flex flex-col items-center justify-center animate-fade-in py-1">
-                            <button
-                                onClick={handleAddClick}
-                                disabled={disabled}
-                                className={`flex flex-col items-center gap-0 transition-all duration-200 bg-transparent active:bg-transparent ${disabled ? 'opacity-50' : 'hover:scale-105 active:scale-95'}`}
-                            >
-                                <Plus size={24} strokeWidth={2} className="text-black mb-0" />
-                                <span 
-                                    className="text-[10px] text-black leading-tight"
-                                    style={{ fontFamily: 'Neutra Text, sans-serif' }}
-                                >
-                                    Add to cart
-                                </span>
-                            </button>
-                        </div>
-                    ) : isAdded ? (
+                    {isAdded ? (
                         /* ADDED STATE: Quantity Controls or Selected Label */
                         <div className="h-[34px] w-full flex items-center justify-center mb-0.5 animate-fade-in-up">
                             {showQuantityControls ? (
@@ -181,6 +164,23 @@ export default function CharmCard({
                                     Selected
                                 </div>
                             )}
+                        </div>
+                    ) : isPreview ? (
+                        /* PREVIEW STATE: Add Button */
+                        <div className="w-full flex flex-col items-center justify-center animate-fade-in py-1">
+                            <button
+                                onClick={handleAddClick}
+                                disabled={disabled}
+                                className={`flex flex-col items-center gap-0 transition-all duration-200 bg-transparent active:bg-transparent ${disabled ? 'opacity-50' : 'hover:scale-105 active:scale-95'}`}
+                            >
+                                <Plus size={24} strokeWidth={2} className="text-black mb-0" />
+                                <span 
+                                    className="text-[12px] text-black leading-tight"
+                                    style={{ fontFamily: 'Neutra Text, sans-serif' }}
+                                >
+                                    Add to cart
+                                </span>
+                            </button>
                         </div>
                     ) : (
                         /* DEFAULT STATE: Price */
