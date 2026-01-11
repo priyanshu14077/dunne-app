@@ -1,12 +1,15 @@
 import { X, Plus, Minus, Trash2, GripVertical } from "lucide-react";
 import { Charm } from "../lib/mock-data";
+import { PlacedCharmInstance } from "../app/page";
+import { useState, useRef, useEffect } from "react";
 
 interface SelectedCharmsModalProps {
-    selectedCharms: { charm: Charm; anchorId: string; id: string }[];
+    selectedCharms: PlacedCharmInstance[];
     onClose: () => void;
     onRemove: (instanceId: string) => void;
     onAddAnother: (charm: Charm) => void;
     onReset: () => void;
+    onReorder: (newOrderIds: string[]) => void;
 }
 
 export default function SelectedCharmsModal({ 
@@ -14,9 +17,58 @@ export default function SelectedCharmsModal({
     onClose, 
     onRemove, 
     onAddAnother,
-    onReset
+    onReset,
+    onReorder
 }: SelectedCharmsModalProps) {
     const totalCount = selectedCharms.length;
+    
+    // Sortable state
+    const [items, setItems] = useState(selectedCharms);
+    
+    useEffect(() => {
+        setItems(selectedCharms);
+    }, [selectedCharms]);
+
+    const draggingIndex = useRef<number | null>(null);
+    const dragNode = useRef<HTMLElement | null>(null);
+
+    const handleDragStart = (e: React.DragEvent, index: number) => {
+        // Only allow dragging from the handle
+        const target = e.target as HTMLElement;
+        if (!target.closest('.drag-handle')) {
+            e.preventDefault();
+            return;
+        }
+
+        draggingIndex.current = index;
+        dragNode.current = e.currentTarget as HTMLElement;
+        dragNode.current.addEventListener('dragend', handleDragEnd);
+        setTimeout(() => {
+            if (dragNode.current) dragNode.current.style.opacity = '0.5';
+        }, 0);
+    };
+
+    const handleDragEnter = (e: React.DragEvent, index: number) => {
+        if (draggingIndex.current === null || draggingIndex.current === index) return;
+        
+        const newList = [...items];
+        const draggedItem = newList.splice(draggingIndex.current, 1)[0];
+        newList.splice(index, 0, draggedItem);
+        draggingIndex.current = index;
+        setItems(newList);
+        
+        // This will update the parent and thus the canvas in real-time
+        onReorder(newList.map(it => it.id));
+    };
+
+    const handleDragEnd = () => {
+        if (dragNode.current) {
+            dragNode.current.style.opacity = '1';
+            dragNode.current.removeEventListener('dragend', handleDragEnd);
+        }
+        draggingIndex.current = null;
+        dragNode.current = null;
+    };
 
     return (
         <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-fade-in">
@@ -56,15 +108,22 @@ export default function SelectedCharmsModal({
 
                 {/* List Container */}
                 <div className="max-h-[500px] overflow-y-auto p-4 flex flex-col gap-3 scrollbar-hide bg-[#F9F9F9]">
-                    {selectedCharms.length === 0 ? (
+                    {items.length === 0 ? (
                         <div className="py-12 text-center text-gray-400 font-medium">
                             No charms selected yet.
                         </div>
                     ) : (
-                        selectedCharms.map((item) => (
-                            <div key={item.id} className="bg-[#FFFAF3] p-3 rounded-[20px] flex items-center gap-3 shadow-sm border border-[#E5E5E5] group hover:shadow-md transition-shadow">
-                                {/* Drag Handle */}
-                                <div className="text-gray-300 cursor-grab active:cursor-grabbing">
+                        items.map((item, index) => (
+                            <div 
+                                key={item.id} 
+                                draggable 
+                                onDragStart={(e) => handleDragStart(e, index)}
+                                onDragEnter={(e) => handleDragEnter(e, index)}
+                                onDragOver={(e) => e.preventDefault()}
+                                className="bg-[#FFFAF3] p-3 rounded-[20px] flex items-center gap-3 shadow-sm border border-[#E5E5E5] group hover:shadow-md transition-shadow cursor-default"
+                            >
+                                { /* Drag Handle */ }
+                                <div className="drag-handle text-gray-300 cursor-grab active:cursor-grabbing p-2 -ml-2">
                                     <GripVertical className="w-5 h-5" />
                                 </div>
 

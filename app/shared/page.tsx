@@ -8,6 +8,7 @@ import JewelryCanvas from '@/components/JewelryCanvas';
 import Header from '@/components/Header';
 import { Suspense, useMemo } from 'react';
 import { ArrowLeft, Plus, AlertCircle } from 'lucide-react';
+import { PlacedCharmInstance } from '../page';
 
 function SharedViewContent() {
   const searchParams = useSearchParams();
@@ -45,10 +46,11 @@ function SharedViewContent() {
 
   // Map IDs to full objects
   const baseProduct = BASE_PRODUCTS.find(p => p.id === decoded.baseId) || null;
-  const placedCharms = decoded.charms.map(c => ({
+  const placedCharms: PlacedCharmInstance[] = decoded.charms.map((c, i) => ({
+    id: `shared-${c.charmId}-${i}`,
     charm: CHARMS.find(charm => charm.id === c.charmId) as Charm,
-    anchorId: c.anchorId
-  })).filter(c => c.charm);
+    anchorIndex: c.anchorIndex
+  })).filter(c => !!c.charm);
 
   return (
     <div className="min-h-screen bg-[#F5EBDD] flex flex-col">

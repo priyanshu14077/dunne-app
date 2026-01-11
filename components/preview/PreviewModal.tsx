@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { X, Check } from "lucide-react";
 import CharmOverlay from "./CharmOverlay";
 import { Product, Charm, BASE_PRODUCTS } from "@/lib/mock-data";
+import { PlacedCharmInstance } from "../../app/page";
 
 interface PreviewModalProps {
   isOpen: boolean;
   onClose: () => void;
-  placedCharms: { charm: Charm; anchorId: string }[];
+  placedCharms: PlacedCharmInstance[];
   initialBaseProduct: Product | null;
 }
 
