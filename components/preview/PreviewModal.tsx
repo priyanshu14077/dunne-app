@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { X, Check } from "lucide-react";
 import CharmOverlay from "./CharmOverlay";
 import { Product, Charm, BASE_PRODUCTS } from "@/lib/mock-data";
-import { PlacedCharmInstance } from "../../app/page";
+import { PlacedCharmInstance } from "@/lib/types";
 
 interface PreviewModalProps {
   isOpen: boolean;

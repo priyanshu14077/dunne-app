@@ -5,7 +5,7 @@ import { X, Copy, Check, Share2, MessageCircle, Facebook, Twitter, Mail } from "
 import { useState, useMemo, useEffect } from "react";
 import { Product, Charm } from "@/lib/mock-data";
 import { generateShareURL, SharedConfig } from "@/lib/share-utils";
-import { PlacedCharmInstance } from "../app/page";
+import { PlacedCharmInstance } from "@/lib/types";
 
 interface ShareModalProps {
   isOpen: boolean;

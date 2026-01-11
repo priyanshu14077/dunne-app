@@ -1,6 +1,6 @@
 import { X, Plus, Minus, Trash2, GripVertical } from "lucide-react";
 import { Charm } from "../lib/mock-data";
-import { PlacedCharmInstance } from "../app/page";
+import { PlacedCharmInstance } from "@/lib/types";
 import { useState, useRef, useEffect } from "react";
 
 interface SelectedCharmsModalProps {

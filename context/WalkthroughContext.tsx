@@ -6,7 +6,9 @@ export interface WalkthroughStep {
   targetId: string;
   text: string;
   phase: 'general' | 'interaction' | 'finalization';
-  interactionTrigger?: 'drag' | 'done';
+  interactionTrigger?: 'drag' | 'done' | 'navigate';
+  shape?: 'rect' | 'circle';
+  tooltipPlacement?: 'top' | 'bottom' | 'auto';
 }
 
 interface WalkthroughContextType {
@@ -24,17 +26,36 @@ interface WalkthroughContextType {
 const WalkthroughContext = createContext<WalkthroughContextType | undefined>(undefined);
 
 export const STEPS: WalkthroughStep[] = [
-  // Phase 1: General Discovery
-  { targetId: 'walkthrough-info', text: 'Tap to View Product Information', phase: 'general' },
-  { targetId: 'walkthrough-share', text: 'Share design with your friends', phase: 'general' },
-  { targetId: 'walkthrough-next-arrow', text: 'Move to \"Base Selection\" after adding charms', phase: 'general' },
+  // Step 1: Categories
+  { targetId: 'walkthrough-categories', text: 'Choose across 7+ categories', phase: 'general' },
+
+  // Step 2: Next Arrow (Move to Base)
+  { targetId: 'walkthrough-next-arrow', text: 'Move to base selection', phase: 'general', interactionTrigger: 'navigate' },
+
+  // Step 3: Drag Interaction (Targets first charm found)
+  // The overlay logic handles partial match for 'canvas-charm'
+  { 
+    targetId: 'walkthrough-canvas-charm', 
+    text: 'Drag to change charm position', 
+    phase: 'interaction', 
+    interactionTrigger: 'drag',
+    shape: 'circle',
+    tooltipPlacement: 'top'
+  },
+  
+  // Step 4: View All (Summary)
   { targetId: 'walkthrough-summary', text: 'View all your selected charms', phase: 'general' },
-  { targetId: 'walkthrough-categories', text: 'Explore different categories of our charms', phase: 'general' },
+
+  // Step 5: Info Icon
+  { targetId: 'walkthrough-info', text: 'Tap to View Product Information', phase: 'general' },
+
+  // Step 6: Share Icon
+  { targetId: 'walkthrough-share', text: 'Share design with your friends', phase: 'general' },
   
-  // Phase 2: Interaction (Triggered when a charm is added)
-  { targetId: 'walkthrough-canvas-charm', text: 'Drag to change charm position', phase: 'interaction', interactionTrigger: 'drag' },
-  
-  // Phase 3: Finalization (Triggered in Space step)
+  // Step 7: Back Arrow
+  { targetId: 'walkthrough-back-arrow', text: 'Move back to charm selection', phase: 'general' },
+
+  // Step 8: Spacing (Existing) - This is usually Phase 3/Finalization
   { targetId: 'walkthrough-spacing', text: 'Choose your desired spacing or leave instructions for us', phase: 'finalization', interactionTrigger: 'done' },
 ];
 
