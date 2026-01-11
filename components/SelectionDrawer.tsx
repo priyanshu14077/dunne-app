@@ -176,6 +176,7 @@ export default function SelectionDrawer({
                           {/* Category List - Scrollable */}
                           <div 
                             ref={categoryScrollRef}
+                            id="walkthrough-categories"
                             onScroll={checkCategoryScroll}
                             className="flex-1 overflow-x-auto scrollbar-hide flex items-center lg:justify-center gap-6 py-1"
                           >

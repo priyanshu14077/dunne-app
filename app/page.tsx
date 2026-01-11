@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Header from "@/components/Header";
 import TabNavigation from "@/components/TabNavigation";
 import SelectionDrawer from "@/components/SelectionDrawer";
@@ -12,6 +12,8 @@ import ShareModal from "@/components/ShareModal";
 import CartBar from "@/components/CartBar";
 import DeleteConfirmationDialog from "@/components/DeleteConfirmationDialog";
 import PreviewModal from "@/components/preview/PreviewModal";
+import { WalkthroughProvider, useWalkthrough } from "@/context/WalkthroughContext";
+import WalkthroughOverlay from "@/components/WalkthroughOverlay";
 import { BASE_PRODUCTS, CHARMS, Product, Charm } from "@/lib/mock-data";
 import { PRODUCT_ANCHORS } from "@/lib/anchor";
 import { CONSTRAINTS } from "@/lib/design-tokens";
@@ -23,6 +25,15 @@ export interface PlacedCharmInstance {
 }
 
 export default function Home() {
+  return (
+    <WalkthroughProvider>
+      <HomeContent />
+    </WalkthroughProvider>
+  );
+}
+
+function HomeContent() {
+  const { setStepByPhase, isActive: isTourActive, triggerAction } = useWalkthrough();
   const [currentStep, setCurrentStep] = useState<'charms' | 'base' | 'space'>('charms');
   
   // Audio Helper
@@ -98,6 +109,19 @@ export default function Home() {
 
   // Cart item count (charms + base)
   const cartItemCount = totalCharmCount + (selectedBase ? 1 : 0);
+
+  // --- WALKTHROUGH TRIGGERS ---
+  useEffect(() => {
+    if (totalCharmCount === 1 && currentStep === 'charms') {
+      setStepByPhase('interaction');
+    }
+  }, [totalCharmCount, currentStep, setStepByPhase]);
+
+  useEffect(() => {
+    if (currentStep === 'space') {
+      setStepByPhase('finalization');
+    }
+  }, [currentStep, setStepByPhase]);
 
   // --- CHARM HANDLERS ---
   
@@ -324,6 +348,9 @@ export default function Home() {
   };
 
   const handleSpacingToggle = (mode: 'standard' | 'spaced' | 'customize') => {
+    // Notify walkthrough
+    triggerAction('done');
+
     if (mode === 'standard') {
       setPlacedCharms(manualPlacedCharms);
       setSpacingMode('standard');
@@ -397,6 +424,7 @@ export default function Home() {
           previewCharm={previewedItem && 'category' in previewedItem ? (previewedItem as Charm) : null}
           currentStep={currentStep}
           onUpdateAnchor={handleUpdateAnchor}
+          onActionTrigger={() => triggerAction('drag')}
         />
       </div>
 
@@ -431,6 +459,7 @@ export default function Home() {
         {/* Forward Arrow (Right-aligned with 30px padding) */}
         {totalCharmCount > 0 && (
           <button
+            id="walkthrough-next-arrow"
             onClick={handleNavigate}
             disabled={currentStep === 'base' && !selectedBase}
             className={`ml-auto flex items-center justify-center text-white hover:opacity-70 transition-opacity ${
@@ -447,7 +476,10 @@ export default function Home() {
         {currentStep === 'space' ? (
           <div className="w-full flex-1 flex flex-col gap-0">
             {/* Header: Spacing Buttons (Matching category tabs) */}
-            <div className="w-full px-1 flex items-center justify-center min-h-[50px] lg:min-h-[60px] py-1">
+            <div 
+              id="walkthrough-spacing"
+              className="w-full px-1 flex items-center justify-center min-h-[50px] lg:min-h-[60px] py-1"
+            >
               <div className="flex items-center justify-center gap-4 mx-auto">
                 {(['standard', 'spaced', 'customize'] as const).map((mode) => (
                   <button
@@ -537,6 +569,9 @@ export default function Home() {
         placedCharms={placedCharms}
         initialBaseProduct={selectedBase}
       />
+      
+      {/* Walkthrough Overlay */}
+      <WalkthroughOverlay />
     </div>
   );
 }

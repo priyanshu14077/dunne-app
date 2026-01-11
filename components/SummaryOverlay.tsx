@@ -11,7 +11,10 @@ export default function SummaryOverlay({ charms, onViewAll }: SummaryOverlayProp
     if (charms.length === 0) return null;
 
     return (
-        <div className="w-full bg-transparent flex flex-col items-center justify-center pb-[10px] relative z-50">
+        <div 
+            id="walkthrough-summary"
+            className="w-full bg-transparent flex flex-col items-center justify-center pb-[10px] relative z-50"
+        >
             <button 
                 onClick={onViewAll}
                 className="text-xs lg:text-sm font-medium hover:opacity-80 transition-opacity"

@@ -23,6 +23,7 @@ export default function TabNavigation({ currentStep, onStepChange, onInfoClick, 
             
             {/* Left: Info Icon */}
             <button 
+                id="walkthrough-info"
                 onClick={onInfoClick}
                 className="hover:opacity-70 transition-opacity flex items-center justify-center"
             >
@@ -32,7 +33,10 @@ export default function TabNavigation({ currentStep, onStepChange, onInfoClick, 
             </button>
 
             {/* Center Section: Compact centered container */}
-            <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-between w-[160px] h-[46px] translate-y-[2px]"> 
+            <div 
+                id="walkthrough-progress"
+                className="absolute left-1/2 -translate-x-1/2 flex items-center justify-between w-[160px] h-[46px] translate-y-[2px]"
+            > 
                 {steps.map((step, index) => {
                      const isCompleted = index < currentIndex;
                      const isActive = index === currentIndex;
@@ -93,6 +97,7 @@ export default function TabNavigation({ currentStep, onStepChange, onInfoClick, 
 
             {/* Right: Share Icon */}
             <button 
+                id="walkthrough-share"
                 onClick={onShareClick}
                 className="hover:opacity-70 transition-opacity flex items-center justify-center"
             >
