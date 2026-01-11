@@ -5,12 +5,13 @@ import { X, Copy, Check, Share2, MessageCircle, Facebook, Twitter, Mail } from "
 import { useState, useMemo, useEffect } from "react";
 import { Product, Charm } from "@/lib/mock-data";
 import { generateShareURL, SharedConfig } from "@/lib/share-utils";
+import { PlacedCharmInstance } from "../app/page";
 
 interface ShareModalProps {
   isOpen: boolean;
   onClose: () => void;
   selectedBase: Product | null;
-  placedCharms: { charm: Charm; anchorId: string; id: string }[];
+  placedCharms: PlacedCharmInstance[];
   spacingMode: 'standard' | 'spaced' | 'customize';
   note?: string;
 }
@@ -32,7 +33,7 @@ export default function ShareModal({
       baseId: selectedBase?.id || null,
       charms: placedCharms.map(pc => ({
         charmId: pc.charm.id,
-        anchorId: pc.anchorId
+        anchorIndex: pc.anchorIndex
       })),
       spacingMode,
       note

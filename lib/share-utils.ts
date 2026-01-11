@@ -3,7 +3,7 @@ import { BASE_PRODUCTS, CHARMS, Product, Charm } from "@/lib/mock-data";
 
 export interface SharedConfig {
   baseId: string | null;
-  charms: { charmId: string; anchorId: string }[];
+  charms: { charmId: string; anchorIndex: number }[];
   spacingMode: 'standard' | 'spaced' | 'customize';
   note?: string;
 }

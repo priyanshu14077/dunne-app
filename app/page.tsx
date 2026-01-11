@@ -14,8 +14,13 @@ import DeleteConfirmationDialog from "@/components/DeleteConfirmationDialog";
 import PreviewModal from "@/components/preview/PreviewModal";
 import { BASE_PRODUCTS, CHARMS, Product, Charm } from "@/lib/mock-data";
 import { PRODUCT_ANCHORS } from "@/lib/anchor";
-import { CardState } from "@/components/CharmCard";
 import { CONSTRAINTS } from "@/lib/design-tokens";
+
+export interface PlacedCharmInstance {
+  id: string;
+  charm: Charm;
+  anchorIndex: number;
+}
 
 export default function Home() {
   const [currentStep, setCurrentStep] = useState<'charms' | 'base' | 'space'>('charms');
@@ -29,17 +34,15 @@ export default function Home() {
     } catch (e) {}
   };
   
-  // NEW State Structure for 3-state system
-  const [charmCardStates, setCharmCardStates] = useState<Record<string, CardState>>({});
-  const [charmQuantities, setCharmQuantities] = useState<Record<string, number>>({});
-  
-  const [baseCardStates, setBaseCardStates] = useState<Record<string, CardState>>({});
-  const [selectedBase, setSelectedBase] = useState<Product | null>(null);
-  
   const [previewedItem, setPreviewedItem] = useState<Product | Charm | null>(null);
+  const [placedCharms, setPlacedCharms] = useState<PlacedCharmInstance[]>([]);
+  
+  const [baseCardStates, setBaseCardStates] = useState<Record<string, any>>({});
+  const [selectedBase, setSelectedBase] = useState<Product | null>(null);
   
   // Existing state
   const [spacingMode, setSpacingMode] = useState<'standard' | 'spaced' | 'customize'>('standard');
+  const [manualPlacedCharms, setManualPlacedCharms] = useState<PlacedCharmInstance[]>([]);
   const [note, setNote] = useState("");
   
   // Category state
@@ -65,26 +68,31 @@ export default function Home() {
   };
 
   // Computed values
-  const totalCharmCount = Object.values(charmQuantities).reduce((sum, qty) => sum + qty, 0);
+  const totalCharmCount = placedCharms.length;
+  
+  const charmQuantities = useMemo(() => {
+    const counts: Record<string, number> = {};
+    placedCharms.forEach(pc => {
+      counts[pc.charm.id] = (counts[pc.charm.id] || 0) + 1;
+    });
+    return counts;
+  }, [placedCharms]);
+
+  const charmCardStates = useMemo(() => {
+    const states: Record<string, any> = {};
+    CHARMS.forEach(c => {
+      if (charmQuantities[c.id]) states[c.id] = 'added';
+      else if (previewedItem?.id === c.id) states[c.id] = 'preview';
+      else states[c.id] = 'default';
+    });
+    return states;
+  }, [charmQuantities, previewedItem]);
+
   const maxCharms = CONSTRAINTS.MAX_CHARMS;
   const maxReached = totalCharmCount >= maxCharms;
 
-  // Convert to placedCharms for compatibility with existing components
-  const placedCharms = Object.entries(charmQuantities).flatMap(([charmId, qty]) => {
-    const charm = CHARMS.find(c => c.id === charmId);
-    if (!charm) return [];
-    return Array.from({ length: qty }, (_, i) => ({
-      charm,
-      anchorId: `anchor-${charmId}-${i}`,
-      id: `inst-${charmId}-${i}`
-    }));
-  });
-
   // Price Calculation
-  const charmsPrice = Object.entries(charmQuantities).reduce((sum, [charmId, qty]) => {
-    const charm = CHARMS.find(c => c.id === charmId);
-    return sum + (charm ? charm.price * qty : 0);
-  }, 0);
+  const charmsPrice = placedCharms.reduce((sum, pc) => sum + pc.charm.price, 0);
   const basePrice = selectedBase?.price || 0;
   const totalPrice = charmsPrice + basePrice;
 
@@ -96,22 +104,6 @@ export default function Home() {
   const handleCharmBodyClick = (item: Product | Charm) => {
     const charm = item as Charm;
     setPreviewedItem(charm);
-    
-    // Clear any existing preview states before setting the new one
-    setCharmCardStates(prev => {
-      const newStates = { ...prev };
-      Object.keys(newStates).forEach(id => {
-        if (newStates[id] === 'preview') {
-          newStates[id] = 'default';
-        }
-      });
-      
-      // Update the new item to preview if not already added
-      if (!newStates[charm.id] || newStates[charm.id] === 'default') {
-        newStates[charm.id] = 'preview';
-      }
-      return newStates;
-    });
   };
 
   const handleCharmAdd = (item: Product | Charm) => {
@@ -121,58 +113,65 @@ export default function Home() {
     }
 
     const charm = item as Charm;
-    setCharmCardStates(prev => ({ ...prev, [charm.id]: 'added' }));
-    setCharmQuantities(prev => ({ ...prev, [charm.id]: (prev[charm.id] || 0) + 1 }));
-    setPreviewedItem(null); // Clear preview after adding
+    // Find first available anchor index (0-8)
+    const occupiedIndices = new Set(placedCharms.map(pc => pc.anchorIndex));
+    let nextIndex = 0;
+    while (occupiedIndices.has(nextIndex) && nextIndex < 9) {
+      nextIndex++;
+    }
+
+    if (nextIndex >= 9) return;
+
+    const newInstance: PlacedCharmInstance = {
+      id: `inst-${charm.id}-${Date.now()}`,
+      charm,
+      anchorIndex: nextIndex
+    };
+
+    setPlacedCharms(prev => {
+      const nextArr = [...prev].sort((a,b) => a.anchorIndex - b.anchorIndex).concat(newInstance).sort((a,b) => a.anchorIndex - b.anchorIndex);
+      if (spacingMode === 'standard') setManualPlacedCharms(nextArr);
+      return nextArr;
+    });
+    setPreviewedItem(null);
     playSelectSound();
   };
 
   const handleCharmIncrement = (item: Product | Charm) => {
-    if (maxReached) {
-      triggerToast();
-      return;
-    }
-
-    const charm = item as Charm;
-    setCharmQuantities(prev => ({ ...prev, [charm.id]: (prev[charm.id] || 0) + 1 }));
+    handleCharmAdd(item);
   };
 
-  const handleCharmRemove = (charmId: string) => {
-    const quantity = charmQuantities[charmId] || 0;
-    const charm = CHARMS.find(c => c.id === charmId);
-    
-    // Show confirmation only if this is the last charm (quantity will become 0)
-    if (quantity === 1) {
-      setDeleteConfirmation({
-        isOpen: true,
-        itemId: charmId,
-        itemName: charm?.name || 'this charm'
-      });
-    } else {
-      // Decrement directly
-      const newQty = quantity - 1;
-      setCharmQuantities(prev => ({ ...prev, [charmId]: newQty }));
-      
-      if (newQty === 0) {
-        setCharmCardStates(prev => ({ ...prev, [charmId]: 'default' }));
-      }
+  const handleCharmRemove = (instanceId: string) => {
+    const instance = placedCharms.find(pc => pc.id === instanceId);
+    if (!instance) {
+       // Check if it's a charmId (from the drawer)
+       const lastOfId = [...placedCharms].reverse().find(pc => pc.charm.id === instanceId);
+       if (lastOfId) {
+         setPlacedCharms(prev => {
+            const next = prev.filter(pc => pc.id !== lastOfId.id);
+            if (spacingMode === 'standard') setManualPlacedCharms(next);
+            return next;
+         });
+       }
+       return;
     }
+    
+    setPlacedCharms(prev => {
+      const next = prev.filter(pc => pc.id !== instanceId);
+      if (spacingMode === 'standard') setManualPlacedCharms(next);
+      return next;
+    });
   };
 
   const confirmCharmRemoval = () => {
     const { itemId } = deleteConfirmation;
-    setCharmQuantities(prev => {
-      const newQuantities = { ...prev };
-      delete newQuantities[itemId];
-      return newQuantities;
-    });
-    setCharmCardStates(prev => ({ ...prev, [itemId]: 'default' }));
+    handleCharmRemove(itemId);
     setDeleteConfirmation({ isOpen: false, itemId: '', itemName: '' });
   };
 
   const handleReset = () => {
-    setCharmQuantities({});
-    setCharmCardStates({});
+    setPlacedCharms([]);
+    setManualPlacedCharms([]);
     setPreviewedItem(null);
   };
 
@@ -184,11 +183,61 @@ export default function Home() {
 
     const randomCharms = [...CHARMS].sort(() => 0.5 - Math.random()).slice(0, 3);
     
-    randomCharms.forEach(charm => {
-      if (totalCharmCount < maxCharms) {
-        setCharmCardStates(prev => ({ ...prev, [charm.id]: 'added' }));
-        setCharmQuantities(prev => ({ ...prev, [charm.id]: (prev[charm.id] || 0) + 1 }));
+    randomCharms.forEach((charm, i) => {
+      if (totalCharmCount + i < maxCharms) {
+         setPlacedCharms(prev => {
+            const occupied = new Set(prev.map(p => p.anchorIndex));
+            let idx = 0;
+            while(occupied.has(idx) && idx < 9) idx++;
+            if (idx < 9) {
+               const next = [...prev, { id: `inst-${charm.id}-${Date.now()}-${i}`, charm, anchorIndex: idx }];
+               if (spacingMode === 'standard') setManualPlacedCharms(next);
+               return next;
+            }
+            return prev;
+         });
       }
+    });
+  };
+
+  const handleUpdateAnchor = (instanceId: string, newIndex: number) => {
+    setPlacedCharms(prev => {
+      const target = prev.find(p => p.id === instanceId);
+      if (!target) return prev;
+
+      // Swap logic if target anchor is occupied
+      const existingAtNew = prev.find(p => p.anchorIndex === newIndex);
+      let nextArr: PlacedCharmInstance[];
+      if (existingAtNew) {
+        nextArr = prev.map(p => {
+          if (p.id === instanceId) return { ...p, anchorIndex: newIndex };
+          if (p.id === existingAtNew.id) return { ...p, anchorIndex: target.anchorIndex };
+          return p;
+        });
+      } else {
+        nextArr = prev.map(p => p.id === instanceId ? { ...p, anchorIndex: newIndex } : p);
+      }
+
+      setManualPlacedCharms(nextArr);
+      setSpacingMode('standard'); // Dragging manually enters standard mode
+      return nextArr;
+    });
+  };
+
+  const handleReorderList = (newOrderIds: string[]) => {
+    setPlacedCharms(prev => {
+      // Reorder means reassigning ALL occupied anchor indices based on the new order of instances
+      const occupiedIndices = [...prev].sort((a,b) => a.anchorIndex - b.anchorIndex).map(p => p.anchorIndex);
+      
+      const newItems = newOrderIds.map((id, i) => {
+        const item = prev.find(p => p.id === id);
+        if (!item) return null;
+        return { ...item, anchorIndex: occupiedIndices[i] };
+      }).filter(Boolean) as PlacedCharmInstance[];
+
+      setManualPlacedCharms(newItems);
+      setSpacingMode('standard'); // Reordering manually enter standard mode
+      return newItems;
     });
   };
 
@@ -275,7 +324,34 @@ export default function Home() {
   };
 
   const handleSpacingToggle = (mode: 'standard' | 'spaced' | 'customize') => {
+    if (mode === 'standard') {
+      setPlacedCharms(manualPlacedCharms);
+      setSpacingMode('standard');
+      return;
+    }
+
     setSpacingMode(mode);
+    if (mode === 'spaced' && placedCharms.length > 0) {
+       // Save current as manual before applying space
+       setManualPlacedCharms([...placedCharms]);
+       
+       const n = placedCharms.length;
+       const indices: number[] = [];
+       if (n === 1) indices.push(4);
+       else if (n === 2) indices.push(0, 8);
+       else if (n === 3) indices.push(0, 4, 8);
+       else if (n === 4) indices.push(0, 2, 6, 8);
+       else if (n === 5) indices.push(0, 2, 4, 6, 8);
+       else if (n === 6) indices.push(0, 1, 3, 5, 7, 8);
+       else if (n === 7) indices.push(0, 1, 2, 4, 6, 7, 8);
+       else if (n === 8) indices.push(0, 1, 2, 3, 5, 6, 7, 8);
+       else if (n >= 9) indices.push(0, 1, 2, 3, 4, 5, 6, 7, 8);
+
+       setPlacedCharms(prev => {
+          const sorted = [...prev].sort((a,b) => a.anchorIndex - b.anchorIndex);
+          return sorted.map((p, i) => ({ ...p, anchorIndex: indices[i] }));
+       });
+    }
   };
 
 
@@ -320,6 +396,7 @@ export default function Home() {
           spacingMode={spacingMode}
           previewCharm={previewedItem && 'category' in previewedItem ? (previewedItem as Charm) : null}
           currentStep={currentStep}
+          onUpdateAnchor={handleUpdateAnchor}
         />
       </div>
 
@@ -426,14 +503,12 @@ export default function Home() {
       {/* Modals placed outside main flow */}
       {isModalOpen && (
         <SelectedCharmsModal 
-          selectedCharms={placedCharms}
+          selectedCharms={[...placedCharms].sort((a,b) => a.anchorIndex - b.anchorIndex)}
           onClose={() => setIsModalOpen(false)}
-          onRemove={(instanceId) => {
-            const charmId = instanceId.split('-')[1];
-            if (charmId) handleCharmRemove(charmId);
-          }}
+          onRemove={handleCharmRemove}
           onAddAnother={(charm) => handleCharmAdd(charm)}
           onReset={handleReset}
+          onReorder={handleReorderList}
         />
       )}
       {isInfoModalOpen && (

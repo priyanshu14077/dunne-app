@@ -1,29 +1,41 @@
 import Image from "next/image";
-import { } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Product, Charm } from "../lib/mock-data";
 import { PRODUCT_ANCHORS, ChainAnchor } from "@/lib/anchor";
 import { useChainAnchors } from "@/hooks/useChainAnchors";
 import { CANVAS_HEIGHTS } from "../lib/design-tokens";
+import { PlacedCharmInstance } from "../app/page";
 
 interface JewelryCanvasProps {
     baseProduct: Product | null;
-    placedCharms: { charm: Charm; anchorId: string }[];
+    placedCharms: PlacedCharmInstance[];
     spacingMode: 'standard' | 'spaced' | 'customize';
     previewCharm?: Charm | null;
     currentStep: string;
+    onUpdateAnchor?: (instanceId: string, newIndex: number) => void;
 }
 
-export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, previewCharm, currentStep }: JewelryCanvasProps) {
+export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, previewCharm, currentStep, onUpdateAnchor }: JewelryCanvasProps) {
     
     // --- RESPONSIVE ANCHOR SELECTION ---
     const { anchors, currentBreakpoint } = useChainAnchors(baseProduct);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    // --- DRAG AND DROP STATE ---
+    const [draggingId, setDraggingId] = useState<string | null>(null);
+    const [dragPos, setDragPos] = useState({ x: 0, y: 0 });
+    const [activeTargetIndex, setActiveTargetIndex] = useState<number | null>(null);
 
     // --- PREVIEW LOGIC ---
-    // In index-based system, preview is just the next available slot
     let previewPlacementIndex = -1;
     if (previewCharm && baseProduct) {
-        if (placedCharms.length < anchors.length) {
-            previewPlacementIndex = placedCharms.length;
+        const occupiedIndices = new Set(placedCharms.map(pc => pc.anchorIndex));
+        let nextIndex = 0;
+        while (occupiedIndices.has(nextIndex) && nextIndex < 9) {
+            nextIndex++;
+        }
+        if (nextIndex < 9) {
+            previewPlacementIndex = nextIndex;
         }
     }
 
@@ -32,14 +44,56 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
     // Image sizing string for Next.js Image component
     const canvasSizes = "(max-width: 375px) 336px, (max-width: 768px) 441px, (max-width: 1024px) 600px, 800px";
 
+    // --- DRAG HANDLERS ---
+    const handlePointerDown = (e: React.PointerEvent, instanceId: string) => {
+        if (currentStep !== 'space' && currentStep !== 'base') return;
+        setDraggingId(instanceId);
+        (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    };
+
+    const handlePointerMove = (e: React.PointerEvent) => {
+        if (!draggingId || !containerRef.current) return;
+
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        setDragPos({ x, y });
+
+        // Find nearest anchor
+        let minInfo = { dist: Infinity, index: -1 };
+        anchors.forEach((anchor, i) => {
+            const dx = x - anchor.x;
+            const dy = y - anchor.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < minInfo.dist) {
+                minInfo = { dist, index: i };
+            }
+        });
+
+        if (minInfo.dist < 15) { // Snapping threshold
+            setActiveTargetIndex(minInfo.index);
+        } else {
+            setActiveTargetIndex(null);
+        }
+    };
+
+    const handlePointerUp = (e: React.PointerEvent) => {
+        if (!draggingId) return;
+        if (activeTargetIndex !== null && onUpdateAnchor) {
+            onUpdateAnchor(draggingId, activeTargetIndex);
+        }
+        setDraggingId(null);
+        setActiveTargetIndex(null);
+    };
+
     return (
-        <div className="w-full flex-1 min-h-0 flex items-center justify-center bg-transparent relative p-4 lg:p-8 pb-20">
+        <div 
+            ref={containerRef}
+            className="w-full flex-1 min-h-0 flex items-center justify-center bg-transparent relative p-4 lg:p-8 pb-20 touch-none"
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+        >
              
-            {/* 
-               RESPONSIVE CONTAINER CONFIG:
-               - Mobile: 70vh, aspect-ratio 3:4
-               - Tablet/Desktop: 75vh, aspect-ratio 1.38:1
-            */}
             <div className={`
                 relative 
                 w-full 
@@ -50,14 +104,12 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                 mx-auto
                 canvas-aspect
             `}>
-                {/* Main Product / Preview Image */}
                 {isStep1 ? (
-                    // Step 1: Big Charm Preview
                     <div className="w-full h-full flex items-center justify-center relative animate-fade-in">
                         {(previewCharm || placedCharms.length > 0) ? (
                             <div className="w-[95%] h-[95%] z-10 animate-fade-in-up relative">
                                 <Image 
-                                    src={(previewCharm || placedCharms[placedCharms.length - 1].charm).previewImage || (previewCharm || placedCharms[placedCharms.length - 1].charm).image} 
+                                    src={(previewCharm || placedCharms[placedCharms.length - 1]?.charm).previewImage || (previewCharm || placedCharms[placedCharms.length - 1]?.charm).image} 
                                     alt="Charm Preview" 
                                     fill
                                     className="object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.12)] transition-transform duration-500 hover:scale-105"
@@ -73,21 +125,14 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                         )}
                     </div>
                 ) : (
-                    // Step 2/3: Base Product + Charms
-                    // Apply dynamic scaling: 1.2x for necklaces, 0.8x for bracelets (to prevent clipping)
-                    // Step 2/3: Base Product + Charms
                     <div className="w-full h-full flex items-center justify-center relative animate-fade-in">
-                       {/* 
-                          SQUARE CONTAINER: 
-                          Forces the render area to be a square (1:1 aspect ratio) matching the product images.
-                          This ensures that 'left: 50%' is always visually 50% of the IMAGE, not the rectangular generic container.
-                          max-w-full ensures it doesn't overflow if the screen is very narrow (mobile).
-                        */}
                        <div className="relative aspect-square max-w-full max-h-full flex items-center justify-center w-full md:w-auto h-auto md:h-full">
-                            {/* Inner wrapper for scale transform - applied uniformly to image and charms */}
                             <div 
                                 className="relative w-full h-full"
-                                style={{ transform: `scale(${baseProduct?.type === 'necklace' ? 1.2 : 0.8})` }}
+                                style={{ 
+                                    transform: `scale(${baseProduct?.type === 'necklace' ? 1.25 : 0.85}) translateY(5%)`,
+                                    transition: 'transform 0.5s ease-out'
+                                }}
                             >
                                 {baseProduct && (
                                     <Image 
@@ -101,34 +146,51 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                     />
                                 )}
 
+                                {/* Render empty anchor slots as targets in space/base step during dragging */}
+                                {(currentStep === 'space' || (currentStep === 'base' && draggingId)) && (anchors as ChainAnchor[]).map((anchor, index) => (
+                                    <div 
+                                        key={`target-${index}`}
+                                        className={`absolute flex items-center justify-center rounded-full transition-all duration-300
+                                            ${activeTargetIndex === index ? 'bg-indigo-400/20 scale-125' : 'bg-transparent'}`}
+                                        style={{
+                                            left: `${anchor.x}%`,
+                                            top: `${anchor.y}%`,
+                                            width: '8%', height: '8%',
+                                            transform: 'translate(-50%, -50%)',
+                                            border: activeTargetIndex === index ? '2px dashed rgba(129, 140, 248, 0.5)' : 'none'
+                                        }}
+                                    />
+                                ))}
+
                                 {/* Anchors & Charms */}
-                                {baseProduct && (anchors as ChainAnchor[]).map((anchor, index) => {
-                                    // Check if this anchor index has a charm
-                                    const placedCharm = placedCharms[index]?.charm;
+                                {(anchors as ChainAnchor[]).map((anchor, index) => {
+                                    const placedCharmInstance = placedCharms.find(pc => pc.anchorIndex === index);
                                     const isPreview = index === previewPlacementIndex;
-                                    const itemToShow = placedCharm || (isPreview ? previewCharm : null);
+                                    const itemToShow = placedCharmInstance?.charm || (isPreview ? previewCharm : null);
+                                    const isBeingDragged = placedCharmInstance?.id === draggingId;
 
                                     if (!itemToShow && !isPreview) return null;
 
                                     return (
                                         <div 
                                             key={`anchor-${index}`}
-                                            className={`absolute flex items-start justify-center transition-all duration-300 ${isPreview ? 'z-20' : 'z-10'} 
+                                            onPointerDown={(e) => placedCharmInstance && handlePointerDown(e, placedCharmInstance.id)}
+                                            className={`absolute flex items-start justify-center transition-all duration-300 
+                                                ${isPreview ? 'z-20' : 'z-10'}
+                                                ${isBeingDragged ? 'opacity-0' : 'opacity-100'}
+                                                ${currentStep === 'space' || currentStep === 'base' ? 'cursor-grab active:cursor-grabbing' : ''}
                                                 ${itemToShow?.overlayImage 
                                                     ? 'w-[20%] h-[20%] md:w-[22%] md:h-[22%] lg:w-[25%] lg:h-[25%]' 
                                                     : 'w-[12%] h-[12%] md:w-[14%] md:h-[14%] lg:w-[15%] lg:h-[15%]'}`}
                                             style={{
                                                 left: `${anchor.x}%`,
                                                 top: `${anchor.y}%`,
-                                                // Top-Center alignment: center horizontally, align bail top to anchor point
-                                                // We use 0% vertical translation so the top edge (the bail) hangs exactly from the anchor coord
                                                 transformOrigin: "top center",
                                                 transform: `translateX(-50%) translateY(0%) rotate(${anchor.rotation || 0}deg) scale(${anchor.scale || 1})`,
                                             }}
                                         >
                                             {itemToShow && (
                                                 <div className={`relative w-full h-full flex items-start justify-center ${isPreview ? 'opacity-40 brightness-110' : ''}`}> 
- 
                                                     <Image 
                                                         src={itemToShow.overlayImage || itemToShow.previewImage || itemToShow.image} 
                                                         alt={itemToShow.name}
@@ -145,6 +207,32 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                         </div>
                                     );
                                 })}
+
+                                {/* Render Active Dragging Charm Overlay */}
+                                {draggingId && (
+                                    <div 
+                                        className="absolute z-[100] w-[15%] h-[15%] pointer-events-none"
+                                        style={{
+                                            left: `${dragPos.x}%`,
+                                            top: `${dragPos.y}%`,
+                                            transform: 'translate(-50%, -50%)',
+                                            opacity: 0.8
+                                        }}
+                                    >
+                                        {(() => {
+                                            const pc = placedCharms.find(p => p.id === draggingId);
+                                            if (!pc) return null;
+                                            return (
+                                                <Image 
+                                                    src={pc.charm.overlayImage || pc.charm.previewImage || pc.charm.image}
+                                                    alt="Dragging"
+                                                    fill
+                                                    className="object-contain"
+                                                />
+                                            );
+                                        })()}
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>

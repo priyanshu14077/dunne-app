@@ -1,8 +1,9 @@
 import { Plus } from "lucide-react";
 import { Charm } from "@/lib/mock-data";
+import { PlacedCharmInstance } from "../app/page";
 
 interface SummaryOverlayProps {
-    charms: { charm: Charm; anchorId: string; id: string }[];
+    charms: PlacedCharmInstance[];
     onViewAll: () => void;
 }
 
