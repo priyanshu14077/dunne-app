@@ -175,8 +175,8 @@ export default function CharmCard({
                             >
                                 <Plus size={24} strokeWidth={2} className="text-black mb-0" />
                                 <span 
-                                    className="text-[12px] text-black leading-tight"
-                                    style={{ fontFamily: 'Neutra Text, sans-serif' }}
+                                    className="text-black leading-tight"
+                                    style={{ fontFamily: 'Neutra Text, sans-serif', fontSize: '10px' }}
                                 >
                                     Add to cart
                                 </span>
