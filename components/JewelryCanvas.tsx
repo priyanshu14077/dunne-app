@@ -13,9 +13,10 @@ interface JewelryCanvasProps {
     previewCharm?: Charm | null;
     currentStep: string;
     onUpdateAnchor?: (instanceId: string, newIndex: number) => void;
+    onActionTrigger?: () => void;
 }
 
-export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, previewCharm, currentStep, onUpdateAnchor }: JewelryCanvasProps) {
+export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, previewCharm, currentStep, onUpdateAnchor, onActionTrigger }: JewelryCanvasProps) {
     
     // --- RESPONSIVE ANCHOR SELECTION ---
     const { anchors, currentBreakpoint } = useChainAnchors(baseProduct);
@@ -81,6 +82,11 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
         if (!draggingId) return;
         if (activeTargetIndex !== null && onUpdateAnchor) {
             onUpdateAnchor(draggingId, activeTargetIndex);
+            
+            // Notify walkthrough
+            if (onActionTrigger) {
+                onActionTrigger();
+            }
         }
         setDraggingId(null);
         setActiveTargetIndex(null);
@@ -174,6 +180,7 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                     return (
                                         <div 
                                             key={`anchor-${index}`}
+                                            id={placedCharmInstance ? `canvas-charm-${placedCharmInstance.id}` : undefined}
                                             onPointerDown={(e) => placedCharmInstance && handlePointerDown(e, placedCharmInstance.id)}
                                             className={`absolute flex items-start justify-center transition-all duration-300 
                                                 ${isPreview ? 'z-20' : 'z-10'}

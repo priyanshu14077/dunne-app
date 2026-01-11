@@ -81,6 +81,7 @@ export default function CharmCard({
     return (
         <div 
             onClick={handleBodyClick}
+            id={`charm-card-${item.id}`}
             className={`
                 group shrink-0 relative flex flex-col items-center bg-[#F5EBDD] rounded-[15px]
                 border transition-all duration-300 cursor-pointer overflow-hidden
@@ -170,6 +171,7 @@ export default function CharmCard({
                         <div className="w-full flex flex-col items-center justify-center animate-fade-in py-1">
                             <button
                                 onClick={handleAddClick}
+                                id={`add-to-cart-${item.id}`}
                                 disabled={disabled}
                                 className={`flex flex-col items-center gap-0 transition-all duration-200 bg-transparent active:bg-transparent ${disabled ? 'opacity-50' : 'hover:scale-105 active:scale-95'}`}
                             >
