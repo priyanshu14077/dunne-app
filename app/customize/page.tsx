@@ -15,6 +15,7 @@ import PreviewModal from "@/components/preview/PreviewModal";
 import { WalkthroughProvider, useWalkthrough } from "@/context/WalkthroughContext";
 import WalkthroughOverlay from "@/components/WalkthroughOverlay";
 import { BASE_PRODUCTS, CHARMS, Product, Charm } from "@/lib/mock-data";
+import { STORAGE_BASE } from "@/lib/constants";
 import { PRODUCT_ANCHORS } from "@/lib/anchor";
 import { CONSTRAINTS } from "@/lib/design-tokens";
 import { PlacedCharmInstance } from "@/lib/types";
@@ -36,7 +37,7 @@ function HomeContent() {
   // Audio Helper
   const playSelectSound = () => {
     try {
-      const audio = new Audio('/sounds/select.mp3');
+      const audio = new Audio(`${STORAGE_BASE}/sounds/sound.mp3`);
       audio.volume = 0.5;
       audio.play().catch(() => {}); // Ignore errors if file not found or browser blocks
     } catch (e) {}

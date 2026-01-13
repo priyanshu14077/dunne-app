@@ -1,10 +1,11 @@
 import { ChainConfig, ChainAnchor } from "./types";
+import { STORAGE_BASE } from "../constants";
 
 export const BRACELET_ANCHORS: Record<string, ChainConfig> = {
   "classic-loop": {
   "id": "classic-loop",
   "category": "bracelets",
-  "imageUrl": "/bracelets/Classic Loop bracelet.png",
+   "imageUrl": STORAGE_BASE + "/bracelets/Classic Loop bracelet.png",
   "anchors": {
     "mobile": [
       {
@@ -210,7 +211,7 @@ export const BRACELET_ANCHORS: Record<string, ChainConfig> = {
   "lustre-link": {
   "id": "lustre-link",
   "category": "bracelets",
-  "imageUrl": "/bracelets/Lustre Link bracelet.png",
+   "imageUrl": STORAGE_BASE + "/bracelets/Lustre Link bracelet.png",
   "anchors": {
     "mobile": [
       {
@@ -416,7 +417,7 @@ export const BRACELET_ANCHORS: Record<string, ChainConfig> = {
   "dual-link": {
   "id": "dual-link",
   "category": "bracelets",
-  "imageUrl": "/bracelets/Dual Link Bracelet.png",
+   "imageUrl": STORAGE_BASE + "/bracelets/Dual Link Bracelet.png",
   "anchors": {
     "mobile": [
       {
@@ -622,7 +623,7 @@ export const BRACELET_ANCHORS: Record<string, ChainConfig> = {
   "paper-clip": {
   "id": "paper-clip",
   "category": "bracelets",
-  "imageUrl": "/bracelets/paper clip bracelet.png",
+   "imageUrl": STORAGE_BASE + "/bracelets/paper clip bracelet.png",
   "anchors": {
     "mobile": [
       {
@@ -828,7 +829,7 @@ export const BRACELET_ANCHORS: Record<string, ChainConfig> = {
   "golden-charm": {
   "id": "golden-charm",
   "category": "bracelets",
-  "imageUrl": "/bracelets/Golden Charm Chain Bracelet.png",
+   "imageUrl": STORAGE_BASE + "/bracelets/Golden Charm Chain Bracelet.png",
   "anchors": {
     "mobile": [
       {
@@ -1034,7 +1035,7 @@ export const BRACELET_ANCHORS: Record<string, ChainConfig> = {
   "luxe-chain": {
   "id": "luxe-chain",
   "category": "bracelets",
-  "imageUrl": "/bracelets/Luxe Chain Bracelet.png",
+   "imageUrl": STORAGE_BASE + "/bracelets/Luxe Chain Bracelet.png",
   "anchors": {
     "mobile": [
       {
@@ -1240,7 +1241,7 @@ export const BRACELET_ANCHORS: Record<string, ChainConfig> = {
   "monochrome-braid": {
   "id": "monochrome-braid",
   "category": "bracelets",
-  "imageUrl": "/bracelets/Monochrome Braid Bracelet.png",
+   "imageUrl": STORAGE_BASE + "/bracelets/Monochrome Braid Bracelet.png",
   "anchors": {
     "mobile": [
       {
@@ -1446,7 +1447,7 @@ export const BRACELET_ANCHORS: Record<string, ChainConfig> = {
   "neon-twist": {
   "id": "neon-twist",
   "category": "bracelets",
-  "imageUrl": "/bracelets/Neon Twist Bracelet.png",
+   "imageUrl": STORAGE_BASE + "/bracelets/Neon Twist Bracelet.png",
   "anchors": {
     "mobile": [
       {
@@ -1652,7 +1653,7 @@ export const BRACELET_ANCHORS: Record<string, ChainConfig> = {
   "ocean-weave": {
   "id": "ocean-weave",
   "category": "bracelets",
-  "imageUrl": "/bracelets/Ocean Weave Bracelet.png",
+   "imageUrl": STORAGE_BASE + "/bracelets/Ocean Weave Bracelet.png",
   "anchors": {
     "mobile": [
       {
@@ -1858,7 +1859,7 @@ export const BRACELET_ANCHORS: Record<string, ChainConfig> = {
   "skyline-braid": {
   "id": "skyline-braid",
   "category": "bracelets",
-  "imageUrl": "/bracelets/Skyline Braid Bracelet.png",
+   "imageUrl": STORAGE_BASE + "/bracelets/Skyline Braid Bracelet.png",
   "anchors": {
     "mobile": [
       {
@@ -2064,7 +2065,7 @@ export const BRACELET_ANCHORS: Record<string, ChainConfig> = {
   "twist-elegance": {
   "id": "twist-elegance",
   "category": "bracelets",
-  "imageUrl": "/bracelets/Twist Elegance Bracelet.png",
+   "imageUrl": STORAGE_BASE + "/bracelets/Twist Elegance Bracelet.png",
   "anchors": {
     "mobile": [
       {
@@ -2270,7 +2271,7 @@ export const BRACELET_ANCHORS: Record<string, ChainConfig> = {
   "verdant-braid": {
   "id": "verdant-braid",
   "category": "bracelets",
-  "imageUrl": "/bracelets/Verdant Braid Bracelet.png",
+   "imageUrl": STORAGE_BASE + "/bracelets/Verdant Braid Bracelet.png",
   "anchors": {
     "mobile": [
       {

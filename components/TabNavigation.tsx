@@ -1,5 +1,6 @@
 // Branded icons from assets are used
 import { Share, Info, Check } from "lucide-react";
+import { STORAGE_BASE } from "@/lib/constants";
 
 interface TabNavigationProps {
     currentStep: 'charms' | 'base' | 'space';
@@ -10,9 +11,9 @@ interface TabNavigationProps {
 
 export default function TabNavigation({ currentStep, onStepChange, onInfoClick, onShareClick }: TabNavigationProps) {
     const steps = [
-        { id: 'charms', label: 'Charms', defaultIcon: '/icons/web-icons-clean/charm-default-24.png', activeIcon: '/icons/web-icons-clean/charm-active-24.png' },
-        { id: 'base', label: 'Base', defaultIcon: '/icons/web-icons-clean/base-default-24.png', activeIcon: '/icons/web-icons-clean/base-active-24.png' },
-        { id: 'space', label: 'Space', defaultIcon: '/icons/web-icons-clean/space-default-24.png', activeIcon: '/icons/web-icons-clean/space-active-24.png' },
+        { id: 'charms', label: 'Charms', defaultIcon: `${STORAGE_BASE}/Icons/Charm.svg`, activeIcon: `${STORAGE_BASE}/Icons/Charm.svg` },
+        { id: 'base', label: 'Base', defaultIcon: `${STORAGE_BASE}/Icons/Base.svg`, activeIcon: `${STORAGE_BASE}/Icons/Base.svg` },
+        { id: 'space', label: 'Space', defaultIcon: `${STORAGE_BASE}/Icons/Space.svg`, activeIcon: `${STORAGE_BASE}/Icons/Space.svg` },
     ] as const;
 
     const order = ['charms', 'base', 'space'];
@@ -64,11 +65,8 @@ export default function TabNavigation({ currentStep, onStepChange, onInfoClick, 
                                     ${isCompleted ? 'bg-[#1F4B30]' : isActive ? 'bg-transparent' : 'bg-transparent'}
                                 `}>
                                     {isCompleted ? (
-                                        <img 
-                                            src="/icons/web-icons-clean/tick.png" 
-                                            alt="Completed" 
-                                            className="w-[12px] h-[12px] object-contain brightness-0 invert" 
-                                        />
+                                        <Check className="w-[12px] h-[12px] text-white" strokeWidth={4} />
+
                                     ) : isActive ? (
                                         <img 
                                             src={step.activeIcon} 

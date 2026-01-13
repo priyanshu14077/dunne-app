@@ -1,6 +1,7 @@
-import { Shuffle } from "lucide-react";
+import { Shuffle, ChevronLeft, ChevronRight } from "lucide-react";
 import { Product, Charm } from "../lib/mock-data";
 import { useRef, useState, useEffect } from "react";
+import { STORAGE_BASE } from "@/lib/constants";
 import CharmCard, { CardState } from "./CharmCard";
 
 interface SelectionDrawerProps {
@@ -170,7 +171,7 @@ export default function SelectionDrawer({
                             }}
                             className={`flex-shrink-0 px-[10px] transition-opacity duration-300 ${canScrollLeft ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
                           >
-                               <img src="/icons/web-icons-clean/chevron-left.png" alt="" className="w-6 h-6 object-contain brightness-0" />
+                               <ChevronLeft className="w-6 h-6 text-black" />
                           </button>
 
                           {/* Category List - Scrollable */}
@@ -205,7 +206,7 @@ export default function SelectionDrawer({
                             }}
                             className={`flex-shrink-0 px-[10px] transition-opacity duration-300 ${canScrollRight ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
                           >
-                               <img src="/icons/web-icons-clean/chevron-right.png" alt="" className="w-6 h-6 object-contain brightness-0" />
+                               <ChevronRight className="w-6 h-6 text-black" />
                           </button>
                        </div>
                  )}
@@ -218,7 +219,7 @@ export default function SelectionDrawer({
                     onClick={() => scroll('left')}
                     className="absolute left-2 lg:left-[88px] top-1/2 -translate-y-1/2 z-20 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center text-[#1F4B30] opacity-0 group-hover:opacity-100 transition-opacity hover:scale-110"
                  >
-                     <img src="/icons/web-icons-clean/chevron-left.png" alt="Left" className="w-4 h-4 object-contain brightness-0" />
+                     <ChevronLeft className="w-4 h-4 text-black" />
                  </button>
 
                  {/* Right Arrow */}
@@ -226,7 +227,7 @@ export default function SelectionDrawer({
                     onClick={() => scroll('right')}
                     className="absolute right-2 lg:right-[88px] top-1/2 -translate-y-1/2 z-20 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center text-[#1F4B30] opacity-0 group-hover:opacity-100 transition-opacity hover:scale-110"
                  >
-                     <img src="/icons/web-icons-clean/chevron-right.png" alt="Right" className="w-4 h-4 object-contain brightness-0" />
+                     <ChevronRight className="w-4 h-4 text-black" />
                  </button>
 
                  {/* Carousel Container */}
