@@ -4,6 +4,7 @@
 import { X, Copy, Check, Share2, MessageCircle, Facebook, Twitter, Mail } from "lucide-react";
 import { useState, useMemo, useEffect } from "react";
 import { Product, Charm } from "@/lib/mock-data";
+import { STORAGE_BASE } from "@/lib/constants";
 import { generateShareURL, SharedConfig } from "@/lib/share-utils";
 import { PlacedCharmInstance } from "@/lib/types";
 
@@ -128,7 +129,7 @@ export default function ShareModal({
               {[
                 { 
                   name: 'WhatsApp', 
-                  icon: <img src="/icons/web-icons-clean/whatsapp.png" alt="WhatsApp" className="w-6 h-6 object-contain" />, 
+                  icon: <img src={`${STORAGE_BASE}/icons/web-icons-clean/whatsapp.png`} alt="WhatsApp" className="w-6 h-6 object-contain" />, 
                   href: `https://wa.me/?text=${encodeURIComponent('Check out my jewelry design: ' + shareURL)}`,
                   color: 'hover:bg-green-50 text-green-600'
                 },

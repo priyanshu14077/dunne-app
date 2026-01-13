@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { STORAGE_BASE } from "@/lib/constants";
 
 
 export default function LandingPage() {
@@ -10,7 +11,7 @@ export default function LandingPage() {
       {/* Background Image */}
       <div className="absolute inset-0 pointer-events-none">
         <Image 
-          src="/landing-bg.png" 
+          src={`${STORAGE_BASE}/landing-bg.png`} 
           alt="Background" 
           fill
           className="object-cover opacity-100"
@@ -33,7 +34,7 @@ export default function LandingPage() {
         {/* Orbital Image */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
            <Image 
-            src="/landing-orbit.png" 
+            src={`${STORAGE_BASE}/landing-orbit.png`} 
             alt="Charms" 
             width={700}
             height={700}

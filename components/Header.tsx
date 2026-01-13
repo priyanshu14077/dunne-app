@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, ShoppingBag } from "lucide-react";
+import { STORAGE_BASE } from "@/lib/constants";
 
 interface HeaderProps {
   onCartClick?: () => void;
@@ -20,7 +21,7 @@ export default function Header({ onCartClick, cartItemCount = 0 }: HeaderProps) 
         {/* Logo - Centered and Enlarged */}
         <Link href="/" className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
              <Image 
-               src="/Workmark_Dunne.svg" 
+               src={`${STORAGE_BASE}/Workmark_Dunne.svg`} 
                alt="Dunne Jewelry" 
                width={160} 
                height={64} 

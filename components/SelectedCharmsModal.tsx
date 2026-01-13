@@ -1,7 +1,8 @@
-import { X, Plus, Minus, Trash2, GripVertical } from "lucide-react";
+import { X, Plus, Minus, Trash2, GripVertical, RotateCcw } from "lucide-react";
 import { Charm } from "../lib/mock-data";
 import { PlacedCharmInstance } from "@/lib/types";
 import { useState, useRef, useEffect } from "react";
+import { STORAGE_BASE } from "@/lib/constants";
 
 interface SelectedCharmsModalProps {
     selectedCharms: PlacedCharmInstance[];
@@ -93,7 +94,7 @@ export default function SelectedCharmsModal({
                             onClick={onReset}
                             className="bg-[#DE3C27]/10 text-[#DE3C27] px-5 py-2 rounded-full text-sm font-bold hover:bg-[#DE3C27]/20 transition-all active:scale-95 flex items-center gap-2"
                         >
-                            <img src="/icons/web-icons-clean/reset.png" alt="" className="w-4 h-4 object-contain opacity-80" />
+                            <RotateCcw className="w-4 h-4" />
                             Reset
                         </button>
                         <button 
@@ -101,7 +102,7 @@ export default function SelectedCharmsModal({
                             className="flex items-center gap-1.5 text-black hover:opacity-70 transition-opacity font-bold text-[15px]"
                             style={{ fontFamily: 'Manrope, sans-serif' }}
                         >
-                            Close <img src="/icons/web-icons-clean/close-small.png" alt="" className="w-4 h-4 object-contain" />
+                            Close <X className="w-4 h-4" />
                         </button>
                     </div>
                 </div>
@@ -152,14 +153,14 @@ export default function SelectedCharmsModal({
                                         onClick={() => onRemove(item.id)}
                                         className="p-1 px-1.5 hover:scale-110 transition-transform active:scale-95"
                                     >
-                                        <img src="/icons/web-icons-clean/trash.png" alt="Delete" className="w-4.5 h-4.5 object-contain" />
+                                        <Trash2 className="w-4.5 h-4.5 text-black" />
                                     </button>
                                     <span className="text-black font-bold text-sm">1</span>
                                     <button 
                                         onClick={() => onAddAnother(item.charm)}
                                         className="p-1 px-1.5 hover:scale-110 transition-transform active:scale-95"
                                     >
-                                        <img src="/icons/web-icons-clean/plus.png" alt="Add" className="w-4.5 h-4.5 object-contain" />
+                                        <Plus className="w-4.5 h-4.5 text-black" />
                                     </button>
                                 </div>
                             </div>
