@@ -1,4 +1,13 @@
-import { supabase } from './supabase'
+import { S3Client, PutObjectCommand, DeleteObjectCommand, ListObjectsV2Command } from '@aws-sdk/client-s3'
+
+// Initialize S3 Client
+const s3Client = new S3Client({
+    region: process.env.AWS_REGION || 'ap-south-1',
+    credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
+    },
+})
 
 export interface UploadResult {
     publicUrl: string
@@ -6,50 +15,67 @@ export interface UploadResult {
 }
 
 /**
- * Get the public URL for a file in Supabase Storage
+ * Get the public URL for a file (served via CloudFront)
  */
 export function getPublicUrl(bucket: string, path: string): string {
-    const { data } = supabase.storage.from(bucket).getPublicUrl(path)
-    return data.publicUrl
+    const cloudfrontUrl = process.env.NEXT_PUBLIC_CLOUDFRONT_URL || ''
+    // Clean up slashes to avoid double slashes
+    const cleanBaseUrl = cloudfrontUrl.endsWith('/') ? cloudfrontUrl.slice(0, -1) : cloudfrontUrl
+    const cleanPath = path.startsWith('/') ? path.slice(1) : path
+    
+    return `${cleanBaseUrl}/${cleanPath}`
 }
 
 /**
- * Upload a file to Supabase Storage
+ * Upload a file to Amazon S3
  */
 export async function uploadFile(
     bucket: string,
     path: string,
     file: File | Buffer,
-    contentType?: string,
-    client = supabase
+    contentType?: string
 ): Promise<UploadResult> {
-    const { data, error } = await client.storage
-        .from(bucket)
-        .upload(path, file, {
-            contentType,
-            upsert: true, // Overwrite if exists
+    try {
+        // Convert File to Buffer if necessary (for server-side context)
+        let body: Buffer | Uint8Array = file as any
+        if (file instanceof File) {
+            const arrayBuffer = await file.arrayBuffer()
+            body = new Uint8Array(arrayBuffer)
+        }
+
+        const command = new PutObjectCommand({
+            Bucket: bucket || process.env.AWS_S3_BUCKET_NAME,
+            Key: path,
+            Body: body,
+            ContentType: contentType,
         })
 
-    if (error) {
-        throw new Error(`Failed to upload ${path}: ${error.message}`)
-    }
+        await s3Client.send(command)
 
-    const publicUrl = getPublicUrl(bucket, data.path)
+        const publicUrl = getPublicUrl(bucket, path)
 
-    return {
-        publicUrl,
-        path: data.path,
+        return {
+            publicUrl,
+            path: path,
+        }
+    } catch (error: any) {
+        throw new Error(`Failed to upload to S3 (${path}): ${error.message}`)
     }
 }
 
 /**
- * Delete a file from Supabase Storage
+ * Delete a file from Amazon S3
  */
-export async function deleteFile(bucket: string, path: string, client = supabase): Promise<void> {
-    const { error } = await client.storage.from(bucket).remove([path])
+export async function deleteFile(bucket: string, path: string): Promise<void> {
+    try {
+        const command = new DeleteObjectCommand({
+            Bucket: bucket || process.env.AWS_S3_BUCKET_NAME,
+            Key: path,
+        })
 
-    if (error) {
-        throw new Error(`Failed to delete ${path}: ${error.message}`)
+        await s3Client.send(command)
+    } catch (error: any) {
+        throw new Error(`Failed to delete from S3 (${path}): ${error.message}`)
     }
 }
 
@@ -58,61 +84,36 @@ export async function deleteFile(bucket: string, path: string, client = supabase
  */
 export async function listFiles(
     bucket: string,
-    prefix?: string,
-    client = supabase
+    prefix?: string
 ): Promise<string[]> {
-    const { data, error } = await client.storage.from(bucket).list(prefix)
+    try {
+        const command = new ListObjectsV2Command({
+            Bucket: bucket || process.env.AWS_S3_BUCKET_NAME,
+            Prefix: prefix,
+        })
 
-    if (error) {
-        throw new Error(`Failed to list files: ${error.message}`)
+        const data = await s3Client.send(command)
+        return data.Contents?.map((item) => item.Key || '') || []
+    } catch (error: any) {
+        throw new Error(`Failed to list files from S3: ${error.message}`)
     }
-
-    return data.map((file) => file.name)
 }
 
 /**
- * Check if a bucket exists
+ * Bucket check (Simplified for S3 implementation)
  */
-export async function bucketExists(bucketName: string, client = supabase): Promise<boolean> {
-    const { data } = await client.storage.listBuckets()
-    return data?.some((bucket) => bucket.name === bucketName) ?? false
+export async function bucketExists(bucketName: string): Promise<boolean> {
+    // In S3, we usually assume the bucket exists or handle the 404 in the call
+    // but we can return true here as we've pre-configured the bucket
+    return true
 }
 
 /**
- * Create or update a public storage bucket
+ * Create Bucket (Handled manually in AWS Console for this migration)
  */
 export async function createBucket(
     bucketName: string,
-    isPublic = true,
-    client = supabase
+    isPublic = true
 ): Promise<void> {
-    const exists = await bucketExists(bucketName, client)
-    
-    const bucketOptions = {
-        public: isPublic,
-        fileSizeLimit: 52428800, // 50MB
-        allowedMimeTypes: [
-            'image/jpeg',
-            'image/png',
-            'image/svg+xml',
-            'image/webp',
-        ],
-    }
-
-    if (exists) {
-        console.log(`Bucket "${bucketName}" already exists, updating configuration...`)
-        const { error } = await client.storage.updateBucket(bucketName, bucketOptions)
-        if (error) {
-            throw new Error(`Failed to update bucket ${bucketName}: ${error.message}`)
-        }
-        return
-    }
-
-    const { error } = await client.storage.createBucket(bucketName, bucketOptions)
-
-    if (error) {
-        throw new Error(`Failed to create bucket ${bucketName}: ${error.message}`)
-    }
-
-    console.log(`✅ Created bucket: ${bucketName}`)
+    console.log(`Note: Bucket "${bucketName}" creation should be done in AWS Console. Skipping...`)
 }
