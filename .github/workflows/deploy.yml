@@ -1,0 +1,38 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            # Navigate to the project directory
+            cd ~/dunne-app
+            
+            # Switch to main branch if not already there, and pull
+            git fetch origin
+            git checkout main || git checkout -b main origin/main
+            git pull origin main
+            
+            # Install dependencies and build
+            npm install
+            npm run build
+            
+            # Restart the app with PM2
+            pm2 restart dunne-app || pm2 start npm --name "dunne-app" -- start
+            
+            # Save PM2 state
+            pm2 save
