@@ -1,0 +1,28 @@
+name: Debug Server Status
+
+on:
+  workflow_dispatch:
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug EC2 State
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            echo "=== 1. Node & PM2 Versions ==="
+            node -v
+            pm2 -v
+            
+            echo "=== 2. PM2 Process List ==="
+            pm2 list
+            
+            echo "=== 3. Application Logs (Last 100 lines) ==="
+            pm2 logs dunne-app --lines 100 --nostream
+            
+            echo "=== 4. Check Local Port 3000 ==="
+            curl -I http://localhost:3000 || echo "Cannot reach localhost:3000"
