@@ -13,12 +13,17 @@ export async function middleware(request: NextRequest) {
   const signature = searchParams.get('signature');
   const shop = searchParams.get('shop');
 
+  console.log(`[Middleware] Incoming request for: ${pathname}`);
+  if (hmac || signature) {
+    console.log(`[Middleware] Shopify request detected. HMAC: ${hmac}, Signature: ${signature}, Shop: ${shop}`);
+  }
+
   // If it's a Shopify request (contains hmac or signature), verify it
   if ((hmac || signature) && shop) {
     const secret = process.env.SHOPIFY_API_SECRET;
     
     if (!secret) {
-      console.error('SHOPIFY_API_SECRET is not defined in environment variables');
+      console.error('[Middleware] ERROR: SHOPIFY_API_SECRET is not defined in environment variables');
       return NextResponse.next();
     }
 
@@ -29,8 +34,10 @@ export async function middleware(request: NextRequest) {
     });
 
     const isValid = await verifyShopifyProxySignature(params, secret);
+    console.log(`[Middleware] Signature verification result: ${isValid}`);
 
     if (!isValid) {
+      console.error('[Middleware] Signature verification FAILED');
       return new NextResponse('Invalid Shopify Signature', { status: 403 });
     }
   }
