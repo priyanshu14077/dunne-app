@@ -38,6 +38,9 @@ export interface Charm {
     material?: string;
     finish?: string;
     quality?: string;
+    motifs?: string;
+    enamel?: string;
+    accent?: string;
   };
 }
 
