@@ -12,31 +12,38 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup SSH
+      - name: Debug Connectivity
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          echo "Verifying resolution for host: ${{ secrets.EC2_HOST }}"
+          # Attempt to resolve and ping. If this fails, the secret is wrong.
+          ping -c 3 ${{ secrets.EC2_HOST }} || echo "Ping failed, check hostname resolution"
+          # Check if port 22 is reachable
+          nc -zv -w 5 ${{ secrets.EC2_HOST }} 22 || echo "Port 22 not reachable"
 
-      - name: Execute Deployment
-        run: |
-          # Use -o StrictHostKeyChecking=no to skip keyscan/known_hosts manual management
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
             # Navigate to the project directory
             cd ~/dunne-app
             
-            # Switch to main branch if not already there, and pull
+            # Update code
             git fetch origin
             git checkout main || git checkout -b main origin/main
             git pull origin main
             
-            # Install dependencies and build
+            # Environment variables check (optional but recommended)
+            if [ ! -f .env ]; then
+              echo "WARNING: .env file missing on server!"
+            fi
+            
+            # Install and Build
             npm install
             npm run build
             
-            # Restart the app with PM2
+            # Restart with PM2
             pm2 restart dunne-app || pm2 start npm --name "dunne-app" -- start
-            
-            # Save PM2 state
             pm2 save
-          EOF
