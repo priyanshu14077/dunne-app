@@ -10,10 +10,11 @@ export async function middleware(request: NextRequest) {
   // For now, let's verify on the root path if it contains Shopify query params.
   
   const hmac = searchParams.get('hmac');
+  const signature = searchParams.get('signature');
   const shop = searchParams.get('shop');
 
-  // If it's a Shopify request (contains hmac), verify it
-  if (hmac && shop) {
+  // If it's a Shopify request (contains hmac or signature), verify it
+  if ((hmac || signature) && shop) {
     const secret = process.env.SHOPIFY_API_SECRET;
     
     if (!secret) {
