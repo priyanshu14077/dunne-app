@@ -1,4 +1,6 @@
 import { Plus, Minus, Trash2 } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
 import { Product, Charm } from "../lib/mock-data";
 
 export type CardState = 'default' | 'preview' | 'added';
@@ -29,6 +31,16 @@ export default function CharmCard({
     type
 }: CharmCardProps) {
     
+    // State for image source handling fallback
+    const [imgSrc, setImgSrc] = useState<string>(item.image);
+    const [hasError, setHasError] = useState(false);
+
+    // Sync state if item changes (just in case component is reused without key change)
+    const previewImage = 'previewImage' in item ? item.previewImage : undefined;
+    if (imgSrc !== item.image && !hasError && imgSrc !== previewImage) {
+         setImgSrc(item.image); 
+    }
+
     const showQuantityControls = isAdded && quantity > 0;
 
     // Handler for Card Body Click → PREVIEW (State 2)
@@ -111,17 +123,17 @@ export default function CharmCard({
             <div className="flex items-center justify-center w-full h-[70px] lg:h-[85px] pt-1">
                 <div className="w-[67px] h-[58px] lg:w-[79px] lg:h-[68px] flex items-center justify-center relative">
 
-                    <img 
-                        src={item.image} 
+                    <Image 
+                        src={imgSrc} 
                         alt={rawName}
-                        crossOrigin="anonymous"
-                        className="w-full h-full object-contain drop-shadow-sm transition-transform duration-300 group-hover:scale-110"
-                        loading="lazy"
-                        onLoad={() => {
-                            // Image loaded successfully
-                        }}
-                        onError={(e) => {
-                            // Fail silently or handle accordingly
+                        fill
+                        className="object-contain drop-shadow-sm transition-transform duration-300 group-hover:scale-110"
+                        sizes="(max-width: 768px) 67px, 79px"
+                        onError={() => {
+                            if (!hasError && 'previewImage' in item && item.previewImage) {
+                                setImgSrc(item.previewImage);
+                                setHasError(true);
+                            }
                         }}
                     />
                 </div>

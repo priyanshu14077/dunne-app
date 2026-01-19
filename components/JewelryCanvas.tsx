@@ -156,7 +156,7 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                             <div 
                                 className="relative w-full h-full"
                                 style={{ 
-                                    transform: `scale(${baseProduct?.type === 'necklace' ? 1.25 : 0.85}) translateY(5%)`,
+                                    transform: `scale(${baseProduct?.type === 'necklace' ? 1.05 : 0.85}) translateY(${baseProduct?.type === 'necklace' ? 0 : 5}%)`,
                                     transition: 'transform 0.5s ease-out'
                                 }}
                             >
