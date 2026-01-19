@@ -35,10 +35,10 @@ jobs:
             git checkout main || git checkout -b main origin/main
             git pull origin main
             
-            # Environment variables check (optional but recommended)
-            if [ ! -f .env ]; then
-              echo "WARNING: .env file missing on server!"
-            fi
+            # Create .env file with production secrets
+            echo "NEXT_PUBLIC_SUPABASE_URL=https://lnvmeghqivgvoziklfpk.supabase.co" > .env
+            echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxudm1lZ2hxaXZndm96aWtsZnBrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ0ODEyNzAsImV4cCI6MjA4MDA1NzI3MH0.25jzzp0weLXJiicd8SZpbA4nfji_iEWOE67dQbToGFE" >> .env
+            echo "NEXT_PUBLIC_CLOUDFRONT_URL=https://d1y585exbg6kr2.cloudfront.net/assets" >> .env
             
             # Install and Build
             npm install
