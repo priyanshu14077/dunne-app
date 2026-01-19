@@ -3,6 +3,7 @@ import { STORAGE_BASE } from './constants';
 
 export interface Product {
   id: string;
+  handle?: string;
   name: string;
   price: number;
   image: string;
@@ -22,6 +23,7 @@ export interface Product {
 
 export interface Charm {
   id: string;
+  handle?: string;
   name: string;
   price: number;
   image: string;
@@ -48,7 +50,8 @@ export const BASE_PRODUCTS: Product[] = [
   {
     id: 'classic-loop',
     name: 'Classic Loop Bracelet',
-    price: 850,
+    handle: 'classic-loop-bracelet',
+    price: 850.00,
     image: STORAGE_BASE + '/bracelets/Classic Loop bracelet.png',
     type: 'bracelet',
     isBestSeller: true,
@@ -65,7 +68,8 @@ export const BASE_PRODUCTS: Product[] = [
   {
     id: 'lustre-link',
     name: 'Lustre Link Bracelet',
-    price: 950,
+    handle: 'lustre-link-bracelet',
+    price: 950.00,
     image: STORAGE_BASE + '/bracelets/Lustre Link bracelet.png',
     type: 'bracelet',
     description: "Premium base jewelry crafted from high-quality materials. Designed to hold your favorite charms securely with elegant spacing and durable construction.",
@@ -81,7 +85,8 @@ export const BASE_PRODUCTS: Product[] = [
   {
     id: 'dual-link',
     name: 'Dual Link Bracelet',
-    price: 1100,
+    handle: 'dual-link-bracelet',
+    price: 750.00,
     image: STORAGE_BASE + '/bracelets/Dual Link Bracelet.png',
     type: 'bracelet',
     description: "Premium base jewelry crafted from high-quality materials. Designed to hold your favorite charms securely with elegant spacing and durable construction.",
@@ -113,7 +118,8 @@ export const BASE_PRODUCTS: Product[] = [
   {
     id: 'golden-charm',
     name: 'Golden Charm Chain',
-    price: 1200,
+    handle: 'golden-charm-chain-bracelet',
+    price: 750.00,
     image: STORAGE_BASE + '/bracelets/Golden Charm Chain Bracelet.png',
     type: 'bracelet',
     description: "Premium base jewelry crafted from high-quality materials. Designed to hold your favorite charms securely with elegant spacing and durable construction.",
@@ -129,7 +135,8 @@ export const BASE_PRODUCTS: Product[] = [
   {
     id: 'luxe-chain',
     name: 'Luxe Chain Bracelet',
-    price: 1350,
+    handle: 'luxe-chain-bracelet',
+    price: 850.00,
     image: STORAGE_BASE + '/bracelets/Luxe Chain Bracelet.png',
     type: 'bracelet',
     isNew: true,
@@ -146,7 +153,8 @@ export const BASE_PRODUCTS: Product[] = [
   {
     id: 'monochrome-braid',
     name: 'Monochrome Braid Bracelet',
-    price: 850,
+    handle: 'monochrome-braid-bracelet',
+    price: 0.00,
     image: STORAGE_BASE + '/bracelets/Monochrome Braid Bracelet.png',
     type: 'bracelet',
     description: "A sleek and versatile bracelet featuring a black-and-white braided design accented with polished gold-tone details.",
@@ -162,7 +170,8 @@ export const BASE_PRODUCTS: Product[] = [
   {
     id: 'neon-twist',
     name: 'Neon Twist Bracelet',
-    price: 850,
+    handle: 'neon-twist-bracelet',
+    price: 0.00,
     image: STORAGE_BASE + '/bracelets/Neon Twist Bracelet.png',
     type: 'bracelet',
     description: "A playful and energetic bracelet featuring a vibrant neon pink-and-white braided design, finished with gleaming gold-tone accents.",
@@ -178,7 +187,8 @@ export const BASE_PRODUCTS: Product[] = [
   {
     id: 'ocean-weave',
     name: 'Ocean Weave Bracelet',
-    price: 850,
+    handle: 'ocean-weave-bracelet',
+    price: 0.00,
     image: STORAGE_BASE + '/bracelets/Ocean Weave Bracelet.png',
     type: 'bracelet',
     description: "A cool and contemporary bracelet featuring a navy-and-silver braided design highlighted with glossy gold-tone accents.",
@@ -194,7 +204,8 @@ export const BASE_PRODUCTS: Product[] = [
   {
     id: 'skyline-braid',
     name: 'Skyline Braid Bracelet',
-    price: 850,
+    handle: 'skyline-braid-bracelet',
+    price: 0.00,
     image: STORAGE_BASE + '/bracelets/Skyline Braid Bracelet.png',
     type: 'bracelet',
     description: "A fresh and breezy bracelet in a light blue-and-white braided design, finished with polished gold-tone details.",
@@ -210,7 +221,8 @@ export const BASE_PRODUCTS: Product[] = [
   {
     id: 'twist-elegance',
     name: 'Twist Elegance Bracelet',
-    price: 650,
+    handle: 'twist-elegance-bracelet',
+    price: 650.00,
     image: STORAGE_BASE + '/bracelets/Twist Elegance Bracelet.png',
     type: 'bracelet',
     description: "A delicate gold toned bracelet featuring subtle twisted links that catch the light beautifully. Minimal yet refined, this piece is perfect for layering or wearing alone for a graceful touch of sophistication.",
@@ -226,7 +238,8 @@ export const BASE_PRODUCTS: Product[] = [
   {
     id: 'verdant-braid',
     name: 'Verdant Braid Bracelet',
-    price: 850,
+    handle: 'verdant-braid-bracelet',
+    price: 0.00,
     image: STORAGE_BASE + '/bracelets/Verdant Braid Bracelet.png',
     type: 'bracelet',
     description: "A vibrant and refreshing bracelet in a rich green braided design, accented with gleaming gold-tone details.",
@@ -243,7 +256,8 @@ export const BASE_PRODUCTS: Product[] = [
   {
     id: 'chain-01',
     name: 'Paperclip Link Necklace',
-    price: 1250,
+    handle: 'paperclip-link',
+    price: 1350.00,
     image: STORAGE_BASE + '/necklace/Paperclip Link Necklace.png',
     type: 'necklace',
     description: "Elegant necklace chain designed for versatility and style.",
@@ -259,7 +273,8 @@ export const BASE_PRODUCTS: Product[] = [
   {
     id: 'chain-02',
     name: 'Twist Chain Necklace',
-    price: 1250,
+    handle: 'twist-chain',
+    price: 1550.00,
     image: STORAGE_BASE + '/necklace/Twist Chain Necklace.png',
     type: 'necklace',
     description: "Elegant necklace chain designed for versatility and style.",
@@ -275,7 +290,8 @@ export const BASE_PRODUCTS: Product[] = [
   {
     id: 'chain-03',
     name: 'Golden Figaro Necklace',
-    price: 1250,
+    handle: 'golden-figaro',
+    price: 1350.00,
     image: STORAGE_BASE + '/necklace/Golden Figaro Necklace.png',
     type: 'necklace',
     description: "Elegant necklace chain designed for versatility and style.",
@@ -291,7 +307,8 @@ export const BASE_PRODUCTS: Product[] = [
   {
     id: 'chain-04',
     name: 'Aurora Link Necklace',
-    price: 1250,
+    handle: 'aurora-link',
+    price: 1450.00,
     image: STORAGE_BASE + '/necklace/Aurora Link Necklace.png',
     type: 'necklace',
     description: "Elegant necklace chain designed for versatility and style.",
@@ -307,7 +324,8 @@ export const BASE_PRODUCTS: Product[] = [
   {
     id: 'chain-05',
     name: 'Golden Miami Necklace',
-    price: 1250,
+    handle: 'golden-miami',
+    price: 1550.00,
     image: STORAGE_BASE + '/necklace/Golden Miami Necklace.png',
     type: 'necklace',
     description: "Elegant necklace chain designed for versatility and style.",
@@ -323,7 +341,8 @@ export const BASE_PRODUCTS: Product[] = [
   {
     id: 'chain-06',
     name: 'Golden loop Necklace',
-    price: 1250,
+    handle: 'golden-loop-necklace',
+    price: 1450.00,
     image: STORAGE_BASE + '/necklace/Golden loop Necklace.png',
     type: 'necklace',
     description: "Elegant necklace chain designed for versatility and style.",
@@ -339,7 +358,8 @@ export const BASE_PRODUCTS: Product[] = [
   {
     id: 'chain-07',
     name: 'Nautical Ring Necklace',
-    price: 1250,
+    handle: 'nautical-ring',
+    price: 1250.00,
     image: STORAGE_BASE + '/necklace/Nautical Ring Necklace.png',
     type: 'necklace',
     description: "Elegant necklace chain designed for versatility and style.",
@@ -355,7 +375,8 @@ export const BASE_PRODUCTS: Product[] = [
   {
     id: 'chain-08',
     name: 'Oval Lock Necklace',
-    price: 1250,
+    handle: 'oval-lock',
+    price: 1150.00,
     image: STORAGE_BASE + '/necklace/Oval Lock Necklace.png',
     type: 'necklace',
     description: "Elegant necklace chain designed for versatility and style.",
@@ -403,7 +424,8 @@ export const BASE_PRODUCTS: Product[] = [
   {
     id: 'chain-11',
     name: 'Vero Link Necklace',
-    price: 1250,
+    handle: 'vero-link',
+    price: 1450.00,
     image: STORAGE_BASE + '/necklace/Vero Link Necklace.png',
     type: 'necklace',
     description: "Elegant necklace chain designed for versatility and style.",
@@ -424,7 +446,8 @@ export const CHARMS: Charm[] = [
   {
     id: "eb-1",
     name: "Bloom Vase Floral Charm",
-    price: 690,
+    handle: 'bloom-vase-charm',
+    price: 690.00,
     category: "Eternal Bond",
     image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Label = Bloom Vase Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Label = Bloom Vase Charm.png",
@@ -442,7 +465,8 @@ export const CHARMS: Charm[] = [
   {
     id: "eb-2",
     name: "Blooming Lily Flower Charm",
-    price: 690,
+    handle: 'blooming-lily-charm',
+    price: 690.00,
     category: "Eternal Bond",
     image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Label = Blooming Lily Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Label = Blooming Lily Charm.png",
@@ -460,7 +484,8 @@ export const CHARMS: Charm[] = [
   {
     id: "eb-3",
     name: "Blossom Vase Floral Charm",
-    price: 690,
+    handle: 'blossom-vase-charm',
+    price: 690.00,
     category: "Eternal Bond",
     image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Label = Blossom Vase Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Label = Blossom Vase Charm.png",
@@ -478,7 +503,8 @@ export const CHARMS: Charm[] = [
   {
     id: "eb-4",
     name: "Blue Blossom Heart Charm",
-    price: 690,
+    handle: 'blue-blossom-heart-charm',
+    price: 490.00,
     category: "Eternal Bond",
     image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Label = Blue Blossom Heart Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Label = Blue Blossom Heart Charm.png",
@@ -496,7 +522,8 @@ export const CHARMS: Charm[] = [
   {
     id: "eb-5",
     name: "Blue Meadow Bloom Charm",
-    price: 690,
+    handle: 'blue-meadow-bloom-charm',
+    price: 690.00,
     category: "Eternal Bond",
     image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Label = Blue Meadow Bloom Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Label = Blue Meadow Bloom Charm.png",
@@ -514,7 +541,8 @@ export const CHARMS: Charm[] = [
   {
     id: "eb-6",
     name: "Blue Rose Floral Charm",
-    price: 840,
+    handle: 'blue-rose-charm',
+    price: 690.00,
     category: "Eternal Bond",
     image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Label = Blue Rose Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Label = Blue Rose Charm.png",
@@ -532,7 +560,8 @@ export const CHARMS: Charm[] = [
   {
     id: "eb-7",
     name: "DescriBlue Heart Charm",
-    price: 790,
+    handle: 'describlue-heart-charm',
+    price: 490.00,
     category: "Eternal Bond",
     image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Label = DescriBlue Heart Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Label = DescriBlue Heart Charm.png",
@@ -550,7 +579,8 @@ export const CHARMS: Charm[] = [
   {
     id: "eb-8",
     name: "Eternal Rose Oval Charm",
-    price: 690,
+    handle: 'eternal-rose-oval-charm',
+    price: 690.00,
     category: "Eternal Bond",
     image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Label = Eternal Rose Oval Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Label = Eternal Rose Oval Charm.png",
@@ -568,7 +598,8 @@ export const CHARMS: Charm[] = [
   {
     id: "eb-9",
     name: "Folk Bloom Floral Charm",
-    price: 740,
+    handle: 'folk-bloom-charm',
+    price: 690.00,
     category: "Eternal Bond",
     image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Label = Folk Bloom Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Label = Folk Bloom Charm.png",
@@ -642,7 +673,8 @@ export const CHARMS: Charm[] = [
   {
     id: "eb-14",
     name: "Red Heart Simple Charm",
-    price: 840,
+    handle: 'red-heart-charm',
+    price: 490.00,
     category: "Eternal Bond",
     image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Label = Red Heart Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Label = Red Heart Charm.png",
@@ -660,7 +692,8 @@ export const CHARMS: Charm[] = [
   {
     id: "eb-15",
     name: "Rosette Bloom Floral Charm",
-    price: 690,
+    handle: 'rosette-bloom-charm',
+    price: 690.00,
     category: "Eternal Bond",
     image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Label = Rosette Bloom Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Label = Rosette Bloom Charm.png",
@@ -678,7 +711,8 @@ export const CHARMS: Charm[] = [
   {
     id: "eb-16",
     name: "Scarlet Tulip Flower Charm",
-    price: 740,
+    handle: 'scarlet-tulip-charm',
+    price: 690.00,
     category: "Eternal Bond",
     image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Label = Scarlet Tulip Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Label = Scarlet Tulip Charm.png",
@@ -714,7 +748,8 @@ export const CHARMS: Charm[] = [
   {
     id: "eb-18",
     name: "Tulip Dawn Floral Charm",
-    price: 890,
+    handle: 'tulip-dawn-charm',
+    price: 690.00,
     category: "Eternal Bond",
     image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Label = Tulip Dawn Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Label = Tulip Dawn Charm.png",
@@ -732,7 +767,8 @@ export const CHARMS: Charm[] = [
   {
     id: "eb-19",
     name: "Twin Blossom Flower Charm",
-    price: 790,
+    handle: 'twin-blossom-charm',
+    price: 690.00,
     category: "Eternal Bond",
     image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Label = Twin Blossom Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Label = Twin Blossom Charm.png",
@@ -752,7 +788,8 @@ export const CHARMS: Charm[] = [
   {
     id: "go-1",
     name: "Golden Ping Pong Passion Charm",
-    price: 790,
+    handle: 'golden-ping-pong-passion-charm',
+    price: 590.00,
     category: "Game On",
     image: STORAGE_BASE + "/charms-cards/Game On/Label = Golden Ping Pong Passion.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Game On/Label = Golden Ping Pong Passion.png",
@@ -806,7 +843,8 @@ export const CHARMS: Charm[] = [
   {
     id: "go-4",
     name: "Silver Tennis Spark Charm",
-    price: 890,
+    handle: 'silver-tennis-spark-charm',
+    price: 590.00,
     category: "Game On",
     image: STORAGE_BASE + "/charms-cards/Game On/Label = Silver Tennis Spark Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Game On/Label = Silver Tennis Spark Charm.png",
@@ -843,7 +881,8 @@ export const CHARMS: Charm[] = [
   {
     id: "go-6",
     name: "Tennis Sparkle Racket Charm",
-    price: 890,
+    handle: 'tennis-sparkle-racket-charm',
+    price: 590.00,
     category: "Game On",
     image: STORAGE_BASE + "/charms-cards/Game On/Label = Tennis Sparkle Racket Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Game On/Label = Tennis Sparkle Racket Charm.png",
@@ -863,7 +902,8 @@ export const CHARMS: Charm[] = [
   {
     id: "gu-1",
     name: "Aqua Vision Eye Charm",
-    price: 790,
+    handle: 'eye-charm',
+    price: 390.00,
     category: "Guardian",
     image: STORAGE_BASE + "/charms-cards/Guardian/Label = Aqua Vision Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Guardian/Label = Aqua Vision Charm.png",
@@ -881,7 +921,8 @@ export const CHARMS: Charm[] = [
   {
     id: "gu-2",
     name: "Blush Teardrop Eye Charm",
-    price: 790,
+    handle: 'blush-teardrop-eye-charm',
+    price: 290.00,
     category: "Guardian",
     image: STORAGE_BASE + "/charms-cards/Guardian/Label = Blush Teardrop Eye Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Guardian/Label = Blush Teardrop Eye Charm.png",
@@ -991,7 +1032,8 @@ export const CHARMS: Charm[] = [
     id: "gu-8",
     isBestSeller: true,
     name: "Guardian Heart Eye Charm",
-    price: 840,
+    handle: 'guardian-heart-eye-charm',
+    price: 490.00,
     category: "Guardian",
     image: STORAGE_BASE + "/charms-cards/Guardian/Label = Guardian Heart Eye Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Guardian/Label = Guardian Heart Eye Charm.png",
@@ -1009,7 +1051,8 @@ export const CHARMS: Charm[] = [
   {
     id: "gu-9",
     name: "Luminous Eye Charm",
-    price: 840,
+    handle: 'luminous-eye-charm',
+    price: 490.00,
     category: "Guardian",
     image: STORAGE_BASE + "/charms-cards/Guardian/Label = Luminous Eye Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Guardian/Label = Luminous Eye Charm.png",
@@ -1100,7 +1143,8 @@ export const CHARMS: Charm[] = [
   {
     id: "gu-14",
     name: "Radiant Eye Charm - Large",
-    price: 740,
+    handle: 'radiant-eye-charm',
+    price: 490.00,
     category: "Guardian",
     image: STORAGE_BASE + "/charms-cards/Guardian/Label = Radiant Eye Charm - 3-1.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Guardian/Label = Radiant Eye Charm.png",
@@ -1118,7 +1162,8 @@ export const CHARMS: Charm[] = [
   {
     id: "gu-15",
     name: "Radiant Eye Charm - Medium",
-    price: 740,
+    handle: 'radiant-eye-charm',
+    price: 490.00,
     category: "Guardian",
     image: STORAGE_BASE + "/charms-cards/Guardian/Label = Radiant Eye Charm - 3.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Guardian/Label = Radiant Eye Charm.png",
@@ -1136,7 +1181,8 @@ export const CHARMS: Charm[] = [
   {
     id: "gu-16",
     name: "Radiant Eye Charm - Small",
-    price: 690,
+    handle: 'radiant-eye-charm',
+    price: 490.00,
     category: "Guardian",
     image: STORAGE_BASE + "/charms-cards/Guardian/Label = Radiant Eye Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Guardian/Label = Radiant Eye Charm.png",
@@ -1172,7 +1218,8 @@ export const CHARMS: Charm[] = [
   {
     id: "gu-18",
     name: "Solara Sun Eye Charm",
-    price: 740,
+    handle: 'eye-charm',
+    price: 390.00,
     category: "Guardian",
     image: STORAGE_BASE + "/charms-cards/Guardian/Label = Solara Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Guardian/Label = Solara Charm.png",
@@ -1211,7 +1258,8 @@ export const CHARMS: Charm[] = [
   {
     id: "ls-1",
     name: "Blooming Heart Floral Charm",
-    price: 790,
+    handle: 'blooming-heart-charm',
+    price: 690.00,
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Blooming Heart Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Blooming Heart Charm.png",
@@ -1229,7 +1277,8 @@ export const CHARMS: Charm[] = [
   {
     id: "ls-2",
     name: "Blush Heart Simple Charm",
-    price: 690,
+    handle: 'blush-heart-charm',
+    price: 290.00,
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Blush Heart Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Blush Heart Charm.png",
@@ -1247,7 +1296,8 @@ export const CHARMS: Charm[] = [
   {
     id: "ls-3",
     name: "Crystal Green Candy Charm",
-    price: 840,
+    handle: 'crystal-green-candy',
+    price: 690.00,
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Crystal Green candy.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Crystal Green candy.png",
@@ -1283,7 +1333,8 @@ export const CHARMS: Charm[] = [
   {
     id: "ls-5",
     name: "Crystal Pink Candy Charm",
-    price: 840,
+    handle: 'crystal-pink-candy',
+    price: 690.00,
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Crystal Pink candy.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Crystal Pink candy.png",
@@ -1301,7 +1352,8 @@ export const CHARMS: Charm[] = [
   {
     id: "ls-6",
     name: "Daisy Heart Floral Charm",
-    price: 740,
+    handle: 'daisy-heart-charm',
+    price: 590.00,
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Daisy Heart Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Daisy Heart Charm.png",
@@ -1375,7 +1427,8 @@ export const CHARMS: Charm[] = [
     id: "ls-10",
     isBestSeller: true,
     name: "Heart of Vision Charm",
-    price: 690,
+    handle: 'heart-of-vision-charm',
+    price: 490.00,
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Heart of Vision Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Heart of Vision Charm.png",
@@ -1410,7 +1463,8 @@ export const CHARMS: Charm[] = [
   {
     id: "ls-12",
     name: "Peach Blush Heart Charm",
-    price: 840,
+    handle: 'peach-blush-heart-charm',
+    price: 290.00,
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Peach Blush Heart Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Peach Blush Heart Charm.png",
@@ -1427,7 +1481,8 @@ export const CHARMS: Charm[] = [
   {
     id: "ls-13",
     name: "Pure Heart Simple Charm",
-    price: 790,
+    handle: 'pure-heart-charm',
+    price: 290.00,
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Pure Heart Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Pure Heart Charm.png",
@@ -2130,7 +2185,8 @@ export const CHARMS: Charm[] = [
   {
     id: "sp-11",
     name: "Golden Croissant Charm",
-    price: 790,
+    handle: 'golden-croissant-charm',
+    price: 490.00,
     category: "Sugar Pop",
     image: STORAGE_BASE + "/charms-cards/Sugarpop/Label = Golden Croissant Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Sugar Pop/Label = Golden Croissant Charm.png",
@@ -2221,7 +2277,8 @@ export const CHARMS: Charm[] = [
     id: "sp-16",
     isBestSeller: true,
     name: "Mystic Mushroom Charm",
-    price: 840,
+    handle: 'mystic-mushroom-charm',
+    price: 490.00,
     category: "Sugar Pop",
     image: STORAGE_BASE + "/charms-cards/Sugarpop/Label = Mystic Mushroom Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Sugar Pop/Label = Mystic Mushroom Charm.png",
@@ -2329,7 +2386,8 @@ export const CHARMS: Charm[] = [
   {
     id: "sp-22",
     name: "Strawberry Shortcake Charm",
-    price: 740,
+    handle: 'strawberry-shortcake-charm',
+    price: 390.00,
     category: "Sugar Pop",
     image: STORAGE_BASE + "/charms-cards/Sugarpop/Label = Strawberry Shortcake Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Sugar Pop/Label = Strawberry Shortcake Charm.png",
@@ -2405,7 +2463,8 @@ export const CHARMS: Charm[] = [
   {
     id: "wf-3",
     name: "Blue Rose Oval Charm",
-    price: 840,
+    handle: 'blue-rose-oval-charm',
+    price: 390.00,
     category: "Travel & Wild",
     image: STORAGE_BASE + "/charms-cards/Wild & Free/Label = Blue Rose Oval Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Wild & Free/Label = Blue Rose Oval Charm.png",
@@ -2567,7 +2626,8 @@ export const CHARMS: Charm[] = [
   {
     id: "wf-12",
     name: "Lotus Bloom Flower Charm",
-    price: 740,
+    handle: 'lotus-bloom-charm',
+    price: 390.00,
     category: "Travel & Wild",
     image: STORAGE_BASE + "/charms-cards/Wild & Free/Label = Lotus Bloom Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Wild & Free/Label = Lotus Bloom Charm.png",
@@ -2585,7 +2645,8 @@ export const CHARMS: Charm[] = [
   {
     id: "wf-13",
     name: "Lucky Horseshoe Charm",
-    price: 690,
+    handle: 'lucky-horseshoe-charm',
+    price: 390.00,
     category: "Travel & Wild",
     image: STORAGE_BASE + "/charms-cards/Wild & Free/Label = Lucky Horseshoe Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Wild & Free/Label = Lucky Horseshoe Charm.png",
@@ -2767,7 +2828,8 @@ export const CHARMS: Charm[] = [
     id: "wf-23",
     isBestSeller: true,
     name: "Wanderlust Trio Travel Charm",
-    price: 890,
+    handle: 'wanderlust-trio',
+    price: 690.00,
     category: "Travel & Wild",
     image: STORAGE_BASE + "/charms-cards/Wild & Free/Label = Wanderlust Trio.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Wild & Free/Label = Wanderlust Trio.png",

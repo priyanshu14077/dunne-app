@@ -2,8 +2,8 @@
 
 @font-face {
   font-family: "Hillstown Sans Aged";
-  src: url("/fonts/HillstownSansAged.woff2") format("woff2"),
-    url("/fonts/HillstownSansAged.woff") format("woff");
+  src: url("fonts/HillstownSansAged.woff2") format("woff2"),
+    url("fonts/HillstownSansAged.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -11,7 +11,7 @@
 
 @font-face {
   font-family: "Neutra Text";
-  src: url("/fonts/NeutraText-Book.otf") format("opentype");
+  src: url("fonts/NeutraText-Book.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -19,7 +19,7 @@
 
 @font-face {
   font-family: "Neutra Text";
-  src: url("/fonts/NeutraText-Bold.otf") format("opentype");
+  src: url("fonts/NeutraText-Bold.otf") format("opentype");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -27,7 +27,7 @@
 
 @font-face {
   font-family: "Manrope";
-  src: url("/fonts/Manrope/static/Manrope-Regular.ttf") format("truetype");
+  src: url("fonts/Manrope/static/Manrope-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -35,7 +35,7 @@
 
 @font-face {
   font-family: "Manrope";
-  src: url("/fonts/Manrope/static/Manrope-Bold.ttf") format("truetype");
+  src: url("fonts/Manrope/static/Manrope-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -183,6 +183,7 @@ body {
     animation: modalSlideUp 300ms var(--ease-out-cubic);
   }
 }
+
 /* Responsive Canvas Aspect Ratios */
 @layer utilities {
   .canvas-aspect {

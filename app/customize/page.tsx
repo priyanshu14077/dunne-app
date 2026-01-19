@@ -11,7 +11,6 @@ import InfoModal from "@/components/InfoModal";
 import ShareModal from "@/components/ShareModal";
 import CartBar from "@/components/CartBar";
 import DeleteConfirmationDialog from "@/components/DeleteConfirmationDialog";
-import PreviewModal from "@/components/preview/PreviewModal";
 import { WalkthroughProvider, useWalkthrough } from "@/context/WalkthroughContext";
 import WalkthroughOverlay from "@/components/WalkthroughOverlay";
 import { BASE_PRODUCTS, CHARMS, Product, Charm } from "@/lib/mock-data";
@@ -19,6 +18,8 @@ import { STORAGE_BASE } from "@/lib/constants";
 import { PRODUCT_ANCHORS } from "@/lib/anchor";
 import { CONSTRAINTS } from "@/lib/design-tokens";
 import { PlacedCharmInstance } from "@/lib/types";
+import { addToShopifyCart, ShopifyCartItem } from "@/lib/shopify";
+import { Check, Loader2, ShoppingCart } from "lucide-react";
 
 
 export default function Home() {
@@ -69,7 +70,9 @@ function HomeContent() {
     itemName: string;
   }>({ isOpen: false, itemId: '', itemName: '' });
   const [showToast, setShowToast] = useState(false);
-  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
+  const [isAdding, setIsAdding] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
   const triggerToast = () => {
     setShowToast(true);
@@ -334,7 +337,59 @@ function HomeContent() {
       }
       setCurrentStep('space');
     } else if (currentStep === 'space') {
-      setIsPreviewModalOpen(true);
+      handleAddToCart();
+    }
+  };
+
+  const handleAddToCart = async () => {
+    if (!selectedBase) return;
+    
+    setIsAdding(true);
+    setCheckoutError(null);
+
+    const designId = `design-${Date.now()}`;
+    const items: ShopifyCartItem[] = [];
+
+    // Add Base Product
+    if (selectedBase.handle) {
+      items.push({
+        handle: selectedBase.handle,
+        quantity: 1,
+        properties: {
+          '_Design ID': designId,
+          'Type': 'Base Product',
+          'Custom Note': note,
+          'Spacing Mode': spacingMode
+        }
+      });
+    }
+
+    // Add Charms
+    placedCharms.forEach((pc) => {
+      if (pc.charm.handle) {
+        items.push({
+          handle: pc.charm.handle,
+          quantity: 1,
+          properties: {
+            '_Design ID': designId,
+            'Type': 'Charm',
+            'Position': (pc.anchorIndex + 1).toString(),
+            'Linked To': selectedBase.name
+          }
+        });
+      }
+    });
+
+    const result = await addToShopifyCart(items);
+
+    if (result.success) {
+      setIsSuccess(true);
+      setTimeout(() => {
+        window.location.href = '/cart';
+      }, 1500);
+    } else {
+      setCheckoutError(result.message || "Failed to add items to cart.");
+      setIsAdding(false);
     }
   };
 
@@ -579,12 +634,42 @@ function HomeContent() {
         onConfirm={confirmCharmRemoval}
         itemName={deleteConfirmation.itemName}
       />
-      <PreviewModal 
-        isOpen={isPreviewModalOpen} 
-        onClose={() => setIsPreviewModalOpen(false)}
-        placedCharms={placedCharms}
-        initialBaseProduct={selectedBase}
-      />
+      {/* Checkout Loading/Success Overlay */}
+      {(isAdding || isSuccess) && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in p-4">
+          <div className="bg-[#F4EFE6] w-full max-w-sm p-12 rounded-2xl shadow-2xl flex flex-col items-center justify-center text-center animate-scale-in">
+            {isSuccess ? (
+              <>
+                <div className="w-20 h-20 bg-[#1F4B30] rounded-full flex items-center justify-center mb-6">
+                  <Check className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-[#1F4B30] mb-2">Added to Cart!</h3>
+                <p className="text-black/60">Redirecting to checkout...</p>
+              </>
+            ) : (
+              <>
+                <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm">
+                  <Loader2 className="w-10 h-10 text-[#1F4B30] animate-spin" />
+                </div>
+                <h3 className="text-2xl font-bold text-[#1F4B30] mb-2">Processing...</h3>
+                <p className="text-black/60">Linking your custom design with your cart.</p>
+              </>
+            )}
+            
+            {checkoutError && (
+              <div className="mt-4 p-3 bg-red-50 text-red-600 text-sm rounded-lg border border-red-100">
+                {checkoutError}
+                <button 
+                  onClick={() => setIsAdding(false)} 
+                  className="block w-full mt-2 font-bold underline"
+                >
+                  Try Again
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
       
       {/* Walkthrough Overlay */}
       <WalkthroughOverlay />
