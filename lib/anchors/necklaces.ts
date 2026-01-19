@@ -57,16 +57,16 @@ export const CHAIN_ANCHORS: Record<string, ChainConfig> = {
         "label": "p6"
       },
       {
-        "x": 77.5,
-        "y": 58.5,
-        "rotation": -58.0,
+        "x": 80.0,
+        "y": 56.0,
+        "rotation": -62.0,
         "scale": 0.95,
         "label": "p7"
       },
       {
-        "x": 25.5,
-        "y": 58.5,
-        "rotation": 58.0,
+        "x": 23.0,
+        "y": 56.0,
+        "rotation": 62.0,
         "scale": 0.95,
         "label": "p8"
       }
@@ -122,16 +122,16 @@ export const CHAIN_ANCHORS: Record<string, ChainConfig> = {
         "label": "p6"
       },
       {
-        "x": 75.5,
-        "y": 54.5,
-        "rotation": -60.0,
+        "x": 78.0,
+        "y": 52.0,
+        "rotation": -64.0,
         "scale": 0.95,
         "label": "p7"
       },
       {
-        "x": 27.5,
-        "y": 54.5,
-        "rotation": 60.0,
+        "x": 25.0,
+        "y": 52.0,
+        "rotation": 64.0,
         "scale": 0.95,
         "label": "p8"
       }
@@ -187,16 +187,16 @@ export const CHAIN_ANCHORS: Record<string, ChainConfig> = {
         "label": "p6"
       },
       {
-        "x": 77.0,
-        "y": 58.0,
-        "rotation": -59.0,
+        "x": 79.5,
+        "y": 55.5,
+        "rotation": -63.0,
         "scale": 0.85,
         "label": "p7"
       },
       {
-        "x": 26.0,
-        "y": 58.0,
-        "rotation": 59.0,
+        "x": 23.5,
+        "y": 55.5,
+        "rotation": 63.0,
         "scale": 0.85,
         "label": "p8"
       }
@@ -263,16 +263,16 @@ export const CHAIN_ANCHORS: Record<string, ChainConfig> = {
         "label": "p6"
       },
       {
-        "x": 77.5,
-        "y": 58.5,
-        "rotation": -58.0,
+        "x": 80.0,
+        "y": 56.0,
+        "rotation": -62.0,
         "scale": 0.95,
         "label": "p7"
       },
       {
-        "x": 25.5,
-        "y": 58.5,
-        "rotation": 58.0,
+        "x": 23.0,
+        "y": 56.0,
+        "rotation": 62.0,
         "scale": 0.95,
         "label": "p8"
       }
@@ -328,16 +328,16 @@ export const CHAIN_ANCHORS: Record<string, ChainConfig> = {
         "label": "p6"
       },
       {
-        "x": 75.5,
-        "y": 54.5,
-        "rotation": -60.0,
+        "x": 78.0,
+        "y": 52.0,
+        "rotation": -64.0,
         "scale": 0.95,
         "label": "p7"
       },
       {
-        "x": 27.5,
-        "y": 54.5,
-        "rotation": 60.0,
+        "x": 25.0,
+        "y": 52.0,
+        "rotation": 64.0,
         "scale": 0.95,
         "label": "p8"
       }
@@ -393,16 +393,16 @@ export const CHAIN_ANCHORS: Record<string, ChainConfig> = {
         "label": "p6"
       },
       {
-        "x": 77.0,
-        "y": 58.0,
-        "rotation": -59.0,
+        "x": 79.5,
+        "y": 55.5,
+        "rotation": -63.0,
         "scale": 0.85,
         "label": "p7"
       },
       {
-        "x": 26.0,
-        "y": 58.0,
-        "rotation": 59.0,
+        "x": 23.5,
+        "y": 55.5,
+        "rotation": 63.0,
         "scale": 0.85,
         "label": "p8"
       }
@@ -469,16 +469,16 @@ export const CHAIN_ANCHORS: Record<string, ChainConfig> = {
         "label": "p6"
       },
       {
-        "x": 77.5,
-        "y": 58.5,
-        "rotation": -58.0,
+        "x": 80.0,
+        "y": 56.0,
+        "rotation": -62.0,
         "scale": 0.95,
         "label": "p7"
       },
       {
-        "x": 25.5,
-        "y": 58.5,
-        "rotation": 58.0,
+        "x": 23.0,
+        "y": 56.0,
+        "rotation": 62.0,
         "scale": 0.95,
         "label": "p8"
       }
@@ -534,16 +534,16 @@ export const CHAIN_ANCHORS: Record<string, ChainConfig> = {
         "label": "p6"
       },
       {
-        "x": 75.5,
-        "y": 54.5,
-        "rotation": -60.0,
+        "x": 78.0,
+        "y": 52.0,
+        "rotation": -64.0,
         "scale": 0.95,
         "label": "p7"
       },
       {
-        "x": 27.5,
-        "y": 54.5,
-        "rotation": 60.0,
+        "x": 25.0,
+        "y": 52.0,
+        "rotation": 64.0,
         "scale": 0.95,
         "label": "p8"
       }
@@ -599,16 +599,16 @@ export const CHAIN_ANCHORS: Record<string, ChainConfig> = {
         "label": "p6"
       },
       {
-        "x": 77.0,
-        "y": 58.0,
-        "rotation": -59.0,
+        "x": 79.5,
+        "y": 55.5,
+        "rotation": -63.0,
         "scale": 0.85,
         "label": "p7"
       },
       {
-        "x": 26.0,
-        "y": 58.0,
-        "rotation": 59.0,
+        "x": 23.5,
+        "y": 55.5,
+        "rotation": 63.0,
         "scale": 0.85,
         "label": "p8"
       }

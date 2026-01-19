@@ -213,13 +213,13 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                                 ${isBeingDragged ? 'opacity-0' : 'opacity-100'}
                                                 ${(currentStep === 'space' || currentStep === 'base' || forceDragEnabled) ? 'cursor-grab active:cursor-grabbing' : ''}
                                                 ${itemToShow?.overlayImage 
-                                                    ? 'w-[20%] h-[20%] md:w-[22%] md:h-[22%] lg:w-[25%] lg:h-[25%]' 
-                                                    : 'w-[12%] h-[12%] md:w-[14%] md:h-[14%] lg:w-[15%] lg:h-[15%]'}`}
+                                                    ? 'w-[25%] h-[25%] md:w-[30%] md:h-[30%] lg:w-[32%] lg:h-[32%]' 
+                                                    : 'w-[18%] h-[18%] md:w-[20%] md:h-[20%] lg:w-[22%] lg:h-[22%]'}`}
                                             style={{
                                                 left: `${anchor.x}%`,
                                                 top: `${anchor.y}%`,
                                                 transformOrigin: "top center",
-                                                transform: `translateX(-50%) translateY(0%) rotate(${anchor.rotation || 0}deg) scale(${(anchor.scale || 1) * 1.2})`,
+                                                transform: `translateX(-50%) translateY(0%) rotate(${anchor.rotation || 0}deg) scale(${anchor.scale || 1})`,
                                             }}
                                         >
                                             {itemToShow && (
@@ -260,6 +260,7 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                                     src={pc.charm.overlayImage || pc.charm.previewImage || pc.charm.image}
                                                     alt="Dragging"
                                                     fill
+                                                    sizes="(max-width: 768px) 20vw, 15vw"
                                                     className="object-contain"
                                                 />
                                             );

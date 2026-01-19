@@ -38,6 +38,7 @@ export default function SummaryOverlay({ charms, onViewAll }: SummaryOverlayProp
                                         <img 
                                             src={pc.charm.image} 
                                             alt="" 
+                                            crossOrigin="anonymous"
                                             className="w-4 h-4 object-contain" 
                                         />
                                     </div>

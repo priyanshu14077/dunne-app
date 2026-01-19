@@ -12,7 +12,6 @@ SLUG_MAP = {
     'persona': 'Persona',
     'sugarpop': 'Sugar Pop',
     'wildfree': 'Wild & Free',
-    'harrypotter': 'Harry Potter' # just in case
 }
 
 def rename_charms():

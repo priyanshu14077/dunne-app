@@ -55,7 +55,7 @@ function HomeContent() {
   const [note, setNote] = useState("");
   
   // Category state
-  const [activeCharmCategory, setActiveCharmCategory] = useState("Eternal Bloom");
+  const [activeCharmCategory, setActiveCharmCategory] = useState("Eternal Bond");
   const [activeBaseCategory, setActiveBaseCategory] = useState("Bracelets");
   
   // Modal state
@@ -462,8 +462,8 @@ function HomeContent() {
 
         {/* Centered Price Section */}
         <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center text-white text-center">
-          <span className="text-[16px] opacity-90 mb-0.5" style={{ fontFamily: 'Neutra Text, sans-serif' }}>Cart Value</span>
-          <span className="text-[18px] font-bold leading-none" style={{ fontFamily: 'Manrope, sans-serif' }}>₹{totalPrice.toFixed(0)}</span>
+          <span className="text-[12px] opacity-90 mb-0.5" style={{ fontFamily: 'Neutra Text, sans-serif' }}>Cart Value</span>
+          <span className="text-[14px] font-bold leading-none" style={{ fontFamily: 'Manrope, sans-serif' }}>₹{totalPrice.toFixed(0)}</span>
         </div>
 
         {/* Forward Arrow (Right-aligned with 30px padding) */}

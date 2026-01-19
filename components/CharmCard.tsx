@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Plus, Minus, Trash2 } from "lucide-react";
 import { Product, Charm } from "../lib/mock-data";
 
@@ -89,17 +88,41 @@ export default function CharmCard({
                 ${isPreview ? 'border-black border-[0.5px] shadow-sm' : 'border-transparent hover:border-gray-200'}
             `}
         >
+            {/* Bestseller Ribbon */}
+            {item.isBestSeller && (
+                <div 
+                    className="absolute top-0 left-0 z-10 overflow-hidden w-[65px] h-[65px] pointer-events-none"
+                    role="img"
+                    aria-label="Bestseller product"
+                >
+                    <div 
+                        className="absolute top-[12px] left-[-28px] rotate-[-45deg] bg-gradient-to-r from-[#DE3C27] to-[#C42E1F] text-white text-[7px] lg:text-[8px] font-bold py-[3px] px-7 shadow-lg animate-fade-in"
+                        style={{ 
+                            fontFamily: 'Manrope, sans-serif',
+                            letterSpacing: '0.3px',
+                            textTransform: 'uppercase'
+                        }}
+                    >
+                        Bestseller
+                    </div>
+                </div>
+            )}
             {/* Image Container */}
             <div className="flex items-center justify-center w-full h-[70px] lg:h-[85px] pt-1">
                 <div className="w-[67px] h-[58px] lg:w-[79px] lg:h-[68px] flex items-center justify-center relative">
-                    <Image 
+
+                    <img 
                         src={item.image} 
                         alt={rawName}
-                        fill
-                        className="object-contain drop-shadow-sm transition-transform duration-300 group-hover:scale-110"
+                        crossOrigin="anonymous"
+                        className="w-full h-full object-contain drop-shadow-sm transition-transform duration-300 group-hover:scale-110"
                         loading="lazy"
-                        sizes="(max-width: 1024px) 67px, 79px"
-                        quality={85}
+                        onLoad={() => {
+                            // Image loaded successfully
+                        }}
+                        onError={(e) => {
+                            // Fail silently or handle accordingly
+                        }}
                     />
                 </div>
             </div>

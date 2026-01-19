@@ -12,7 +12,26 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/storage/v1/object/public/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'd1y585exbg6kr2.cloudfront.net',
+        port: '',
+        pathname: '/**',
+      },
     ],
+  },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "frame-ancestors 'self' https://*.myshopify.com https://dunne.co.in http://dunne.co.in;",
+          },
+        ],
+      },
+    ];
   },
 };
 

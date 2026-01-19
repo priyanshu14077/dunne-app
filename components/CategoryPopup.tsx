@@ -10,11 +10,11 @@ interface CategoryPopupProps {
 export default function CategoryPopup({ categories, activeCategory, onSelect, onClose }: CategoryPopupProps) {
     // Mock counts for design fidelity
     const categoryCounts: Record<string, number> = {
-        'Eternal Bloom': 19,
+        'Eternal Bond': 19,
         'Game On': 14,
         'Lovestruck': 17,
         'Guardian': 18,
-        'Wild & Free': 27,
+        'Travel & Wild': 27,
         'Sugar Pop': 23,
         'Persona': 38
     };

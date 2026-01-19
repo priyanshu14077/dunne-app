@@ -11,9 +11,9 @@ interface TabNavigationProps {
 
 export default function TabNavigation({ currentStep, onStepChange, onInfoClick, onShareClick }: TabNavigationProps) {
     const steps = [
-        { id: 'charms', label: 'Charms', defaultIcon: `${STORAGE_BASE}/Icons/Charm.svg`, activeIcon: `${STORAGE_BASE}/Icons/Charm.svg` },
-        { id: 'base', label: 'Base', defaultIcon: `${STORAGE_BASE}/Icons/Base.svg`, activeIcon: `${STORAGE_BASE}/Icons/Base.svg` },
-        { id: 'space', label: 'Space', defaultIcon: `${STORAGE_BASE}/Icons/Space.svg`, activeIcon: `${STORAGE_BASE}/Icons/Space.svg` },
+        { id: 'charms', label: 'Charms', defaultIcon: `${STORAGE_BASE}/Icons /Charm.svg`, activeIcon: `${STORAGE_BASE}/Icons /Charm.svg` },
+        { id: 'base', label: 'Base', defaultIcon: `${STORAGE_BASE}/Icons /Base.svg`, activeIcon: `${STORAGE_BASE}/Icons /Base.svg` },
+        { id: 'space', label: 'Space', defaultIcon: `${STORAGE_BASE}/Icons /Space.svg`, activeIcon: `${STORAGE_BASE}/Icons /Space.svg` },
     ] as const;
 
     const order = ['charms', 'base', 'space'];
