@@ -20,7 +20,7 @@ import { CONSTRAINTS } from "@/lib/design-tokens";
 import { PlacedCharmInstance } from "@/lib/types";
 import { addToShopifyCart, ShopifyCartItem } from "@/lib/shopify";
 import { Check, Loader2, ShoppingCart } from "lucide-react";
-import { toPng } from "html-to-image";
+import { toPng, toBlob } from "html-to-image";
 
 
 export default function Home() {
@@ -356,23 +356,27 @@ function HomeContent() {
     try {
       const element = document.getElementById("jewelry-design-canvas");
       if (element) {
-        // Capture as PNG
-        console.log("Capturing design canvas...");
-        const dataUrl = await toPng(element, { 
+        // Capture as Blob directly
+        console.log("Capturing design canvas as blob...");
+        const blob = await toBlob(element, { 
           backgroundColor: '#ffffff', 
-          quality: 0.95,
           cacheBust: true, // Crucial for CORS
           skipFonts: true, // Speeds up capture
           pixelRatio: 2    // Better quality
         });
-        console.log("Canvas captured successfully, length:", dataUrl.length);
-        const blob = await (await fetch(dataUrl)).blob();
+
+        if (!blob) {
+          throw new Error("Canvas capture returned null blob. This usually indicates a CORS issue with images on the canvas.");
+        }
+
+        console.log("Canvas captured successfully, blob size:", blob.size);
         
         // Upload to our S3 API
         const formData = new FormData();
         formData.append("file", blob, `${designId}.png`);
         formData.append("designId", designId);
 
+        console.log("Sending upload request to /api/upload-preview...");
         const uploadRes = await fetch("/api/upload-preview", {
           method: "POST",
           body: formData,
@@ -385,7 +389,7 @@ function HomeContent() {
         } else {
           const errorData = await uploadRes.json();
           console.error("Upload API failed:", errorData);
-          // Optional: setCheckoutError(`Upload failed: ${errorData.details || "Unknown error"}`);
+          setCheckoutError(`Design preview upload failed: ${errorData.error || "Unknown error"}. Proceeding with order anyway.`);
         }
       } else {
         console.error("Canvas element #jewelry-design-canvas not found!");

@@ -22,6 +22,9 @@ export async function POST(req: NextRequest) {
     const buffer = Buffer.from(await file.arrayBuffer());
     const fileName = `previewer/${designId}.png`;
 
+    console.log(`Processing file: ${file.name}, size: ${file.size} bytes, type: ${file.type}`);
+    console.log(`Target S3 Key: ${fileName}`);
+
     const uploadParams = {
       Bucket: BUCKET_NAME,
       Key: fileName,
