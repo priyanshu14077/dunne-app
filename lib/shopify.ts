@@ -3,71 +3,61 @@
  */
 
 export interface ShopifyCartItem {
+  variantId?: number;
   handle: string;
   quantity: number;
   properties?: Record<string, string>;
 }
 
-/**
- * Fetches product data from Shopify using the product handle.
- * This works on most Shopify themes via /{handle}.js
- */
-async function getVariantIdFromHandle(handle: string): Promise<number | null> {
-  try {
-    const response = await fetch(`/products/${handle}.js`);
-    if (!response.ok) {
-      console.error(`Failed to fetch product data for handle: ${handle}`);
-      return null;
-    }
-    const product = await response.json();
-    return product.variants?.[0]?.id || null;
-  } catch (error) {
-    console.error(`Error fetching variant ID for ${handle}:`, error);
-    return null;
-  }
-}
+const SHOPIFY_STORE_URL = 'https://dunne.co.in';
 
 /**
- * Adds multiple items to the Shopify cart.
- * Uses the Shopify AJAX API /cart/add.js
+ * Adds multiple items to the Shopify cart using a Permalink.
+ * This is used for cross-domain cart additions.
  */
-export async function addToShopifyCart(items: ShopifyCartItem[]): Promise<{ success: boolean; message?: string }> {
+export async function addToShopifyCart(items: ShopifyCartItem[]): Promise<{ success: boolean; message?: string; url?: string }> {
   try {
-    const cartItems = [];
-
-    for (const item of items) {
-      const variantId = await getVariantIdFromHandle(item.handle);
-      if (variantId) {
-        cartItems.push({
-          id: variantId,
-          quantity: item.quantity,
-          properties: item.properties
-        });
-      } else {
-        console.warn(`Could not find variant ID for handle: ${item.handle}`);
-      }
+    if (items.length === 0) {
+      return { success: false, message: "No items to add." };
     }
 
-    if (cartItems.length === 0) {
-      return { success: false, message: "No valid variant IDs found." };
+    // Filter items with variant IDs
+    const validItems = items.filter(item => item.variantId);
+    
+    if (validItems.length === 0) {
+      return { success: false, message: "No valid variant IDs found for the selected items." };
     }
 
-    const response = await fetch('/cart/add.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ items: cartItems })
-    });
+    // Construct the permalink path: /cart/variant_id:quantity,variant_id:quantity
+    const cartPath = validItems.map(item => `${item.variantId}:${item.quantity}`).join(',');
+    
+    // Construct the full URL
+    let permalinkUrl = `${SHOPIFY_STORE_URL}/cart/${cartPath}`;
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      return { success: false, message: errorData.description || "Failed to add to cart." };
+    // Add properties as query parameters
+    // Shopify permalinks support attributes/properties via query params
+    // Note: This applies properties to the cart/order or items depending on Shopify version
+    // A reliable way is to add them as attributes
+    const params = new URLSearchParams();
+    
+    // Add global attributes (Design ID, etc.) from the first item if available
+    if (validItems[0].properties) {
+      Object.entries(validItems[0].properties).forEach(([key, value]) => {
+        params.append(`attributes[${key}]`, value);
+      });
     }
 
-    return { success: true };
+    const queryString = params.toString();
+    if (queryString) {
+      permalinkUrl += `?${queryString}`;
+    }
+
+    return { 
+      success: true, 
+      url: permalinkUrl 
+    };
   } catch (error) {
-    console.error("Error adding to Shopify cart:", error);
+    console.error("Error generating Shopify cart permalink:", error);
     return { success: false, message: "An unexpected error occurred." };
   }
 }

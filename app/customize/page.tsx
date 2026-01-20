@@ -353,6 +353,7 @@ function HomeContent() {
     // Add Base Product
     if (selectedBase.handle) {
       items.push({
+        variantId: selectedBase.variantId,
         handle: selectedBase.handle,
         quantity: 1,
         properties: {
@@ -368,6 +369,7 @@ function HomeContent() {
     placedCharms.forEach((pc) => {
       if (pc.charm.handle) {
         items.push({
+          variantId: pc.charm.variantId,
           handle: pc.charm.handle,
           quantity: 1,
           properties: {
@@ -382,10 +384,11 @@ function HomeContent() {
 
     const result = await addToShopifyCart(items);
 
-    if (result.success) {
+    if (result.success && result.url) {
       setIsSuccess(true);
+      // Wait a bit to show success state before redirecting
       setTimeout(() => {
-        window.location.href = '/cart';
+        window.location.href = result.url as string;
       }, 1500);
     } else {
       setCheckoutError(result.message || "Failed to add items to cart.");
