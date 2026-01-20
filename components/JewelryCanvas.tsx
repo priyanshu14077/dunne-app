@@ -156,7 +156,7 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                             <div 
                                 className="relative w-full h-full"
                                 style={{ 
-                                    transform: `scale(${baseProduct?.type === 'necklace' ? 1.05 : 0.85}) translateY(${baseProduct?.type === 'necklace' ? 0 : 5}%)`,
+                                    transform: `scale(${baseProduct?.type === 'necklace' ? 0.90 : 0.78}) translateY(${baseProduct?.type === 'necklace' ? -8 : -2}%)`,
                                     transition: 'transform 0.5s ease-out'
                                 }}
                             >
@@ -210,8 +210,8 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                                 ${isBeingDragged ? 'opacity-0' : 'opacity-100'}
                                                 ${(currentStep === 'space' || currentStep === 'base' || forceDragEnabled) ? 'cursor-grab active:cursor-grabbing' : ''}
                                                 ${itemToShow?.overlayImage 
-                                                    ? 'w-[25%] h-[25%] md:w-[30%] md:h-[30%] lg:w-[32%] lg:h-[32%]' 
-                                                    : 'w-[18%] h-[18%] md:w-[20%] md:h-[20%] lg:w-[22%] lg:h-[22%]'}`}
+                                                    ? 'w-[25%] h-[25%] md:w-[30%] md:h-[30%] lg:w-[26%] lg:h-[26%]' 
+                                                    : 'w-[18%] h-[18%] md:w-[20%] md:h-[20%] lg:w-[18%] lg:h-[18%]'}`}
                                             style={{
                                                 left: `${anchor.x}%`,
                                                 top: `${anchor.y}%`,
