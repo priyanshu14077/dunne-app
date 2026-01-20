@@ -381,10 +381,21 @@ function HomeContent() {
         if (uploadRes.ok) {
           const uploadData = await uploadRes.json();
           designPreviewUrl = uploadData.imageUrl;
+          console.log("Upload successful! URL:", designPreviewUrl);
+        } else {
+          const errorData = await uploadRes.json();
+          console.error("Upload API failed:", errorData);
+          // Optional: setCheckoutError(`Upload failed: ${errorData.details || "Unknown error"}`);
         }
+      } else {
+        console.error("Canvas element #jewelry-design-canvas not found!");
       }
-    } catch (err) {
-      console.error("Capture/Upload failed:", err);
+    } catch (err: any) {
+      console.error("Capture/Upload process CRASHED:", {
+        message: err.message,
+        stack: err.stack,
+        toString: err.toString()
+      });
       // Continue without preview if it fails to avoid blocking the sale
     }
 
