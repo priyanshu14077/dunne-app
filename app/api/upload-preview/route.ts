@@ -29,13 +29,23 @@ export async function POST(req: NextRequest) {
       ContentType: "image/png",
     };
 
+    console.log(`Uploading design preview for ${designId} to S3...`);
     await s3Client.send(new PutObjectCommand(uploadParams));
+    console.log(`Successfully uploaded ${fileName} to S3`);
 
     const imageUrl = `${CLOUDFRONT_URL}/${fileName}`;
 
     return NextResponse.json({ success: true, imageUrl });
   } catch (error: any) {
-    console.error("S3 Upload Error:", error);
-    return NextResponse.json({ error: error.message || "Upload failed" }, { status: 500 });
+    console.error("S3 Upload Error Details:", {
+      message: error.message,
+      stack: error.stack,
+      code: error.code,
+      metadata: error.$metadata
+    });
+    return NextResponse.json({ 
+      error: error.message || "Upload failed",
+      details: error.code || "unknown" 
+    }, { status: 500 });
   }
 }

@@ -357,7 +357,15 @@ function HomeContent() {
       const element = document.getElementById("jewelry-design-canvas");
       if (element) {
         // Capture as PNG
-        const dataUrl = await toPng(element, { backgroundColor: '#ffffff', quality: 0.95 });
+        console.log("Capturing design canvas...");
+        const dataUrl = await toPng(element, { 
+          backgroundColor: '#ffffff', 
+          quality: 0.95,
+          cacheBust: true, // Crucial for CORS
+          skipFonts: true, // Speeds up capture
+          pixelRatio: 2    // Better quality
+        });
+        console.log("Canvas captured successfully, length:", dataUrl.length);
         const blob = await (await fetch(dataUrl)).blob();
         
         // Upload to our S3 API

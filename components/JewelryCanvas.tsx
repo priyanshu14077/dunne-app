@@ -137,14 +137,11 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                     <div className="w-full h-full flex items-center justify-center relative animate-fade-in">
                         {(previewCharm || placedCharms.length > 0) ? (
                             <div className="w-[95%] h-[95%] z-10 animate-fade-in-up relative translate-y-12">
-                                <Image 
+                                <img 
                                     src={(previewCharm || placedCharms[placedCharms.length - 1]?.charm).previewImage || (previewCharm || placedCharms[placedCharms.length - 1]?.charm).image} 
                                     alt="Charm Preview" 
-                                    fill
-                                    className="object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.12)] transition-transform duration-500 hover:scale-105"
-                                    sizes={canvasSizes}
-                                    priority={currentStep === 'charms'}
-                                    quality={85}
+                                    crossOrigin="anonymous"
+                                    className="w-full h-full object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.12)] transition-transform duration-500 hover:scale-105"
                                 />
                             </div>
                         ) : (
@@ -164,14 +161,11 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                 }}
                             >
                                 {baseProduct ? (
-                                    <Image 
+                                    <img 
                                         src={baseProduct.image} 
                                         alt={baseProduct.name}
-                                        fill
-                                        className="object-contain select-none"
-                                        sizes={canvasSizes}
-                                        priority={currentStep === 'base'}
-                                        quality={85}
+                                        crossOrigin="anonymous"
+                                        className="w-full h-full object-contain select-none"
                                     />
                                 ) : (
                                     /* Render Placeholder/Ghost Bracelet if forcing drag without product */
@@ -227,13 +221,11 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                         >
                                             {itemToShow && (
                                                 <div className={`relative w-full h-full flex items-start justify-center ${isPreview ? 'opacity-40 brightness-110' : ''}`}> 
-                                                    <Image 
+                                                    <img 
                                                         src={itemToShow.overlayImage || itemToShow.previewImage || itemToShow.image} 
                                                         alt={itemToShow.name}
-                                                        fill
-                                                        className={`object-contain select-none pointer-events-none ${isPreview ? '' : 'drop-shadow-md'}`}
-                                                        sizes="150px"
-                                                        quality={85}
+                                                        crossOrigin="anonymous"
+                                                        className={`w-full h-full object-contain select-none pointer-events-none ${isPreview ? '' : 'drop-shadow-md'}`}
                                                     />
                                                     {isPreview && (
                                                         <div className={`absolute inset-0 rounded-full border-2 border-dashed border-indigo-400/50 animate-pulse ${itemToShow.overlayImage ? 'scale-75 translate-y-[-20%]' : ''}`} />
@@ -259,12 +251,11 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                             const pc = placedCharms.find(p => p.id === draggingId);
                                             if (!pc) return null;
                                             return (
-                                                <Image 
+                                                <img 
                                                     src={pc.charm.overlayImage || pc.charm.previewImage || pc.charm.image}
                                                     alt="Dragging"
-                                                    fill
-                                                    sizes="(max-width: 768px) 20vw, 15vw"
-                                                    className="object-contain"
+                                                    crossOrigin="anonymous"
+                                                    className="w-full h-full object-contain"
                                                 />
                                             );
                                         })()}
