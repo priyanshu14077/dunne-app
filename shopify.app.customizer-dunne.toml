@@ -1,0 +1,18 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "f2d0d7f24aa147b4df7b1d111d1dc2b6"
+name = "customizer"
+application_url = "https://makeyourown.dunne.co.in/apps/customizer"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+
+[webhooks]
+api_version = "2024-01"
+
+[access_scopes]
+scopes = "write_products,read_products"
+
+[auth]
+redirect_urls = [ "https://makeyourown.dunne.co.in/api/auth/callback" ]

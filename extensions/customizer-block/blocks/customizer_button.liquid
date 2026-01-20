@@ -1,0 +1,92 @@
+{% schema %}
+{
+  "name": "Customizer Button",
+  "target": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "display_mode",
+      "label": "Display Mode",
+      "options": [
+        { "value": "button", "label": "Visible Button" },
+        { "value": "overlay", "label": "Invisible Overlay (Make Image Clickable)" }
+      ],
+      "default": "button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Click To Customise Your Jewellery"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Color",
+      "default": "#e63946"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity (Debug mode)",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "default": 0,
+      "unit": "%"
+    }
+  ]
+}
+{% endschema %}
+
+{% if block.settings.display_mode == 'button' %}
+  <div class="customizer-btn-container" style="text-align: center; margin: 20px 0; position: relative; z-index: 10;">
+    <a href="https://makeyourown.dunne.co.in/apps/customizer" 
+       class="customizer-btn"
+       style="
+         display: inline-block;
+         padding: 15px 40px;
+         background-color: {{ block.settings.button_color }};
+         color: {{ block.settings.text_color }};
+         text-decoration: none;
+         font-family: inherit;
+         font-size: 18px;
+         font-weight: bold;
+         border-radius: 50px;
+         text-transform: uppercase;
+         letter-spacing: 1px;
+         transition: transform 0.2s, opacity 0.2s;
+         box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+       "
+       onmouseover="this.style.transform='scale(1.05)'; this.style.opacity='0.9';"
+       onmouseout="this.style.transform='scale(1)'; this.style.opacity='1';">
+      {{ block.settings.button_text }}
+    </a>
+  </div>
+{% else %}
+  {% comment %} 
+    Invisible Overlay Mode: 
+    This block should be placed at the TOP of the section.
+    It stretches to cover the entire container it is in.
+  {% endcomment %}
+  <a href="https://makeyourown.dunne.co.in/apps/customizer" 
+     style="
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       z-index: 100;
+       cursor: pointer;
+       background-color: rgba(255,255,255, {{ block.settings.overlay_opacity | divided_by: 100.0 }});
+       display: block;
+     "
+     aria-label="Customize Your Jewellery">
+  </a>
+{% endif %}

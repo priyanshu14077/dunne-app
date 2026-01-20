@@ -1,0 +1,8 @@
+name = "customizer-block"
+uid = "cde287c0-8712-781f-ea53-04eabc8abdd0a3119ae9"
+type = "theme_app_extension"
+handle = "customizer-block"
+
+[[blocks]]
+name = "Customizer Button"
+path = "blocks/customizer_button.liquid"

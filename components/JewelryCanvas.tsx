@@ -120,7 +120,9 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
             onPointerUp={handlePointerUp}
         >
              
-            <div className={`
+            <div 
+                id="jewelry-design-canvas"
+                className={`
                 relative 
                 w-full 
                 max-w-[441px] md:max-w-[600px] lg:max-w-[800px]
@@ -129,6 +131,7 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                 transition-all duration-300
                 mx-auto
                 canvas-aspect
+                bg-white
             `}>
                 {isStep1 ? (
                     <div className="w-full h-full flex items-center justify-center relative animate-fade-in">

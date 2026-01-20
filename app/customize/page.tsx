@@ -20,6 +20,7 @@ import { CONSTRAINTS } from "@/lib/design-tokens";
 import { PlacedCharmInstance } from "@/lib/types";
 import { addToShopifyCart, ShopifyCartItem } from "@/lib/shopify";
 import { Check, Loader2, ShoppingCart } from "lucide-react";
+import { toPng } from "html-to-image";
 
 
 export default function Home() {
@@ -350,6 +351,35 @@ function HomeContent() {
     const designId = `design-${Date.now()}`;
     const items: ShopifyCartItem[] = [];
 
+    // --- Visual Preview Capture & Upload ---
+    let designPreviewUrl = "";
+    try {
+      const element = document.getElementById("jewelry-design-canvas");
+      if (element) {
+        // Capture as PNG
+        const dataUrl = await toPng(element, { backgroundColor: '#ffffff', quality: 0.95 });
+        const blob = await (await fetch(dataUrl)).blob();
+        
+        // Upload to our S3 API
+        const formData = new FormData();
+        formData.append("file", blob, `${designId}.png`);
+        formData.append("designId", designId);
+
+        const uploadRes = await fetch("/api/upload-preview", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (uploadRes.ok) {
+          const uploadData = await uploadRes.json();
+          designPreviewUrl = uploadData.imageUrl;
+        }
+      }
+    } catch (err) {
+      console.error("Capture/Upload failed:", err);
+      // Continue without preview if it fails to avoid blocking the sale
+    }
+
     // Add Base Product
     if (selectedBase.handle) {
       items.push({
@@ -358,6 +388,8 @@ function HomeContent() {
         quantity: 1,
         properties: {
           '_Design ID': designId,
+          '_image': designPreviewUrl, // Hidden from customer, visible to admin
+          'Design Preview': designPreviewUrl, // Visible to customer and admin
           'Type': 'Base Product',
           'Custom Note': note,
           'Spacing Mode': spacingMode
@@ -374,6 +406,7 @@ function HomeContent() {
           quantity: 1,
           properties: {
             '_Design ID': designId,
+            '_image': designPreviewUrl,
             'Type': 'Charm',
             'Position': (pc.anchorIndex + 1).toString(),
             'Linked To': selectedBase.name
