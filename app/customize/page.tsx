@@ -404,7 +404,7 @@ function HomeContent() {
     }
 
     // Add Base Product
-    if (selectedBase.handle) {
+    if (selectedBase.handle || selectedBase.variantId) {
       items.push({
         variantId: selectedBase.variantId,
         handle: selectedBase.handle,
@@ -422,7 +422,7 @@ function HomeContent() {
 
     // Add Charms
     placedCharms.forEach((pc) => {
-      if (pc.charm.handle) {
+      if (pc.charm.handle || pc.charm.variantId) {
         items.push({
           variantId: pc.charm.variantId,
           handle: pc.charm.handle,

@@ -4,7 +4,7 @@
 
 export interface ShopifyCartItem {
   variantId?: number;
-  handle: string;
+  handle?: string;
   quantity: number;
   properties?: Record<string, string>;
 }
