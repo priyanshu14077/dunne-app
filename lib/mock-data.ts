@@ -50,49 +50,12 @@ export interface Charm {
 
 export const BASE_PRODUCTS: Product[] = [
   {
-    id: 'classic-loop',
-    name: 'Classic Loop Bracelet',
-    handle: 'classic-loop-bracelet',
-    variantId: 47325289709827,
-    price: 850.00,
-    image: STORAGE_BASE + '/bracelets/Classic Loop bracelet.png',
-    type: 'bracelet',
-    isBestSeller: true,
-    description: "Premium base jewelry crafted from high-quality materials. Designed to hold your favorite charms securely with elegant spacing and durable construction.",
-    specifications: {
-      material: "Sterling Silver 925",
-      length: "18 cm adjustable",
-      width: "3 mm",
-      clasp: "Lobster clasp",
-      finish: "Polished",
-      weight: "~15 g"
-    }
-  },
-  {
     id: 'lustre-link',
     name: 'Lustre Link Bracelet',
     handle: 'lustre-link-bracelet',
     variantId: 47283744145667,
     price: 950.00,
     image: STORAGE_BASE + '/bracelets/Lustre Link bracelet.png',
-    type: 'bracelet',
-    description: "Premium base jewelry crafted from high-quality materials. Designed to hold your favorite charms securely with elegant spacing and durable construction.",
-    specifications: {
-      material: "Sterling Silver 925",
-      length: "18 cm adjustable",
-      width: "3 mm",
-      clasp: "Lobster clasp",
-      finish: "Polished",
-      weight: "~15 g"
-    }
-  },
-  {
-    id: 'dual-link',
-    name: 'Dual Link Bracelet',
-    handle: 'dual-link-bracelet',
-    variantId: 47325289873667,
-    price: 750.00,
-    image: STORAGE_BASE + '/bracelets/Dual Link Bracelet.png',
     type: 'bracelet',
     description: "Premium base jewelry crafted from high-quality materials. Designed to hold your favorite charms securely with elegant spacing and durable construction.",
     specifications: {
@@ -123,11 +86,11 @@ export const BASE_PRODUCTS: Product[] = [
     }
   },
   {
-    id: 'golden-charm',
-    name: 'Golden Charm Chain',
-    handle: 'golden-charm-chain-bracelet',
-    variantId: 47325289840899,
-    price: 750.00,
+    id: 'golden-link',
+    name: 'Golden Link Bracelet',
+    handle: 'golden-link-bracelet',
+    variantId: 47325289939203,
+    price: 850.00,
     image: STORAGE_BASE + '/bracelets/Golden Charm Chain Bracelet.png',
     type: 'bracelet',
     description: "Premium base jewelry crafted from high-quality materials. Designed to hold your favorite charms securely with elegant spacing and durable construction.",
@@ -141,14 +104,13 @@ export const BASE_PRODUCTS: Product[] = [
     }
   },
   {
-    id: 'luxe-chain',
-    name: 'Luxe Chain Bracelet',
-    handle: 'luxe-chain-bracelet',
-    variantId: 47325289742595,
-    price: 850.00,
+    id: 'twist-elegance',
+    name: 'Twist Elegance Bracelet',
+    handle: 'twist-elegance-bracelet',
+    variantId: 47325289906435,
+    price: 650.00,
     image: STORAGE_BASE + '/bracelets/Luxe Chain Bracelet.png',
     type: 'bracelet',
-    isNew: true,
     description: "Premium base jewelry crafted from high-quality materials. Designed to hold your favorite charms securely with elegant spacing and durable construction.",
     specifications: {
       material: "Sterling Silver 925",
