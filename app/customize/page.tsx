@@ -455,6 +455,8 @@ function HomeContent() {
   const handleBack = () => {
     if (currentStep === 'base') {
       setCurrentStep('charms');
+      setSelectedBase(null);
+      setBaseCardStates({});
     } else if (currentStep === 'space') {
       setCurrentStep('base');
     }

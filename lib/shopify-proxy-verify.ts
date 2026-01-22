@@ -1,17 +1,13 @@
-/**
- * Verifies the HMAC signature provided by Shopify for either App Proxy or Admin requests.
- * Uses Web Crypto API for Edge Runtime compatibility.
- */
+
 export async function verifyShopifyProxySignature(query: Record<string, string | string[] | undefined>, secret: string): Promise<boolean> {
-  // detect if it's a proxy request (signature param) or admin request (hmac param)
+  
   const hmac = query.hmac;
   const signature = query.signature;
   
   const targetSignature = (hmac || signature) as string;
   if (!targetSignature || typeof targetSignature !== 'string') return false;
 
-  // Proxy requests use no separator, Admin requests use '&'
-  // Proxy requests typically have 'path_prefix' or only 'signature'
+ 
   const isProxy = !!signature && !hmac;
 
   const sortedParams = Object.keys(query)
