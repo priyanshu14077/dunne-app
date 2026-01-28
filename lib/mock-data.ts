@@ -1347,7 +1347,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Blooming Heart Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Blooming Heart Charm.png",
-    overlayImage: STORAGE_BASE + "/overlay-charms/LoveStruck/Blooming Heart Charm.png",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Lovestruck/Blooming Heart Charm.png",
     description: "The Blooming Heart Charm is a vibrant ode to love and growth. Crafted in a bold pink enamel finish, it's adorned with delicate golden floral motifs that symbolize blossoming affection and joy. A playful yet elegant piece, this charm captures the essence of romance in full bloom, perfect for those who carry a lively spirit with a touch of grace.",
     specifications: {
       style: "Single charm",
@@ -1368,7 +1368,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Blush Heart Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Blush Heart Charm.png",
-    overlayImage: STORAGE_BASE + "/overlay-charms/LoveStruck/Blush Heart Charm.png",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Lovestruck/Blush Heart Charm.png",
     description: "The Blush Heart Charm is a delicate expression of tenderness and warmth. Featuring a soft pink heart set against a pure white enamel backdrop, it radiates purity and subtle romance. Its petite size makes it a graceful everyday piece or a sweet layering charm to pair with bolder accents.",
     specifications: {
       style: "Single charm",
@@ -1389,7 +1389,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Crystal Green candy.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Crystal Green candy.png",
-    overlayImage: STORAGE_BASE + "/overlay-charms/LoveStruck/Crystal Green candy.png",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Lovestruck/Crystal Green candy.png",
     description: "The Crystal Green Candy Charm embodies playful romance with a modern edge. Crafted in a green crystal like finish, it sparkles with every movement, symbolizing love, passion, and vibrant energy. Its textured surface creates a multidimensional shine, making it a bold yet elegant statement piece for everyday wear or special occasions.",
     specifications: {
       style: "Single charm",
@@ -1409,7 +1409,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Crystal Heart Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Crystal Heart Charm.png",
-    overlayImage: STORAGE_BASE + "/overlay-charms/LoveStruck/Crystal Heart Charm.png",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Lovestruck/Crystal Heart Charm.png",
     description: "The Crystal Heart Charm embodies playful romance with a modern edge. Crafted in a radiant red crystal like finish, it sparkles with every movement, symbolizing love, passion, and vibrant energy. Its textured surface creates a multidimensional shine, making it a bold yet elegant statement piece for everyday wear or special occasions.",
     specifications: {
       style: "Single charm",
@@ -1430,7 +1430,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Crystal Pink candy.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Crystal Pink candy.png",
-    overlayImage: STORAGE_BASE + "/overlay-charms/LoveStruck/Crystal Pink candy.png",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Lovestruck/Crystal Pink candy.png",
     description: "The Crystal Pink Candy Charm embodies playful romance with a modern edge. Crafted in a pink crystal like finish, it sparkles with every movement, symbolizing love, passion, and vibrant energy. Its textured surface creates a multidimensional shine, making it a bold yet elegant statement piece for everyday wear or special occasions.",
     specifications: {
       style: "Single charm",
@@ -1451,7 +1451,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Daisy Heart Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Daisy Heart Charm.png",
-    overlayImage: STORAGE_BASE + "/overlay-charms/LoveStruck/Daisy Heart Charm.png",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Lovestruck/Daisy Heart Charm.png",
     description: "The Daisy Heart Charm captures the innocence of sunlit meadows and carefree days. With its glossy white ceramic base adorned by a hand painted yellow daisy and lilac accents, this charm radiates freshness, optimism, and tender beauty. A sweet nod to nature's charm, it's perfect for those who adore subtle, cheerful details in their jewelry.",
     specifications: {
       style: "Single charm",
@@ -1471,7 +1471,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Ember Heart Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Ember Heart Charm.png",
-    overlayImage: STORAGE_BASE + "/overlay-charms/LoveStruck/Ember Heart Charm.png",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Lovestruck/Ember Heart Charm.png",
     description: "The Ember Heart Charm is a radiant symbol of passion and warmth. Featuring concentric hearts in fiery red and orange enamel, it glows with a golden outline that adds depth and brilliance. Small yet impactful, this charm embodies love, strength, and timeless devotion.",
     specifications: {
       style: "Single charm",
@@ -1492,7 +1492,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Emerald Heart Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Emerald Heart Charm.png",
-    overlayImage: STORAGE_BASE + "/overlay-charms/LoveStruck/Emerald Heart Charm.png",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Lovestruck/Emerald Heart Charm.png",
     description: "The Emerald Heart Charm captures the richness of old world romance. With its deep green enamel center framed by golden ornate details, it radiates a vintage charm that feels both regal and timeless. A perfect accent for stacking with minimal hearts or wearing as a statement piece to add depth and color to your jewelry.",
     specifications: {
       style: "Single charm",
@@ -1512,7 +1512,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Eternal Heart Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Eternal Heart Charm.png",
-    overlayImage: STORAGE_BASE + "/overlay-charms/LoveStruck/Eternal Heart Charm.png",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Lovestruck/Eternal Heart Charm.png",
     description: "The Eternal Heart Charm is a delicate symbol of love and protection. Featuring a vivid red heart encased in a polished golden circle, it represents passion safeguarded by strength. Its minimal yet striking design makes it a timeless addition to your collection — a reminder of love that endures.",
     specifications: {
       style: "Single charm",
@@ -1534,6 +1534,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Heart of Vision Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Heart of Vision Charm.png",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Lovestruck/Heart of Vision Charm 2.png",
     description: "The Heart of Vision Charm blends romance with protection. A delicate pink enamel heart framed by golden beaded detailing, it features a central crystal eye — symbolizing clarity, intuition, and love. This charm is both whimsical and meaningful, making it a standout piece in any collection.",
     specifications: {
       style: "Single charm",
@@ -1553,7 +1554,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Love Letter Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Love Letter Charm.png",
-    overlayImage: STORAGE_BASE + "/overlay-charms/LoveStruck/Love Letter Charm.png",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Lovestruck/Love Letter Charm.png",
     description: "The Love Letter Charm is a sweet token of affection, carrying the timeless symbol of heartfelt connection. Featuring a polished gold frame and a delicate envelope design sealed with a vibrant red heart, it embodies romance, warmth, and cherished memories. A modern keepsake with a classic sentiment, it’s the perfect charm for celebrating love in all its forms.",
     specifications: {
       style: "Single charm",
@@ -1574,6 +1575,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Peach Blush Heart Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Peach Blush Heart Charm.png",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Lovestruck/Peach Blush Heart.png",
     description: "The Peach Blush Heart Charm radiates warmth and tenderness with its soft peach enamel finish. Compact yet full of character, this charm brings a subtle pop of color while keeping the design sweet and refined. Perfect for pairing with other pastel charms or worn solo as a gentle statement of love and softness.",
     specifications: {
       style: "Single charm",
@@ -1594,7 +1596,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Pure Heart Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Pure Heart Charm.png",
-    overlayImage: STORAGE_BASE + "/overlay-charms/LoveStruck/Pure Heart Charm.png",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Lovestruck/Pure Heart Charm.png",
     description: "The Pure Heart Charm embodies simplicity and innocence in its most elegant form. With a soft ivory tone and smooth polished finish, it adds a minimal yet timeless touch to any bracelet or necklace. A versatile piece that pairs beautifully with both vibrant charms and subtle neutrals, making it a must have for everyday layering.",
     specifications: {
       style: "Single charm",
@@ -1616,7 +1618,7 @@ export const CHARMS: Charm[] = [
     category: "LoveStruck",
     image: STORAGE_BASE + "/charms-cards/Lovestruck/Label = Sacred Heart charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Label = Sacred Heart charm.png",
-    overlayImage: STORAGE_BASE + "/overlay-charms/LoveStruck/Sacred Heart charm.png",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Lovestruck/Sacred Heart charm.png",
     description: "The Sacred Heart Charm is a symbol of love, strength, and devotion. Framed in warm gold with a soft blush enamel backdrop, it features a radiant red heart adorned with golden detailing, embodying both passion and protection. A modern take on a timeless motif, this charm carries depth and meaning while adding a striking touch to any jewelry piece.",
     specifications: {
       style: "Single charm",
