@@ -128,7 +128,9 @@ export default function CharmCard({
                         alt={rawName}
                         fill
                         className="object-contain drop-shadow-sm transition-transform duration-300 group-hover:scale-110"
-                        sizes="(max-width: 768px) 67px, 79px"
+                        sizes="(max-width: 768px) 200px, 300px"
+                        quality={100}
+                        priority={['pe-a', 'pe-b', 'pe-d'].includes(item.id)}
                         onError={() => {
                             if (!hasError && 'previewImage' in item && item.previewImage) {
                                 setImgSrc(item.previewImage);
