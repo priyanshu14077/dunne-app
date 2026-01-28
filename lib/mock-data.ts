@@ -2683,9 +2683,9 @@ export const CHARMS: Charm[] = [
   },
   {
     id: "wf-5",
-    variantId: 47302446940419,
+    variantId: 47314245452035,
     handle: 'evil-eye-charm-necklace',
-    name: "Eye of Protection Charm",
+    name: "Eye Charm",
     price: 390.00,
     category: "Travel & Wild",
     image: STORAGE_BASE + "/charms-cards/Wild & Free/Label = Eye Charm.png",
