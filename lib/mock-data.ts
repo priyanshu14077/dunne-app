@@ -643,9 +643,10 @@ export const CHARMS: Charm[] = [
   },
   {
     id: "eb-11",
-    name: "Mama Script Heart Charm",
+    name: "Mama Heart Charm",
     price: 690.00,
     productId: 9131055350019,
+    variantId:47314242339075,
     category: "Eternal Bond",
     isBestSeller: true,
     image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Label = Mama Charm.png",
@@ -667,7 +668,7 @@ export const CHARMS: Charm[] = [
     name: "Pop Heart Red Charm",
     price: 690.00,
     productId: 9131055087875,
-    variantId: 47182446199043,
+    variantId: 47314242044163,
     category: "Eternal Bond",
     image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Label = Pop Heart Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Label = Pop Heart Charm.png",
@@ -747,9 +748,10 @@ export const CHARMS: Charm[] = [
   },
   {
     id: "eb-17",
-    name: "Starlit Crescent Moon Charm",
+    name: "Starlit Crescent Charm",
     price: 690.00,
     productId: 9131055513859,
+    variantId:47314242502915,
     category: "Eternal Bond",
     image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Label = Starlit Crescent Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Label = Starlit Crescent Charm.png",
@@ -834,7 +836,7 @@ export const CHARMS: Charm[] = [
     name: "Pickleball Spark Sport Charm",
     price: 590.00,
     productId: 9131055710467,
-    variantId: 91310557104677,
+    variantId: 47314242732291,
     category: "Game On",
     image: STORAGE_BASE + "/charms-cards/Game On/Label = Pickleball Spark Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Game On/Label = Pickleball Spark Charm.png",
@@ -854,6 +856,7 @@ export const CHARMS: Charm[] = [
     name: "Pink Smash Tennis Charm",
     price: 590.00,
     productId: 9131056038147,
+    variantId: 47314243125507,
     category: "Game On",
     image: STORAGE_BASE + "/charms-cards/Game On/Label = Pink Smash Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Game On/Label = Pink Smash Charm.png",
@@ -895,6 +898,7 @@ export const CHARMS: Charm[] = [
     name: "Tennis Ace Racket Charm",
     price: 590.00,
     productId: 9131055808771,
+    variantId:47314242896131,
     category: "Game On",
     image: STORAGE_BASE + "/charms-cards/Game On/Label = Tennis Ace Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Game On/Label = Tennis Ace Charm.png",
@@ -1630,15 +1634,15 @@ export const CHARMS: Charm[] = [
     }
   },
 
-  // Persona (Initials & Zodiacs)
+  // Persona (Initials)
   {
-    id: "pe-1",
+    id: "pe-a",
     productId: 9218601451779,
     variantId: 47557882020099,
     name: "Letter A Initial Charm",
     price: 490.00,
     category: "Persona",
-    image: STORAGE_BASE + "/charms-canvas/Persona/Label = A Initial Charm.png",
+    image: STORAGE_BASE + "/charms-cards/Persona/Label = A Initial Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Persona/Label = A Initial Charm.png",
     overlayImage: STORAGE_BASE + "/overlay-charms/Persona/A Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
@@ -1652,13 +1656,13 @@ export const CHARMS: Charm[] = [
     }
   },
   {
-    id: "pe-2",
+    id: "pe-b",
     productId: 9218601451779,
-    variantId: 47557882020099,
+    variantId: 47557882052867,
     name: "Letter B Initial Charm",
     price: 490.00,
     category: "Persona",
-    image: STORAGE_BASE + "/charms-canvas/Persona/Label = B Initial Charm.png",
+    image: STORAGE_BASE + "/charms-cards/Persona/Label = B Initial Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Persona/Label = B Initial Charm.png",
     overlayImage: STORAGE_BASE + "/overlay-charms/Persona/B Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
@@ -1672,13 +1676,13 @@ export const CHARMS: Charm[] = [
     }
   },
   {
-    id: "pe-3",
+    id: "pe-d",
     productId: 9218601451779,
-    variantId: 47557882020099,
+    variantId: 47557882118403,
     name: "Letter D Initial Charm",
     price: 490.00,
     category: "Persona",
-    image: STORAGE_BASE + "/charms-canvas/Persona/Label = D Initial Charm.png",
+    image: STORAGE_BASE + "/charms-cards/Persona/Label = D Initial Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Persona/Label = D Initial Charm.png",
     overlayImage: STORAGE_BASE + "/overlay-charms/Persona/D Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
@@ -1692,13 +1696,13 @@ export const CHARMS: Charm[] = [
     }
   },
   {
-    id: "pe-4",
+    id: "pe-e",
     productId: 9218601451779,
-    variantId: 47557882020099,
+    variantId: 47557882151171,
     name: "Letter E Initial Charm",
     price: 490.00,
     category: "Persona",
-    image: STORAGE_BASE + "/charms-canvas/Persona/Label = E Initial Charm.png",
+    image: STORAGE_BASE + "/charms-cards/Persona/Label = E Initial Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Persona/Label = E Initial Charm.png",
     overlayImage: STORAGE_BASE + "/overlay-charms/Persona/E Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
@@ -1712,13 +1716,13 @@ export const CHARMS: Charm[] = [
     }
   },
   {
-    id: "pe-5",
+    id: "pe-h",
     productId: 9218601451779,
-    variantId: 47557882020099,
+    variantId: 47557882249475,
     name: "Letter H Initial Charm",
     price: 490.00,
     category: "Persona",
-    image: STORAGE_BASE + "/charms-canvas/Persona/Label = H Initial Charm.png",
+    image: STORAGE_BASE + "/charms-cards/Persona/Label = H Initial Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Persona/Label = H Initial Charm.png",
     overlayImage: STORAGE_BASE + "/overlay-charms/Persona/H Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
@@ -1732,13 +1736,13 @@ export const CHARMS: Charm[] = [
     }
   },
   {
-    id: "pe-6",
+    id: "pe-i",
     productId: 9218601451779,
-    variantId: 47557882020099,
+    variantId: 47557882282243,
     name: "Letter I Initial Charm",
     price: 490.00,
     category: "Persona",
-    image: STORAGE_BASE + "/charms-canvas/Persona/Label = I Initial Charm.png",
+    image: STORAGE_BASE + "/charms-cards/Persona/Label = I Initial Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Persona/Label = I Initial Charm.png",
     overlayImage: STORAGE_BASE + "/overlay-charms/Persona/I Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
@@ -1752,13 +1756,13 @@ export const CHARMS: Charm[] = [
     }
   },
   {
-    id: "pe-7",
+    id: "pe-m",
     productId: 9218601451779,
-    variantId: 47557882020099,
+    variantId: 47557882413315,
     name: "Letter M Initial Charm",
     price: 490.00,
     category: "Persona",
-    image: STORAGE_BASE + "/charms-canvas/Persona/Label = M Initial Charm.png",
+    image: STORAGE_BASE + "/charms-cards/Persona/Label = M Initial Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Persona/Label = M Initial Charm.png",
     overlayImage: STORAGE_BASE + "/overlay-charms/Persona/M Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
@@ -1772,13 +1776,13 @@ export const CHARMS: Charm[] = [
     }
   },
   {
-    id: "pe-8",
+    id: "pe-n",
     productId: 9218601451779,
-    variantId: 47557882020099,
+    variantId: 47557882446083,
     name: "Letter N Initial Charm",
     price: 490.00,
     category: "Persona",
-    image: STORAGE_BASE + "/charms-canvas/Persona/Label = N Initial Charm.png",
+    image: STORAGE_BASE + "/charms-cards/Persona/Label = N Initial Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Persona/Label = N Initial Charm.png",
     overlayImage: STORAGE_BASE + "/overlay-charms/Persona/N Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
@@ -1792,13 +1796,13 @@ export const CHARMS: Charm[] = [
     }
   },
   {
-    id: "pe-9",
+    id: "pe-o",
     productId: 9218601451779,
-    variantId: 47557882020099,
+    variantId: 47557882478851,
     name: "Letter O Initial Charm",
     price: 490.00,
     category: "Persona",
-    image: STORAGE_BASE + "/charms-canvas/Persona/Label = O Initial Charm.png",
+    image: STORAGE_BASE + "/charms-cards/Persona/Label = O Initial Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Persona/Label = O Initial Charm.png",
     overlayImage: STORAGE_BASE + "/overlay-charms/Persona/O Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
@@ -1812,13 +1816,13 @@ export const CHARMS: Charm[] = [
     }
   },
   {
-    id: "pe-10",
+    id: "pe-p",
     productId: 9218601451779,
-    variantId: 47557882020099,
+    variantId: 47557882511619,
     name: "Letter P Initial Charm",
     price: 490.00,
     category: "Persona",
-    image: STORAGE_BASE + "/charms-canvas/Persona/Label = P Initial Charm.png",
+    image: STORAGE_BASE + "/charms-cards/Persona/Label = P Initial Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Persona/Label = P Initial Charm.png",
     overlayImage: STORAGE_BASE + "/overlay-charms/Persona/P Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
@@ -1832,13 +1836,13 @@ export const CHARMS: Charm[] = [
     }
   },
   {
-    id: "pe-11",
+    id: "pe-q",
     productId: 9218601451779,
-    variantId: 47557882020099,
+    variantId: 47557882544387,
     name: "Letter Q Initial Charm",
     price: 490.00,
     category: "Persona",
-    image: STORAGE_BASE + "/charms-canvas/Persona/Label = Q Initial Charm.png",
+    image: STORAGE_BASE + "/charms-cards/Persona/Label = Q Initial Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Persona/Label = Q Initial Charm.png",
     overlayImage: STORAGE_BASE + "/overlay-charms/Persona/Q Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
@@ -1852,13 +1856,13 @@ export const CHARMS: Charm[] = [
     }
   },
   {
-    id: "pe-12",
+    id: "pe-r",
     productId: 9218601451779,
-    variantId: 47557882020099,
+    variantId: 47557882577155,
     name: "Letter R Initial Charm",
     price: 490.00,
     category: "Persona",
-    image: STORAGE_BASE + "/charms-canvas/Persona/Label = R Initial Charm.png",
+    image: STORAGE_BASE + "/charms-cards/Persona/Label = R Initial Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Persona/Label = R Initial Charm.png",
     overlayImage: STORAGE_BASE + "/overlay-charms/Persona/R Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
@@ -1871,70 +1875,17 @@ export const CHARMS: Charm[] = [
       quality: "Anti Tarnish, Hypoallergenic"
     }
   },
+  /*
   {
-    id: "pe-13",
-    variantId: 47646207475971,
-    name: "Letter T Initial Charm",
-    price: 490.00,
-    category: "Persona",
-    image: STORAGE_BASE + "/charms-canvas/Persona/Label = T Initial Charm.png",
-    previewImage: STORAGE_BASE + "/charms-canvas/Persona/Label = T Initial Charm.png",
-    overlayImage: STORAGE_BASE + "/overlay-charms/Persona/T Initial Charm.png",
-    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
-    specifications: {
-      style: "Single charm",
-      size: "~2 cm",
-      weight: "~3 g",
-      material: "Stainless Steel with Gold Plating",
-      finish: "Gloss enamel + gold plating",
-      quality: "Anti Tarnish, Hypoallergenic"
-    }
-  },
-  {
-    id: "pe-14",
-    variantId: 47646207508739,
-    name: "Letter U Initial Charm",
-    price: 490.00,
-    category: "Persona",
-    image: STORAGE_BASE + "/charms-canvas/Persona/Label = U Initial Charm.png",
-    previewImage: STORAGE_BASE + "/charms-canvas/Persona/Label = U Initial Charm.png",
-    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
-    specifications: {
-      style: "Single charm",
-      size: "~2 cm",
-      weight: "~3 g",
-      material: "Stainless Steel with Gold Plating",
-      finish: "Gloss enamel + gold plating",
-      quality: "Anti Tarnish, Hypoallergenic"
-    }
-  },
-  {
-    id: "pe-15",
-    variantId: 47646207541507,
-    name: "Letter V Initial Charm",
-    price: 490.00,
-    category: "Persona",
-    image: STORAGE_BASE + "/charms-canvas/Persona/Label = V Initial Charm.png",
-    previewImage: STORAGE_BASE + "/charms-canvas/Persona/Label = V Initial Charm.png",
-    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
-    specifications: {
-      style: "Single charm",
-      size: "~2 cm",
-      weight: "~3 g",
-      material: "Stainless Steel with Gold Plating",
-      finish: "Gloss enamel + gold plating",
-      quality: "Anti Tarnish, Hypoallergenic"
-    }
-  },
-  {
-    id: "pe-16",
+    id: "pe-x",
     productId: 9218601451779,
-    variantId: 47557882020099,
+    variantId: 47557882675459,
     name: "Letter X Initial Charm",
     price: 490.00,
     category: "Persona",
-    image: STORAGE_BASE + "/charms-canvas/Persona/Label = X Initial Charm.png",
+    image: STORAGE_BASE + "/charms-cards/Persona/Label = X Initial Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Persona/Label = X Initial Charm.png",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Persona/X Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1946,15 +1897,15 @@ export const CHARMS: Charm[] = [
     }
   },
   {
-    id: "pe-17",
+    id: "pe-y",
     productId: 9218601451779,
-    variantId: 47557882020099,
-    handle: 'initials',
+    variantId: 47557882708227,
     name: "Letter Y Initial Charm",
     price: 490.00,
     category: "Persona",
-    image: STORAGE_BASE + "/charms-canvas/Persona/Label = Y Initial Charm.png",
+    image: STORAGE_BASE + "/charms-cards/Persona/Label = Y Initial Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Persona/Label = Y Initial Charm.png",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Persona/Y Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1966,15 +1917,15 @@ export const CHARMS: Charm[] = [
     }
   },
   {
-    id: "pe-18",
+    id: "pe-z",
     productId: 9218601451779,
-    variantId: 47557882020099,
-    handle: 'initials',
+    variantId: 47557882740995,
     name: "Letter Z Initial Charm",
     price: 490.00,
     category: "Persona",
-    image: STORAGE_BASE + "/charms-canvas/Persona/Label = Z Initial Charm.png",
+    image: STORAGE_BASE + "/charms-cards/Persona/Label = Z Initial Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Persona/Label = Z Initial Charm.png",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Persona/Z Initial Charm.png",
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1985,6 +1936,7 @@ export const CHARMS: Charm[] = [
       quality: "Anti Tarnish, Hypoallergenic"
     }
   },
+  */
 
   // Zodiacs
   {
@@ -3007,6 +2959,7 @@ export const CHARMS: Charm[] = [
     name: "Palm Paradise Tree Charm",
     price: 490.00,
     productId: 9131058036995,
+    variantId:47314245648643,
     category: "Travel & Wild",
     image: STORAGE_BASE + "/charms-cards/Wild & Free/Label = Palm Paradise Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Wild & Free/Label = Palm Paradise Charm.png",
@@ -3026,6 +2979,7 @@ export const CHARMS: Charm[] = [
     name: "Pearl Fish Ocean Charm",
     price: 390.00,
     productId: 9131058331907,
+    variantId: 47314245943555,
     category: "Travel & Wild",
     image: STORAGE_BASE + "/charms-cards/Wild & Free/Label = Pearl Fish Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Wild & Free/Label = Pearl Fish Charm.png",
