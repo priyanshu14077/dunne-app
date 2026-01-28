@@ -1,5 +1,4 @@
 
-
 export interface ShopifyCartItem {
   productId?: number;
   variantId?: number;

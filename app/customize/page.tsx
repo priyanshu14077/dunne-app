@@ -19,6 +19,7 @@ import { PRODUCT_ANCHORS } from "@/lib/anchor";
 import { CONSTRAINTS } from "@/lib/design-tokens";
 import { PlacedCharmInstance } from "@/lib/types";
 import { addToShopifyCart, ShopifyCartItem } from "@/lib/shopify";
+
 import { Check, Loader2, ShoppingCart } from "lucide-react";
 import { toPng, toBlob } from "html-to-image";
 
@@ -35,6 +36,31 @@ function HomeContent() {
   const { setStepByPhase, isActive: isTourActive, triggerAction, currentStep: tourStep } = useWalkthrough();
   const [currentStep, setCurrentStep] = useState<'charms' | 'base' | 'space'>('charms');
   const noteRef = useRef<HTMLTextAreaElement>(null);
+
+  const isCharm = (item: Product | Charm): item is Charm => {
+    return typeof (item as Charm).category === "string";
+  };
+
+  const isCharmLike = (value: unknown): value is Charm => {
+    if (!value || typeof value !== "object") return false;
+    const maybeCharm = value as { category?: unknown };
+    return typeof maybeCharm.category === "string";
+  };
+
+  // Ensure we never persist base products inside placedCharms.
+  const filterCharmsOnly = (list: PlacedCharmInstance[]) =>
+    list.filter((pc) => isCharmLike(pc.charm));
+
+  const setPlacedCharmsSafe = (
+    updater:
+      | PlacedCharmInstance[]
+      | ((prev: PlacedCharmInstance[]) => PlacedCharmInstance[])
+  ) => {
+    setPlacedCharms((prev) => {
+      const next = typeof updater === "function" ? (updater as any)(prev) : updater;
+      return filterCharmsOnly(next);
+    });
+  };
   
   // Audio Helper
   const playSelectSound = () => {
@@ -128,17 +154,18 @@ function HomeContent() {
   // --- CHARM HANDLERS ---
   
   const handleCharmBodyClick = (item: Product | Charm) => {
-    const charm = item as Charm;
-    setPreviewedItem(charm);
+    if (!isCharm(item)) return;
+    setPreviewedItem(item);
   };
 
   const handleCharmAdd = (item: Product | Charm) => {
+    if (!isCharm(item)) return;
     if (maxReached) {
       triggerToast();
       return;
     }
 
-    const charm = item as Charm;
+    const charm = item;
     // Find first available anchor index (0-8)
     const occupiedIndices = new Set(placedCharms.map(pc => pc.anchorIndex));
     let nextIndex = 0;
@@ -154,7 +181,7 @@ function HomeContent() {
       anchorIndex: nextIndex
     };
 
-    setPlacedCharms(prev => {
+    setPlacedCharmsSafe(prev => {
       const nextArr = [...prev].sort((a,b) => a.anchorIndex - b.anchorIndex).concat(newInstance).sort((a,b) => a.anchorIndex - b.anchorIndex);
       if (spacingMode === 'standard') setManualPlacedCharms(nextArr);
       return nextArr;
@@ -173,7 +200,7 @@ function HomeContent() {
        // Check if it's a charmId (from the drawer)
        const lastOfId = [...placedCharms].reverse().find(pc => pc.charm.id === instanceId);
        if (lastOfId) {
-         setPlacedCharms(prev => {
+        setPlacedCharmsSafe(prev => {
             const next = prev.filter(pc => pc.id !== lastOfId.id);
             if (spacingMode === 'standard') setManualPlacedCharms(next);
             return next;
@@ -182,7 +209,7 @@ function HomeContent() {
        return;
     }
     
-    setPlacedCharms(prev => {
+    setPlacedCharmsSafe(prev => {
       const next = prev.filter(pc => pc.id !== instanceId);
       if (spacingMode === 'standard') setManualPlacedCharms(next);
       return next;
@@ -196,7 +223,7 @@ function HomeContent() {
   };
 
   const handleReset = () => {
-    setPlacedCharms([]);
+    setPlacedCharmsSafe([]);
     setManualPlacedCharms([]);
     setPreviewedItem(null);
   };
@@ -211,7 +238,7 @@ function HomeContent() {
     
     randomCharms.forEach((charm, i) => {
       if (totalCharmCount + i < maxCharms) {
-         setPlacedCharms(prev => {
+         setPlacedCharmsSafe(prev => {
             const occupied = new Set(prev.map(p => p.anchorIndex));
             let idx = 0;
             while(occupied.has(idx) && idx < 9) idx++;
@@ -227,7 +254,7 @@ function HomeContent() {
   };
 
   const handleUpdateAnchor = (instanceId: string, newIndex: number) => {
-    setPlacedCharms(prev => {
+    setPlacedCharmsSafe(prev => {
       const target = prev.find(p => p.id === instanceId);
       if (!target) return prev;
 
@@ -251,7 +278,7 @@ function HomeContent() {
   };
 
   const handleReorderList = (newOrderIds: string[]) => {
-    setPlacedCharms(prev => {
+    setPlacedCharmsSafe(prev => {
       // Reorder means reassigning ALL occupied anchor indices based on the new order of instances
       const occupiedIndices = [...prev].sort((a,b) => a.anchorIndex - b.anchorIndex).map(p => p.anchorIndex);
       
@@ -309,7 +336,9 @@ function HomeContent() {
 
   // Helper to determine which base product to show on the canvas
   const baseToDisplay = useMemo(() => {
-    if (currentStep === 'charms') return null;
+    // Keep the selected base visible even when navigating back to charms,
+    // so step navigation doesn't "reset" the user's visual context.
+    if (currentStep === 'charms') return selectedBase;
     
     // In Step 2 (Base Selection), prefer the previewed item if it's a base product
     if (currentStep === 'base' && previewedItem && 'type' in previewedItem) {
@@ -356,51 +385,31 @@ function HomeContent() {
     try {
       const element = document.getElementById("jewelry-design-canvas");
       if (element) {
-        // Capture as Blob directly
-        console.log("Capturing design canvas as blob...");
         const blob = await toBlob(element, { 
           backgroundColor: '#ffffff', 
-          cacheBust: true, // Crucial for CORS
-          skipFonts: true, // Speeds up capture
-          pixelRatio: 2    // Better quality
+          cacheBust: true,
+          skipFonts: true,
+          pixelRatio: 2
         });
 
-        if (!blob) {
-          throw new Error("Canvas capture returned null blob. This usually indicates a CORS issue with images on the canvas.");
+        if (blob) {
+          const formData = new FormData();
+          formData.append("file", blob, `${designId}.png`);
+          formData.append("designId", designId);
+
+          const uploadRes = await fetch("/api/upload-preview", {
+            method: "POST",
+            body: formData,
+          });
+
+          if (uploadRes.ok) {
+            const uploadData = await uploadRes.json();
+            designPreviewUrl = uploadData.imageUrl;
+          }
         }
-
-        console.log("Canvas captured successfully, blob size:", blob.size);
-        
-        // Upload to our S3 API
-        const formData = new FormData();
-        formData.append("file", blob, `${designId}.png`);
-        formData.append("designId", designId);
-
-        console.log("Sending upload request to /api/upload-preview...");
-        const uploadRes = await fetch("/api/upload-preview", {
-          method: "POST",
-          body: formData,
-        });
-
-        if (uploadRes.ok) {
-          const uploadData = await uploadRes.json();
-          designPreviewUrl = uploadData.imageUrl;
-          console.log("Upload successful! URL:", designPreviewUrl);
-        } else {
-          const errorData = await uploadRes.json();
-          console.error("Upload API failed:", errorData);
-          setCheckoutError(`Design preview upload failed: ${errorData.error || "Unknown error"}. Proceeding with order anyway.`);
-        }
-      } else {
-        console.error("Canvas element #jewelry-design-canvas not found!");
       }
     } catch (err: any) {
-      console.error("Capture/Upload process CRASHED:", {
-        message: err.message,
-        stack: err.stack,
-        toString: err.toString()
-      });
-      // Continue without preview if it fails to avoid blocking the sale
+      console.error("Capture/Upload process failed:", err);
     }
 
     // Add Base Product
@@ -411,8 +420,8 @@ function HomeContent() {
         quantity: 1,
         properties: {
           '_Design ID': designId,
-          '_image': designPreviewUrl, // Hidden from customer, visible to admin
-          'Design Preview': designPreviewUrl, // Visible to customer and admin
+          '_image': designPreviewUrl,
+          'Design Preview': designPreviewUrl,
           'Type': 'Base Product',
           'Custom Note': note,
           'Spacing Mode': spacingMode
@@ -421,7 +430,7 @@ function HomeContent() {
     }
 
     // Add Charms
-    placedCharms.forEach((pc) => {
+    placedCharms.forEach((pc, idx) => {
       if (pc.charm.handle || pc.charm.variantId) {
         items.push({
           variantId: pc.charm.variantId,
@@ -432,7 +441,8 @@ function HomeContent() {
             '_image': designPreviewUrl,
             'Type': 'Charm',
             'Position': (pc.anchorIndex + 1).toString(),
-            'Linked To': selectedBase.name
+            'Linked To': selectedBase.name,
+            [`Charm ${idx + 1} Name`]: pc.charm.name
           }
         });
       }
@@ -442,7 +452,6 @@ function HomeContent() {
 
     if (result.success && result.url) {
       setIsSuccess(true);
-      // Wait a bit to show success state before redirecting
       setTimeout(() => {
         window.location.href = result.url as string;
       }, 1500);
@@ -455,8 +464,21 @@ function HomeContent() {
   const handleBack = () => {
     if (currentStep === 'base') {
       setCurrentStep('charms');
-      setSelectedBase(null);
-      setBaseCardStates({});
+      // Don't mutate selections when navigating; only clear base *preview* state.
+      if (previewedItem && 'type' in previewedItem) {
+        setPreviewedItem(null);
+        setBaseCardStates(prev => {
+          const next = { ...prev };
+          Object.keys(next).forEach(id => {
+            if (next[id] === 'preview') next[id] = 'default';
+          });
+          return next;
+        });
+      }
+
+      // Safety: ensure only charms live inside placedCharms (prevents "random bracelet" showing up in the selected list).
+    setPlacedCharmsSafe(prev => prev);
+      setManualPlacedCharms(prev => prev.filter(pc => isCharmLike(pc.charm)));
     } else if (currentStep === 'space') {
       setCurrentStep('base');
     }
@@ -474,7 +496,7 @@ function HomeContent() {
     }
 
     if (mode === 'standard') {
-      setPlacedCharms(manualPlacedCharms);
+      setPlacedCharmsSafe(manualPlacedCharms);
       setSpacingMode('standard');
       return;
     }
@@ -654,7 +676,7 @@ function HomeContent() {
             quantities={currentStep === 'charms' ? charmQuantities : {}}
             onCardBodyClick={currentStep === 'charms' ? handleCharmBodyClick : handleBaseBodyClick}
             onAdd={currentStep === 'charms' ? handleCharmAdd : handleBaseAdd}
-            onIncrement={handleCharmIncrement}
+            onIncrement={currentStep === 'charms' ? handleCharmIncrement : undefined}
             onRemove={currentStep === 'charms' ? handleCharmRemove : handleBaseRemove}
             activeCategory={currentStep === 'charms' ? activeCharmCategory : activeBaseCategory}
             onCategoryChange={currentStep === 'charms' ? setActiveCharmCategory : setActiveBaseCategory}
