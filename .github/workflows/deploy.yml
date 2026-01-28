@@ -28,19 +28,25 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            set -e # Exit on any error
+            
             # Navigate to the project directory
             cd ~/dunne-app
             
-            # Update code
+            # Ensure local state matches git exactly
             git fetch origin
-            git checkout ${{ github.ref_name }} || git checkout -b ${{ github.ref_name }} origin/${{ github.ref_name }}
-            git pull origin ${{ github.ref_name }}
+            git reset --hard origin/${{ github.ref_name }}
             
             # Create .env file with production secrets
-            echo "NEXT_PUBLIC_SUPABASE_URL=https://lnvmeghqivgvoziklfpk.supabase.co" > .env
-            echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxudm1lZ2hxaXZndm96aWtsZnBrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ0ODEyNzAsImV4cCI6MjA4MDA1NzI3MH0.25jzzp0weLXJiicd8SZpbA4nfji_iEWOE67dQbToGFE" >> .env
-            echo "NEXT_PUBLIC_CLOUDFRONT_URL=https://d1y585exbg6kr2.cloudfront.net/assets" >> .env
-            echo "SHOPIFY_API_SECRET=${{ secrets.SHOPIFY_API_SECRET }}" >> .env
+            cat <<EOF > .env
+            NEXT_PUBLIC_SUPABASE_URL=https://lnvmeghqivgvoziklfpk.supabase.co
+            NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxudm1lZ2hxaXZndm96aWtsZnBrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ0ODEyNzAsImV4cCI6MjA4MDA1NzI3MH0.25jzzp0weLXJiicd8SZpbA4nfji_iEWOE67dQbToGFE
+            NEXT_PUBLIC_CLOUDFRONT_URL=https://d1y585exbg6kr2.cloudfront.net/assets
+            SHOPIFY_API_SECRET=${{ secrets.SHOPIFY_API_SECRET }}
+            NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN=${{ secrets.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN }}
+            SHOPIFY_STOREFRONT_ACCESS_TOKEN=${{ secrets.SHOPIFY_STOREFRONT_ACCESS_TOKEN }}
+            NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_VERSION=${{ secrets.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_VERSION }}
+            EOF
             
             # Install and Build
             npm install
