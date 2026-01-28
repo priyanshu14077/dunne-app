@@ -156,7 +156,8 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                             <div 
                                 className="relative w-full h-full"
                                 style={{ 
-                                    transform: `scale(${baseProduct?.type === 'necklace' ? 0.90 : 0.78}) translateY(${baseProduct?.type === 'necklace' ? -8 : -2}%)`,
+                                    // Center the base visually in the canvas while keeping anchors aligned (anchors live in this same transformed wrapper).
+                                    transform: `scale(${baseProduct?.type === 'necklace' ? 0.90 : 0.78}) translateY(${baseProduct?.type === 'necklace' ? 4 : 8}%)`,
                                     transition: 'transform 0.5s ease-out'
                                 }}
                             >

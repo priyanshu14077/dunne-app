@@ -15,7 +15,7 @@ interface SelectionDrawerProps {
     // Handlers
     onCardBodyClick: (item: Product | Charm) => void;
     onAdd: (item: Product | Charm) => void;
-    onIncrement: (item: Product | Charm) => void;
+    onIncrement?: (item: Product | Charm) => void;
     onRemove: (itemId: string) => void;
     
     // Categorization
@@ -43,6 +43,9 @@ export default function SelectionDrawer({
     onRandomize,
     maxReached = false
 }: SelectionDrawerProps) {
+    const isCharm = (item: Product | Charm): item is Charm => {
+        return typeof (item as Charm).category === "string";
+    };
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -120,9 +123,10 @@ export default function SelectionDrawer({
             const product = item as Product;
             if (activeCategory === 'Bracelets') return product.type === 'bracelet';
             if (activeCategory === 'Necklaces') return product.type === 'necklace';
+            return false;
         }
-        const charm = item as Charm;
-        return charm.category === activeCategory;
+        if (!isCharm(item)) return false;
+        return item.category === activeCategory;
     });
 
     const scroll = (direction: 'left' | 'right') => {
