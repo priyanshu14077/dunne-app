@@ -125,8 +125,8 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                 className={`
                 relative 
                 w-full 
-                max-w-[441px] md:max-w-[600px] lg:max-w-[800px]
-                h-[70vh] md:h-[75vh] lg:h-[75vh]
+                max-w-[441px] md:max-w-[600px] lg:max-w-[500px] xl:max-w-[800px]
+                h-[70vh] md:h-[75vh] lg:h-[62vh] xl:h-[75vh]
                 flex items-center justify-center 
                 transition-all duration-300
                 mx-auto
@@ -136,7 +136,7 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                 {isStep1 ? (
                     <div className="w-full h-full flex items-center justify-center relative animate-fade-in">
                         {(previewCharm || placedCharms.length > 0) ? (
-                            <div className="w-[95%] h-[95%] z-10 animate-fade-in-up relative translate-y-12">
+                            <div className="w-[95%] h-[95%] z-10 animate-fade-in-up relative">
                                 <img 
                                     src={(previewCharm || placedCharms[placedCharms.length - 1]?.charm).previewImage || (previewCharm || placedCharms[placedCharms.length - 1]?.charm).image} 
                                     alt="Charm Preview" 
@@ -154,10 +154,11 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                     <div className="w-full h-full flex items-center justify-center relative animate-fade-in">
                        <div className="relative aspect-square max-w-full max-h-full flex items-center justify-center w-full md:w-auto h-auto md:h-full">
                             <div 
-                                className="relative w-full h-full"
+                                className="relative w-full h-full lg:scale-75 xl:scale-100"
                                 style={{ 
                                     // Center the base visually in the canvas while keeping anchors aligned (anchors live in this same transformed wrapper).
-                                    transform: `scale(${baseProduct?.type === 'necklace' ? 0.90 : 0.78}) translateY(${baseProduct?.type === 'necklace' ? 4 : 8}%)`,
+                                    // Responsive scaling: smaller for 1024-1280px, normal for 1280px+
+                                    transform: `scale(${baseProduct?.type === 'necklace' ? 0.90 : 0.78})`,
                                     transition: 'transform 0.5s ease-out'
                                 }}
                             >
@@ -211,8 +212,8 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                                 ${isBeingDragged ? 'opacity-0' : 'opacity-100'}
                                                 ${(currentStep === 'space' || currentStep === 'base' || forceDragEnabled) ? 'cursor-grab active:cursor-grabbing' : ''}
                                                 ${itemToShow?.overlayImage 
-                                                    ? 'w-[25%] h-[25%] md:w-[30%] md:h-[30%] lg:w-[26%] lg:h-[26%]' 
-                                                    : 'w-[18%] h-[18%] md:w-[20%] md:h-[20%] lg:w-[18%] lg:h-[18%]'}`}
+                                                    ? 'w-[25%] h-[25%] md:w-[30%] md:h-[30%] lg:w-[38%] lg:h-[38%] xl:w-[26%] xl:h-[26%]' 
+                                                    : 'w-[18%] h-[18%] md:w-[20%] md:h-[20%] lg:w-[13%] lg:h-[13%] xl:w-[18%] xl:h-[18%]'}`}
                                             style={{
                                                 left: `${anchor.x}%`,
                                                 top: `${anchor.y}%`,
