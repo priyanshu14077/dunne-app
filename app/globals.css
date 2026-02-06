@@ -199,6 +199,24 @@ body {
   }
 }
 
+/* Desktop breakpoints - smaller screens */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  @layer utilities {
+    .canvas-aspect {
+      aspect-ratio: 1.15 / 1;
+    }
+  }
+}
+
+/* Desktop breakpoints - larger screens */
+@media (min-width: 1280px) {
+  @layer utilities {
+    .canvas-aspect {
+      aspect-ratio: 1.38 / 1;
+    }
+  }
+}
+
 @utility debug-layout {
   outline: 1px solid red;
   background: rgba(255, 0, 0, 0.1);
