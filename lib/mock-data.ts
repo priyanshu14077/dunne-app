@@ -31,11 +31,11 @@ export interface Charm {
   name: string;
   price: number;
   image: string;
-  previewImage?: string; // High-quality preview version for canvas
-  overlayImage?: string; // High-fidelity overlay version with jump ring
+  previewImage?: string; 
+  overlayImage?: string; 
   category: string;
   isNew?: boolean;
-  isBestSeller?: boolean; // Bestseller badge
+  isBestSeller?: boolean; 
   description: string;
   specifications: {
     style?: string;
