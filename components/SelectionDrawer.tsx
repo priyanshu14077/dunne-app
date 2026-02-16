@@ -115,7 +115,7 @@ export default function SelectionDrawer({
     // Categories
     const categories = type === 'base' 
         ? ['Bracelets', 'Necklaces'] 
-        : ['Eternal Bond', 'Game On', 'Persona', 'Guardian', 'LoveStruck', 'Sugar Pop', 'Travel & Wild'];
+        : ['Travel & Wild', 'LoveStruck', 'Guardian', 'Sugar Pop', 'Persona', 'Game On', 'Eternal Bond'];
 
     // Filter items
     const filteredItems = items.filter(item => {

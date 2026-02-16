@@ -141,63 +141,63 @@ export const CHAIN_ANCHORS: Record<string, ChainConfig> = {
         "x": 51.5,
         "y": 73.5,
         "rotation": 0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p0"
       },
       {
         "x": 59.63,
         "y": 72.26,
         "rotation": -17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p1"
       },
       {
         "x": 43.37,
         "y": 72.26,
         "rotation": 17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p2"
       },
       {
         "x": 66.69,
         "y": 68.93,
         "rotation": -33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p3"
       },
       {
         "x": 36.31,
         "y": 68.93,
         "rotation": 33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p4"
       },
       {
         "x": 73.0,
         "y": 63.0,
         "rotation": -48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p5"
       },
       {
         "x": 30.0,
         "y": 63.0,
         "rotation": 48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p6"
       },
       {
         "x": 79.5,
         "y": 55.5,
         "rotation": -63.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p7"
       },
       {
         "x": 23.5,
         "y": 55.5,
         "rotation": 63.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p8"
       }
     ]
@@ -347,63 +347,63 @@ export const CHAIN_ANCHORS: Record<string, ChainConfig> = {
         "x": 51.5,
         "y": 73.5,
         "rotation": 0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p0"
       },
       {
         "x": 59.63,
         "y": 72.26,
         "rotation": -17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p1"
       },
       {
         "x": 43.37,
         "y": 72.26,
         "rotation": 17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p2"
       },
       {
         "x": 66.69,
         "y": 68.93,
         "rotation": -33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p3"
       },
       {
         "x": 36.31,
         "y": 68.93,
         "rotation": 33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p4"
       },
       {
         "x": 73.0,
         "y": 63.0,
         "rotation": -48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p5"
       },
       {
         "x": 30.0,
         "y": 63.0,
         "rotation": 48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p6"
       },
       {
         "x": 79.5,
         "y": 55.5,
         "rotation": -63.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p7"
       },
       {
         "x": 23.5,
         "y": 55.5,
         "rotation": 63.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p8"
       }
     ]
@@ -553,63 +553,63 @@ export const CHAIN_ANCHORS: Record<string, ChainConfig> = {
         "x": 51.5,
         "y": 73.5,
         "rotation": 0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p0"
       },
       {
         "x": 59.63,
         "y": 72.26,
         "rotation": -17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p1"
       },
       {
         "x": 43.37,
         "y": 72.26,
         "rotation": 17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p2"
       },
       {
         "x": 66.69,
         "y": 68.93,
         "rotation": -33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p3"
       },
       {
         "x": 36.31,
         "y": 68.93,
         "rotation": 33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p4"
       },
       {
         "x": 73.0,
         "y": 63.0,
         "rotation": -48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p5"
       },
       {
         "x": 30.0,
         "y": 63.0,
         "rotation": 48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p6"
       },
       {
         "x": 79.5,
         "y": 55.5,
         "rotation": -63.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p7"
       },
       {
         "x": 23.5,
         "y": 55.5,
         "rotation": 63.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p8"
       }
     ]
@@ -759,63 +759,63 @@ export const CHAIN_ANCHORS: Record<string, ChainConfig> = {
         "x": 51.5,
         "y": 73.5,
         "rotation": 0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p0"
       },
       {
         "x": 59.63,
         "y": 72.26,
         "rotation": -17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p1"
       },
       {
         "x": 43.37,
         "y": 72.26,
         "rotation": 17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p2"
       },
       {
         "x": 66.69,
         "y": 68.93,
         "rotation": -33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p3"
       },
       {
         "x": 36.31,
         "y": 68.93,
         "rotation": 33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p4"
       },
       {
         "x": 73.0,
         "y": 63.0,
         "rotation": -48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p5"
       },
       {
         "x": 30.0,
         "y": 63.0,
         "rotation": 48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p6"
       },
       {
         "x": 77.0,
         "y": 58.0,
         "rotation": -59.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p7"
       },
       {
         "x": 26.0,
         "y": 58.0,
         "rotation": 59.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p8"
       }
     ]
@@ -965,63 +965,63 @@ export const CHAIN_ANCHORS: Record<string, ChainConfig> = {
         "x": 51.5,
         "y": 73.5,
         "rotation": 0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p0"
       },
       {
         "x": 59.63,
         "y": 72.26,
         "rotation": -17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p1"
       },
       {
         "x": 43.37,
         "y": 72.26,
         "rotation": 17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p2"
       },
       {
         "x": 66.69,
         "y": 68.93,
         "rotation": -33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p3"
       },
       {
         "x": 36.31,
         "y": 68.93,
         "rotation": 33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p4"
       },
       {
         "x": 73.0,
         "y": 63.0,
         "rotation": -48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p5"
       },
       {
         "x": 30.0,
         "y": 63.0,
         "rotation": 48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p6"
       },
       {
         "x": 77.0,
         "y": 58.0,
         "rotation": -59.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p7"
       },
       {
         "x": 26.0,
         "y": 58.0,
         "rotation": 59.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p8"
       }
     ]
@@ -1171,63 +1171,63 @@ export const CHAIN_ANCHORS: Record<string, ChainConfig> = {
         "x": 51.5,
         "y": 73.5,
         "rotation": 0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p0"
       },
       {
         "x": 59.63,
         "y": 72.26,
         "rotation": -17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p1"
       },
       {
         "x": 43.37,
         "y": 72.26,
         "rotation": 17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p2"
       },
       {
         "x": 66.69,
         "y": 68.93,
         "rotation": -33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p3"
       },
       {
         "x": 36.31,
         "y": 68.93,
         "rotation": 33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p4"
       },
       {
         "x": 73.0,
         "y": 63.0,
         "rotation": -48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p5"
       },
       {
         "x": 30.0,
         "y": 63.0,
         "rotation": 48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p6"
       },
       {
         "x": 77.0,
         "y": 58.0,
         "rotation": -59.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p7"
       },
       {
         "x": 26.0,
         "y": 58.0,
         "rotation": 59.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p8"
       }
     ]
@@ -1377,63 +1377,63 @@ export const CHAIN_ANCHORS: Record<string, ChainConfig> = {
         "x": 51.5,
         "y": 73.5,
         "rotation": 0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p0"
       },
       {
         "x": 59.63,
         "y": 72.26,
         "rotation": -17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p1"
       },
       {
         "x": 43.37,
         "y": 72.26,
         "rotation": 17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p2"
       },
       {
         "x": 66.69,
         "y": 68.93,
         "rotation": -33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p3"
       },
       {
         "x": 36.31,
         "y": 68.93,
         "rotation": 33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p4"
       },
       {
         "x": 73.0,
         "y": 63.0,
         "rotation": -48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p5"
       },
       {
         "x": 30.0,
         "y": 63.0,
         "rotation": 48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p6"
       },
       {
         "x": 77.0,
         "y": 58.0,
         "rotation": -59.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p7"
       },
       {
         "x": 26.0,
         "y": 58.0,
         "rotation": 59.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p8"
       }
     ]
@@ -1583,63 +1583,63 @@ export const CHAIN_ANCHORS: Record<string, ChainConfig> = {
         "x": 51.5,
         "y": 73.5,
         "rotation": 0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p0"
       },
       {
         "x": 59.63,
         "y": 72.26,
         "rotation": -17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p1"
       },
       {
         "x": 43.37,
         "y": 72.26,
         "rotation": 17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p2"
       },
       {
         "x": 66.69,
         "y": 68.93,
         "rotation": -33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p3"
       },
       {
         "x": 36.31,
         "y": 68.93,
         "rotation": 33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p4"
       },
       {
         "x": 73.0,
         "y": 63.0,
         "rotation": -48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p5"
       },
       {
         "x": 30.0,
         "y": 63.0,
         "rotation": 48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p6"
       },
       {
         "x": 77.0,
         "y": 58.0,
         "rotation": -59.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p7"
       },
       {
         "x": 26.0,
         "y": 58.0,
         "rotation": 59.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p8"
       }
     ]
@@ -1789,63 +1789,63 @@ export const CHAIN_ANCHORS: Record<string, ChainConfig> = {
         "x": 51.5,
         "y": 73.5,
         "rotation": 0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p0"
       },
       {
         "x": 59.63,
         "y": 72.26,
         "rotation": -17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p1"
       },
       {
         "x": 43.37,
         "y": 72.26,
         "rotation": 17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p2"
       },
       {
         "x": 66.69,
         "y": 68.93,
         "rotation": -33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p3"
       },
       {
         "x": 36.31,
         "y": 68.93,
         "rotation": 33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p4"
       },
       {
         "x": 73.0,
         "y": 63.0,
         "rotation": -48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p5"
       },
       {
         "x": 30.0,
         "y": 63.0,
         "rotation": 48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p6"
       },
       {
         "x": 77.0,
         "y": 58.0,
         "rotation": -59.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p7"
       },
       {
         "x": 26.0,
         "y": 58.0,
         "rotation": 59.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p8"
       }
     ]
@@ -1995,63 +1995,63 @@ export const CHAIN_ANCHORS: Record<string, ChainConfig> = {
         "x": 51.5,
         "y": 73.5,
         "rotation": 0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p0"
       },
       {
         "x": 59.63,
         "y": 72.26,
         "rotation": -17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p1"
       },
       {
         "x": 43.37,
         "y": 72.26,
         "rotation": 17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p2"
       },
       {
         "x": 66.69,
         "y": 68.93,
         "rotation": -33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p3"
       },
       {
         "x": 36.31,
         "y": 68.93,
         "rotation": 33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p4"
       },
       {
         "x": 73.0,
         "y": 63.0,
         "rotation": -48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p5"
       },
       {
         "x": 30.0,
         "y": 63.0,
         "rotation": 48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p6"
       },
       {
         "x": 77.0,
         "y": 58.0,
         "rotation": -59.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p7"
       },
       {
         "x": 26.0,
         "y": 58.0,
         "rotation": 59.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p8"
       }
     ]
@@ -2201,63 +2201,63 @@ export const CHAIN_ANCHORS: Record<string, ChainConfig> = {
         "x": 51.5,
         "y": 73.5,
         "rotation": 0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p0"
       },
       {
         "x": 59.63,
         "y": 72.26,
         "rotation": -17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p1"
       },
       {
         "x": 43.37,
         "y": 72.26,
         "rotation": 17.28,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p2"
       },
       {
         "x": 66.69,
         "y": 68.93,
         "rotation": -33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p3"
       },
       {
         "x": 36.31,
         "y": 68.93,
         "rotation": 33.1,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p4"
       },
       {
         "x": 73.0,
         "y": 63.0,
         "rotation": -48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p5"
       },
       {
         "x": 30.0,
         "y": 63.0,
         "rotation": 48.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p6"
       },
       {
         "x": 77.0,
         "y": 58.0,
         "rotation": -59.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p7"
       },
       {
         "x": 26.0,
         "y": 58.0,
         "rotation": 59.0,
-        "scale": 0.85,
+        "scale": 0.75,
         "label": "p8"
       }
     ]
