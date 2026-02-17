@@ -22,6 +22,7 @@ import { PRODUCT_ANCHORS } from "@/lib/anchor";
 import { CONSTRAINTS } from "@/lib/design-tokens";
 import { PlacedCharmInstance } from "@/lib/types";
 import { addToShopifyCart, ShopifyCartItem } from "@/lib/shopify";
+import { toBlob } from "html-to-image";
 
 import { Check, Loader2, ShoppingCart } from "lucide-react";
 
@@ -421,6 +422,64 @@ function HomeContent() {
     setCheckoutError(null);
 
     const designId = generateDesignId();
+    let designPreviewUrl: string | undefined;
+
+
+
+      const element = document.getElementById("jewelry-design-canvas");
+      if (element) {
+        // console.log("Element found, capturing blob...");
+        const blob = await toBlob(element, { 
+          backgroundColor: '#ffffff', 
+          cacheBust: true,
+          skipFonts: true,
+          pixelRatio: 2,
+          width: element.scrollWidth,
+          height: element.scrollHeight,
+          style: {
+             transform: 'scale(1)', // Ensure no parent scaling affects capture if possible
+             margin: '0'
+          }
+        });
+
+        if (blob) {
+          const formData = new FormData();
+          formData.append("file", blob, `${designId}.png`);
+          formData.append("designId", designId);
+
+          // Serialize Metadata
+          const metadata = {
+            baseProduct: selectedBase ? {
+              name: selectedBase.name,
+              type: selectedBase.type,
+              price: selectedBase.price,
+              image: selectedBase.image
+            } : null,
+            charms: placedCharms.map(pc => ({
+              name: pc.charm.name,
+              image: pc.charm.image,
+              price: pc.charm.price,
+              anchorIndex: pc.anchorIndex
+            })),
+            note: note,
+            spacingMode: spacingMode
+          };
+
+          formData.append("metadata", JSON.stringify(metadata));
+
+          const uploadRes = await fetch("/apps/customizer/api/upload-preview", {
+            method: "POST",
+            body: formData,
+          });
+
+          if (uploadRes.ok) {
+            const uploadData = await uploadRes.json();
+            designPreviewUrl = uploadData.imageUrl;
+            // console.log("Upload success, URL:", designPreviewUrl);
+          }
+        }
+      }
+
     const items: ShopifyCartItem[] = [];
 
     // Base product properties: design ID, note, spacing, and charm layout (name, quantity, anchor 0-8) for up to 9 charms
@@ -430,6 +489,10 @@ function HomeContent() {
       "Custom Note": note,
       "Spacing Mode": spacingMode,
     };
+    if (designPreviewUrl) {
+      baseProperties["_Design Preview"] = designPreviewUrl;
+    }
+
     const maxCharms = 9;
     placedCharms.slice(0, maxCharms).forEach((pc, idx) => {
       const n = idx + 1;

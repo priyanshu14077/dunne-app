@@ -212,8 +212,8 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                                 ${isBeingDragged ? 'opacity-0' : 'opacity-100'}
                                                 ${(currentStep === 'space' || currentStep === 'base' || forceDragEnabled) ? 'cursor-grab active:cursor-grabbing' : ''}
                                                 ${itemToShow?.overlayImage 
-                                                    ? 'w-[25%] h-[25%] md:w-[30%] md:h-[30%] lg:w-[38%] lg:h-[38%] xl:w-[26%] xl:h-[26%]' 
-                                                    : 'w-[18%] h-[18%] md:w-[20%] md:h-[20%] lg:w-[13%] lg:h-[13%] xl:w-[18%] xl:h-[18%]'}`}
+                                                    ? 'w-[32%] h-[32%] md:w-[38%] md:h-[38%] lg:w-[48%] lg:h-[48%] xl:w-[34%] xl:h-[34%]' 
+                                                    : 'w-[24%] h-[24%] md:w-[26%] md:h-[26%] lg:w-[20%] lg:h-[20%] xl:w-[24%] xl:h-[24%]'}`}
                                             style={{
                                                 left: `${anchor.x}%`,
                                                 top: `${anchor.y}%`,

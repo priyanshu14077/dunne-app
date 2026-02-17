@@ -13,9 +13,7 @@ export default function CharmOverlay({
   baseImageSrc, 
   selectedCharms,
 }: CharmOverlayProps) {
-  
-  // Get anchors for this product from the 'PRODUCT_ANCHORS' constant
-  // If no anchors exist, we default to an empty array (render nothing)
+ 
   const anchors = PRODUCT_ANCHORS[baseProductId]?.anchors?.mobile || [];
 
   return (
@@ -46,7 +44,7 @@ export default function CharmOverlay({
             return (
                <div
                   key={`${charm.id}-${index}`}
-                  className="absolute flex items-center justify-center w-[18%] pointer-events-none"
+                  className="absolute flex items-center justify-center w-[24%] pointer-events-none"
                   style={{
                      left: `${anchor.x}%`,
                      top: `${anchor.y}%`,
