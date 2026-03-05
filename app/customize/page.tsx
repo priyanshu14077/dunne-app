@@ -23,6 +23,7 @@ import { CONSTRAINTS } from "@/lib/design-tokens";
 import { PlacedCharmInstance } from "@/lib/types";
 import { addToShopifyCart, ShopifyCartItem } from "@/lib/shopify";
 import { toBlob } from "html-to-image";
+import { initMetaPixel, trackAddToCart } from "@/lib/metaPixel";
 
 import { Check, Loader2, ShoppingCart } from "lucide-react";
 
@@ -157,6 +158,7 @@ function HomeContent() {
 
   // --- WALKTHROUGH TRIGGERS ---
   useEffect(() => {
+    initMetaPixel().catch(console.error);
     if (totalCharmCount === 1 && currentStep === "charms") {
       setStepByPhase("interaction");
     }
@@ -420,6 +422,20 @@ function HomeContent() {
 
     setIsAdding(true);
     setCheckoutError(null);
+
+    // META PIXEL TRACKING
+    try {
+      const charIds = placedCharms.map((pc) => pc.charm.id);
+      trackAddToCart({
+        content_ids: [selectedBase.id, ...charIds],
+        content_type: "product",
+        content_name: `Custom ${selectedBase.name}`,
+        value: totalPrice,
+        currency: "INR",
+      });
+    } catch (e) {
+      console.error("Meta pixel track error:", e);
+    }
 
     const designId = generateDesignId();
     let designPreviewUrl: string | undefined;
