@@ -2728,7 +2728,7 @@ export const CHARMS: Charm[] = [
     variantId: 47314245746947,
     handle: 'golden-conch-charm',
     name: "Golden Conch Shell Charm",
-    price: 390.00,
+    price: 490.00,
     category: "Travel & Wild",
     image: STORAGE_BASE + "/charms-cards/Wild & Free/Label = Golden Conch Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Wild & Free/Label = Golden Conch Charm.png",
