@@ -31,19 +31,21 @@ export default function CharmCard({
     type
 }: CharmCardProps) {
     
-    // State for image source handling fallback
+   
     const [imgSrc, setImgSrc] = useState<string>(item.image);
     const [hasError, setHasError] = useState(false);
 
-    // Sync state if item changes (just in case component is reused without key change)
+    
     const previewImage = 'previewImage' in item ? item.previewImage : undefined;
     if (imgSrc !== item.image && !hasError && imgSrc !== previewImage) {
-         setImgSrc(item.image); 
+         setImgSrc(item.image || previewImage || ''); 
     }
+
+    const isWebp = imgSrc?.toLowerCase().includes('.webp');
 
     const showQuantityControls = isAdded && quantity > 0;
 
-    // Handler for Card Body Click → PREVIEW (State 2)
+
     const handleBodyClick = () => {
         onBodyClick(item);
     };
@@ -83,7 +85,7 @@ export default function CharmCard({
         line1 = words[0];
         line2 = words[1];
     } else if (words.length >= 3) {
-        // Simple balance for 3+ words: first 1 or 2 on line 1, rest on line 2
+        
         const mid = Math.ceil(words.length / 2);
         line1 = words.slice(0, mid).join(' ');
         line2 = words.slice(mid).join(' ');
@@ -121,13 +123,13 @@ export default function CharmCard({
             )}
             {/* Image Container */}
             <div className="flex items-center justify-center w-full h-[70px] lg:h-[85px] pt-1">
-                <div className="w-[67px] h-[58px] lg:w-[79px] lg:h-[68px] flex items-center justify-center relative">
+                <div className="w-[85px] h-[75px] lg:w-[100px] lg:h-[85px] flex items-center justify-center relative">
 
                     <Image 
                         src={imgSrc} 
                         alt={rawName}
                         fill
-                        className="object-contain drop-shadow-sm transition-transform duration-300 group-hover:scale-110"
+                        className={`object-contain drop-shadow-sm transition-transform duration-300 ${isWebp ? 'scale-[1.45] group-hover:scale-[1.6]' : 'group-hover:scale-110'}`}
                         sizes="(max-width: 768px) 200px, 300px"
                         quality={100}
                         priority={['pe-a', 'pe-b', 'pe-d'].includes(item.id)}

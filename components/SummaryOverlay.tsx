@@ -40,6 +40,7 @@ export default function SummaryOverlay({ charms, onViewAll }: SummaryOverlayProp
                                             alt="" 
                                             crossOrigin="anonymous"
                                             className="w-4 h-4 object-contain" 
+                                            style={pc.charm.image?.toLowerCase().includes('.webp') ? { transform: 'scale(1.5)' } : {}}
                                         />
                                     </div>
                                 ))}

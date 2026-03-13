@@ -24,7 +24,12 @@ export default function SelectedCharmsSidebar({ selectedCharms, onRemove }: Sele
                 {selectedCharms.map((item, index) => (
                     <div key={item.id} className="flex items-center gap-2 bg-white p-2 rounded-lg border border-gray-100 shadow-sm animate-in fade-in slide-in-from-left-2 duration-300">
                         <div className="w-8 h-8 flex-shrink-0 bg-gray-50 rounded-md flex items-center justify-center p-1">
-                            <img src={item.charm.image} alt={item.charm.name} className="w-full h-full object-contain" />
+                            <img 
+                                src={item.charm.image} 
+                                alt={item.charm.name} 
+                                className="w-full h-full object-contain transition-transform duration-300"
+                                style={item.charm.image?.toLowerCase().includes('.webp') ? { transform: 'scale(1.45)' } : {}}
+                            />
                         </div>
                         
                         <div className="flex-1 min-w-0">

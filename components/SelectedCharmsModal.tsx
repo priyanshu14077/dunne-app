@@ -23,7 +23,7 @@ export default function SelectedCharmsModal({
 }: SelectedCharmsModalProps) {
     const totalCount = selectedCharms.length;
     
-    // Sortable state
+ 
     const [items, setItems] = useState(selectedCharms);
     
     useEffect(() => {
@@ -58,7 +58,7 @@ export default function SelectedCharmsModal({
         draggingIndex.current = index;
         setItems(newList);
         
-        // This will update the parent and thus the canvas in real-time
+   
         onReorder(newList.map(it => it.id));
     };
 
@@ -131,9 +131,11 @@ export default function SelectedCharmsModal({
                                 {/* Charm Image: Transparent Container */}
                                 <div className="w-[64px] h-[64px] flex items-center justify-center p-1 relative shrink-0">
                                     <img 
-                                        src={item.charm.image} 
+                                        src={item.charm.image || item.charm.previewImage || item.charm.overlayImage} 
                                         alt={item.charm.name} 
-                                        className="w-full h-full object-contain drop-shadow-sm" 
+                                        className="w-full h-full object-contain drop-shadow-sm transition-transform duration-300" 
+                                        style={(item.charm.image || item.charm.previewImage || item.charm.overlayImage)?.toLowerCase().includes('.webp') ? { transform: 'scale(1.45)' } : {}}
+                                        onError={(e) => { const target = e.target as HTMLImageElement; target.src = item.charm.previewImage || item.charm.overlayImage || item.charm.image; }}
                                     />
                                 </div>
 
