@@ -808,6 +808,72 @@ export const CHARMS: Charm[] = [
       quality: "Anti Tarnish, Hypoallergenic"
     }
   },
+  {
+    id: "eb-20",
+    name: "Sacred Balance Charm",
+    handle: 'sacred-balance-charm',
+    productId: 9300308099331,
+    variantId: 47741743497475,
+    price: 590,
+    category: "Eternal Bond",
+    isBestSeller: false,
+    image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Sacred Balance Charm.webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Sacred Balance Charm.webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Eternal Bloom/Sacred Balance Charm.webp",
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
+      quality: "Anti Tarnish, Hypoallergenic"
+    }
+  },
+  {
+    id: "eb-21",
+    name: "Midnight Sparkle Lock Charm",
+    handle: 'midnight-sparkle-lock-charm',
+    productId: 9295352725763,
+    variantId: 47724752732419,
+    price: 690,
+    category: "Eternal Bond",
+    isBestSeller: false,
+    image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Midnight Sparkle Lock Charm.webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Midnight Sparkle Lock Charm.webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Eternal Bloom/Midnight Sparkle Lock Charm.webp",
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
+      quality: "Anti Tarnish, Hypoallergenic"
+    }
+  },
+  {
+    id: "eb-22",
+    name: "Keyspell Charm",
+    handle: 'keyspell-charm',
+    productId: 9265386619139,
+    variantId: 47656418803971,
+    price: 490,
+    category: "Eternal Bond",
+    isBestSeller: false,
+    image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Keyspell Charm.webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Keyspell Charm.webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Eternal Bloom/Keyspell Charm.webp",
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
+      quality: "Anti Tarnish, Hypoallergenic"
+    }
+  },
 
   // Game On
   {
@@ -1336,6 +1402,137 @@ export const CHARMS: Charm[] = [
       weight: "~3 g",
       material: "Stainless Steel with Gold Plating",
       finish: "Gloss enamel + gold plating",
+    }
+  },
+  {
+    id: "gu-20",
+    name: "Celestial Glow Charm",
+    handle: 'celestial-glow-charm',
+    productId: 9300306657539,
+    variantId: 47741719183619,
+    price: 690,
+    category: "Guardian",
+    isBestSeller: false,
+    image: STORAGE_BASE + "/charms-cards/Guardian/Celestial Glow Charm.webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Guardian/Celestial Glow Charm.webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Guardian/Celestial Glow Charm.webp",
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
+      quality: "Anti Tarnish, Hypoallergenic"
+    }
+  },
+  {
+    id: "gu-21",
+    name: "Eye Protection Charm",
+    handle: 'eye-protection-charm',
+    productId: 9295371043075,
+    variantId: 47724824002819,
+    price: 790,
+    category: "Guardian",
+    isBestSeller: false,
+    image: STORAGE_BASE + "/charms-cards/Guardian/Eye Protection Charm.webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Guardian/Eye Protection Charm.webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Guardian/Eye Protection Charm.webp",
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
+      quality: "Anti Tarnish, Hypoallergenic"
+    }
+  },
+  {
+    id: "gu-22",
+    name: "Silver lucky Horseshoe Charm",
+    handle: 'silver-lucky-horseshoe-charm',
+    productId: 9295345287427,
+    variantId: 47724680741123,
+    price: 790,
+    category: "Guardian",
+    isBestSeller: false,
+    image: STORAGE_BASE + "/charms-cards/Guardian/Silver lucky Horseshoe Charm.webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Guardian/Silver lucky Horseshoe Charm.webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Guardian/Silver lucky Horseshoe Charm.webp",
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
+      quality: "Anti Tarnish, Hypoallergenic"
+    }
+  },
+  {
+    id: "gu-23",
+    name: "Radiant Rainbow Arc Charm",
+    handle: 'radiant-rainbow-arc-charm',
+    productId: 9259952996611,
+    variantId: 47638003482883,
+    price: 790,
+    category: "Guardian",
+    isBestSeller: false,
+    image: STORAGE_BASE + "/charms-cards/Guardian/Radiant Rainbow Arc Charm.webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Guardian/Radiant Rainbow Arc Charm.webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Guardian/Radiant Rainbow Arc Charm.webp",
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
+      quality: "Anti Tarnish, Hypoallergenic"
+    }
+  },
+  {
+    id: "gu-24",
+    name: "Lucky Charm",
+    handle: 'lucky-charm',
+    productId: 9131058528515,
+    variantId: 47314246140163,
+    price: 690,
+    category: "Guardian",
+    isBestSeller: false,
+    image: STORAGE_BASE + "/charms-cards/Guardian/Lucky Charm.webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Guardian/Lucky Charm.webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Guardian/Lucky Charm.webp",
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
+      quality: "Anti Tarnish, Hypoallergenic"
+    }
+  },
+  {
+    id: "gu-25",
+    name: "Crescent Pearl Moon Charm",
+    handle: 'crescent-pearl-moon-charm',
+    productId: 9259529011459,
+    variantId: 47637266465027,
+    price: 590,
+    category: "Guardian",
+    isBestSeller: false,
+    image: STORAGE_BASE + "/charms-cards/Guardian/Crescent Pearl Moon Charm.webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Guardian/Crescent Pearl Moon Charm.webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Guardian/Crescent Pearl Moon Charm.webp",
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
       quality: "Anti Tarnish, Hypoallergenic"
     }
   },
@@ -1630,6 +1827,49 @@ export const CHARMS: Charm[] = [
       weight: "Approx. 3 g",
       material: "Stainless Steel with High Gloss Gold Plating and Enamel Inlay",
       finish: "Smooth Enamel with Polished Gold Accents",
+    }
+  },
+  {
+    id: "ls-16",
+    name: "Pure Heart Charm",
+    handle: 'pure-heart-charm',
+    productId: 9300323926275,
+    variantId: 47741800808707,
+    price: 790,
+    category: "LoveStruck",
+    isBestSeller: false,
+    image: STORAGE_BASE + "/charms-cards/Lovestruck/Pure Heart Charm.webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Pure Heart Charm.webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Lovestruck/Pure Heart Charm.webp",
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
+      quality: "Anti Tarnish, Hypoallergenic"
+    }
+  },
+  {
+    id: "ls-17",
+    name: "Royal Flame Sacred Heart Charm",
+    handle: 'royal-flame-sacred-heart-charm',
+    productId: 9259904565507,
+    variantId: 47637940044035,
+    price: 690,
+    category: "LoveStruck",
+    isBestSeller: false,
+    image: STORAGE_BASE + "/charms-cards/Lovestruck/Royal Flame Sacred Heart Charm.webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Lovestruck/Royal Flame Sacred Heart Charm.webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Lovestruck/Royal Flame Sacred Heart Charm.webp",
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
       quality: "Anti Tarnish, Hypoallergenic"
     }
   },
@@ -2592,6 +2832,93 @@ export const CHARMS: Charm[] = [
       weight: "~3 g",
       material: "Stainless Steel with Gold Plating",
       finish: "Gloss enamel + gold plating",
+    }
+  },
+  {
+    id: "sp-24",
+    name: "Fries Before Guys Charm",
+    handle: 'fries-before-guys-charm',
+    productId: 9300306624771,
+    variantId: 47741719150851,
+    price: 690,
+    category: "Sugar Pop",
+    isBestSeller: false,
+    image: STORAGE_BASE + "/charms-cards/Sugarpop/Fries Before Guys Charm.webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Sugar Pop/Fries Before Guys Charm.webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Sugar Pop/Fries Before Guys Charm.webp",
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
+      quality: "Anti Tarnish, Hypoallergenic"
+    }
+  },
+  {
+    id: "sp-25",
+    name: "Sparkle Slice Charm",
+    handle: 'sparkle-slice-charm',
+    productId: 9295364751619,
+    variantId: 47724787892483,
+    price: 790,
+    category: "Sugar Pop",
+    isBestSeller: false,
+    image: STORAGE_BASE + "/charms-cards/Sugarpop/Sparkle Slice Charm.webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Sugar Pop/Sparkle Slice Charm.webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Sugar Pop/Sparkle Slice Charm.webp",
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
+      quality: "Anti Tarnish, Hypoallergenic"
+    }
+  },
+  {
+    id: "sp-26",
+    name: "Sparkle Pizza Slice Charm",
+    handle: 'sparkle-pizza-slice-charm',
+    productId: 9295350694147,
+    variantId: 47724740051203,
+    price: 690,
+    category: "Sugar Pop",
+    isBestSeller: false,
+    image: STORAGE_BASE + "/charms-cards/Sugarpop/Sparkle Pizza Slice Charm.webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Sugar Pop/Sparkle Pizza Slice Charm.webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Sugar Pop/Sparkle Pizza Slice Charm.webp",
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
+      quality: "Anti Tarnish, Hypoallergenic"
+    }
+  },
+  {
+    id: "sp-27",
+    name: "Spice Drop Chili Charm",
+    handle: 'spice-drop-chili-charm',
+    productId: 9265449632003,
+    variantId: 47656485814531,
+    price: 490,
+    category: "Sugar Pop",
+    isBestSeller: false,
+    image: STORAGE_BASE + "/charms-cards/Sugarpop/Spice Drop Chili Charm.webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Sugar Pop/Spice Drop Chili Charm.webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Sugar Pop/Spice Drop Chili Charm.webp",
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
       quality: "Anti Tarnish, Hypoallergenic"
     }
   },
@@ -3041,8 +3368,8 @@ export const CHARMS: Charm[] = [
     productId: 9131058299139,
     variantId: 47314245681411,
     handle: 'sunny-fish-charm',
-    name: "Aurora Fish Ocean",
-    price: 690,
+    name: "Sunny Fish Ocean",
+    price: 590,
     category: "Travel & Wild",
     image: STORAGE_BASE + "/charms-cards/Wild & Free/Label = Sunny Fish Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Wild & Free/Label = Sunny Fish Charm.png",
@@ -3081,5 +3408,8 @@ export const CHARMS: Charm[] = [
       finish: "Gloss enamel + gold plating",
       quality: "Anti Tarnish, Hypoallergenic"
     }
-  }
+  },
+
 ];
+
+  

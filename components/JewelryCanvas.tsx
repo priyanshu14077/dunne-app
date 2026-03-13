@@ -135,16 +135,24 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
             `}>
                 {isStep1 ? (
                     <div className="w-full h-full flex items-center justify-center relative animate-fade-in">
-                        {(previewCharm || placedCharms.length > 0) ? (
-                            <div className="w-[95%] h-[95%] z-10 animate-fade-in-up relative">
-                                <img 
-                                    src={(previewCharm || placedCharms[placedCharms.length - 1]?.charm).previewImage || (previewCharm || placedCharms[placedCharms.length - 1]?.charm).image} 
-                                    alt="Charm Preview" 
-                                    crossOrigin="anonymous"
-                                    className="w-full h-full object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.12)] transition-transform duration-500 hover:scale-105"
-                                />
-                            </div>
-                        ) : (
+                        {(previewCharm || placedCharms.length > 0) ? (() => {
+                            const charm = previewCharm || placedCharms[placedCharms.length - 1]?.charm;
+                            const src = charm.previewImage || charm.image;
+                            const isWebp = src?.toLowerCase().includes('.webp');
+                            return (
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <div className={`relative ${isWebp ? 'w-[60%] h-[60%]' : 'w-[75%] h-[75%]'} z-10 animate-fade-in-up flex items-center justify-center`}>
+                                        <img
+                                            src={src}
+                                            alt="Charm Preview"
+                                            crossOrigin="anonymous"
+                                            className="w-full h-full object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.12)] transition-transform duration-500 hover:scale-105"
+                                            style={isWebp ? { transform: 'scale(1.4)' } : {}}
+                                        />
+                                    </div>
+                                </div>
+                            );
+                        })() : (
                             <div className="text-[#1F4B30]/30 text-xs font-bold uppercase tracking-widest animate-pulse" style={{ fontFamily: 'Manrope, sans-serif' }}>
                                 TAP A CHARM TO PREVIEW
                             </div>
@@ -202,6 +210,9 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                     // If forcing drag, ensure we show charms even if logic typically hides them
                                     if (!itemToShow && !isPreview) return null;
 
+                                    const itemSrc = itemToShow ? (itemToShow.overlayImage || itemToShow.previewImage || itemToShow.image) : '';
+                                    const isWebp = itemSrc.toLowerCase().includes('.webp');
+
                                     return (
                                         <div 
                                             key={`anchor-${index}`}
@@ -211,9 +222,7 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                                 ${isPreview ? 'z-20' : 'z-10'}
                                                 ${isBeingDragged ? 'opacity-0' : 'opacity-100'}
                                                 ${(currentStep === 'space' || currentStep === 'base' || forceDragEnabled) ? 'cursor-grab active:cursor-grabbing' : ''}
-                                                ${itemToShow?.overlayImage 
-                                                    ? 'w-[32%] h-[32%] md:w-[38%] md:h-[38%] lg:w-[48%] lg:h-[48%] xl:w-[34%] xl:h-[34%]' 
-                                                    : 'w-[24%] h-[24%] md:w-[26%] md:h-[26%] lg:w-[20%] lg:h-[20%] xl:w-[24%] xl:h-[24%]'}`}
+                                                w-[32%] h-[32%] md:w-[38%] md:h-[38%] lg:w-[48%] lg:h-[48%] xl:w-[34%] xl:h-[34%]`}
                                             style={{
                                                 left: `${anchor.x}%`,
                                                 top: `${anchor.y}%`,
@@ -224,10 +233,11 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                             {itemToShow && (
                                                 <div className={`relative w-full h-full flex items-start justify-center ${isPreview ? 'opacity-40 brightness-110' : ''}`}> 
                                                     <img 
-                                                        src={itemToShow.overlayImage || itemToShow.previewImage || itemToShow.image} 
+                                                        src={itemSrc} 
                                                         alt={itemToShow.name}
                                                         crossOrigin="anonymous"
-                                                        className={`w-full h-full object-contain select-none pointer-events-none ${isPreview ? '' : 'drop-shadow-md'}`}
+                                                        className={`w-full h-full object-contain select-none pointer-events-none ${isPreview ? '' : 'drop-shadow-md'} transition-transform duration-300`}
+                                                        style={isWebp ? { transform: 'scale(1.45)' } : {}}
                                                     />
                                                     {isPreview && (
                                                         <div className={`absolute inset-0 rounded-full border-2 border-dashed border-indigo-400/50 animate-pulse ${itemToShow.overlayImage ? 'scale-75 translate-y-[-20%]' : ''}`} />
@@ -252,12 +262,15 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                         {(() => {
                                             const pc = placedCharms.find(p => p.id === draggingId);
                                             if (!pc) return null;
+                                            const dragSrc = pc.charm.overlayImage || pc.charm.previewImage || pc.charm.image;
+                                            const isDragWebp = dragSrc.toLowerCase().includes('.webp');
                                             return (
                                                 <img 
-                                                    src={pc.charm.overlayImage || pc.charm.previewImage || pc.charm.image}
+                                                    src={dragSrc}
                                                     alt="Dragging"
                                                     crossOrigin="anonymous"
                                                     className="w-full h-full object-contain"
+                                                    style={isDragWebp ? { transform: 'scale(1.45)' } : {}}
                                                 />
                                             );
                                         })()}

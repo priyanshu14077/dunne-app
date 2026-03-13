@@ -44,12 +44,12 @@ export default function CharmOverlay({
             return (
                <div
                   key={`${charm.id}-${index}`}
-                  className="absolute flex items-center justify-center w-[24%] pointer-events-none"
+                  className="absolute flex items-center justify-center w-[28%] pointer-events-none"
                   style={{
                      left: `${anchor.x}%`,
                      top: `${anchor.y}%`,
-                     // EXACT TRANSFORM as requested
-                     transform: `translate(-50%, -50%) rotate(${anchor.rotation}deg) scale(${anchor.scale || 1})`,
+                     // EXACT TRANSFORM as requested: center + rotate + scale, with Y shifted 10% down to fix overlay offset
+                     transform: `translate(-50%, -38%) rotate(${anchor.rotation}deg) scale(${anchor.scale || 1})`,
                      zIndex: 10, // Ensure charms appear above base image
                   }}
                >
@@ -60,6 +60,7 @@ export default function CharmOverlay({
                       width={100}
                       height={100}
                       className="object-contain w-full h-auto"
+                      style={(charm.previewImage || charm.image)?.toLowerCase().includes('.webp') ? { transform: 'scale(1.5)' } : undefined}
                    />
                </div>
             );
