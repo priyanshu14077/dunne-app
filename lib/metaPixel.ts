@@ -1,32 +1,19 @@
-export const initMetaPixel = async () => {
-  if (typeof window === "undefined") return;
-  // Make sure we only initialize once
-  if ((window as any).fbq) return;
+// ---------------------------------------------------------------------------
+// Meta / Facebook Pixel – native implementation (no third-party wrapper)
+// ---------------------------------------------------------------------------
+// Using Facebook's official fbq snippet directly avoids the `react-facebook-pixel`
+// package's webpack-bundled fb-pixel.js, which caused a 404/ERR_UNKNOWN_URL_SCHEME
+// error in the browser because webpack:// source-map URLs are not valid HTTP URLs.
+// ---------------------------------------------------------------------------
 
-  const pixelId = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
-  if (!pixelId) {
-    console.warn("Meta Pixel ID is missing from environment variables.");
-    return;
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+    _fbq?: (...args: unknown[]) => void;
   }
+}
 
-  const requireConsent = process.env.NEXT_PUBLIC_META_PIXEL_REQUIRE_CONSENT === "true";
-
-  if (requireConsent) {
-    // If requirement is true and there is no implemented consent state, do not set up Pixel.
-    console.log("Meta Pixel initialization skipped: awaiting user consent.");
-    return;
-  }
-
-  // Dynamically import the library client-side only
-  const ReactPixelModule = await import("react-facebook-pixel");
-  const ReactPixel = ReactPixelModule.default || ReactPixelModule;
-
-  // Initialize with autoConfig: false to suppress the automatic PageView event
-  ReactPixel.init(pixelId, undefined, {
-    autoConfig: false,
-    debug: process.env.NODE_ENV !== "production",
-  });
-};
+const PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
 
 export interface AddToCartPayload {
   content_ids: string[];
@@ -36,12 +23,14 @@ export interface AddToCartPayload {
   currency: string;
 }
 
-export const trackAddToCart = async (payload: AddToCartPayload) => {
+/** Track standard AddToCart event. */
+export const trackAddToCart = (payload: AddToCartPayload): void => {
   if (typeof window === "undefined") return;
 
-  const ReactPixelModule = await import("react-facebook-pixel");
-  const ReactPixel = ReactPixelModule.default || ReactPixelModule;
+  if (!window.fbq) {
+    console.warn("Meta Pixel: fbq is not initialised via snippet.");
+    return;
+  }
 
-  // Track standard AddToCart event
-  ReactPixel.track("AddToCart", payload);
+  window.fbq("track", "AddToCart", payload);
 };
