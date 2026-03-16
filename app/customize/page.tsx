@@ -23,7 +23,7 @@ import { CONSTRAINTS } from "@/lib/design-tokens";
 import { PlacedCharmInstance } from "@/lib/types";
 import { addToShopifyCart, ShopifyCartItem } from "@/lib/shopify";
 import { toBlob } from "html-to-image";
-import { initMetaPixel, trackAddToCart } from "@/lib/metaPixel";
+import { trackAddToCart } from "@/lib/metaPixel";
 
 import { Check, Loader2, ShoppingCart } from "lucide-react";
 
@@ -158,7 +158,6 @@ function HomeContent() {
 
   // --- WALKTHROUGH TRIGGERS ---
   useEffect(() => {
-    initMetaPixel().catch(console.error);
     if (totalCharmCount === 1 && currentStep === "charms") {
       setStepByPhase("interaction");
     }

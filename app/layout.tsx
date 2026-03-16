@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   description: "Custom Jewelry Builder",
 };
 
+import MetaPixel from "@/components/MetaPixel";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,6 +29,7 @@ export default function RootLayout({
       <body
         className={`${manrope.variable} ${playfair.variable} antialiased font-sans`}
       >
+        <MetaPixel />
         {children}
       </body>
     </html>
