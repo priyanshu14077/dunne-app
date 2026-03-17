@@ -212,6 +212,8 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
 
                                     const itemSrc = itemToShow ? (itemToShow.overlayImage || itemToShow.previewImage || itemToShow.image) : '';
                                     const isWebp = itemSrc.toLowerCase().includes('.webp');
+                                    const canvasScale = itemToShow?.canvasConfig?.scale || (isWebp ? 1.45 : 1);
+                                    const canvasOffsetY = itemToShow?.canvasConfig?.offsetY || 0;
 
                                     return (
                                         <div 
@@ -227,7 +229,7 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                                 left: `${anchor.x}%`,
                                                 top: `${anchor.y}%`,
                                                 transformOrigin: "top center",
-                                                transform: `translateX(-50%) translateY(0%) rotate(${anchor.rotation || 0}deg) scale(${anchor.scale || 1})`,
+                                                transform: `translateX(-50%) translateY(${canvasOffsetY}%) rotate(${anchor.rotation || 0}deg) scale(${anchor.scale || 1})`,
                                             }}
                                         >
                                             {itemToShow && (
@@ -237,7 +239,7 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                                         alt={itemToShow.name}
                                                         crossOrigin="anonymous"
                                                         className={`w-full h-full object-contain select-none pointer-events-none ${isPreview ? '' : 'drop-shadow-md'} transition-transform duration-300`}
-                                                        style={isWebp ? { transform: 'scale(1.45)' } : {}}
+                                                        style={{ transform: `scale(${canvasScale})` }}
                                                     />
                                                     {isPreview && (
                                                         <div className={`absolute inset-0 rounded-full border-2 border-dashed border-indigo-400/50 animate-pulse ${itemToShow.overlayImage ? 'scale-75 translate-y-[-20%]' : ''}`} />
@@ -264,13 +266,14 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                                             if (!pc) return null;
                                             const dragSrc = pc.charm.overlayImage || pc.charm.previewImage || pc.charm.image;
                                             const isDragWebp = dragSrc.toLowerCase().includes('.webp');
+                                            const dragScale = pc.charm.canvasConfig?.scale || (isDragWebp ? 1.45 : 1);
                                             return (
                                                 <img 
                                                     src={dragSrc}
                                                     alt="Dragging"
                                                     crossOrigin="anonymous"
                                                     className="w-full h-full object-contain"
-                                                    style={isDragWebp ? { transform: 'scale(1.45)' } : {}}
+                                                    style={{ transform: `scale(${dragScale})` }}
                                                 />
                                             );
                                         })()}
