@@ -22,7 +22,7 @@ import { PRODUCT_ANCHORS } from "@/lib/anchor";
 import { CONSTRAINTS } from "@/lib/design-tokens";
 import { PlacedCharmInstance } from "@/lib/types";
 import { addToShopifyCart, ShopifyCartItem } from "@/lib/shopify";
-import { toBlob } from "html-to-image";
+import { toBlob, toPng } from "html-to-image";
 import { initMetaPixel, trackAddToCart } from "@/lib/metaPixel";
 
 import { Check, Loader2, ShoppingCart } from "lucide-react";
@@ -442,57 +442,68 @@ function HomeContent() {
 
 
 
-      const element = document.getElementById("jewelry-design-canvas");
+      const element = document.getElementById("jewelry-actual-design-container");
       if (element) {
-        // console.log("Element found, capturing blob...");
-        const blob = await toBlob(element, { 
-          backgroundColor: '#ffffff', 
-          cacheBust: true,
-          skipFonts: true,
-          pixelRatio: 2,
-          width: element.scrollWidth,
-          height: element.scrollHeight,
-          style: {
-             transform: 'scale(1)', // Ensure no parent scaling affects capture if possible
-             margin: '0'
-          }
-        });
+        // console.log("Element found, waiting for settling...");
+        
+        // 1. Add a small delay to ensure all transitions (transition-all duration-300) have finished
+        await new Promise(resolve => setTimeout(resolve, 500));
 
-        if (blob) {
-          const formData = new FormData();
-          formData.append("file", blob, `${designId}.png`);
-          formData.append("designId", designId);
-
-          // Serialize Metadata
-          const metadata = {
-            baseProduct: selectedBase ? {
-              name: selectedBase.name,
-              type: selectedBase.type,
-              price: selectedBase.price,
-              image: selectedBase.image
-            } : null,
-            charms: placedCharms.map(pc => ({
-              name: pc.charm.name,
-              image: pc.charm.image,
-              price: pc.charm.price,
-              anchorIndex: pc.anchorIndex
-            })),
-            note: note,
-            spacingMode: spacingMode
-          };
-
-          formData.append("metadata", JSON.stringify(metadata));
-
-          const uploadRes = await fetch("/apps/customizer/api/upload-preview", {
-            method: "POST",
-            body: formData,
+        try {
+          // 2. Use toPng which is often more robust for layered designs, then convert to blob
+          const dataUrl = await toPng(element, { 
+            backgroundColor: '#ffffff', 
+            cacheBust: false, // Disabled to avoid potential CORS issues with query params
+            skipFonts: true,
+            pixelRatio: 2,
+            // Let html-to-image handle width/height from the element's actual size
           });
 
-          if (uploadRes.ok) {
-            const uploadData = await uploadRes.json();
-            designPreviewUrl = uploadData.imageUrl;
-            // console.log("Upload success, URL:", designPreviewUrl);
+          if (dataUrl) {
+            // Convert Data URL to Blob
+            const response = await fetch(dataUrl);
+            const blob = await response.blob();
+
+            const formData = new FormData();
+            formData.append("file", blob, `${designId}.png`);
+            formData.append("designId", designId);
+
+            // Serialize Metadata
+            const metadata = {
+              baseProduct: selectedBase ? {
+                name: selectedBase.name,
+                type: selectedBase.type,
+                price: selectedBase.price,
+                image: selectedBase.image
+              } : null,
+              charms: placedCharms.map(pc => ({
+                name: pc.charm.name,
+                image: pc.charm.image,
+                price: pc.charm.price,
+                anchorIndex: pc.anchorIndex
+              })),
+              note: note,
+              spacingMode: spacingMode
+            };
+
+            formData.append("metadata", JSON.stringify(metadata));
+
+            const uploadRes = await fetch("/apps/customizer/api/upload-preview", {
+              method: "POST",
+              body: formData,
+            });
+
+            if (uploadRes.ok) {
+              const uploadData = await uploadRes.json();
+              designPreviewUrl = uploadData.imageUrl;
+              // console.log("Upload success, URL:", designPreviewUrl);
+            } else {
+              console.error("Upload failed with status:", uploadRes.status);
+            }
           }
+        } catch (captureError) {
+          console.error("Error capturing design preview:", captureError);
+          // We continue anyway so the user can still add to cart even if preview fails
         }
       }
 
