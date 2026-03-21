@@ -37,6 +37,10 @@ export interface Charm {
   isNew?: boolean;
   isBestSeller?: boolean; 
   description: string;
+  canvasConfig?: {
+    scale?: number;
+    offsetY?: number;
+  };
   specifications: {
     style?: string;
     size?: string;
@@ -864,6 +868,59 @@ export const CHARMS: Charm[] = [
     image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Keyspell Charm.webp",
     previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Keyspell Charm.webp",
     overlayImage: STORAGE_BASE + "/overlay-charms/Eternal Bloom/Keyspell Charm.webp",
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
+      quality: "Anti Tarnish, Hypoallergenic"
+    }
+  },
+
+  {
+    id: "eb-23",
+    name: "Puppy Love Charm",
+    handle: 'eternal-bond-puppy-love-charm',
+    productId: 9300314947843,
+    variantId: 47741772398851,
+    price: 690,
+    category: "Eternal Bond",
+    isBestSeller: false,
+    image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Puppy Love Charm.webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Puppy Love Charm.webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Eternal Bloom/Puppy Love Charm.webp",
+    canvasConfig: {
+      scale: 1.45,
+      offsetY: -8
+    },
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
+      quality: "Anti Tarnish, Hypoallergenic"
+    }
+  },
+  {
+    id: "eb-24",
+    name: "Heart & Key Lock Charm",
+    handle: 'eternal-bond-heart-key-lock-charm',
+    productId: 9295357968643,
+    variantId: 47724763087107,
+    price: 690,
+    category: "Eternal Bond",
+    isBestSeller: false,
+    image: STORAGE_BASE + "/charms-cards/Eternal Bloom/Heart & Key Lock Charm (1).webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Eternal bloom/Heart & Key Lock Charm (1).webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Eternal Bloom/Heart & Key Lock Charm (1).webp",
+    canvasConfig: {
+      scale: 1.45,
+      offsetY: -8
+    },
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -1956,6 +2013,30 @@ export const CHARMS: Charm[] = [
     }
   },
   {
+    id: "pe-f",
+    productId: 9218601451779,
+    variantId: 47557882183939,
+    name: "Letter F Initial Charm",
+    price: 590.0,
+    category: "Persona",
+    image: STORAGE_BASE + "/charms-cards/Persona/F Initial Charm.webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Persona/F Initial Charm.webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Persona/F Initial Charm.webp",
+    canvasConfig: {
+      scale: 1.45,
+      offsetY: -8
+    },
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
+      quality: "Anti Tarnish, Hypoallergenic"
+    }
+  },
+  {
     id: "pe-h",
     productId: 9218601451779,
     variantId: 47557882249475,
@@ -2105,6 +2186,54 @@ export const CHARMS: Charm[] = [
     image: STORAGE_BASE + "/charms-cards/Persona/Label = R Initial Charm.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Persona/Label = R Initial Charm.png",
     overlayImage: STORAGE_BASE + "/overlay-charms/Persona/R Initial Charm.png",
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
+      quality: "Anti Tarnish, Hypoallergenic"
+    }
+  },
+  {
+    id: "pe-s",
+    productId: 9218601451779,
+    variantId: 47557882609923,
+    name: "Letter S Initial Charm",
+    price: 590.0,
+    category: "Persona",
+    image: STORAGE_BASE + "/charms-cards/Persona/S Initial Charm (1).webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Persona/S Initial Charm (1).webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Persona/S Initial Charm (1).webp",
+    canvasConfig: {
+      scale: 1.45,
+      offsetY: -8
+    },
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
+      quality: "Anti Tarnish, Hypoallergenic"
+    }
+  },
+  {
+    id: "pe-w",
+    productId: 9218601451779,
+    variantId: 47557882642691,
+    name: "Letter W Initial Charm",
+    price: 590.0,
+    category: "Persona",
+    image: STORAGE_BASE + "/charms-cards/Persona/W Initial Charm.webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Persona/W Initial Charm.webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Persona/W Initial Charm.webp",
+    canvasConfig: {
+      scale: 1.45,
+      offsetY: -8
+    },
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2344,6 +2473,32 @@ export const CHARMS: Charm[] = [
     image: STORAGE_BASE + "/charms-canvas/Persona/Label = Virgo Zodiac Pendant.png",
     previewImage: STORAGE_BASE + "/charms-canvas/Persona/Label = Virgo Zodiac Pendant.png",
     overlayImage: STORAGE_BASE + "/overlay-charms/Persona/Virgo Zodiac Pendant.png",
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
+      quality: "Anti Tarnish, Hypoallergenic"
+    }
+  },
+  {
+    id: "pe-runway-1",
+    name: "Runway Diva Heels Charm",
+    handle: 'persona-runway-diva-heels-charm',
+    productId: 9300306100483,
+    variantId: 47741718167811,
+    price: 690,
+    category: "Persona",
+    isBestSeller: false,
+    image: STORAGE_BASE + "/charms-cards/Persona/Runway Diva Heels Charm.webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Persona/Runway Diva Heels Charm.webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Persona/Runway Diva Heels Charm.webp",
+    canvasConfig: {
+      scale: 1.45,
+      offsetY: -8
+    },
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
@@ -2912,6 +3067,33 @@ export const CHARMS: Charm[] = [
     image: STORAGE_BASE + "/charms-cards/Sugarpop/Spice Drop Chili Charm.webp",
     previewImage: STORAGE_BASE + "/charms-canvas/Sugar Pop/Spice Drop Chili Charm.webp",
     overlayImage: STORAGE_BASE + "/overlay-charms/Sugar Pop/Spice Drop Chili Charm.webp",
+    description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
+    specifications: {
+      style: "Single charm",
+      size: "~2 cm",
+      weight: "~3 g",
+      material: "Stainless Steel with Gold Plating",
+      finish: "Gloss enamel + gold plating",
+      quality: "Anti Tarnish, Hypoallergenic"
+    }
+  },
+
+  {
+    id: "sp-28",
+    name: "Pearl Acorn Charm",
+    handle: 'sugar-pop-pearl-acorn-charm',
+    productId: 9259904565507,
+    variantId: 47637940044035,
+    price: 690,
+    category: "Sugar Pop",
+    isBestSeller: false,
+    image: STORAGE_BASE + "/charms-cards/Sugarpop/Pearl Acorn Charm.webp",
+    previewImage: STORAGE_BASE + "/charms-canvas/Sugar Pop/Pearl Acorn Charm.webp",
+    overlayImage: STORAGE_BASE + "/overlay-charms/Sugar Pop/Pearl Acorn Charm.webp",
+    canvasConfig: {
+      scale: 1.45,
+      offsetY: -8
+    },
     description: "Handcrafted charm featuring premium enamel finish and intricate details. Perfect for personalizing your jewelry collection and expressing your unique style.",
     specifications: {
       style: "Single charm",
