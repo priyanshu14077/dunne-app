@@ -160,7 +160,10 @@ export default function JewelryCanvas({ baseProduct, placedCharms, spacingMode, 
                     </div>
                 ) : (
                     <div className="w-full h-full flex items-center justify-center relative animate-fade-in">
-                       <div className="relative aspect-square max-w-full max-h-full flex items-center justify-center w-full md:w-auto h-auto md:h-full">
+                       <div 
+                            id="jewelry-actual-design-container"
+                            className="relative aspect-square max-w-full max-h-full flex items-center justify-center w-full md:w-auto h-auto md:h-full bg-white"
+                        >
                             <div 
                                 className="relative w-full h-full lg:scale-75 xl:scale-100"
                                 style={{ 
