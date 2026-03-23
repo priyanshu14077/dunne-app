@@ -1,75 +1,136 @@
 # Dunne Customizer App
 
-This is a Next.js web application that powers the custom jewelry builder for **Dunne**.
+Welcome to the **Dunne Customizer App**! This application is a custom jewelry builder built specifically for Dunne, providing an interactive, scalable, and beautifully designed user experience for composing charm jewelry.
 
-Give A Visit @ [https://makeyourown.dunne.co.in/apps/customizer](https://makeyourown.dunne.co.in/apps/customizer)
+📍 **Live Demo**: [https://makeyourown.dunne.co.in/apps/customizer](https://makeyourown.dunne.co.in/apps/customizer)
 
-## System Architecture
+---
 
-The application is built on a modern serverless architecture utilizing Next.js App Router, integrating several external services to handle media storage, notifications, and e-commerce checkouts.
+## 📖 Project Overview
 
-### Microservices & Integrations
-1. **Frontend / Core Logic**: Next.js (React 19)
-   - Handles the interactive 2D canvas for placing charms on base jewelry.
-   - Manages state and calculations prior to checkout.
-2. **AWS S3 & CloudFront (Storage & CDN)**
-   - Customizer preview images are generated on the client, and uploaded to the `dunne-assets-prod` S3 bucket via the `/api/upload-preview` route.
-   - Assets are served securely and quickly through a CloudFront distribution.
-3. **AWS SES (Simple Email Service)**
-   - Sends real-time email notifications to administrators (`Dunnemedia1212@gmail.com`) when a user uploads a new design, embedding the S3 URL and design metadata.
-4. **Shopify Integration**
-   - Headless cart integration: The app generates a customized Shopify cart permalink containing product IDs, variant IDs, and custom attributes, seamlessly redirecting the user to the Shopify checkout flow.
-5. **Supabase (Database/Auth)**
-   - Configured for PostgreSQL database operations and authentication, utilizing `@supabase/supabase-js`.
-6. **Meta Pixel (Tracking)**
-   - Used for tracking user events (like "Add to Cart") to optimize marketing campaigns.
+The Customizer empowers end-users to interactively design unique pieces of jewelry. By rendering a 2D HTML5 Canvas, users can place charms on base products (necklaces, bracelets), preview their designs in real-time, and seamlessly transition into a Shopify headless checkout flow.
 
-### Architecture Diagram
+Behind the scenes, the app leverages a modern, serverless architecture to ensure blazing-fast edge delivery, robust persistence, and immediate fulfillment notifications.
+
+---
+
+## 🏗 System Architecture
+
+The project is structured into four primary layers, enabling a clear separation of concerns between client interactivity, API routing, robust cloud storage, and external e-commerce handling.
+
+### 1. Client Runtime (React 19 & Tailwind CSS)
+- **State Orchestrator:** Uses Zustand and React Context to manage complex, deeply nested user selections (base items, charms, positions).
+- **Composition Engine:** Custom-built HTML5 Canvas 2D engine that renders selected jewelry components into a high-fidelity preview. Generates optimal Blob/Base64 representations to send to the backend.
+
+### 2. Middleware & API Layer (Next.js Edge)
+- **Node.js Runtime Endpoints (`/api/upload-preview`):** Processes incoming canvas screenshots, forwards streams directly to AWS S3, and triggers internal email services.
+- **Supabase Auth Integration:** Performs JWT validation and secures custom user routes or administrative actions.
+
+### 3. Infrastructure (AWS Cloud Services)
+- **Amazon S3 (`dunne-assets-prod`):** Stores user-generated design previews persistently as resilient objects.
+- **Amazon CloudFront:** Actively caches static and dynamic image assets at Edge locations worldwide for minimal latency.
+- **Amazon SES (Simple Email Service):** Fires an event-driven SMTP relay to immediately notify the `Dunnemedia1212` admin team with embedded S3 images and order metafields.
+
+### 4. Application Integrations
+- **Shopify Storefront API:** Rather than maintaining an isolated DB, the client compiles design metadata and product details, formulating a bespoke "Permalink Checkout" URL. The user is redirected natively to Shopify's optimized checkout funnel.
+- **Supabase PostgreSQL:** Acts as the relational engine handling active session data, abandoned cart recovery metrics, and general scalable state syncing.
+- **Meta Pixel SDK:** Dispatches critical e-commerce events (e.g., `InitiateCheckout`, `AddToCart`) directly from the client for advertising telemetry.
+
+---
+
+## 📊 Architecture Diagram
 
 ```mermaid
 graph TD
     %% Styling
-    classDef user fill:#6366f1,stroke:#4f46e5,stroke-width:2px,color:#fff
-    classDef frontend fill:#0ea5e9,stroke:#0284c7,stroke-width:2px,color:#fff
-    classDef backend fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff
-    classDef external fill:#f59e0b,stroke:#d97706,stroke-width:2px,color:#fff
-    classDef storage fill:#8b5cf6,stroke:#7c3aed,stroke-width:2px,color:#fff
+    classDef user fill:#2d3436,stroke:#000,stroke-width:2px,color:#fff
+    classDef core fill:#0984e3,stroke:#074e8c,stroke-width:2px,color:#fff
+    classDef storage fill:#6c5ce7,stroke:#4834d4,stroke-width:2px,color:#fff
+    classDef edge fill:#00b894,stroke:#006266,stroke-width:2px,color:#fff
+    classDef external fill:#e17055,stroke:#af442b,stroke-width:2px,color:#fff
 
-    User([👤 User / Browser]):::user
-    Admin([✉️ Dunne Admin Email]):::user
-
-    subgraph Next.js Application
-        UI[🖥️ Frontend UI<br/>React/Tailwind]:::frontend
-        Canvas[🎨 Jewelry Canvas<br/>Customizer]:::frontend
-        API_Upload[⚙️ API: /upload-preview<br/>Node.js Serverless]:::backend
+    subgraph Client_Layer [Client Runtime / React 19]
+        User([👤 End User]):::user
+        State[🧠 State Orchestrator<br/>Zustand / Context]:::core
+        Engine[🎨 Composition Engine<br/>HTML5 Canvas 2D]:::core
     end
 
-    subgraph AWS Cloud
-        S3[(📦 AWS S3<br/>dunne-assets-prod)]:::storage
-        CF((🌍 AWS CloudFront<br/>CDN)):::storage
-        SES[📧 AWS SES<br/>Email Service]:::storage
+    subgraph Middleware_Layer [Next.js Edge & API]
+        Upload_API[⚡ /api/upload-preview<br/>Node.js Runtime]:::core
+        Auth[🔑 Supabase Auth<br/>JWT Validation]:::core
     end
 
-    subgraph External Platforms
-        Shopify[🛍️ Shopify<br/>Cart & Checkout]:::external
-        Supabase[(🗄️ Supabase<br/>Database & Auth)]:::external
-        Meta[📊 Meta Pixel<br/>Analytics]:::external
+    subgraph Infrastructure_Layer [AWS Cloud Services]
+        S3[(📦 S3: dunne-assets-prod<br/>Persistent Storage)]:::storage
+        CF{{"🌐 CloudFront CDN<br/>Edge Delivery"}}:::storage
+        SES[📧 AWS SES Relay<br/>Admin SMTP]:::storage
     end
+
+    subgraph Integration_Layer [External Platforms]
+        Shopify[[🛍️ Shopify Headless<br/>Permalink Checkout]]:::external
+        Supabase_DB[(🗄️ Supabase PG<br/>Relational Data)]:::external
+        Meta[📊 Meta Pixel<br/>Event Tracking]:::external
+    end
+
+    %% Logical Connections
+    User -->|Interacts| State
+    State -->|Reactive Render| Engine
+    Engine -->|Blob Serialization| Upload_API
     
-    %% Flows
-    User -->|Interacts with| UI
-    UI -->|Renders & Configures| Canvas
-    UI -->|Generates Base64 & Uploads| API_Upload
+    Upload_API -->|PutObject| S3
+    S3 -.->|Origin Fetch| CF
+    CF -.->|Hydrate Client| Engine
     
-    API_Upload -->|PutObject Image| S3
-    S3 -->|Serves Assets| CF
-    UI -->|Fetches UI Assets| CF
+    Upload_API -->|Dispatch Email| SES
+    SES -.->|Notification| Admin([✉️ Dunne Admin]):::user
     
-    API_Upload -->|Triggers Email w/ Preview| SES
-    SES -.->|Notifies| Admin
-    
-    UI -->|Redirects with Cart URL| Shopify
-    UI -->|Tracks 'Add to Cart'| Meta
-    
-    UI -.->|Reads/Writes State| Supabase
+    State -->|Direct Checkout| Shopify
+    State <-->|Persist Session| Supabase_DB
+    State -->|Track Conversion| Meta
 ```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+You will need the following environment variables configured in your `.env.local` to run this project smoothly:
+
+- **AWS Credentials:** `AWS_REGION`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_S3_BUCKET_NAME`
+- **Supabase Credentials:** `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- **Shopify & CloudFront Endpoints:** Make sure the proper proxy/domains are supplied for seamless checkout integrations.
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/priyanshu14077/dunne-app.git
+   ```
+2. Install dependencies (utilizing npm/yarn/pnpm):
+   ```bash
+   npm install
+   ```
+3. Boot up the Next.js development server:
+   ```bash
+   npm run dev
+   ```
+
+*Open `http://localhost:3000` with your browser to see the result.*
+
+---
+
+## 🛠 Tech Stack Snapshot
+
+| Layer | Technologies |
+|---|---|
+| **Framework** | Next.js 16 (App Router), React 19 |
+| **Styling** | Tailwind CSS v4, PostCSS |
+| **Media Handling** | HTML5 Canvas, html-to-image |
+| **Cloud/Infra** | AWS S3, CloudFront, AWS SES |
+| **Analytics/Auth** | Supabase, Meta Pixel (`react-facebook-pixel`) |
+| **Tooling** | TypeScript, ESLint |
+
+---
+
+*For further contributions, please verify that both `npm run build` and `npm run lint` pass successfully.*
