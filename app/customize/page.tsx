@@ -452,10 +452,13 @@ function HomeContent() {
           // 2. Use toPng which is often more robust for layered designs, then convert to blob
           const dataUrl = await toPng(element, { 
             backgroundColor: '#ffffff', 
-            cacheBust: false, // Disabled to avoid potential CORS issues with query params
+            cacheBust: true, // Enable cacheBust to ensure external images are fetched properly without CORS cache issues
             skipFonts: true,
             pixelRatio: 2,
-            // Let html-to-image handle width/height from the element's actual size
+            style: {
+              transform: 'scale(1)',
+              transformOrigin: 'top left'
+            }
           });
 
           if (dataUrl) {

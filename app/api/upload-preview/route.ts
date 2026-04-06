@@ -62,38 +62,31 @@ export async function POST(req: NextRequest) {
       if (metadataString) {
         try {
           const m = JSON.parse(metadataString);
-          
-          let charmsRows = "";
-          if (m.charms && Array.isArray(m.charms)) {
-            charmsRows = m.charms.map((c: any) => `
-              <tr>
-                <td style="padding: 8px; border: 1px solid #ddd;">${c.name}</td>
-                <td style="padding: 8px; border: 1px solid #ddd;">Anchor ${c.anchorIndex !== undefined ? c.anchorIndex + 1 : '-'}</td>
-                <td style="padding: 8px; border: 1px solid #ddd;">${c.price || '-'}</td>
-              </tr>
-            `).join("");
-          }
 
           metadataHtml = `
             <div style="font-family: Arial, sans-serif; color: #333;">
-              <h3>Order Details</h3>
-              <p><strong>Base Product:</strong> ${m.baseProduct?.name || 'Unknown'} (${m.baseProduct?.type || '-'})</p>
-              <p><strong>Note:</strong> ${m.note || 'None'}</p>
-              <p><strong>Spacing Mode:</strong> ${m.spacingMode || 'Standard'}</p>
+              <h2>New Custom Jewelry Order</h2>
               
-              <h4>Selected Charms (${m.charms?.length || 0})</h4>
-              <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
-                <thead>
-                  <tr style="background-color: #f2f2f2;">
-                    <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Charm Name</th>
-                    <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Position</th>
-                    <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  ${charmsRows || '<tr><td colspan="3" style="padding: 8px; border: 1px solid #ddd; text-align: center;">No charms selected</td></tr>'}
-                </tbody>
-              </table>
+              <h3>Base Product</h3>
+              <p><strong>Name:</strong> ${m.baseProduct?.name || 'Unknown'}</p>
+              <p><strong>Type:</strong> ${m.baseProduct?.type || '-'}</p>
+              
+              <h3>Selected Charms</h3>
+              ${m.charms && m.charms.length > 0 ? `
+                <ul style="list-style-type: none; padding-left: 0;">
+                  ${m.charms.map((c: any) => `
+                    <li style="margin-bottom: 5px;">
+                      <strong>${c.name}</strong> - placed on Anchor ${c.anchorIndex !== undefined ? c.anchorIndex + 1 : 'Unknown'}
+                    </li>
+                  `).join("")}
+                </ul>
+              ` : '<p>No charms selected.</p>'}
+              
+              <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;" />
+              
+              <h3>Design Preview</h3>
+              <p>You can view the high-resolution uploaded design preview attached below or via this link:</p>
+              <p><a href="${imageUrl}" style="color: #4F46E5; font-weight: bold; text-decoration: none;">View S3 Preview Image &rarr;</a></p>
             </div>
           `;
         } catch (e) {
@@ -105,7 +98,7 @@ export async function POST(req: NextRequest) {
       const emailParams = {
         Source: SENDER_EMAIL,
         Destination: {
-          ToAddresses: [RECIPIENT_EMAIL],
+          ToAddresses: [RECIPIENT_EMAIL, SENDER_EMAIL],
         },
         Message: {
           Subject: {
@@ -115,15 +108,10 @@ export async function POST(req: NextRequest) {
             Html: {
               Data: `
                 <html>
-                  <body>
-                    <h1>New Design Uploaded!</h1>
-                    <p><strong>Design ID:</strong> ${designId}</p>
-                    <p><strong>S3 URL:</strong> <a href="${imageUrl}">${imageUrl}</a></p>
-                    <br/>
+                  <body style="padding: 20px;">
                     ${metadataHtml}
-                    <br/>
-                    <p>Here is the preview:</p>
-                    <img src="data:image/png;base64,${base64Image}" alt="Design Preview" style="max-width: 100%; height: auto; border: 1px solid #ddd;" />
+                    <br/><br/>
+                    <img src="data:image/png;base64,${base64Image}" alt="Design Preview" style="max-width: 600px; width: 100%; height: auto; border: 1px solid #ddd; border-radius: 8px;" />
                   </body>
                 </html>
               `,
