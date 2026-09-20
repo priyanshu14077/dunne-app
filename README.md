@@ -2,14 +2,13 @@
 
 Welcome to the **Dunne Customizer App**! This application is a custom jewelry builder built specifically for Dunne, providing an interactive, scalable, and beautifully designed user experience for composing charm jewelry.
 
-📍 **Live Demo**: [https://makeyourown.dunne.co.in/apps/customizer](https://makeyourown.dunne.co.in/apps/customizer)
-
+📍 **Live Demo**: [https://makeyourown.dunne.co.in/apps/customizer](https://makeyourown.dunne.com
 ---
 
 ## 📖 Project Overview
 
 The Customizer empowers end-users to interactively design unique pieces of jewelry. By rendering a 2D HTML5 Canvas, users can place charms on base products (necklaces, bracelets), preview their designs in real-time, and seamlessly transition into a Shopify headless checkout flow.
-
+the thing went well with the client 
 Behind the scenes, the app leverages a modern, serverless architecture to ensure blazing-fast edge delivery, robust persistence, and immediate fulfillment notifications.
 
 ---
